@@ -23,11 +23,17 @@ search: true
 # Platform of Trust APIs
 
 This could be rather static introduction to Platform of Trust APIs and written in separate file. Then just preprocess the files and merge all, or do it 
-manually. 
+manually. Nope! Includes go all to bottom. 
 
 # Authentication
 
-Again this could be external file which is just injected to final markup file....
+Again this could be external file which is just injected to final markup file....not, see above
+
+# Examples use sandbox environment
+
+<aside class="notice">
+All the documentation code examples use our sandbox environment. When you are done with testing, you should switch to production environment. Easiest way is to store API root url in variable and when needed, change it there. Thus the code examples contain API-root variable as an exmaple. 
+</aside>
 
 # Translator API 
 
@@ -54,8 +60,8 @@ api.kittens.delete(2)
 ```
 
 ```shell
-curl "http://example.com/api/kittens/2"
-  -X DELETE
+curl "http://sandbox.oftrust.net/api/translator/health"
+  -X GET
   -H "Authorization: meowmeowmeow"
 ```
 
@@ -148,6 +154,7 @@ let max = api.kittens.delete(2);
 | ---- | ----------- |
 | 200 |  |
 | 422 |  |
+
 
 
 # Login API 
