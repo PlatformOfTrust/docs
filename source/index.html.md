@@ -1,156 +1,61 @@
----
-title: API Reference
+--- 
 
-language_tabs: # must be one of https://git.io/vQNgJ
-  - shell
-  - ruby
-  - python
-  - javascript
+title: Platform Of Trust APIs 
 
-toc_footers:
-  - <a href='#'>Sign Up for a Developer Key</a>
-  - <a href='https://github.com/lord/slate'>Documentation Powered by Slate</a>
+language_tabs: 
+   - shell 
+   - java
+   - python
+   - javascript
 
-includes:
-  - errors
+toc_footers: 
+   - <a href='#'>Sign Up for a Developer Key</a> 
+   - <a href='https://github.com/lavkumarv'>Documentation Powered by lav</a> 
 
-search: true
----
+includes: 
+   - errors 
+   - feedback
 
-# Introduction
+search: true 
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+--- 
 
-We have language bindings in Shell, Ruby, Python, and JavaScript! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+# Platform of Trust APIs
 
-This example API documentation page was created with [Slate](https://github.com/lord/slate). Feel free to edit it and use it as a base for your own API's documentation.
+This could be rather static introduction to Platform of Trust APIs and written in separate file. Then just preprocess the files and merge all, or do it 
+manually. 
 
 # Authentication
 
-> To authorize, use this code:
+Again this could be external file which is just injected to final markup file....
 
-```ruby
+# Translator API 
+
+**Version:** v1 
+
+API Description should come from the code as well...
+
+## /HEALTH
+
+Jotain kuvausta.
+
+```java
 require 'kittn'
 
 api = Kittn::APIClient.authorize!('meowmeowmeow')
+api.kittens.delete(2)
 ```
 
 ```python
 import kittn
 
 api = kittn.authorize('meowmeowmeow')
-```
-
-```shell
-# With shell, you can just pass the correct header with each request
-curl "api_endpoint_here"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-```
-
-> Make sure to replace `meowmeowmeow` with your API key.
-
-Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our [developer portal](http://example.com/developers).
-
-Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:
-
-`Authorization: meowmeowmeow`
-
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
-
-# Kittens
-
-## Get All Kittens
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get()
-```
-
-```shell
-curl "http://example.com/api/kittens"
-  -H "Authorization: meowmeowmeow"
-```
-
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let kittens = api.kittens.get();
-```
-
-> The above command returns JSON structured like this:
-
-```json
-[
-  {
-    "id": 1,
-    "name": "Fluffums",
-    "breed": "calico",
-    "fluffiness": 6,
-    "cuteness": 7
-  },
-  {
-    "id": 2,
-    "name": "Max",
-    "breed": "unknown",
-    "fluffiness": 5,
-    "cuteness": 10
-  }
-]
-```
-
-This endpoint retrieves all kittens.
-
-### HTTP Request
-
-`GET http://example.com/api/kittens`
-
-### Query Parameters
-
-Parameter | Default | Description
---------- | ------- | -----------
-include_cats | false | If set to true, the result will also include cats.
-available | true | If set to false, the result will include kittens that have already been adopted.
-
-<aside class="success">
-Remember — a happy kitten is an authenticated kitten!
-</aside>
-
-## Get a Specific Kitten
-
-```ruby
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.get(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.get(2)
+api.kittens.delete(2)
 ```
 
 ```shell
 curl "http://example.com/api/kittens/2"
+  -X DELETE
   -H "Authorization: meowmeowmeow"
 ```
 
@@ -158,38 +63,36 @@ curl "http://example.com/api/kittens/2"
 const kittn = require('kittn');
 
 let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.get(2);
+let max = api.kittens.delete(2);
 ```
+
+### ***GET*** 
+
 
 > The above command returns JSON structured like this:
 
 ```json
 {
   "id": 2,
-  "name": "Max",
-  "breed": "unknown",
-  "fluffiness": 5,
-  "cuteness": 10
+  "deleted" : ":("
 }
 ```
 
-This endpoint retrieves a specific kitten.
+**Description:** Health check endpoint
 
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
+### HTTP Request 
+`***GET*** /health` 
 
-### HTTP Request
+**Responses**
 
-`GET http://example.com/kittens/<ID>`
+| Code | Description |
+| ---- | ----------- |
+| 200 |  |
 
-### URL Parameters
+## /FETCH
+### ***POST*** 
 
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to retrieve
-
-## Delete a Specific Kitten
-
-```ruby
+```java
 require 'kittn'
 
 api = Kittn::APIClient.authorize!('meowmeowmeow')
@@ -225,15 +128,34 @@ let max = api.kittens.delete(2);
 }
 ```
 
-This endpoint deletes a specific kitten.
+**Description:** Get the data for the translator
 
-### HTTP Request
+### HTTP Request 
+`***POST*** /fetch` 
 
-`DELETE http://example.com/kittens/<ID>`
+**Parameters**
 
-### URL Parameters
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+| X-PoT-Signature | header | A HMAC-SHA256 generated signature of the payload. E.g. HMAC-SHA256(sharedSecret, body)  | Yes | string |
+| X-PoT-Token | header | The user's OAuth token | No | string |
+| X-PoT-App | header | App name (App ID) | No | string |
+| body | body |  | Yes |  |
 
-Parameter | Description
---------- | -----------
-ID | The ID of the kitten to delete
+**Responses**
 
+| Code | Description |
+| ---- | ----------- |
+| 200 |  |
+| 422 |  |
+
+
+# Login API 
+
+# Context API 
+
+# Data Broker API 
+
+# Product API 
+
+<!-- Converted with the swagger-to-slate https://github.com/lavkumarv/swagger-to-slate -->
