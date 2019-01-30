@@ -1,0 +1,284 @@
+#%RAML 1.0
+---
+title: LifeEngine
+version: v1
+baseUri: http://192.168.99.100:32000/identity/v1
+mediaType: application/json
+types:
+  identity:
+    type: object
+    properties:
+      context:
+        description: The URL to the context for this identity
+      name:
+        description: The name of the identity
+        type: string
+      type:
+        description: The type of the identity
+        type: string
+      data?:
+        description: Optional key-value data for the identity
+        type: object
+      createdBy?:
+        description: Optional User ID who should be the creator of this identity
+        type: string
+  link:
+    type: object
+    properties:
+      context:
+        description: The URL to the context for this link
+        type: string
+      type:
+        description: The type of the link
+        type: string
+/health:
+  get:
+    description: Health check endpoint
+    responses:
+      200:
+        body:
+          example: {}
+/identity:
+  post:
+    description: Create a new identity
+    body:
+      type: identity
+      example: !include includes/examples/identity-create.json
+    responses:
+      201:
+        body:
+          properties: !include includes/properties/identity.yaml
+          example: !include includes/examples/identity-without-links.json
+      422:
+        body:
+          example: |
+            {
+              "error": {
+                "status": 422,
+                "message": "Could not create identity."
+              }
+            }
+  /{id}:
+    uriParameters:
+      id:
+        description: The ID of the Identity
+        type: string
+        example: 2584bdd7-1cb2-48ed-a106-2a1b817cf909
+    get:
+      description: Read one identity by id
+      responses:
+        200:
+          body:
+            properties: !include includes/properties/identity.yaml
+            example: !include includes/examples/identity.json
+        404:
+          body:
+            example: !include includes/examples/identity-not-found.json
+    put:
+      description: Update an identity by id
+      body:
+        type: identity
+        example: !include includes/examples/identity-update.json
+      responses:
+        200:
+          body:
+            properties: !include includes/properties/identity.yaml
+            example: !include includes/examples/identity.json
+        404:
+          body:
+            example: !include includes/examples/identity-not-found.json
+        422:
+          body:
+            example: |
+              {
+                "error": {
+                  "status": 422,
+                  "message": "Could not update identity."
+                }
+              }
+    delete:
+      description: Delete an identity by id
+      responses:
+        204:
+          body:
+            example: {}
+        404:
+          body:
+            example: !include includes/examples/identity-not-found.json
+/identities:
+  get:
+    description: List all identities created by currently logged in user
+    responses:
+      200:
+        body:
+          properties: !include includes/properties/identities.yaml
+          example: !include includes/examples/identities.json
+  /{from_identity}/link/{to_identity}:
+    uriParameters:
+      from_identity:
+        description: The starting identity ID of the link
+        type: string
+        example: 8d8b1ea6-52b7-4bbc-89b0-f7604422dffd
+      to_identity:
+        description: The ending identity ID of the link
+        type: string
+        example: a2a161c9-a7ff-47e7-9b70-4bf4a83bcb90
+    post:
+      description: Creates a new link between two identities
+      body:
+        type: link
+        example: !include includes/examples/link-create.json
+      responses:
+        201:
+          body:
+            properties: !include includes/properties/link.yaml
+            example: !include includes/examples/link.json
+        404:
+          body:
+            examples:
+              'From identity not found': |
+                {
+                  "error": {
+                    "status": 404,
+                    "message": "From identity not found."
+                  }
+                }
+              'To identity not found': |
+                {
+                  "error": {
+                    "status": 404,
+                    "message": "To identity not found."
+                  }
+                }
+        422:
+          body:
+            example: |
+              {
+                "error": {
+                  "status": 422,
+                  "message": "Could not create link."
+                }
+              }
+    /{type}:
+      uriParameters:
+        type:
+          description: The link type
+          type: string
+          example: Owner
+      put:
+        description: Update a link
+        body:
+          example: |
+            {
+              "context": "<context URL>"
+            }
+        responses:
+          201:
+            body:
+              properties: !include includes/properties/link.yaml
+              example: !include includes/examples/link.json
+          404:
+            body:
+              examples:
+                'From identity not found': |
+                  {
+                    "error": {
+                      "status": 404,
+                      "message": "From identity not found."
+                    }
+                  }
+                'To identity not found': |
+                  {
+                    "error": {
+                      "status": 404,
+                      "message": "To identity not found."
+                    }
+                  }
+                'Link not found': |
+                  {
+                    "error": {
+                      "status": 404,
+                      "message": "Link of type <type> not found."
+                    }
+                  }
+          422:
+            body:
+              example: |
+                {
+                  "error": {
+                    "status": 422,
+                    "message": "Could not update link."
+                  }
+                }
+      delete:
+        description: Delete a link by type
+        responses:
+          204:
+            body:
+              example: {}
+          404:
+            body:
+              examples:
+                'From identity not found': |
+                  {
+                    "error": {
+                      "status": 404,
+                      "message": "From identity not found."
+                    }
+                  }
+                'To identity not found': |
+                  {
+                    "error": {
+                      "status": 404,
+                      "message": "To identity not found."
+                    }
+                  }
+                'Link not found': |
+                  {
+                    "error": {
+                      "status": 404,
+                      "message": "Link of type <type> not found."
+                    }
+                  }
+          422:
+            body:
+              example: |
+                {
+                  "error": {
+                    "status": 422,
+                    "message": "Could not delete link."
+                  }
+                }
+
+  /{id}/links:
+    uriParameters:
+      id:
+        description: The ID of the identity
+        type: string
+        example: a2a161c9-a7ff-47e7-9b70-4bf4a83bcb90
+    get:
+      description: List all links for a given identity
+      responses:
+        200:
+          body:
+            properties: !include includes/properties/links.yaml
+            example: !include includes/examples/links.json
+        404:
+          body:
+            example: !include includes/examples/identity-not-found.json
+    /{type}:
+      uriParameters:
+        type:
+          description: The link type
+          type: string
+          example: Owner
+      get:
+        description: List all links of type {type} for given identity
+        responses:
+          200:
+            body:
+              properties: !include includes/properties/links.yaml
+              example: !include includes/examples/links.json
+          404:
+            body:
+              example: !include includes/examples/identity-not-found.json

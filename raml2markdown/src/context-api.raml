@@ -1,0 +1,68 @@
+#%RAML 1.0
+---
+title: Context
+version: v1
+baseUri: http://192.168.99.100:32000/context/v1
+mediaType: application/json
+types:
+  context:
+    type: object
+    properties:
+      type:
+        description: |
+          The type of the context: either "Identity", which is used for identities,
+          or "Link", which is used for linking identities.
+        type: string
+        example: Identity
+      name:
+        description: The name of the context.
+        type: string
+        example: Building
+      url:
+        description: The URL to the context. This should be saved as the context for the identity or link.
+        type: string
+        example: https://example.com/contexts/identity-building.jsonld
+/health:
+  description: API Health endpoints
+  get:
+    description: Health check endpoint
+    responses:
+      200:
+        body:
+          example: {}
+/contexts:
+  description: Context handling
+  get:
+    description: Returns a list of all defined contexts
+    responses:
+      200:
+        body:
+          properties:
+            '@context':
+              description: The context URL
+              type: string
+              example: https://schema.org/
+            '@type':
+              description: The type of the response object
+              type: string
+              example: collection
+            ItemList:
+              description: The list of contexts
+              type: context[]
+          example: |
+            {
+              "@context": "https://schema.org/",
+              "@type": "collection",
+              "ItemList": [
+                {
+                  "type": "Identity",
+                  "name": "Building",
+                  "url": "https://example.com/contexts/identity-building.jsonld"
+                },
+                {
+                  "type": "Link",
+                  "name": "Owner",
+                  "url": "https://example.com/contexts/link-owner.jsonld"
+                },
+              ]
+            }

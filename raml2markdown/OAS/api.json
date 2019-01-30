@@ -1,0 +1,111 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Platform Of Trust Data Broker",
+    "version": "v0.1"
+  },
+  "host": "api.oftrust.net",
+  "x-basePath": "/{version}",
+  "schemes": [
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "definitions": {
+    "data-product-request": {
+      "type": "object",
+      "properties": {
+        "timestamp": {
+          "description": "A timestamp in RFC3339 format",
+          "example": "2018-11-01T12:00:00Z",
+          "type": "string"
+        },
+        "productCode": {
+          "description": "The data product's product code",
+          "example": "product-1",
+          "type": "string"
+        },
+        "parameters": {
+          "description": "Additional parameters to be sent to the translator",
+          "example": {
+            "param-1": "param-1 value",
+            "param-2": "param-2 value"
+          },
+          "type": "object"
+        }
+      },
+      "required": [
+        "timestamp",
+        "productCode",
+        "parameters"
+      ]
+    }
+  },
+  "paths": {
+    "/health": {
+      "get": {
+        "description": "Health check endpoint",
+        "operationId": "GET_health",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "example": {}
+            }
+          }
+        }
+      }
+    },
+    "/fetch-data-product": {
+      "post": {
+        "description": "Fetch data product",
+        "operationId": "POST_fetch-data-product",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "example": "{\n  \"@context\": \"<context url>\",\n  \"data\": {\n    <response from translator>\n  },\n  \"signature\": {\n    \"type\": \"<signature type>\",\n    \"created\": \"<RFC3339>\",\n    \"creator\": \"<public key URL>\",\n    \"signatureValue\": \"...\"\n  }\n}\n"
+            }
+          },
+          "422": {
+            "description": "",
+            "schema": {
+              "example": {
+                "error": {
+                  "status": 422,
+                  "message": {
+                    "mandatoryParameter": [
+                      "Missing data for required field."
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "schema": {
+              "example": {
+                "timestamp": "2018-11-01T12:00:00Z",
+                "productCode": "product-1",
+                "parameters": {
+                  "param-1": "Value",
+                  "param-2": "Value"
+                }
+              },
+              "$ref": "#/definitions/data-product-request"
+            },
+            "in": "body",
+            "name": "body",
+            "required": true
+          }
+        ]
+      }
+    }
+  }
+}

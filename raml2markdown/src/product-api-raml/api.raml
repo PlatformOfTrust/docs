@@ -1,0 +1,157 @@
+#%RAML 1.0
+---
+title: Platform Of Trust Product API
+version: v1
+baseUri: http://192.168.99.100:32000/product/v1
+mediaType: application/json
+types:
+  product:
+    type: object
+    properties:
+      context:
+        description: The URL to the context of the product.
+        type: string
+        example: https://example.com/contexts/product.jsonld
+      parameterContext:
+        description: The URL to the context for the parameters of the product.
+        type: string
+        example: https://example.com/contexts/product-parameters.jsonld
+      productCode:
+        description: The unique identifiable code for the product.
+        type: string
+        example: product-1
+      name:
+        description: The name of the product.
+        type: string
+        example: Example product
+      translatorUrl:
+        description: The URL to the corresponding translator for the product.
+        type: string
+        example: https://example.com/translator
+      sharedSecret:
+        description: The shared secret for the product. Used for generating the signature of the payload.
+        type: string
+        example: very_secret123
+      organizationSignatureType:
+        description: The signature type.
+        type: string
+        example: RsaSignature2018
+      organizationPublicKeyURL:
+        description: The URL to the public key used for signing the data.
+        type: string
+        example: https://example.com/public-key.pub
+      description?:
+        description: The description of the product.
+        type: string
+        example: This is a product that returns the temperature data for ...
+      imageUrl?:
+        description: Optional URL to an image for the product.
+        type: string
+        example: https://example.com/product-image.png
+
+resourceTypes:
+  collection:
+    description: Collection of <<resourcePathName>>
+    get:
+      description: List all available <<resourcePathName>>
+      responses:
+        200:
+          body:
+            type: object
+            example: !include includes/examples/products.json
+    post:
+      description: Add a new <<resourcePathName|!singularize>>
+      body:
+        type: <<resourcePathName|!singularize>>
+        properties: !include includes/properties/product.yaml
+      responses:
+        201:
+          body:
+            properties: !include includes/properties/product.yaml
+            example: !include includes/examples/product.json
+        422:
+          body:
+            example: |
+              {
+                "error": {
+                    "message": {
+                        "mandatoryParameter": [
+                            "Missing data for required field."
+                        ]
+                    },
+                    "status": 422
+                }
+            }
+/health:
+  description: API Health checks
+  get:
+    description: Health check endpoint
+    responses:
+      200:
+        body:
+          example: {}
+/products:
+  description: Products
+  post:
+    description: Create a new product
+    body:
+      type: product
+      example: !include includes/examples/product-create.json
+    responses:
+      201:
+        body:
+          properties: !include includes/properties/product.yaml
+          example: !include includes/examples/product.json
+      422:
+        body:
+          example: !include includes/examples/missing-mandatory-parameter.json
+  get:
+    description: Lists all available products.
+    responses:
+      200:
+        body:
+          properties: !include includes/properties/products.yaml
+          example: !include includes/examples/products.json
+  /{product_code}:
+    uriParameters:
+      product_code:
+        description: The product code of the product. Returned in the `@id`-field.
+        type: string
+        example: product-1
+    get:
+      description: Reads a single product by product code
+      responses:
+        200:
+          body:
+            properties: !include includes/properties/product.yaml
+            example: !include includes/examples/product.json
+        404:
+          body:
+            example: example: !include includes/examples/not-found.json
+    put:
+      description: Update a product by product code
+      body:
+        type: product
+        properties: !include includes/properties/product.yaml
+        example: !include includes/examples/product-update.json
+      responses:
+        200:
+          body:
+            type: product
+            properties: !include includes/properties/product.yaml
+            example: !include includes/examples/product.json
+        404:
+          body:
+            example: example: !include includes/examples/not-found.json
+        422:
+          body:
+            example: !include includes/examples/missing-mandatory-parameter.json
+    delete:
+      description: Delete a product by product code
+      responses:
+        204:
+          body:
+            example: {}
+        404:
+          body:
+            example: !include includes/examples/not-found.json

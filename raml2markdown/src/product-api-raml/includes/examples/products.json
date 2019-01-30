@@ -1,0 +1,30 @@
+{
+  "@context": "https://schema.org/",
+  "@type": "collection",
+  "ItemList": [
+    {
+      "@context": "<context URL>",
+      "@type": "Product",
+      "@id": "<product code>",
+      "parameterContext": "<parameter context URL>",
+      "translatorUrl": "<translator URL>",
+      "name": "<product name>",
+      "organizationSignatureType": "<signature type>",
+      "organizationPublicKeyURL": "<public key URL>",
+      "description": "<product description>",
+      "imageUrl": "<image URL>"
+    },
+    {
+      "@context": "<context URL>",
+      "@type": "Product",
+      "@id": "<product code>",
+      "parameterContext": "<parameter context URL>",
+      "translatorUrl": "<translator URL>",
+      "name": "<product name>",
+      "organizationSignatureType": "<signature type>",
+      "organizationPublicKeyURL": "<public key URL>",
+      "description": "<product description>",
+      "imageUrl": "<image URL>"
+    }
+  ]
+}

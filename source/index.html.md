@@ -1,6 +1,6 @@
 --- 
 
-title: Platform Of Trust APIs 
+title: Platform Of Trust Documentation 
 
 language_tabs: 
    - shell 
@@ -13,6 +13,7 @@ toc_footers:
    - <a href='https://github.com/lavkumarv'>Documentation Powered by lav</a> 
 
 includes: 
+   - ontologies
    - errors 
    - feedback
 
@@ -29,13 +30,17 @@ manually. Nope! Includes go all to bottom.
 
 Again this could be external file which is just injected to final markup file....not, see above
 
+# Standards used
+
+* All time and date fields and values follow ISO-8601 standard. Example <code>2008-09-15T15:53:00+05:00</code>
+
 # Examples use sandbox environment
 
-<aside class="notice">
+<aside class="warning">
 All the documentation code examples use our sandbox environment. When you are done with testing, you should switch to production environment. Easiest way is to store API root url in variable and when needed, change it there. Thus the code examples contain API-root variable as an exmaple. 
 </aside>
 
-# Translator API 
+# Translator REST API 
 
 **Version:** v1 
 
@@ -98,32 +103,16 @@ let max = api.kittens.delete(2);
 ## /FETCH
 ### ***POST*** 
 
-```java
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.delete(2)
-```
-
-```python
-import kittn
-
-api = kittn.authorize('meowmeowmeow')
-api.kittens.delete(2)
-```
 
 ```shell
-curl "http://example.com/api/kittens/2"
-  -X DELETE
-  -H "Authorization: meowmeowmeow"
+# Notice the sandbox URL, change to production when needed. 
+curl "http://sandbox.oftrust.net/api/translator/fetch" \
+  -X POST \
+  -H "X-PoT-Signature: xxx" \
+  -H "X-PoT-Token: meowmeowmeow" \
+  -H "X-PoT-App: xxx" 
 ```
 
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.delete(2);
-```
 
 > The above command returns JSON structured like this:
 
@@ -137,7 +126,7 @@ let max = api.kittens.delete(2);
 **Description:** Get the data for the translator
 
 ### HTTP Request 
-`***POST*** /fetch` 
+**POST** /fetch 
 
 **Parameters**
 
@@ -161,7 +150,46 @@ let max = api.kittens.delete(2);
 
 # Context API 
 
-# Data Broker API 
+
+# Data Broker REST API 
+
+**Version:** v0.1 
+
+## /HEALTH
+### ***GET*** 
+
+**Description:** Health check endpoint
+
+### HTTP Request 
+**GET** /health 
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 200 |  |
+
+## /FETCH-DATA-PRODUCT
+### ***POST*** 
+
+**Description:** Fetch data product
+
+### HTTP Request 
+***POST*** /fetch-data-product 
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+| body | body |  | Yes |  |
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 200 |  |
+| 422 |  |
+
 
 # Product API 
 

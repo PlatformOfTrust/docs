@@ -1,0 +1,43 @@
+'@context':
+  description: The context URL
+  type: string
+  example: https://example.com/contexts/type.jsonld
+'@type':
+  description: The type of the identity
+  type: string
+  example: Building
+name:
+  description: The name of the identity
+  type: string
+  example: Example building
+data:
+  description: Optional key-value data for the identity
+  type: object
+  example: |
+    {
+      "key-1": "Value 1",
+      "key-2": "Value 2"
+    }
+createdBy:
+  description: The user ID of the user who created this identity
+  type: string
+updatedBy:
+  description: The user ID of the user who updated this identity
+  type: string
+createdAt:
+  description: RFC3339 datetime when the identity was created
+  type: datetime
+  example: 2018-02-28T16:41:41.090Z
+updatedAt:
+  description: RFC3339 datetime when the identity was updated
+  type: datetime
+  example: 2018-02-28T16:41:41.090Z
+status:
+  description: The status of the identity
+  type: number
+inLinks:
+  description: List of incoming links to the identity
+  type: link[]
+outLinks:
+  description: List of outgoing links from the identity
+  type: link[]

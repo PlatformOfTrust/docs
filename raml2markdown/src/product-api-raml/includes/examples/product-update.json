@@ -1,0 +1,11 @@
+{
+  "context": "<context URL>",
+  "parameterContext": "<parameter context URL>",
+  "productCode": "<product code>",
+  "name": "<product name>",
+  "translatorUrl": "<translator URL>",
+  "organizationSignatureType": "<signature type>",
+  "organizationPublicKeyURL": "<public key URL>",
+  "imageUrl": "<image URL>",
+  "description": "<product description>"
+}

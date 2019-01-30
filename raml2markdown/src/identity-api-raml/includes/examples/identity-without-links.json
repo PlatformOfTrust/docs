@@ -1,0 +1,17 @@
+{
+  "@context": "<Context URL>",
+  "@type": "<Identity type>",
+  "@id": "<Identity ID>",
+  "name": "<Identity name>",
+  "data": {
+    "key-1": "Value 1",
+    "key-2": "Value 2"
+  },
+  "createdBy": "<User ID>",
+  "updatedBy": "<User ID>",
+  "createdAt": "2018-02-28T16:41:41.090Z",
+  "updatedAt": "2018-02-28T16:41:41.090Z",
+  "status": 0,
+  "inLinks": [],
+  "outLinks": []
+}

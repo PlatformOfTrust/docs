@@ -1,0 +1,44 @@
+'@context':
+  description: The context URL
+  type: string
+  example: https://example.com/contexts/type.jsonld
+'@type':
+  description: The product type. This will always be Product.
+  type: string
+  example: Product
+'@id':
+  description: The actual product code, this will be used for updating and reading the product.
+  type: string
+  example: product-1
+parameterContext:
+  description: The context URL for the parameters object.
+  type: string
+  example: https://example.com/contexts/product-parameters.jsonld
+translatorUrl:
+  description: The URL to the translator.
+  type: string
+  example: https://example.com/translator
+name:
+  description: The name of the product.
+  type: string
+  example: Product name
+sharedSecret:
+  description: The shared secret to be used for signing payloads between translators.
+  type: string
+  example: very_secret123
+organizationSignatureType:
+  description: The signature type of the signature.
+  type: string
+  example: RsaSignature2018
+organizationPublicKeyURL:
+  description: The URL to the public key used for signing responses.
+  type: string
+  example: https://example.com/public-key.pub
+description?:
+  description: The description of the product.
+  type: string
+  example: This is a product that returns the temperature data for ...
+imageUrl?:
+  description: Optional URL to an image for the product.
+  type: string
+  example: https://example.com/product-image.png

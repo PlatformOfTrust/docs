@@ -1,0 +1,10 @@
+{
+  "error": {
+    "status": 422,
+    "message": {
+      "mandatoryParameter": [
+        "Missing data for required field."
+      ]
+    }
+  }
+}

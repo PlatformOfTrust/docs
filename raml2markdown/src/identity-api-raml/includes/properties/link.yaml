@@ -1,0 +1,28 @@
+'@context':
+  description: The context URL
+  type: string
+  example: https://example.com/contexts/type.jsonld
+'@type':
+  description: The type of the link
+  type: string
+  example: Owner
+from:
+  description: The from-identity ID, from where the link starts
+  type: string
+to:
+  description: The to-identity ID, to where the link ends
+  type: string
+createdBy:
+  description: The user ID of the user who created this link
+  type: string
+updatedBy:
+  description: The user ID of the user who updated this link
+  type: string
+createdAt:
+  description: RFC3339 datetime when the link was created
+  type: datetime
+  example: 2018-02-28T16:41:41.090Z
+updatedAt:
+  description: RFC3339 datetime when the link was updated
+  type: datetime
+  example: 2018-02-28T16:41:41.090Z
