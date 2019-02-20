@@ -13,9 +13,11 @@ toc_footers:
    - <a href='https://github.com/lavkumarv'>Documentation Powered by lav</a> 
 
 includes: 
+   - authentication
    - ontologies
    - errors 
    - feedback
+   
 
 search: true 
 
@@ -26,15 +28,16 @@ search: true
 This could be rather static introduction to Platform of Trust APIs and written in separate file. Then just preprocess the files and merge all, or do it 
 manually. Nope! Includes go all to bottom. 
 
-# Authentication
+# Getting started
 
-Again this could be external file which is just injected to final markup file....not, see above
+## Auth practices
+We use OAuth xxx flow. Every API call is required to have ..... Read more from [Authentication section](#authentication)
 
-# Standards used
+## Standards used
 
 * All time and date fields and values follow ISO-8601 standard. Example <code>2008-09-15T15:53:00+05:00</code>
 
-# Examples use sandbox environment
+## Code Examples 
 
 <aside class="warning">
 All the documentation code examples use our sandbox environment. When you are done with testing, you should switch to production environment. Easiest way is to store API root url in variable and when needed, change it there. Thus the code examples contain API-root variable as an exmaple. 
