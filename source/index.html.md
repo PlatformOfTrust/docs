@@ -35,7 +35,7 @@ We use OAuth xxx flow. Every API call is required to have ..... Read more from [
 
 ## Standards used
 
-* All time and date fields and values follow ISO-8601 standard. Example <code>2008-09-15T15:53:00+05:00</code>
+* For time and dates we use a subset of ISO-8601 - [RFC 3339](https://www.ietf.org/rfc/rfc3339.txt). Example <code>2008-09-15T15:53:00+05:00</code>
 
 ## Code Examples 
 
