@@ -23,7 +23,7 @@ search: true
 
 --- 
 
-# Platform of Trust APIs
+# Platform of Trust Documentation
 
 This could be rather static introduction to Platform of Trust APIs and written in separate file. Then just preprocess the files and merge all, or do it 
 manually. Nope! Includes go all to bottom. 
