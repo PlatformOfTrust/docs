@@ -239,35 +239,15 @@
               </ul>
           </li>
           <li>
-            <a href="#translator-rest-api" class="toc-h1 toc-link" data-title="Translator REST API">Translator REST API</a>
+            <a href="#products-api" class="toc-h1 toc-link" data-title="Products API">Products API</a>
               <ul class="toc-list-h2">
                   <li>
                     <a href="#health" class="toc-h2 toc-link" data-title="/HEALTH">/HEALTH</a>
                   </li>
-                  <li>
-                    <a href="#fetch" class="toc-h2 toc-link" data-title="/FETCH">/FETCH</a>
-                  </li>
               </ul>
-          </li>
-          <li>
-            <a href="#login-api" class="toc-h1 toc-link" data-title="Login API">Login API</a>
           </li>
           <li>
             <a href="#context-api" class="toc-h1 toc-link" data-title="Context API">Context API</a>
-          </li>
-          <li>
-            <a href="#data-broker-rest-api" class="toc-h1 toc-link" data-title="Data Broker REST API">Data Broker REST API</a>
-              <ul class="toc-list-h2">
-                  <li>
-                    <a href="#health-2" class="toc-h2 toc-link" data-title="/HEALTH">/HEALTH</a>
-                  </li>
-                  <li>
-                    <a href="#fetch-data-product" class="toc-h2 toc-link" data-title="/FETCH-DATA-PRODUCT">/FETCH-DATA-PRODUCT</a>
-                  </li>
-              </ul>
-          </li>
-          <li>
-            <a href="#product-api" class="toc-h1 toc-link" data-title="Product API">Product API</a>
           </li>
           <li>
             <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
@@ -316,27 +296,19 @@ manually. Nope! Includes go all to bottom. </p>
 <aside class="warning">
 All the documentation code examples use our sandbox environment. When you are done with testing, you should switch to production environment. Easiest way is to store API root url in variable and when needed, change it there. Thus the code examples contain API-root variable as an exmaple. 
 </aside>
-<h1 id='translator-rest-api'>Translator REST API</h1>
+<h1 id='products-api'>Products API</h1>
 <p><strong>Version:</strong> v1 </p>
 
 <p>API Description should come from the code as well...</p>
 <h2 id='health'>/HEALTH</h2>
 <p>Jotain kuvausta.</p>
-<pre class="highlight java tab-java"><code><span class="n">require</span> <span class="err">'</span><span class="n">kittn</span><span class="err">'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="nl">Kittn:</span><span class="o">:</span><span class="n">APIClient</span><span class="o">.</span><span class="na">authorize</span><span class="o">!(</span><span class="err">'</span><span class="n">meowmeowmeow</span><span class="err">'</span><span class="o">)</span>
-<span class="n">api</span><span class="o">.</span><span class="na">kittens</span><span class="o">.</span><span class="na">delete</span><span class="o">(</span><span class="mi">2</span><span class="o">)</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
+<pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
 
 <span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
 <span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://sandbox.oftrust.net/api/translator/health"</span>
+</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://sandbox.oftrust.net/api/products"</span>
   -X GET
   -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
 </code></pre><h3 id='get'><strong><em>GET</em></strong></h3>
 <blockquote>
 <p>The above command returns JSON structured like this:</p>
@@ -346,9 +318,9 @@ All the documentation code examples use our sandbox environment. When you are do
   </span><span class="s2">"deleted"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">":("</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p><strong>Description:</strong> Health check endpoint</p>
+<p><strong>Description:</strong> Get all products </p>
 <h3 id='http-request'>HTTP Request</h3>
-<p><code>***GET*** /health</code> </p>
+<p><code>***GET*** /products</code> </p>
 
 <p><strong>Responses</strong></p>
 
@@ -363,8 +335,8 @@ All the documentation code examples use our sandbox environment. When you are do
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='fetch'>/FETCH</h2><h3 id='post'><strong><em>POST</em></strong></h3><pre class="highlight shell tab-shell"><code><span class="c"># Notice the sandbox URL, change to production when needed. </span>
-curl <span class="s2">"http://sandbox.oftrust.net/api/translator/fetch"</span> <span class="se">\</span>
+<h3 id='post'><strong><em>POST</em></strong></h3><pre class="highlight shell tab-shell"><code><span class="c"># Notice the sandbox URL, change to production when needed. </span>
+curl <span class="s2">"http://sandbox.oftrust.net/api/translator/products"</span> <span class="se">\</span>
   -X POST <span class="se">\</span>
   -H <span class="s2">"X-PoT-Signature: xxx"</span> <span class="se">\</span>
   -H <span class="s2">"X-PoT-Token: meowmeowmeow"</span> <span class="se">\</span>
@@ -375,134 +347,9 @@ curl <span class="s2">"http://sandbox.oftrust.net/api/translator/fetch"</span> <
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"deleted"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">":("</span><span class="w">
+  </span><span class="s2">"product"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">":("</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p><strong>Description:</strong> Get the data for the translator</p>
-<h3 id='http-request-2'>HTTP Request</h3>
-<p><strong>POST</strong> /fetch </p>
-
-<p><strong>Parameters</strong></p>
-
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Located in</th>
-<th>Description</th>
-<th>Required</th>
-<th>Type</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>X-PoT-Signature</td>
-<td>header</td>
-<td>A HMAC-SHA256 generated signature of the payload. E.g. HMAC-SHA256(sharedSecret, body)</td>
-<td>Yes</td>
-<td>string</td>
-</tr>
-<tr>
-<td>X-PoT-Token</td>
-<td>header</td>
-<td>The user&#39;s OAuth token</td>
-<td>No</td>
-<td>string</td>
-</tr>
-<tr>
-<td>X-PoT-App</td>
-<td>header</td>
-<td>App name (App ID)</td>
-<td>No</td>
-<td>string</td>
-</tr>
-<tr>
-<td>body</td>
-<td>body</td>
-<td></td>
-<td>Yes</td>
-<td></td>
-</tr>
-</tbody></table>
-
-<p><strong>Responses</strong></p>
-
-<table><thead>
-<tr>
-<th>Code</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>200</td>
-<td></td>
-</tr>
-<tr>
-<td>422</td>
-<td></td>
-</tr>
-</tbody></table>
-<h1 id='login-api'>Login API</h1><h1 id='context-api'>Context API</h1><h1 id='data-broker-rest-api'>Data Broker REST API</h1>
-<p><strong>Version:</strong> v0.1 </p>
-<h2 id='health-2'>/HEALTH</h2><h3 id='get-2'><strong><em>GET</em></strong></h3>
-<p><strong>Description:</strong> Health check endpoint</p>
-<h3 id='http-request-3'>HTTP Request</h3>
-<p><strong>GET</strong> /health </p>
-
-<p><strong>Responses</strong></p>
-
-<table><thead>
-<tr>
-<th>Code</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>200</td>
-<td></td>
-</tr>
-</tbody></table>
-<h2 id='fetch-data-product'>/FETCH-DATA-PRODUCT</h2><h3 id='post-2'><strong><em>POST</em></strong></h3>
-<p><strong>Description:</strong> Fetch data product</p>
-<h3 id='http-request-4'>HTTP Request</h3>
-<p><strong><em>POST</em></strong> /fetch-data-product </p>
-
-<p><strong>Parameters</strong></p>
-
-<table><thead>
-<tr>
-<th>Name</th>
-<th>Located in</th>
-<th>Description</th>
-<th>Required</th>
-<th>Type</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>body</td>
-<td>body</td>
-<td></td>
-<td>Yes</td>
-<td></td>
-</tr>
-</tbody></table>
-
-<p><strong>Responses</strong></p>
-
-<table><thead>
-<tr>
-<th>Code</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>200</td>
-<td></td>
-</tr>
-<tr>
-<td>422</td>
-<td></td>
-</tr>
-</tbody></table>
-<h1 id='product-api'>Product API</h1>
+</span></code></pre><h1 id='context-api'>Context API</h1>
 <!-- Converted with the swagger-to-slate https://github.com/lavkumarv/swagger-to-slate -->
 <h1 id='authentication'>Authentication</h1>
 <p>It&#39;s typically a good idea to explain the whole authentication process, because even to this day not everyone is familiar with how they work. In a nutshell <a href="https://www.oauth.com/oauth2-servers/single-page-apps/#authorization">this is what we use</a></p>

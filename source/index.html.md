@@ -43,7 +43,7 @@ We use OAuth xxx flow. Every API call is required to have ..... Read more from [
 All the documentation code examples use our sandbox environment. When you are done with testing, you should switch to production environment. Easiest way is to store API root url in variable and when needed, change it there. Thus the code examples contain API-root variable as an exmaple. 
 </aside>
 
-# Translator REST API 
+# Products API
 
 **Version:** v1 
 
@@ -53,12 +53,6 @@ API Description should come from the code as well...
 
 Jotain kuvausta.
 
-```java
-require 'kittn'
-
-api = Kittn::APIClient.authorize!('meowmeowmeow')
-api.kittens.delete(2)
-```
 
 ```python
 import kittn
@@ -68,17 +62,11 @@ api.kittens.delete(2)
 ```
 
 ```shell
-curl "http://sandbox.oftrust.net/api/translator/health"
+curl "http://sandbox.oftrust.net/api/products"
   -X GET
   -H "Authorization: meowmeowmeow"
 ```
 
-```javascript
-const kittn = require('kittn');
-
-let api = kittn.authorize('meowmeowmeow');
-let max = api.kittens.delete(2);
-```
 
 ### ***GET*** 
 
@@ -92,10 +80,10 @@ let max = api.kittens.delete(2);
 }
 ```
 
-**Description:** Health check endpoint
+**Description:** Get all products 
 
 ### HTTP Request 
-`***GET*** /health` 
+`***GET*** /products` 
 
 **Responses**
 
@@ -103,13 +91,12 @@ let max = api.kittens.delete(2);
 | ---- | ----------- |
 | 200 |  |
 
-## /FETCH
 ### ***POST*** 
 
 
 ```shell
 # Notice the sandbox URL, change to production when needed. 
-curl "http://sandbox.oftrust.net/api/translator/fetch" \
+curl "http://sandbox.oftrust.net/api/translator/products" \
   -X POST \
   -H "X-PoT-Signature: xxx" \
   -H "X-PoT-Token: meowmeowmeow" \
@@ -122,78 +109,13 @@ curl "http://sandbox.oftrust.net/api/translator/fetch" \
 ```json
 {
   "id": 2,
-  "deleted" : ":("
+  "product" : ":("
 }
 ```
 
-**Description:** Get the data for the translator
-
-### HTTP Request 
-**POST** /fetch 
-
-**Parameters**
-
-| Name | Located in | Description | Required | Type |
-| ---- | ---------- | ----------- | -------- | ---- |
-| X-PoT-Signature | header | A HMAC-SHA256 generated signature of the payload. E.g. HMAC-SHA256(sharedSecret, body)  | Yes | string |
-| X-PoT-Token | header | The user's OAuth token | No | string |
-| X-PoT-App | header | App name (App ID) | No | string |
-| body | body |  | Yes |  |
-
-**Responses**
-
-| Code | Description |
-| ---- | ----------- |
-| 200 |  |
-| 422 |  |
-
-
-
-# Login API 
 
 # Context API 
 
 
-# Data Broker REST API 
-
-**Version:** v0.1 
-
-## /HEALTH
-### ***GET*** 
-
-**Description:** Health check endpoint
-
-### HTTP Request 
-**GET** /health 
-
-**Responses**
-
-| Code | Description |
-| ---- | ----------- |
-| 200 |  |
-
-## /FETCH-DATA-PRODUCT
-### ***POST*** 
-
-**Description:** Fetch data product
-
-### HTTP Request 
-***POST*** /fetch-data-product 
-
-**Parameters**
-
-| Name | Located in | Description | Required | Type |
-| ---- | ---------- | ----------- | -------- | ---- |
-| body | body |  | Yes |  |
-
-**Responses**
-
-| Code | Description |
-| ---- | ----------- |
-| 200 |  |
-| 422 |  |
-
-
-# Product API 
 
 <!-- Converted with the swagger-to-slate https://github.com/lavkumarv/swagger-to-slate -->
