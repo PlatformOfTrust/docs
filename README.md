@@ -13,9 +13,9 @@ You're going to need:
 
 ### Getting Set Up
 
-1. Clone repository to your hard drive with `git@github.com:PlatformOfTrust/docs.git`
+1. Clone repository to your hard drive with `git clone git@github.com:PlatformOfTrust/docs.git`
 2. `cd docs`
-3. Initialize and start Platform of Trust API Docs. 
+3. Initialize and start Platform of Trust API Docs: 
 
 ```shell
 bundle install
