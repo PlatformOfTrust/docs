@@ -13,10 +13,9 @@ You're going to need:
 
 ### Getting Set Up
 
-1. Fork this repository on GitHub.
-2. Clone *your forked repository* (not our original one) to your hard drive with `git@github.com:PlatformOfTrust/docs.git`
-3. `cd docs`
-4. Initialize and start Platform of Trust API Docs. 
+1. Clone repository to your hard drive with `git@github.com:PlatformOfTrust/docs.git`
+2. `cd docs`
+3. Initialize and start Platform of Trust API Docs. 
 
 ```shell
 bundle install
