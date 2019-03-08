@@ -19,7 +19,6 @@ You're going to need:
 4. Initialize and start Platform of Trust API Docs. 
 
 ```shell
-# either run this to run locally
 bundle install
 bundle exec middleman server
 
