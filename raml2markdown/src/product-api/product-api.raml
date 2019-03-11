@@ -8,12 +8,17 @@ types:
   product:
     type: object
     properties:
-      context:
-        description: The URL to the context of the product.
+      dataContext:
+        description: |
+          The URL to the data context for the product. The data context
+          defines the keys in the `data` object returned from the translator.
         type: string
-        example: https://example.com/contexts/product.jsonld
+        example: https://example.com/contexts/product-data.jsonld
       parameterContext:
-        description: The URL to the context for the parameters of the product.
+        description: |
+          The URL to the context for the parameters of the product.
+          The parameter context defines the keys in the `parameters` object
+          that are sent in the request to the data broker.
         type: string
         example: https://example.com/contexts/product-parameters.jsonld
       productCode:
@@ -28,18 +33,23 @@ types:
         description: The URL to the corresponding translator for the product.
         type: string
         example: https://example.com/translator
-      sharedSecret:
-        description: The shared secret for the product. Used for generating the signature of the payload.
-        type: string
-        example: very_secret123
-      organizationSignatureType:
-        description: The signature type.
-        type: string
-        example: RsaSignature2018
-      organizationPublicKeyURL:
-        description: The URL to the public key used for signing the data.
-        type: string
-        example: https://example.com/public-key.pub
+      organizationPublicKeys:
+        description: |
+          Organization public keys. Each object in the list MUST have the keys
+          `url` and `type`, where `url` is the full URL to the public key used
+          for signing the data, and the `type` defines the type of the signature.
+        type: array
+        example: |
+          [
+            {
+              "url": "https://example.com/public-key.pub",
+              "type": "RsaSignature2018"
+            },
+            {
+              "url": "https://example.com/public-key-2.pub",
+              "type": "RsaSignature2018"
+            }
+          ]
       description?:
         description: The description of the product.
         type: string
@@ -48,50 +58,8 @@ types:
         description: Optional URL to an image for the product.
         type: string
         example: https://example.com/product-image.png
-
-resourceTypes:
-  collection:
-    description: Collection of <<resourcePathName>>
-    get:
-      description: List all available <<resourcePathName>>
-      responses:
-        200:
-          body:
-            type: object
-            example: !include includes/examples/products.json
-    post:
-      description: Add a new <<resourcePathName|!singularize>>
-      body:
-        type: <<resourcePathName|!singularize>>
-        properties: !include includes/properties/product.yaml
-      responses:
-        201:
-          body:
-            properties: !include includes/properties/product.yaml
-            example: !include includes/examples/product.json
-        422:
-          body:
-            example: |
-              {
-                "error": {
-                    "message": {
-                        "mandatoryParameter": [
-                            "Missing data for required field."
-                        ]
-                    },
-                    "status": 422
-                }
-            }
-/health:
-  description: API Health checks
-  get:
-    description: Health check endpoint
-    responses:
-      200:
-        body:
-          example: {}
 /products:
-  description: Products
+  description: Product resources.
   post:
     description: Create a new product
     body:
@@ -115,7 +83,7 @@ resourceTypes:
   /{product_code}:
     uriParameters:
       product_code:
-        description: The product code of the product. Returned in the `@id`-field.
+        description: The product code of the product.
         type: string
         example: product-1
     get:
@@ -127,12 +95,11 @@ resourceTypes:
             example: !include includes/examples/product.json
         404:
           body:
-            example: example: !include includes/examples/not-found.json
+            example: !include includes/examples/not-found.json
     put:
       description: Update a product by product code
       body:
         type: product
-        properties: !include includes/properties/product.yaml
         example: !include includes/examples/product-update.json
       responses:
         200:
@@ -142,7 +109,7 @@ resourceTypes:
             example: !include includes/examples/product.json
         404:
           body:
-            example: example: !include includes/examples/not-found.json
+            example: !include includes/examples/not-found.json
         422:
           body:
             example: !include includes/examples/missing-mandatory-parameter.json

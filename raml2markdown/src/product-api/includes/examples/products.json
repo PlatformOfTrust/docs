@@ -5,24 +5,36 @@
     {
       "@context": "<context URL>",
       "@type": "Product",
-      "@id": "<product code>",
+      "@id": "<URL to the product resource>",
+      "productCode": "<product code>",
+      "dataContext": "<data context URL>",
       "parameterContext": "<parameter context URL>",
       "translatorUrl": "<translator URL>",
       "name": "<product name>",
-      "organizationSignatureType": "<signature type>",
-      "organizationPublicKeyURL": "<public key URL>",
+      "organizationPublicKeys": [
+        {
+          "url": "<public key URL>",
+          "type": "<public key type>"
+        }
+      ],
       "description": "<product description>",
       "imageUrl": "<image URL>"
     },
     {
       "@context": "<context URL>",
       "@type": "Product",
-      "@id": "<product code>",
+      "@id": "<URL to the product resource>",
+      "productCode": "<product code>",
+      "dataContext": "<data context URL>",
       "parameterContext": "<parameter context URL>",
       "translatorUrl": "<translator URL>",
       "name": "<product name>",
-      "organizationSignatureType": "<signature type>",
-      "organizationPublicKeyURL": "<public key URL>",
+      "organizationPublicKeys": [
+        {
+          "url": "<public key URL>",
+          "type": "<public key type>"
+        }
+      ],
       "description": "<product description>",
       "imageUrl": "<image URL>"
     }

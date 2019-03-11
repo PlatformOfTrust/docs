@@ -1,0 +1,18 @@
+{
+  "@context": "<context URL>",
+  "@type": "Product",
+  "@id": "<URL to the product resource>",
+  "productCode": "<the product code>",
+  "dataContext": "<data context URL>",
+  "parameterContext": "<parameter context URL>",
+  "translatorUrl": "<translator URL>",
+  "name": "<product name>",
+  "organizationPublicKeys": [
+    {
+      "url": "<public key URL>",
+      "type": "<public key type>"
+    }
+  ],
+  "description": "<product description>",
+  "imageUrl": "<image URL>"
+}

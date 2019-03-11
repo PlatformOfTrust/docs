@@ -1,11 +1,15 @@
 {
-  "context": "<context URL>",
+  "dataContext": "<data context URL>",
   "parameterContext": "<parameter context URL>",
   "productCode": "<product code>",
   "name": "<product name>",
   "translatorUrl": "<translator URL>",
-  "organizationSignatureType": "<signature type>",
-  "organizationPublicKeyURL": "<public key URL>",
+  "organizationPublicKeys": [
+    {
+      "url": "<public key URL>",
+      "type": "<public key type>"
+    }
+  ],
   "imageUrl": "<image URL>",
   "description": "<product description>"
 }

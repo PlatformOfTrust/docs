@@ -239,6 +239,20 @@
               </ul>
           </li>
           <li>
+            <a href="#oauth" class="toc-h1 toc-link" data-title="OAuth">OAuth</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#client-credentials" class="toc-h2 toc-link" data-title="Client credentials">Client credentials</a>
+                  </li>
+                  <li>
+                    <a href="#oauth-2-0-workflow" class="toc-h2 toc-link" data-title="OAuth 2.0 workflow">OAuth 2.0 workflow</a>
+                  </li>
+                  <li>
+                    <a href="#get-request-token" class="toc-h2 toc-link" data-title="Get request token">Get request token</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#products-api" class="toc-h1 toc-link" data-title="Products API">Products API</a>
               <ul class="toc-list-h2">
                   <li>
@@ -296,7 +310,22 @@ manually. Nope! Includes go all to bottom. </p>
 <aside class="warning">
 All the documentation code examples use our sandbox environment. When you are done with testing, you should switch to production environment. Easiest way is to store API root url in variable and when needed, change it there. Thus the code examples contain API-root variable as an exmaple. 
 </aside>
-<h1 id='products-api'>Products API</h1>
+<h1 id='oauth'>OAuth</h1>
+<p>To make API requests, you need to authenticate to Upwork API. Currently, we support OAuth 2.0 authentication. All API requests MUST be signed following the RFC 5849 specification.</p>
+<h2 id='client-credentials'>Client credentials</h2>
+<p>For each application you develop, you need to obtain new client credentials. These include a client identifier and a client shared-secret. You can find these credentials at https://developers.oftrust.net/profile while logged into your Upwork account. You will receive a public and a private key for each client identifier and client shared-secret you request.</p>
+<h2 id='oauth-2-0-workflow'>OAuth 2.0 workflow</h2><h2 id='get-request-token'>Get request token</h2>
+<p><strong>Endpoint</strong></p>
+
+<p>POST /api/auth/v1/oauth/token/request</p>
+
+<p>HTTPS is required. All the names of variables follow OAuth specification (see RFC 5849).</p>
+<pre class="highlight python tab-python"><code>
+<span class="kn">import</span> <span class="nn">upwork</span>
+<span class="n">client</span> <span class="o">=</span> <span class="n">upwork</span><span class="o">.</span><span class="n">Client</span><span class="p">(</span><span class="n">public_key</span><span class="p">,</span> <span class="n">secret_key</span><span class="p">,</span> <span class="o">**</span><span class="n">credentials</span><span class="p">)</span>
+<span class="n">client</span><span class="o">.</span><span class="n">auth</span><span class="o">.</span><span class="n">get_request_token</span><span class="p">()</span>
+
+</code></pre><h1 id='products-api'>Products API</h1>
 <p><strong>Version:</strong> v1 </p>
 
 <p>API Description should come from the code as well...</p>
