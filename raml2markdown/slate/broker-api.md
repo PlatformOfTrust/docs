@@ -16,12 +16,12 @@ search: true
 
 --- 
 
-# Platform Of Trust Data Broker  
+# Introduction 
 
 **Version:** v0.1 
 
-## /HEALTH
-### ***GET*** 
+# /HEALTH
+## ***GET*** 
 
 **Description:** Health check endpoint
 
@@ -34,8 +34,8 @@ search: true
 | ---- | ----------- |
 | 200 |  |
 
-## /FETCH-DATA-PRODUCT
-### ***POST*** 
+# /FETCH-DATA-PRODUCT
+## ***POST*** 
 
 **Description:** Fetch data product
 

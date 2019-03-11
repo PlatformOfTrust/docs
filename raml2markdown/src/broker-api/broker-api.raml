@@ -1,0 +1,78 @@
+#%RAML 1.0
+---
+title: Platform Of Trust Data Broker
+version: v0.1
+baseUri: https://api.oftrust.net/{version}
+mediaType: application/json
+types:
+  data-product-request:
+    type: object
+    properties:
+      timestamp:
+        description: A timestamp in RFC3339 format
+        type: string
+        example: 2018-11-01T12:00:00Z
+      productCode:
+        description: The data product's product code
+        type: string
+        example: product-1
+      parameters:
+        description: Additional parameters to be sent to the translator
+        type: object
+        example: |
+          {
+            "param-1": "param-1 value",
+            "param-2": "param-2 value"
+          }
+/health:
+  description: Health checks
+  get:
+    description: Health check endpoint
+    responses:
+      200:
+        body:
+          example: {}
+/fetch-data-product:
+  description: Data products
+  post:
+    description: Fetch data product
+    body:
+      type: data-product-request
+      example: |
+        {
+          "timestamp": "2018-11-01T12:00:00Z",
+          "productCode": "product-1",
+          "parameters": {
+            "param-1": "Value",
+            "param-2": "Value"
+          }
+        }
+    responses:
+      200:
+        body:
+          example: |
+            {
+              "@context": "<context url>",
+              "data": {
+                <response from translator>
+              },
+              "signature": {
+                "type": "<signature type>",
+                "created": "<RFC3339>",
+                "creator": "<public key URL>",
+                "signatureValue": "..."
+              }
+            }
+      422:
+        body:
+          example: |
+            {
+              "error": {
+                "status": 422,
+                "message": {
+                  "mandatoryParameter": [
+                    "Missing data for required field."
+                  ]
+                }
+              }
+            }

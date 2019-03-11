@@ -1,0 +1,11 @@
+{
+  "@context": "<Context URL>",
+  "@type": "<Link type>",
+  "@id": "<Link ID>",
+  "from": "<From identity ID>",
+  "to": "<To identity ID>",
+  "createdBy": "<User ID>",
+  "updatedBy": "<User ID>",
+  "createdAt": "2018-02-28T16:41:41.090Z",
+  "updatedAt": "2018-02-28T16:41:41.090Z"
+}

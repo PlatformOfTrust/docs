@@ -1,0 +1,9 @@
+{
+  "context": "<Context URL>",
+  "type": "<Identity type>",
+  "name": "<Identity name>",
+  "data": {
+    "key-1": "Value 1",
+    "key-2": "Value 2"
+  }
+}

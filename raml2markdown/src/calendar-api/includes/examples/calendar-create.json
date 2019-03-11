@@ -1,0 +1,12 @@
+{
+  "toIdentity": "<to identity ID>",
+  "title": "<calendar title>",
+  "startDate": "2019-04-01T12:00:00+02:00",
+  "endDate": "2019-04-01T16:00:00+02:00",
+  "repeats": "<repeats>",
+  "content": "<calendar content>",
+  "location": "<location>",
+  "cc": [
+    "<list of identity IDs>"
+  ]
+}

@@ -1,0 +1,64 @@
+'@context':
+  description: The context URL
+  type: string
+  example: https://example.com/contexts/calendar.jsonld
+'@type':
+  description: The JSON-LD type of this object
+  type: string
+  example: Event
+toIdentity:
+  description: The "to" identity ID to which the calendar is created for.
+  type: string
+  example: d36c4cd0-26c9-446e-a93f-0a90029f3a7f
+type:
+  description: The type of the calendar entry.
+  type: string
+  example: Event
+title:
+  description: The title of the calendar entry
+  type: string
+  example: April fool's day festivities.
+startDate:
+  description: The start date of the calendar entry in RFC3339 format.
+  type: datetime
+  example: 2019-04-01T15:00:00+00:00
+endDate:
+  description: The end date of the calendar entry in RFC3339 format.
+  type: datetime
+  example: 2019-04-01T18:00:00+00:00
+repeats?:
+  description: |
+    Whether the calendar entry repeats or not. As defined in ISO 8601
+    repeating intervals. E.g. Repeat the interval of "P1Y2M10DT2H30M"
+    five times starting at "2008-03-01T13:00:00Z",
+    use "R5/2008-03-01T13:00:00Z/P1Y2M10DT2H30M".
+  type: string
+  example: R5/2008-03-01T13:00:00Z/P1Y2M10DT2H30M
+content?:
+  description: The text body of the calendar entry.
+  type: string
+  example: April fool's event, held on the courtyard.
+location?:
+  description: The location of the calendar entry
+  type: string
+  example: Courtyard at Teststreet 12
+cc?:
+  description: List of IDs to CC the calendar entry to.
+  type: array
+  example: |
+    [
+      "323bde80-4cc2-472e-bb77-e6a3e95a1253",
+      "0827e9c3-9664-479f-b0ec-956a35d72e4b"
+    ]
+createdBy:
+  description: The user ID of the user who created the calendar entry
+  type: string
+  example: 5ae98ee4-ef1b-4f89-b03d-130ceffb876a
+createdAt:
+  description: RFC3339 datetime when the calendar entry was created
+  type: datetime
+  example: 2018-02-28T16:41:41.090Z
+updatedAt:
+  description: RFC3339 datetime when the calendar entry was updated
+  type: datetime
+  example: 2018-02-28T16:41:41.090Z
