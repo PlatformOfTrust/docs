@@ -63,7 +63,7 @@ def concatenate_files():
           if line.startswith("#"):
             ofile.write("#"+line.lower().replace("***", "**"))
           elif line.startswith("`***"):
-            ofile.write(line.lower().replace("***", "**").replace("`", ""))
+            ofile.write(line.replace("***", "**").replace("`", ""))
           else:
             ofile.write(line.replace("***", "**"))
   print("\n\nSlate file: "+str(outfile)+" created.")
