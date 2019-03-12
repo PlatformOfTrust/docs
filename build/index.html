@@ -253,38 +253,38 @@
               </ul>
           </li>
           <li>
-            <a href="#broker-api" class="toc-h1 toc-link" data-title="BROKER-API">BROKER-API</a>
+            <a href="#broker-api" class="toc-h1 toc-link" data-title="Broker API">Broker API</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#health" class="toc-h2 toc-link" data-title="/HEALTH">/HEALTH</a>
+                    <a href="#health" class="toc-h2 toc-link" data-title="/health">/health</a>
                   </li>
                   <li>
-                    <a href="#fetch-data-product" class="toc-h2 toc-link" data-title="/FETCH-DATA-PRODUCT">/FETCH-DATA-PRODUCT</a>
+                    <a href="#fetch-data-product" class="toc-h2 toc-link" data-title="/fetch-data-product">/fetch-data-product</a>
                   </li>
               </ul>
           </li>
           <li>
-            <a href="#calendar-api" class="toc-h1 toc-link" data-title="CALENDAR-API">CALENDAR-API</a>
+            <a href="#calendar-api" class="toc-h1 toc-link" data-title="Calendar API">Calendar API</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#calendar" class="toc-h2 toc-link" data-title="/CALENDAR">/CALENDAR</a>
+                    <a href="#calendar" class="toc-h2 toc-link" data-title="/calendar">/calendar</a>
                   </li>
                   <li>
-                    <a href="#calendar-id" class="toc-h2 toc-link" data-title="/CALENDAR/{ID}">/CALENDAR/{ID}</a>
+                    <a href="#calendar-id" class="toc-h2 toc-link" data-title="/calendar/{id}">/calendar/{id}</a>
                   </li>
                   <li>
-                    <a href="#calendar-toidentity-list" class="toc-h2 toc-link" data-title="/CALENDAR/{TOIDENTITY}/LIST">/CALENDAR/{TOIDENTITY}/LIST</a>
+                    <a href="#calendar-toidentity-list" class="toc-h2 toc-link" data-title="/calendar/{toidentity}/list">/calendar/{toidentity}/list</a>
                   </li>
               </ul>
           </li>
           <li>
-            <a href="#product-api" class="toc-h1 toc-link" data-title="PRODUCT-API">PRODUCT-API</a>
+            <a href="#product-api" class="toc-h1 toc-link" data-title="Product API">Product API</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#products" class="toc-h2 toc-link" data-title="/PRODUCTS">/PRODUCTS</a>
+                    <a href="#products" class="toc-h2 toc-link" data-title="/products">/products</a>
                   </li>
                   <li>
-                    <a href="#products-product_code" class="toc-h2 toc-link" data-title="/PRODUCTS/{PRODUCT_CODE}">/PRODUCTS/{PRODUCT_CODE}</a>
+                    <a href="#products-product_code" class="toc-h2 toc-link" data-title="/products/{product_code}">/products/{product_code}</a>
                   </li>
               </ul>
           </li>
@@ -350,12 +350,12 @@ All the documentation code examples use our sandbox environment. When you are do
 <span class="n">client</span> <span class="o">=</span> <span class="n">upwork</span><span class="o">.</span><span class="n">Client</span><span class="p">(</span><span class="n">public_key</span><span class="p">,</span> <span class="n">secret_key</span><span class="p">,</span> <span class="o">**</span><span class="n">credentials</span><span class="p">)</span>
 <span class="n">client</span><span class="o">.</span><span class="n">auth</span><span class="o">.</span><span class="n">get_request_token</span><span class="p">()</span>
 
-</code></pre><h1 id='broker-api'>BROKER-API</h1>
+</code></pre><h1 id='broker-api'>Broker API</h1>
 <p><strong>Version:</strong> v0.1 </p>
-<h2 id='health'>/HEALTH</h2><h3 id='get'><strong><em>GET</em></strong></h3>
+<h2 id='health'>/health</h2><h3 id='get'><strong>get</strong></h3>
 <p><strong>Description:</strong> Health check endpoint</p>
-<h4 id='http-request'>HTTP Request</h4>
-<p><code>***GET*** /health</code> </p>
+<h4 id='http-request'>http request</h4>
+<p><strong>GET</strong> /health </p>
 
 <p><strong>Responses</strong></p>
 
@@ -370,10 +370,10 @@ All the documentation code examples use our sandbox environment. When you are do
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='fetch-data-product'>/FETCH-DATA-PRODUCT</h2><h3 id='post'><strong><em>POST</em></strong></h3>
+<h2 id='fetch-data-product'>/fetch-data-product</h2><h3 id='post'><strong>post</strong></h3>
 <p><strong>Description:</strong> Fetch data product</p>
-<h4 id='http-request-2'>HTTP Request</h4>
-<p><code>***POST*** /fetch-data-product</code> </p>
+<h4 id='http-request-2'>http request</h4>
+<p><strong>POST</strong> /fetch-data-product </p>
 
 <p><strong>Parameters</strong></p>
 
@@ -414,12 +414,12 @@ All the documentation code examples use our sandbox environment. When you are do
 </tbody></table>
 
 <!-- Converted with the swagger-to-slate https://github.com/lavkumarv/swagger-to-slate -->
-<h1 id='calendar-api'>CALENDAR-API</h1>
+<h1 id='calendar-api'>Calendar API</h1>
 <p><strong>Version:</strong> v1 </p>
-<h2 id='calendar'>/CALENDAR</h2><h3 id='post-2'><strong><em>POST</em></strong></h3>
+<h2 id='calendar'>/calendar</h2><h3 id='post-2'><strong>post</strong></h3>
 <p><strong>Description:</strong> Create a new calendar entry</p>
-<h4 id='http-request-3'>HTTP Request</h4>
-<p><code>***POST*** /calendar</code> </p>
+<h4 id='http-request-3'>http request</h4>
+<p><strong>POST</strong> /calendar </p>
 
 <p><strong>Parameters</strong></p>
 
@@ -435,7 +435,7 @@ All the documentation code examples use our sandbox environment. When you are do
 <tr>
 <td>Authorization</td>
 <td>header</td>
-<td>The Authorization header, MUST be <code>Bearer {{access_token}}</code></td>
+<td>The Authorization header, MUST be Bearer {{access_token}}</td>
 <td>Yes</td>
 <td>string</td>
 </tr>
@@ -465,10 +465,10 @@ All the documentation code examples use our sandbox environment. When you are do
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='calendar-id'>/CALENDAR/{ID}</h2><h3 id='get-2'><strong><em>GET</em></strong></h3>
+<h2 id='calendar-id'>/calendar/{id}</h2><h3 id='get-2'><strong>get</strong></h3>
 <p><strong>Description:</strong> Read one calendar by id</p>
-<h4 id='http-request-4'>HTTP Request</h4>
-<p><code>***GET*** /calendar/{id}</code> </p>
+<h4 id='http-request-4'>http request</h4>
+<p><strong>GET</strong> /calendar/{id} </p>
 
 <p><strong>Parameters</strong></p>
 
@@ -491,7 +491,7 @@ All the documentation code examples use our sandbox environment. When you are do
 <tr>
 <td>Authorization</td>
 <td>header</td>
-<td>The Authorization header, MUST be <code>Bearer {{access_token}}</code></td>
+<td>The Authorization header, MUST be Bearer {{access_token}}</td>
 <td>Yes</td>
 <td>string</td>
 </tr>
@@ -514,10 +514,10 @@ All the documentation code examples use our sandbox environment. When you are do
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='put'><strong><em>PUT</em></strong></h3>
+<h3 id='put'><strong>put</strong></h3>
 <p><strong>Description:</strong> Update a calendar by id</p>
-<h4 id='http-request-5'>HTTP Request</h4>
-<p><code>***PUT*** /calendar/{id}</code> </p>
+<h4 id='http-request-5'>http request</h4>
+<p><strong>PUT</strong> /calendar/{id} </p>
 
 <p><strong>Parameters</strong></p>
 
@@ -540,7 +540,7 @@ All the documentation code examples use our sandbox environment. When you are do
 <tr>
 <td>Authorization</td>
 <td>header</td>
-<td>The Authorization header, MUST be <code>Bearer {{access_token}}</code></td>
+<td>The Authorization header, MUST be Bearer {{access_token}}</td>
 <td>Yes</td>
 <td>string</td>
 </tr>
@@ -574,10 +574,10 @@ All the documentation code examples use our sandbox environment. When you are do
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='delete'><strong><em>DELETE</em></strong></h3>
+<h3 id='delete'><strong>delete</strong></h3>
 <p><strong>Description:</strong> Delete a calendar by id</p>
-<h4 id='http-request-6'>HTTP Request</h4>
-<p><code>***DELETE*** /calendar/{id}</code> </p>
+<h4 id='http-request-6'>http request</h4>
+<p><strong>DELETE</strong> /calendar/{id} </p>
 
 <p><strong>Parameters</strong></p>
 
@@ -600,7 +600,7 @@ All the documentation code examples use our sandbox environment. When you are do
 <tr>
 <td>Authorization</td>
 <td>header</td>
-<td>The Authorization header, MUST be <code>Bearer {{access_token}}</code></td>
+<td>The Authorization header, MUST be Bearer {{access_token}}</td>
 <td>Yes</td>
 <td>string</td>
 </tr>
@@ -623,10 +623,10 @@ All the documentation code examples use our sandbox environment. When you are do
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='calendar-toidentity-list'>/CALENDAR/{TOIDENTITY}/LIST</h2><h3 id='get-3'><strong><em>GET</em></strong></h3>
+<h2 id='calendar-toidentity-list'>/calendar/{toidentity}/list</h2><h3 id='get-3'><strong>get</strong></h3>
 <p><strong>Description:</strong> List all calendars belonging to the &quot;to&quot; identity.</p>
-<h4 id='http-request-7'>HTTP Request</h4>
-<p><code>***GET*** /calendar/{toIdentity}/list</code> </p>
+<h4 id='http-request-7'>http request</h4>
+<p><strong>GET</strong> /calendar/{toIdentity}/list </p>
 
 <p><strong>Parameters</strong></p>
 
@@ -649,7 +649,7 @@ All the documentation code examples use our sandbox environment. When you are do
 <tr>
 <td>Authorization</td>
 <td>header</td>
-<td>The Authorization header, MUST be <code>Bearer {{access_token}}</code></td>
+<td>The Authorization header, MUST be Bearer {{access_token}}</td>
 <td>Yes</td>
 <td>string</td>
 </tr>
@@ -670,12 +670,12 @@ All the documentation code examples use our sandbox environment. When you are do
 </tbody></table>
 
 <!-- Converted with the swagger-to-slate https://github.com/lavkumarv/swagger-to-slate -->
-<h1 id='product-api'>PRODUCT-API</h1>
+<h1 id='product-api'>Product API</h1>
 <p><strong>Version:</strong> v1 </p>
-<h2 id='products'>/PRODUCTS</h2><h3 id='post-3'><strong><em>POST</em></strong></h3>
+<h2 id='products'>/products</h2><h3 id='post-3'><strong>post</strong></h3>
 <p><strong>Description:</strong> Create a new product</p>
-<h4 id='http-request-8'>HTTP Request</h4>
-<p><code>***POST*** /products</code> </p>
+<h4 id='http-request-8'>http request</h4>
+<p><strong>POST</strong> /products </p>
 
 <p><strong>Parameters</strong></p>
 
@@ -714,10 +714,10 @@ All the documentation code examples use our sandbox environment. When you are do
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='get-4'><strong><em>GET</em></strong></h3>
+<h3 id='get-4'><strong>get</strong></h3>
 <p><strong>Description:</strong> Lists all available products.</p>
-<h4 id='http-request-9'>HTTP Request</h4>
-<p><code>***GET*** /products</code> </p>
+<h4 id='http-request-9'>http request</h4>
+<p><strong>GET</strong> /products </p>
 
 <p><strong>Responses</strong></p>
 
@@ -732,10 +732,10 @@ All the documentation code examples use our sandbox environment. When you are do
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='products-product_code'>/PRODUCTS/{PRODUCT_CODE}</h2><h3 id='get-5'><strong><em>GET</em></strong></h3>
+<h2 id='products-product_code'>/products/{product_code}</h2><h3 id='get-5'><strong>get</strong></h3>
 <p><strong>Description:</strong> Reads a single product by product code</p>
-<h4 id='http-request-10'>HTTP Request</h4>
-<p><code>***GET*** /products/{product_code}</code> </p>
+<h4 id='http-request-10'>http request</h4>
+<p><strong>GET</strong> /products/{product_code} </p>
 
 <p><strong>Parameters</strong></p>
 
@@ -774,10 +774,10 @@ All the documentation code examples use our sandbox environment. When you are do
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='put-2'><strong><em>PUT</em></strong></h3>
+<h3 id='put-2'><strong>put</strong></h3>
 <p><strong>Description:</strong> Update a product by product code</p>
-<h4 id='http-request-11'>HTTP Request</h4>
-<p><code>***PUT*** /products/{product_code}</code> </p>
+<h4 id='http-request-11'>http request</h4>
+<p><strong>PUT</strong> /products/{product_code} </p>
 
 <p><strong>Parameters</strong></p>
 
@@ -827,10 +827,10 @@ All the documentation code examples use our sandbox environment. When you are do
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='delete-2'><strong><em>DELETE</em></strong></h3>
+<h3 id='delete-2'><strong>delete</strong></h3>
 <p><strong>Description:</strong> Delete a product by product code</p>
-<h4 id='http-request-12'>HTTP Request</h4>
-<p><code>***DELETE*** /products/{product_code}</code> </p>
+<h4 id='http-request-12'>http request</h4>
+<p><strong>DELETE</strong> /products/{product_code} </p>
 
 <p><strong>Parameters</strong></p>
 

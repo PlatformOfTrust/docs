@@ -6,10 +6,11 @@ import subprocess
 
 # Array of APIs. Call API_Raml_to_Slate(apiname) for each. Expected: API RAML file in folder which is the api name.
 # Inside that folder must be .raml file with the same name. Example: ./src/product-api/product-api.raml
-APIs = ["broker-api", "calendar-api", "product-api"]
+APIs = ["Broker-api", "Calendar-api", "Product-api"]
 
 
 def api_raml_to_slate(apiname):
+  apiname = apiname.lower()
   jsonfile = Path("./OAS/"+apiname+".json")
   slatefile = Path("./slate/"+apiname+".md")
 
@@ -55,14 +56,14 @@ def concatenate_files():
       # Ugly way of getting rid of some markup in the beginning of each file. Get everything after line 18 and
       # save to final markdown file
 
-      ofile.write("# "+api.upper()+"\n")
+      ofile.write("# "+api.replace("-", " ").replace("api","API")+"\n")
       infile = open(slatefile, 'r').readlines()
       for index, line in enumerate(infile):
         if index > 18:
           if line.startswith("#"):
-            ofile.write("#"+line)
+            ofile.write("#"+line.lower().replace("***", "**").replace("`",""))
           else:
-            ofile.write(line)
+            ofile.write(line.replace("***", "**").replace("`",""))
   print("\n\nSlate file: "+str(outfile)+" created.")
 for api in APIs:
   api_raml_to_slate(api)

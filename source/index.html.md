@@ -72,17 +72,17 @@ client.auth.get_request_token()
 
 ```
 
-# BROKER-API
+# Broker API
 
 **Version:** v0.1 
 
-## /HEALTH
-### ***GET*** 
+## /health
+### **get** 
 
 **Description:** Health check endpoint
 
-#### HTTP Request 
-`***GET*** /health` 
+#### http request 
+**GET** /health 
 
 **Responses**
 
@@ -90,13 +90,13 @@ client.auth.get_request_token()
 | ---- | ----------- |
 | 200 |  |
 
-## /FETCH-DATA-PRODUCT
-### ***POST*** 
+## /fetch-data-product
+### **post** 
 
 **Description:** Fetch data product
 
-#### HTTP Request 
-`***POST*** /fetch-data-product` 
+#### http request 
+**POST** /fetch-data-product 
 
 **Parameters**
 
@@ -112,23 +112,23 @@ client.auth.get_request_token()
 | 422 |  |
 
 <!-- Converted with the swagger-to-slate https://github.com/lavkumarv/swagger-to-slate -->
-# CALENDAR-API
+# Calendar API
 
 **Version:** v1 
 
-## /CALENDAR
-### ***POST*** 
+## /calendar
+### **post** 
 
 **Description:** Create a new calendar entry
 
-#### HTTP Request 
-`***POST*** /calendar` 
+#### http request 
+**POST** /calendar 
 
 **Parameters**
 
 | Name | Located in | Description | Required | Type |
 | ---- | ---------- | ----------- | -------- | ---- |
-| Authorization | header | The Authorization header, MUST be `Bearer {{access_token}}` | Yes | string |
+| Authorization | header | The Authorization header, MUST be Bearer {{access_token}} | Yes | string |
 | body | body |  | Yes |  |
 
 **Responses**
@@ -138,20 +138,20 @@ client.auth.get_request_token()
 | 201 |  |
 | 422 |  |
 
-## /CALENDAR/{ID}
-### ***GET*** 
+## /calendar/{id}
+### **get** 
 
 **Description:** Read one calendar by id
 
-#### HTTP Request 
-`***GET*** /calendar/{id}` 
+#### http request 
+**GET** /calendar/{id} 
 
 **Parameters**
 
 | Name | Located in | Description | Required | Type |
 | ---- | ---------- | ----------- | -------- | ---- |
 | id | path | The ID of the calendar | Yes | string |
-| Authorization | header | The Authorization header, MUST be `Bearer {{access_token}}` | Yes | string |
+| Authorization | header | The Authorization header, MUST be Bearer {{access_token}} | Yes | string |
 
 **Responses**
 
@@ -160,19 +160,19 @@ client.auth.get_request_token()
 | 200 |  |
 | 404 |  |
 
-### ***PUT*** 
+### **put** 
 
 **Description:** Update a calendar by id
 
-#### HTTP Request 
-`***PUT*** /calendar/{id}` 
+#### http request 
+**PUT** /calendar/{id} 
 
 **Parameters**
 
 | Name | Located in | Description | Required | Type |
 | ---- | ---------- | ----------- | -------- | ---- |
 | id | path | The ID of the calendar | Yes | string |
-| Authorization | header | The Authorization header, MUST be `Bearer {{access_token}}` | Yes | string |
+| Authorization | header | The Authorization header, MUST be Bearer {{access_token}} | Yes | string |
 | body | body |  | Yes |  |
 
 **Responses**
@@ -183,19 +183,19 @@ client.auth.get_request_token()
 | 404 |  |
 | 422 |  |
 
-### ***DELETE*** 
+### **delete** 
 
 **Description:** Delete a calendar by id
 
-#### HTTP Request 
-`***DELETE*** /calendar/{id}` 
+#### http request 
+**DELETE** /calendar/{id} 
 
 **Parameters**
 
 | Name | Located in | Description | Required | Type |
 | ---- | ---------- | ----------- | -------- | ---- |
 | id | path | The ID of the calendar | Yes | string |
-| Authorization | header | The Authorization header, MUST be `Bearer {{access_token}}` | Yes | string |
+| Authorization | header | The Authorization header, MUST be Bearer {{access_token}} | Yes | string |
 
 **Responses**
 
@@ -204,20 +204,20 @@ client.auth.get_request_token()
 | 204 |  |
 | 404 |  |
 
-## /CALENDAR/{TOIDENTITY}/LIST
-### ***GET*** 
+## /calendar/{toidentity}/list
+### **get** 
 
 **Description:** List all calendars belonging to the "to" identity.
 
-#### HTTP Request 
-`***GET*** /calendar/{toIdentity}/list` 
+#### http request 
+**GET** /calendar/{toIdentity}/list 
 
 **Parameters**
 
 | Name | Located in | Description | Required | Type |
 | ---- | ---------- | ----------- | -------- | ---- |
 | toIdentity | path | The identity to which the calendar belongs to. | Yes | string |
-| Authorization | header | The Authorization header, MUST be `Bearer {{access_token}}` | Yes | string |
+| Authorization | header | The Authorization header, MUST be Bearer {{access_token}} | Yes | string |
 
 **Responses**
 
@@ -226,17 +226,17 @@ client.auth.get_request_token()
 | 200 |  |
 
 <!-- Converted with the swagger-to-slate https://github.com/lavkumarv/swagger-to-slate -->
-# PRODUCT-API
+# Product API
 
 **Version:** v1 
 
-## /PRODUCTS
-### ***POST*** 
+## /products
+### **post** 
 
 **Description:** Create a new product
 
-#### HTTP Request 
-`***POST*** /products` 
+#### http request 
+**POST** /products 
 
 **Parameters**
 
@@ -251,12 +251,12 @@ client.auth.get_request_token()
 | 201 |  |
 | 422 |  |
 
-### ***GET*** 
+### **get** 
 
 **Description:** Lists all available products.
 
-#### HTTP Request 
-`***GET*** /products` 
+#### http request 
+**GET** /products 
 
 **Responses**
 
@@ -264,13 +264,13 @@ client.auth.get_request_token()
 | ---- | ----------- |
 | 200 |  |
 
-## /PRODUCTS/{PRODUCT_CODE}
-### ***GET*** 
+## /products/{product_code}
+### **get** 
 
 **Description:** Reads a single product by product code
 
-#### HTTP Request 
-`***GET*** /products/{product_code}` 
+#### http request 
+**GET** /products/{product_code} 
 
 **Parameters**
 
@@ -285,12 +285,12 @@ client.auth.get_request_token()
 | 200 |  |
 | 404 |  |
 
-### ***PUT*** 
+### **put** 
 
 **Description:** Update a product by product code
 
-#### HTTP Request 
-`***PUT*** /products/{product_code}` 
+#### http request 
+**PUT** /products/{product_code} 
 
 **Parameters**
 
@@ -307,12 +307,12 @@ client.auth.get_request_token()
 | 404 |  |
 | 422 |  |
 
-### ***DELETE*** 
+### **delete** 
 
 **Description:** Delete a product by product code
 
-#### HTTP Request 
-`***DELETE*** /products/{product_code}` 
+#### http request 
+**DELETE** /products/{product_code} 
 
 **Parameters**
 
