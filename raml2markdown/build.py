@@ -9,7 +9,7 @@ import subprocess
 APIs = ["broker-api", "calendar-api", "product-api"]
 
 
-def API_Raml_to_Slate(apiname):
+def api_raml_to_slate(apiname):
   jsonfile = Path("./OAS/"+apiname+".json")
   slatefile = Path("./slate/"+apiname+".md")
 
@@ -39,9 +39,28 @@ def API_Raml_to_Slate(apiname):
     if failure:
       print("RAML -> Slate formatted md file creation failed. Trying next in array.")
 
+def concatenate_files():
+  outfile = Path("slate/index.html.md")
+  if outfile.exists():
+    os.remove(outfile)
+  else:
+    print("File: index.html.md delete failed. File not found!")
 
+  with open(outfile, 'w') as ofile:
+    with open(Path("slate/index.md")) as infile:
+      ofile.write(infile.read())
+    for api in APIs:
+      slatefile = Path("./slate/" + api + ".md")
 
+      # Ugly way of getting rid of some markup in the beginning of each file. Get everything after line 18 and
+      # save to final markdown file
+      infile = open(slatefile, 'r').readlines()
+      for index, line in enumerate(infile):
+        if index > 18:
+          ofile.write(line)
+  print("\n\nSlate file: "+str(outfile)+" created.")
 for api in APIs:
-  API_Raml_to_Slate(api)
+  api_raml_to_slate(api)
 
+concatenate_files()
 
