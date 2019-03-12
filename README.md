@@ -27,4 +27,4 @@ You can now see the docs at http://localhost:4567.
 
 ### Build distribution
 
-To build distribution content, use ```bundle exec middleman build``` and static content to serve via webserver is in ```build``` folder. 
+Python script `raml2markdown/build.py` builds the documentation to `build` folder as static html content with CSS and other necessary files. 
