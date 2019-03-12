@@ -253,73 +253,38 @@
               </ul>
           </li>
           <li>
-            <a href="#health" class="toc-h1 toc-link" data-title="/HEALTH">/HEALTH</a>
+            <a href="#broker-api" class="toc-h1 toc-link" data-title="BROKER-API">BROKER-API</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#get" class="toc-h2 toc-link" data-title="GET"><strong><em>GET</em></strong></a>
+                    <a href="#health" class="toc-h2 toc-link" data-title="/HEALTH">/HEALTH</a>
+                  </li>
+                  <li>
+                    <a href="#fetch-data-product" class="toc-h2 toc-link" data-title="/FETCH-DATA-PRODUCT">/FETCH-DATA-PRODUCT</a>
                   </li>
               </ul>
           </li>
           <li>
-            <a href="#fetch-data-product" class="toc-h1 toc-link" data-title="/FETCH-DATA-PRODUCT">/FETCH-DATA-PRODUCT</a>
+            <a href="#calendar-api" class="toc-h1 toc-link" data-title="CALENDAR-API">CALENDAR-API</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#post" class="toc-h2 toc-link" data-title="POST"><strong><em>POST</em></strong></a>
+                    <a href="#calendar" class="toc-h2 toc-link" data-title="/CALENDAR">/CALENDAR</a>
+                  </li>
+                  <li>
+                    <a href="#calendar-id" class="toc-h2 toc-link" data-title="/CALENDAR/{ID}">/CALENDAR/{ID}</a>
+                  </li>
+                  <li>
+                    <a href="#calendar-toidentity-list" class="toc-h2 toc-link" data-title="/CALENDAR/{TOIDENTITY}/LIST">/CALENDAR/{TOIDENTITY}/LIST</a>
                   </li>
               </ul>
           </li>
           <li>
-            <a href="#calendar" class="toc-h1 toc-link" data-title="/CALENDAR">/CALENDAR</a>
+            <a href="#product-api" class="toc-h1 toc-link" data-title="PRODUCT-API">PRODUCT-API</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#post-2" class="toc-h2 toc-link" data-title="POST"><strong><em>POST</em></strong></a>
-                  </li>
-              </ul>
-          </li>
-          <li>
-            <a href="#calendar-id" class="toc-h1 toc-link" data-title="/CALENDAR/{ID}">/CALENDAR/{ID}</a>
-              <ul class="toc-list-h2">
-                  <li>
-                    <a href="#get-2" class="toc-h2 toc-link" data-title="GET"><strong><em>GET</em></strong></a>
+                    <a href="#products" class="toc-h2 toc-link" data-title="/PRODUCTS">/PRODUCTS</a>
                   </li>
                   <li>
-                    <a href="#put" class="toc-h2 toc-link" data-title="PUT"><strong><em>PUT</em></strong></a>
-                  </li>
-                  <li>
-                    <a href="#delete" class="toc-h2 toc-link" data-title="DELETE"><strong><em>DELETE</em></strong></a>
-                  </li>
-              </ul>
-          </li>
-          <li>
-            <a href="#calendar-toidentity-list" class="toc-h1 toc-link" data-title="/CALENDAR/{TOIDENTITY}/LIST">/CALENDAR/{TOIDENTITY}/LIST</a>
-              <ul class="toc-list-h2">
-                  <li>
-                    <a href="#get-3" class="toc-h2 toc-link" data-title="GET"><strong><em>GET</em></strong></a>
-                  </li>
-              </ul>
-          </li>
-          <li>
-            <a href="#products" class="toc-h1 toc-link" data-title="/PRODUCTS">/PRODUCTS</a>
-              <ul class="toc-list-h2">
-                  <li>
-                    <a href="#post-3" class="toc-h2 toc-link" data-title="POST"><strong><em>POST</em></strong></a>
-                  </li>
-                  <li>
-                    <a href="#get-4" class="toc-h2 toc-link" data-title="GET"><strong><em>GET</em></strong></a>
-                  </li>
-              </ul>
-          </li>
-          <li>
-            <a href="#products-product_code" class="toc-h1 toc-link" data-title="/PRODUCTS/{PRODUCT_CODE}">/PRODUCTS/{PRODUCT_CODE}</a>
-              <ul class="toc-list-h2">
-                  <li>
-                    <a href="#get-5" class="toc-h2 toc-link" data-title="GET"><strong><em>GET</em></strong></a>
-                  </li>
-                  <li>
-                    <a href="#put-2" class="toc-h2 toc-link" data-title="PUT"><strong><em>PUT</em></strong></a>
-                  </li>
-                  <li>
-                    <a href="#delete-2" class="toc-h2 toc-link" data-title="DELETE"><strong><em>DELETE</em></strong></a>
+                    <a href="#products-product_code" class="toc-h2 toc-link" data-title="/PRODUCTS/{PRODUCT_CODE}">/PRODUCTS/{PRODUCT_CODE}</a>
                   </li>
               </ul>
           </li>
@@ -385,11 +350,11 @@ All the documentation code examples use our sandbox environment. When you are do
 <span class="n">client</span> <span class="o">=</span> <span class="n">upwork</span><span class="o">.</span><span class="n">Client</span><span class="p">(</span><span class="n">public_key</span><span class="p">,</span> <span class="n">secret_key</span><span class="p">,</span> <span class="o">**</span><span class="n">credentials</span><span class="p">)</span>
 <span class="n">client</span><span class="o">.</span><span class="n">auth</span><span class="o">.</span><span class="n">get_request_token</span><span class="p">()</span>
 
-</code></pre>
+</code></pre><h1 id='broker-api'>BROKER-API</h1>
 <p><strong>Version:</strong> v0.1 </p>
-<h1 id='health'>/HEALTH</h1><h2 id='get'><strong><em>GET</em></strong></h2>
+<h2 id='health'>/HEALTH</h2><h3 id='get'><strong><em>GET</em></strong></h3>
 <p><strong>Description:</strong> Health check endpoint</p>
-<h3 id='http-request'>HTTP Request</h3>
+<h4 id='http-request'>HTTP Request</h4>
 <p><code>***GET*** /health</code> </p>
 
 <p><strong>Responses</strong></p>
@@ -405,9 +370,9 @@ All the documentation code examples use our sandbox environment. When you are do
 <td></td>
 </tr>
 </tbody></table>
-<h1 id='fetch-data-product'>/FETCH-DATA-PRODUCT</h1><h2 id='post'><strong><em>POST</em></strong></h2>
+<h2 id='fetch-data-product'>/FETCH-DATA-PRODUCT</h2><h3 id='post'><strong><em>POST</em></strong></h3>
 <p><strong>Description:</strong> Fetch data product</p>
-<h3 id='http-request-2'>HTTP Request</h3>
+<h4 id='http-request-2'>HTTP Request</h4>
 <p><code>***POST*** /fetch-data-product</code> </p>
 
 <p><strong>Parameters</strong></p>
@@ -449,11 +414,11 @@ All the documentation code examples use our sandbox environment. When you are do
 </tbody></table>
 
 <!-- Converted with the swagger-to-slate https://github.com/lavkumarv/swagger-to-slate -->
-
+<h1 id='calendar-api'>CALENDAR-API</h1>
 <p><strong>Version:</strong> v1 </p>
-<h1 id='calendar'>/CALENDAR</h1><h2 id='post-2'><strong><em>POST</em></strong></h2>
+<h2 id='calendar'>/CALENDAR</h2><h3 id='post-2'><strong><em>POST</em></strong></h3>
 <p><strong>Description:</strong> Create a new calendar entry</p>
-<h3 id='http-request-3'>HTTP Request</h3>
+<h4 id='http-request-3'>HTTP Request</h4>
 <p><code>***POST*** /calendar</code> </p>
 
 <p><strong>Parameters</strong></p>
@@ -500,9 +465,9 @@ All the documentation code examples use our sandbox environment. When you are do
 <td></td>
 </tr>
 </tbody></table>
-<h1 id='calendar-id'>/CALENDAR/{ID}</h1><h2 id='get-2'><strong><em>GET</em></strong></h2>
+<h2 id='calendar-id'>/CALENDAR/{ID}</h2><h3 id='get-2'><strong><em>GET</em></strong></h3>
 <p><strong>Description:</strong> Read one calendar by id</p>
-<h3 id='http-request-4'>HTTP Request</h3>
+<h4 id='http-request-4'>HTTP Request</h4>
 <p><code>***GET*** /calendar/{id}</code> </p>
 
 <p><strong>Parameters</strong></p>
@@ -549,9 +514,9 @@ All the documentation code examples use our sandbox environment. When you are do
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='put'><strong><em>PUT</em></strong></h2>
+<h3 id='put'><strong><em>PUT</em></strong></h3>
 <p><strong>Description:</strong> Update a calendar by id</p>
-<h3 id='http-request-5'>HTTP Request</h3>
+<h4 id='http-request-5'>HTTP Request</h4>
 <p><code>***PUT*** /calendar/{id}</code> </p>
 
 <p><strong>Parameters</strong></p>
@@ -609,9 +574,9 @@ All the documentation code examples use our sandbox environment. When you are do
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='delete'><strong><em>DELETE</em></strong></h2>
+<h3 id='delete'><strong><em>DELETE</em></strong></h3>
 <p><strong>Description:</strong> Delete a calendar by id</p>
-<h3 id='http-request-6'>HTTP Request</h3>
+<h4 id='http-request-6'>HTTP Request</h4>
 <p><code>***DELETE*** /calendar/{id}</code> </p>
 
 <p><strong>Parameters</strong></p>
@@ -658,9 +623,9 @@ All the documentation code examples use our sandbox environment. When you are do
 <td></td>
 </tr>
 </tbody></table>
-<h1 id='calendar-toidentity-list'>/CALENDAR/{TOIDENTITY}/LIST</h1><h2 id='get-3'><strong><em>GET</em></strong></h2>
+<h2 id='calendar-toidentity-list'>/CALENDAR/{TOIDENTITY}/LIST</h2><h3 id='get-3'><strong><em>GET</em></strong></h3>
 <p><strong>Description:</strong> List all calendars belonging to the &quot;to&quot; identity.</p>
-<h3 id='http-request-7'>HTTP Request</h3>
+<h4 id='http-request-7'>HTTP Request</h4>
 <p><code>***GET*** /calendar/{toIdentity}/list</code> </p>
 
 <p><strong>Parameters</strong></p>
@@ -705,11 +670,11 @@ All the documentation code examples use our sandbox environment. When you are do
 </tbody></table>
 
 <!-- Converted with the swagger-to-slate https://github.com/lavkumarv/swagger-to-slate -->
-
+<h1 id='product-api'>PRODUCT-API</h1>
 <p><strong>Version:</strong> v1 </p>
-<h1 id='products'>/PRODUCTS</h1><h2 id='post-3'><strong><em>POST</em></strong></h2>
+<h2 id='products'>/PRODUCTS</h2><h3 id='post-3'><strong><em>POST</em></strong></h3>
 <p><strong>Description:</strong> Create a new product</p>
-<h3 id='http-request-8'>HTTP Request</h3>
+<h4 id='http-request-8'>HTTP Request</h4>
 <p><code>***POST*** /products</code> </p>
 
 <p><strong>Parameters</strong></p>
@@ -749,9 +714,9 @@ All the documentation code examples use our sandbox environment. When you are do
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='get-4'><strong><em>GET</em></strong></h2>
+<h3 id='get-4'><strong><em>GET</em></strong></h3>
 <p><strong>Description:</strong> Lists all available products.</p>
-<h3 id='http-request-9'>HTTP Request</h3>
+<h4 id='http-request-9'>HTTP Request</h4>
 <p><code>***GET*** /products</code> </p>
 
 <p><strong>Responses</strong></p>
@@ -767,9 +732,9 @@ All the documentation code examples use our sandbox environment. When you are do
 <td></td>
 </tr>
 </tbody></table>
-<h1 id='products-product_code'>/PRODUCTS/{PRODUCT_CODE}</h1><h2 id='get-5'><strong><em>GET</em></strong></h2>
+<h2 id='products-product_code'>/PRODUCTS/{PRODUCT_CODE}</h2><h3 id='get-5'><strong><em>GET</em></strong></h3>
 <p><strong>Description:</strong> Reads a single product by product code</p>
-<h3 id='http-request-10'>HTTP Request</h3>
+<h4 id='http-request-10'>HTTP Request</h4>
 <p><code>***GET*** /products/{product_code}</code> </p>
 
 <p><strong>Parameters</strong></p>
@@ -809,9 +774,9 @@ All the documentation code examples use our sandbox environment. When you are do
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='put-2'><strong><em>PUT</em></strong></h2>
+<h3 id='put-2'><strong><em>PUT</em></strong></h3>
 <p><strong>Description:</strong> Update a product by product code</p>
-<h3 id='http-request-11'>HTTP Request</h3>
+<h4 id='http-request-11'>HTTP Request</h4>
 <p><code>***PUT*** /products/{product_code}</code> </p>
 
 <p><strong>Parameters</strong></p>
@@ -862,9 +827,9 @@ All the documentation code examples use our sandbox environment. When you are do
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='delete-2'><strong><em>DELETE</em></strong></h2>
+<h3 id='delete-2'><strong><em>DELETE</em></strong></h3>
 <p><strong>Description:</strong> Delete a product by product code</p>
-<h3 id='http-request-12'>HTTP Request</h3>
+<h4 id='http-request-12'>HTTP Request</h4>
 <p><code>***DELETE*** /products/{product_code}</code> </p>
 
 <p><strong>Parameters</strong></p>

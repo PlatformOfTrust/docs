@@ -72,15 +72,16 @@ client.auth.get_request_token()
 
 ```
 
+# BROKER-API
 
 **Version:** v0.1 
 
-# /HEALTH
-## ***GET*** 
+## /HEALTH
+### ***GET*** 
 
 **Description:** Health check endpoint
 
-### HTTP Request 
+#### HTTP Request 
 `***GET*** /health` 
 
 **Responses**
@@ -89,12 +90,12 @@ client.auth.get_request_token()
 | ---- | ----------- |
 | 200 |  |
 
-# /FETCH-DATA-PRODUCT
-## ***POST*** 
+## /FETCH-DATA-PRODUCT
+### ***POST*** 
 
 **Description:** Fetch data product
 
-### HTTP Request 
+#### HTTP Request 
 `***POST*** /fetch-data-product` 
 
 **Parameters**
@@ -111,15 +112,16 @@ client.auth.get_request_token()
 | 422 |  |
 
 <!-- Converted with the swagger-to-slate https://github.com/lavkumarv/swagger-to-slate -->
+# CALENDAR-API
 
 **Version:** v1 
 
-# /CALENDAR
-## ***POST*** 
+## /CALENDAR
+### ***POST*** 
 
 **Description:** Create a new calendar entry
 
-### HTTP Request 
+#### HTTP Request 
 `***POST*** /calendar` 
 
 **Parameters**
@@ -136,12 +138,12 @@ client.auth.get_request_token()
 | 201 |  |
 | 422 |  |
 
-# /CALENDAR/{ID}
-## ***GET*** 
+## /CALENDAR/{ID}
+### ***GET*** 
 
 **Description:** Read one calendar by id
 
-### HTTP Request 
+#### HTTP Request 
 `***GET*** /calendar/{id}` 
 
 **Parameters**
@@ -158,11 +160,11 @@ client.auth.get_request_token()
 | 200 |  |
 | 404 |  |
 
-## ***PUT*** 
+### ***PUT*** 
 
 **Description:** Update a calendar by id
 
-### HTTP Request 
+#### HTTP Request 
 `***PUT*** /calendar/{id}` 
 
 **Parameters**
@@ -181,11 +183,11 @@ client.auth.get_request_token()
 | 404 |  |
 | 422 |  |
 
-## ***DELETE*** 
+### ***DELETE*** 
 
 **Description:** Delete a calendar by id
 
-### HTTP Request 
+#### HTTP Request 
 `***DELETE*** /calendar/{id}` 
 
 **Parameters**
@@ -202,12 +204,12 @@ client.auth.get_request_token()
 | 204 |  |
 | 404 |  |
 
-# /CALENDAR/{TOIDENTITY}/LIST
-## ***GET*** 
+## /CALENDAR/{TOIDENTITY}/LIST
+### ***GET*** 
 
 **Description:** List all calendars belonging to the "to" identity.
 
-### HTTP Request 
+#### HTTP Request 
 `***GET*** /calendar/{toIdentity}/list` 
 
 **Parameters**
@@ -224,15 +226,16 @@ client.auth.get_request_token()
 | 200 |  |
 
 <!-- Converted with the swagger-to-slate https://github.com/lavkumarv/swagger-to-slate -->
+# PRODUCT-API
 
 **Version:** v1 
 
-# /PRODUCTS
-## ***POST*** 
+## /PRODUCTS
+### ***POST*** 
 
 **Description:** Create a new product
 
-### HTTP Request 
+#### HTTP Request 
 `***POST*** /products` 
 
 **Parameters**
@@ -248,11 +251,11 @@ client.auth.get_request_token()
 | 201 |  |
 | 422 |  |
 
-## ***GET*** 
+### ***GET*** 
 
 **Description:** Lists all available products.
 
-### HTTP Request 
+#### HTTP Request 
 `***GET*** /products` 
 
 **Responses**
@@ -261,12 +264,12 @@ client.auth.get_request_token()
 | ---- | ----------- |
 | 200 |  |
 
-# /PRODUCTS/{PRODUCT_CODE}
-## ***GET*** 
+## /PRODUCTS/{PRODUCT_CODE}
+### ***GET*** 
 
 **Description:** Reads a single product by product code
 
-### HTTP Request 
+#### HTTP Request 
 `***GET*** /products/{product_code}` 
 
 **Parameters**
@@ -282,11 +285,11 @@ client.auth.get_request_token()
 | 200 |  |
 | 404 |  |
 
-## ***PUT*** 
+### ***PUT*** 
 
 **Description:** Update a product by product code
 
-### HTTP Request 
+#### HTTP Request 
 `***PUT*** /products/{product_code}` 
 
 **Parameters**
@@ -304,11 +307,11 @@ client.auth.get_request_token()
 | 404 |  |
 | 422 |  |
 
-## ***DELETE*** 
+### ***DELETE*** 
 
 **Description:** Delete a product by product code
 
-### HTTP Request 
+#### HTTP Request 
 `***DELETE*** /products/{product_code}` 
 
 **Parameters**

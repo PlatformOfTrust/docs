@@ -54,10 +54,15 @@ def concatenate_files():
 
       # Ugly way of getting rid of some markup in the beginning of each file. Get everything after line 18 and
       # save to final markdown file
+
+      ofile.write("# "+api.upper()+"\n")
       infile = open(slatefile, 'r').readlines()
       for index, line in enumerate(infile):
         if index > 18:
-          ofile.write(line)
+          if line.startswith("#"):
+            ofile.write("#"+line)
+          else:
+            ofile.write(line)
   print("\n\nSlate file: "+str(outfile)+" created.")
 for api in APIs:
   api_raml_to_slate(api)
