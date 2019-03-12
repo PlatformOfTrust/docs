@@ -1,6 +1,6 @@
 --- 
 
-title: New Platform Of Trust Documentation 
+title: Platform Of Trust Documentation 
 
 language_tabs: 
    - shell 
@@ -9,8 +9,7 @@ language_tabs:
    - javascript
 
 toc_footers: 
-   - <a href='#'>Sign Up for a Developer Key</a> 
-   - <a href='https://github.com/lavkumarv'>Documentation Powered by lav</a> 
+   - <a href='https://developers.oftrust.net'>Developer Portal</a> 
 
 includes: 
    - authentication
@@ -23,7 +22,7 @@ search: true
 
 --- 
 
-# Platform of Trust Documentation
+# Platform of Trust API Documentation
 
 This could be rather static introduction to Platform of Trust APIs and written in separate file. Then just preprocess the files and merge all, or do it 
 manually. Nope! Includes go all to bottom. 

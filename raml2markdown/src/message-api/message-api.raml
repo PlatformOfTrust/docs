@@ -1,0 +1,145 @@
+#%RAML 1.0
+---
+title: LifeEngine
+version: v1
+baseUri: http://192.168.99.100:31000/message/v1
+mediaType: application/json
+types:
+  message:
+    type: object
+    properties:
+      toIdentity:
+        description: The "to" identity ID to which the message is sent to.
+        type: string
+        example: d36c4cd0-26c9-446e-a93f-0a90029f3a7f
+      subject:
+        description: The message subject.
+        type: string
+        example: Go to the grocery store
+      content:
+        description: The content of the message.
+        type: string
+        example: Remember to buy milk!
+      cc?:
+        description: List of IDs to CC the message to.
+        type: array
+        example: |
+          [
+            "323bde80-4cc2-472e-bb77-e6a3e95a1253",
+            "0827e9c3-9664-479f-b0ec-956a35d72e4b"
+          ]
+/message:
+  description: |
+    Manage messages of identities. A message can be sent to any identity the user
+    has access to.
+  post:
+    headers:
+      Authorization: !include includes/properties/authorization-headers.yaml
+    description: Create a new message
+    body:
+      type: message
+      example: !include includes/examples/message-create.json
+    responses:
+      201:
+        body:
+          properties: !include includes/properties/message.yaml
+          example: !include includes/examples/message.json
+      422:
+        body:
+          example: |
+            {
+              "error": {
+                "status": 422,
+                "message": "Could not create message."
+              }
+            }
+  /{id}:
+    uriParameters:
+      id:
+        description: The ID of the message
+        type: string
+        example: 2584bdd7-1cb2-48ed-a106-2a1b817cf909
+    get:
+      headers:
+        Authorization: !include includes/properties/authorization-headers.yaml
+      description: Read one message by id
+      responses:
+        200:
+          body:
+            properties: !include includes/properties/message.yaml
+            example: !include includes/examples/message.json
+        404:
+          body:
+            example: !include includes/examples/message-not-found.json
+    put:
+      headers:
+        Authorization: !include includes/properties/authorization-headers.yaml
+      description: Update a message by id
+      body:
+        type: message
+        example: !include includes/examples/message-update.json
+      responses:
+        200:
+          body:
+            properties: !include includes/properties/message.yaml
+            example: !include includes/examples/message.json
+        404:
+          body:
+            example: !include includes/examples/message-not-found.json
+        422:
+          body:
+            example: |
+              {
+                "error": {
+                  "status": 422,
+                  "message": "Could not update message."
+                }
+              }
+    delete:
+      headers:
+        Authorization: !include includes/properties/authorization-headers.yaml
+      description: Delete a message by id
+      responses:
+        204:
+          body:
+            example: {}
+        404:
+          body:
+            example: !include includes/examples/message-not-found.json
+    /read:
+      post:
+        headers:
+          Authorization: !include includes/properties/authorization-headers.yaml
+        description: Marks a message read by the currently logged in user.
+        responses:
+          200:
+            body:
+              example: {}
+          403:
+            body:
+              example: |
+                {
+                  "error": {
+                    "status": 403,
+                    "message": "User not logged in."
+                  }
+                }
+
+/messages:
+  description: List messages that are sent to an identity.
+  /{toIdentity}:
+    uriParameters:
+      toIdentity:
+        description: The identity to which the message belongs to.
+        type: string
+        example: 2584bdd7-1cb2-48ed-a106-2a1b817cf909
+    /list:
+      get:
+        headers:
+          Authorization: !include includes/properties/authorization-headers.yaml
+        description: List all messages belonging to the "to" identity.
+        responses:
+          200:
+            body:
+              properties: !include includes/properties/messages.yaml
+              example: !include includes/examples/messages.json

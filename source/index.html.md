@@ -1,6 +1,6 @@
 --- 
 
-title: New Platform Of Trust Documentation 
+title: Platform Of Trust Documentation 
 
 language_tabs: 
    - shell 
@@ -9,8 +9,7 @@ language_tabs:
    - javascript
 
 toc_footers: 
-   - <a href='#'>Sign Up for a Developer Key</a> 
-   - <a href='https://github.com/lavkumarv'>Documentation Powered by lav</a> 
+   - <a href='https://developers.oftrust.net'>Developer Portal</a> 
 
 includes: 
    - authentication
@@ -23,7 +22,7 @@ search: true
 
 --- 
 
-# Platform of Trust Documentation
+# Platform of Trust API Documentation
 
 This could be rather static introduction to Platform of Trust APIs and written in separate file. Then just preprocess the files and merge all, or do it 
 manually. Nope! Includes go all to bottom. 
@@ -326,5 +325,141 @@ client.auth.get_request_token()
 | ---- | ----------- |
 | 204 |  |
 | 404 |  |
+
+<!-- Converted with the swagger-to-slate https://github.com/lavkumarv/swagger-to-slate -->
+# Message API
+
+**Version:** v1 
+
+## /message
+### **post** 
+
+**Description:** Create a new message
+
+#### http request 
+**POST** /message 
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+| Authorization | header | The Authorization header, MUST be `Bearer {{access_token}}` | Yes | string |
+| body | body |  | Yes |  |
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 201 |  |
+| 422 |  |
+
+## /message/{id}
+### **get** 
+
+**Description:** Read one message by id
+
+#### http request 
+**GET** /message/{id} 
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+| id | path | The ID of the message | Yes | string |
+| Authorization | header | The Authorization header, MUST be `Bearer {{access_token}}` | Yes | string |
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 200 |  |
+| 404 |  |
+
+### **put** 
+
+**Description:** Update a message by id
+
+#### http request 
+**PUT** /message/{id} 
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+| id | path | The ID of the message | Yes | string |
+| Authorization | header | The Authorization header, MUST be `Bearer {{access_token}}` | Yes | string |
+| body | body |  | Yes |  |
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 200 |  |
+| 404 |  |
+| 422 |  |
+
+### **delete** 
+
+**Description:** Delete a message by id
+
+#### http request 
+**DELETE** /message/{id} 
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+| id | path | The ID of the message | Yes | string |
+| Authorization | header | The Authorization header, MUST be `Bearer {{access_token}}` | Yes | string |
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 204 |  |
+| 404 |  |
+
+## /message/{id}/read
+### **post** 
+
+**Description:** Marks a message read by the currently logged in user.
+
+#### http request 
+**POST** /message/{id}/read 
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+| id | path | The ID of the message | Yes | string |
+| Authorization | header | The Authorization header, MUST be `Bearer {{access_token}}` | Yes | string |
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 200 |  |
+| 403 |  |
+
+## /messages/{toidentity}/list
+### **get** 
+
+**Description:** List all messages belonging to the "to" identity.
+
+#### http request 
+**GET** /messages/{toIdentity}/list 
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+| toIdentity | path | The identity to which the message belongs to. | Yes | string |
+| Authorization | header | The Authorization header, MUST be `Bearer {{access_token}}` | Yes | string |
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 200 |  |
 
 <!-- Converted with the swagger-to-slate https://github.com/lavkumarv/swagger-to-slate -->

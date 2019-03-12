@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>New Platform Of Trust Documentation</title>
+    <title>Platform Of Trust Documentation</title>
 
     <style>
       .highlight table td { padding: 5px; }
@@ -222,7 +222,7 @@
         <ul class="search-results"></ul>
       <ul id="toc" class="toc-list-h1">
           <li>
-            <a href="#platform-of-trust-documentation" class="toc-h1 toc-link" data-title="Platform of Trust Documentation">Platform of Trust Documentation</a>
+            <a href="#platform-of-trust-api-documentation" class="toc-h1 toc-link" data-title="Platform of Trust API Documentation">Platform of Trust API Documentation</a>
           </li>
           <li>
             <a href="#getting-started" class="toc-h1 toc-link" data-title="Getting started">Getting started</a>
@@ -289,6 +289,23 @@
               </ul>
           </li>
           <li>
+            <a href="#message-api" class="toc-h1 toc-link" data-title="Message API">Message API</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#message" class="toc-h2 toc-link" data-title="/message">/message</a>
+                  </li>
+                  <li>
+                    <a href="#message-id" class="toc-h2 toc-link" data-title="/message/{id}">/message/{id}</a>
+                  </li>
+                  <li>
+                    <a href="#message-id-read" class="toc-h2 toc-link" data-title="/message/{id}/read">/message/{id}/read</a>
+                  </li>
+                  <li>
+                    <a href="#messages-toidentity-list" class="toc-h2 toc-link" data-title="/messages/{toidentity}/list">/messages/{toidentity}/list</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
             <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
               <ul class="toc-list-h2">
                   <li>
@@ -315,14 +332,13 @@
           </li>
       </ul>
         <ul class="toc-footer">
-            <li><a href='#'>Sign Up for a Developer Key</a></li>
-            <li><a href='https://github.com/lavkumarv'>Documentation Powered by lav</a></li>
+            <li><a href='https://developers.oftrust.net'>Developer Portal</a></li>
         </ul>
     </div>
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
-        <h1 id='platform-of-trust-documentation'>Platform of Trust Documentation</h1>
+        <h1 id='platform-of-trust-api-documentation'>Platform of Trust API Documentation</h1>
 <p>This could be rather static introduction to Platform of Trust APIs and written in separate file. Then just preprocess the files and merge all, or do it 
 manually. Nope! Includes go all to bottom. </p>
 <h1 id='getting-started'>Getting started</h1><h2 id='auth-practices'>Auth practices</h2>
@@ -871,6 +887,311 @@ All the documentation code examples use our sandbox environment. When you are do
 </tbody></table>
 
 <!-- Converted with the swagger-to-slate https://github.com/lavkumarv/swagger-to-slate -->
+<h1 id='message-api'>Message API</h1>
+<p><strong>Version:</strong> v1 </p>
+<h2 id='message'>/message</h2><h3 id='post-4'><strong>post</strong></h3>
+<p><strong>Description:</strong> Create a new message</p>
+<h4 id='http-request-13'>http request</h4>
+<p><strong>POST</strong> /message </p>
+
+<p><strong>Parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Authorization</td>
+<td>header</td>
+<td>The Authorization header, MUST be <code>Bearer {{access_token}}</code></td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+<tr>
+<td>body</td>
+<td>body</td>
+<td></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<p><strong>Responses</strong></p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>201</td>
+<td></td>
+</tr>
+<tr>
+<td>422</td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id='message-id'>/message/{id}</h2><h3 id='get-6'><strong>get</strong></h3>
+<p><strong>Description:</strong> Read one message by id</p>
+<h4 id='http-request-14'>http request</h4>
+<p><strong>GET</strong> /message/{id} </p>
+
+<p><strong>Parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>path</td>
+<td>The ID of the message</td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+<tr>
+<td>Authorization</td>
+<td>header</td>
+<td>The Authorization header, MUST be <code>Bearer {{access_token}}</code></td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+</tbody></table>
+
+<p><strong>Responses</strong></p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td></td>
+</tr>
+<tr>
+<td>404</td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id='put-3'><strong>put</strong></h3>
+<p><strong>Description:</strong> Update a message by id</p>
+<h4 id='http-request-15'>http request</h4>
+<p><strong>PUT</strong> /message/{id} </p>
+
+<p><strong>Parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>path</td>
+<td>The ID of the message</td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+<tr>
+<td>Authorization</td>
+<td>header</td>
+<td>The Authorization header, MUST be <code>Bearer {{access_token}}</code></td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+<tr>
+<td>body</td>
+<td>body</td>
+<td></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<p><strong>Responses</strong></p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td></td>
+</tr>
+<tr>
+<td>404</td>
+<td></td>
+</tr>
+<tr>
+<td>422</td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id='delete-3'><strong>delete</strong></h3>
+<p><strong>Description:</strong> Delete a message by id</p>
+<h4 id='http-request-16'>http request</h4>
+<p><strong>DELETE</strong> /message/{id} </p>
+
+<p><strong>Parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>path</td>
+<td>The ID of the message</td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+<tr>
+<td>Authorization</td>
+<td>header</td>
+<td>The Authorization header, MUST be <code>Bearer {{access_token}}</code></td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+</tbody></table>
+
+<p><strong>Responses</strong></p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>204</td>
+<td></td>
+</tr>
+<tr>
+<td>404</td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id='message-id-read'>/message/{id}/read</h2><h3 id='post-5'><strong>post</strong></h3>
+<p><strong>Description:</strong> Marks a message read by the currently logged in user.</p>
+<h4 id='http-request-17'>http request</h4>
+<p><strong>POST</strong> /message/{id}/read </p>
+
+<p><strong>Parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>path</td>
+<td>The ID of the message</td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+<tr>
+<td>Authorization</td>
+<td>header</td>
+<td>The Authorization header, MUST be <code>Bearer {{access_token}}</code></td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+</tbody></table>
+
+<p><strong>Responses</strong></p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td></td>
+</tr>
+<tr>
+<td>403</td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id='messages-toidentity-list'>/messages/{toidentity}/list</h2><h3 id='get-7'><strong>get</strong></h3>
+<p><strong>Description:</strong> List all messages belonging to the &quot;to&quot; identity.</p>
+<h4 id='http-request-18'>http request</h4>
+<p><strong>GET</strong> /messages/{toIdentity}/list </p>
+
+<p><strong>Parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>toIdentity</td>
+<td>path</td>
+<td>The identity to which the message belongs to.</td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+<tr>
+<td>Authorization</td>
+<td>header</td>
+<td>The Authorization header, MUST be <code>Bearer {{access_token}}</code></td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+</tbody></table>
+
+<p><strong>Responses</strong></p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<!-- Converted with the swagger-to-slate https://github.com/lavkumarv/swagger-to-slate -->
 <h1 id='authentication'>Authentication</h1>
 <p>It&#39;s typically a good idea to explain the whole authentication process, because even to this day not everyone is familiar with how they work. In a nutshell <a href="https://www.oauth.com/oauth2-servers/single-page-apps/#authorization">this is what we use</a></p>
 
@@ -943,7 +1264,7 @@ All the documentation code examples use our sandbox environment. When you are do
 </tr>
 </tbody></table>
 <h1 id='feedback'>Feedback</h1>
-<p>If you found a bug or missing information in the documentation, contact us at dev@oftrust.net or create an issue in Github. </p>
+<p>If you found a bug or missing information in the documentation, contact us at dev@oftrust.net or create an <a href="https://github.com/PlatformOfTrust/docs/issues/new">issue in Github</a>. </p>
 
       </div>
       <div class="dark-box">

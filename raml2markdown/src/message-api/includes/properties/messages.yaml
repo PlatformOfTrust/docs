@@ -1,0 +1,11 @@
+'@context':
+  description: The context URL
+  type: string
+  example: https://schema.org/
+'@type':
+  description: The type of the list
+  type: string
+  example: collection
+ItemList:
+  description: The list of messages
+  type: message[]

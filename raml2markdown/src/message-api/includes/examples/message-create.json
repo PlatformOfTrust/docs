@@ -1,0 +1,8 @@
+{
+  "toIdentity": "<to identity ID>",
+  "subject": "<message subject>",
+  "content": "<message content>",
+  "cc": [
+    "<This list should contain a list of strings with user IDs>"
+  ]
+}

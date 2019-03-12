@@ -1,0 +1,32 @@
+{
+  "@context": "https://schema.org/",
+  "@type": "collection",
+  "ItemList": [
+    {
+      "@context": "<URL to message context>",
+      "@type": "Message",
+      "toIdentity": "<to identity ID>",
+      "subject": "<message subject>",
+      "content": "<message content>",
+      "cc": [
+        "<list of user identity IDs>"
+      ],
+      "createdAt": "<RFC3339 timestamp>",
+      "updatedAt": "<RFC3339 timestamp>",
+      "createdBy": "<user ID who created the message>"
+    },
+    {
+      "@context": "<URL to message context>",
+      "@type": "Message",
+      "toIdentity": "<to identity ID>",
+      "subject": "<message subject>",
+      "content": "<message content>",
+      "cc": [
+        "<list of user identity IDs>"
+      ],
+      "createdAt": "<RFC3339 timestamp>",
+      "updatedAt": "<RFC3339 timestamp>",
+      "createdBy": "<user ID who created the message>"
+    }
+  ]
+}

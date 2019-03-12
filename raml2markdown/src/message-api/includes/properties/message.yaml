@@ -1,0 +1,40 @@
+'@context':
+  description: The context URL
+  type: string
+  example: https://example.com/contexts/message.jsonld
+'@type':
+  description: The JSON-LD type of this object
+  type: string
+  example: Message
+toIdentity:
+  description: The "to" identity ID to which the message is sent to.
+  type: string
+  example: d36c4cd0-26c9-446e-a93f-0a90029f3a7f
+subject:
+  description: The message subject.
+  type: string
+  example: Go to the grocery store
+content:
+  description: The content of the message.
+  type: string
+  example: Remember to buy milk!
+cc?:
+  description: This list should contain a list of strings with user IDs.
+  type: array
+  example: |
+    [
+      "323bde80-4cc2-472e-bb77-e6a3e95a1253",
+      "0827e9c3-9664-479f-b0ec-956a35d72e4b"
+    ]
+createdBy:
+  description: The user ID of the user who created the message
+  type: string
+  example: 5ae98ee4-ef1b-4f89-b03d-130ceffb876a
+createdAt:
+  description: RFC3339 datetime when the message was created
+  type: datetime
+  example: 2018-02-28T16:41:41.090Z
+updatedAt:
+  description: RFC3339 datetime when the message was updated
+  type: datetime
+  example: 2018-02-28T16:41:41.090Z
