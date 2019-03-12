@@ -225,22 +225,23 @@ client.auth.get_request_token()
 | 200 |  |
 
 <!-- Converted with the swagger-to-slate https://github.com/lavkumarv/swagger-to-slate -->
-# Product API
+# Identity API
 
 **Version:** v1 
 
-## /products
+## /identity
 ### **post** 
 
-**Description:** Create a new product
+**Description:** Create a new identity
 
 #### http request 
-**POST** /products 
+**POST** /identity 
 
 **Parameters**
 
 | Name | Located in | Description | Required | Type |
 | ---- | ---------- | ----------- | -------- | ---- |
+| Authorization | header | The Authorization header, MUST be `Bearer {{access_token}}` | Yes | string |
 | body | body |  | Yes |  |
 
 **Responses**
@@ -250,32 +251,20 @@ client.auth.get_request_token()
 | 201 |  |
 | 422 |  |
 
+## /identity/{id}
 ### **get** 
 
-**Description:** Lists all available products.
+**Description:** Read one identity by id
 
 #### http request 
-**GET** /products 
-
-**Responses**
-
-| Code | Description |
-| ---- | ----------- |
-| 200 |  |
-
-## /products/{product_code}
-### **get** 
-
-**Description:** Reads a single product by product code
-
-#### http request 
-**GET** /products/{product_code} 
+**GET** /identity/{id} 
 
 **Parameters**
 
 | Name | Located in | Description | Required | Type |
 | ---- | ---------- | ----------- | -------- | ---- |
-| product_code | path | The product code of the product. | Yes | string |
+| id | path | The ID of the Identity | Yes | string |
+| Authorization | header | The Authorization header, MUST be `Bearer {{access_token}}` | Yes | string |
 
 **Responses**
 
@@ -286,16 +275,17 @@ client.auth.get_request_token()
 
 ### **put** 
 
-**Description:** Update a product by product code
+**Description:** Update an identity by id
 
 #### http request 
-**PUT** /products/{product_code} 
+**PUT** /identity/{id} 
 
 **Parameters**
 
 | Name | Located in | Description | Required | Type |
 | ---- | ---------- | ----------- | -------- | ---- |
-| product_code | path | The product code of the product. | Yes | string |
+| id | path | The ID of the Identity | Yes | string |
+| Authorization | header | The Authorization header, MUST be `Bearer {{access_token}}` | Yes | string |
 | body | body |  | Yes |  |
 
 **Responses**
@@ -308,22 +298,163 @@ client.auth.get_request_token()
 
 ### **delete** 
 
-**Description:** Delete a product by product code
+**Description:** Delete an identity by id
 
 #### http request 
-**DELETE** /products/{product_code} 
+**DELETE** /identity/{id} 
 
 **Parameters**
 
 | Name | Located in | Description | Required | Type |
 | ---- | ---------- | ----------- | -------- | ---- |
-| product_code | path | The product code of the product. | Yes | string |
+| id | path | The ID of the Identity | Yes | string |
+| Authorization | header | The Authorization header, MUST be `Bearer {{access_token}}` | Yes | string |
 
 **Responses**
 
 | Code | Description |
 | ---- | ----------- |
 | 204 |  |
+| 404 |  |
+
+## /identities
+### **get** 
+
+**Description:** List all identities created by currently logged in user
+
+#### http request 
+**GET** /identities 
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+| Authorization | header | The Authorization header, MUST be `Bearer {{access_token}}` | Yes | string |
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 200 |  |
+
+## /identities/{from_identity}/link/{to_identity}
+### **post** 
+
+**Description:** Creates a new link between two identities
+
+#### http request 
+**POST** /identities/{from_identity}/link/{to_identity} 
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+| from_identity | path | The starting identity ID of the link | Yes | string |
+| to_identity | path | The ending identity ID of the link | Yes | string |
+| Authorization | header | The Authorization header, MUST be `Bearer {{access_token}}` | Yes | string |
+| body | body |  | Yes |  |
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 201 |  |
+| 404 |  |
+| 422 |  |
+
+## /identities/{from_identity}/link/{to_identity}/{type}
+### **put** 
+
+**Description:** Update a link
+
+#### http request 
+**PUT** /identities/{from_identity}/link/{to_identity}/{type} 
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+| type | path | The link type | Yes | string |
+| from_identity | path | The starting identity ID of the link | Yes | string |
+| to_identity | path | The ending identity ID of the link | Yes | string |
+| Authorization | header | The Authorization header, MUST be `Bearer {{access_token}}` | Yes | string |
+| body | body |  | Yes |  |
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 201 |  |
+| 404 |  |
+| 422 |  |
+
+### **delete** 
+
+**Description:** Delete a link by type
+
+#### http request 
+**DELETE** /identities/{from_identity}/link/{to_identity}/{type} 
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+| type | path | The link type | Yes | string |
+| from_identity | path | The starting identity ID of the link | Yes | string |
+| to_identity | path | The ending identity ID of the link | Yes | string |
+| Authorization | header | The Authorization header, MUST be `Bearer {{access_token}}` | Yes | string |
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 204 |  |
+| 404 |  |
+| 422 |  |
+
+## /identities/{id}/links
+### **get** 
+
+**Description:** List all links for a given identity
+
+#### http request 
+**GET** /identities/{id}/links 
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+| id | path | The ID of the identity | Yes | string |
+| Authorization | header | The Authorization header, MUST be `Bearer {{access_token}}` | Yes | string |
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 200 |  |
+| 404 |  |
+
+## /identities/{id}/links/{type}
+### **get** 
+
+**Description:** List all links of type {type} for given identity
+
+#### http request 
+**GET** /identities/{id}/links/{type} 
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+| type | path | The link type | Yes | string |
+| id | path | The ID of the identity | Yes | string |
+| Authorization | header | The Authorization header, MUST be `Bearer {{access_token}}` | Yes | string |
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 200 |  |
 | 404 |  |
 
 <!-- Converted with the swagger-to-slate https://github.com/lavkumarv/swagger-to-slate -->
@@ -461,5 +592,107 @@ client.auth.get_request_token()
 | Code | Description |
 | ---- | ----------- |
 | 200 |  |
+
+<!-- Converted with the swagger-to-slate https://github.com/lavkumarv/swagger-to-slate -->
+# Product API
+
+**Version:** v1 
+
+## /products
+### **post** 
+
+**Description:** Create a new product
+
+#### http request 
+**POST** /products 
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+| body | body |  | Yes |  |
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 201 |  |
+| 422 |  |
+
+### **get** 
+
+**Description:** Lists all available products.
+
+#### http request 
+**GET** /products 
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 200 |  |
+
+## /products/{product_code}
+### **get** 
+
+**Description:** Reads a single product by product code
+
+#### http request 
+**GET** /products/{product_code} 
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+| product_code | path | The product code of the product. | Yes | string |
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 200 |  |
+| 404 |  |
+
+### **put** 
+
+**Description:** Update a product by product code
+
+#### http request 
+**PUT** /products/{product_code} 
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+| product_code | path | The product code of the product. | Yes | string |
+| body | body |  | Yes |  |
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 200 |  |
+| 404 |  |
+| 422 |  |
+
+### **delete** 
+
+**Description:** Delete a product by product code
+
+#### http request 
+**DELETE** /products/{product_code} 
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+| product_code | path | The product code of the product. | Yes | string |
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 204 |  |
+| 404 |  |
 
 <!-- Converted with the swagger-to-slate https://github.com/lavkumarv/swagger-to-slate -->

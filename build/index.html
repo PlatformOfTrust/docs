@@ -278,13 +278,28 @@
               </ul>
           </li>
           <li>
-            <a href="#product-api" class="toc-h1 toc-link" data-title="Product API">Product API</a>
+            <a href="#identity-api" class="toc-h1 toc-link" data-title="Identity API">Identity API</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#products" class="toc-h2 toc-link" data-title="/products">/products</a>
+                    <a href="#identity" class="toc-h2 toc-link" data-title="/identity">/identity</a>
                   </li>
                   <li>
-                    <a href="#products-product_code" class="toc-h2 toc-link" data-title="/products/{product_code}">/products/{product_code}</a>
+                    <a href="#identity-id" class="toc-h2 toc-link" data-title="/identity/{id}">/identity/{id}</a>
+                  </li>
+                  <li>
+                    <a href="#identities" class="toc-h2 toc-link" data-title="/identities">/identities</a>
+                  </li>
+                  <li>
+                    <a href="#identities-from_identity-link-to_identity" class="toc-h2 toc-link" data-title="/identities/{from_identity}/link/{to_identity}">/identities/{from_identity}/link/{to_identity}</a>
+                  </li>
+                  <li>
+                    <a href="#identities-from_identity-link-to_identity-type" class="toc-h2 toc-link" data-title="/identities/{from_identity}/link/{to_identity}/{type}">/identities/{from_identity}/link/{to_identity}/{type}</a>
+                  </li>
+                  <li>
+                    <a href="#identities-id-links" class="toc-h2 toc-link" data-title="/identities/{id}/links">/identities/{id}/links</a>
+                  </li>
+                  <li>
+                    <a href="#identities-id-links-type" class="toc-h2 toc-link" data-title="/identities/{id}/links/{type}">/identities/{id}/links/{type}</a>
                   </li>
               </ul>
           </li>
@@ -302,6 +317,17 @@
                   </li>
                   <li>
                     <a href="#messages-toidentity-list" class="toc-h2 toc-link" data-title="/messages/{toidentity}/list">/messages/{toidentity}/list</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#product-api" class="toc-h1 toc-link" data-title="Product API">Product API</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#products" class="toc-h2 toc-link" data-title="/products">/products</a>
+                  </li>
+                  <li>
+                    <a href="#products-product_code" class="toc-h2 toc-link" data-title="/products/{product_code}">/products/{product_code}</a>
                   </li>
               </ul>
           </li>
@@ -686,12 +712,12 @@ All the documentation code examples use our sandbox environment. When you are do
 </tbody></table>
 
 <!-- Converted with the swagger-to-slate https://github.com/lavkumarv/swagger-to-slate -->
-<h1 id='product-api'>Product API</h1>
+<h1 id='identity-api'>Identity API</h1>
 <p><strong>Version:</strong> v1 </p>
-<h2 id='products'>/products</h2><h3 id='post-3'><strong>post</strong></h3>
-<p><strong>Description:</strong> Create a new product</p>
+<h2 id='identity'>/identity</h2><h3 id='post-3'><strong>post</strong></h3>
+<p><strong>Description:</strong> Create a new identity</p>
 <h4 id='http-request-8'>http request</h4>
-<p><strong>POST</strong> /products </p>
+<p><strong>POST</strong> /identity </p>
 
 <p><strong>Parameters</strong></p>
 
@@ -704,6 +730,13 @@ All the documentation code examples use our sandbox environment. When you are do
 <th>Type</th>
 </tr>
 </thead><tbody>
+<tr>
+<td>Authorization</td>
+<td>header</td>
+<td>The Authorization header, MUST be <code>Bearer {{access_token}}</code></td>
+<td>Yes</td>
+<td>string</td>
+</tr>
 <tr>
 <td>body</td>
 <td>body</td>
@@ -730,28 +763,10 @@ All the documentation code examples use our sandbox environment. When you are do
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='get-4'><strong>get</strong></h3>
-<p><strong>Description:</strong> Lists all available products.</p>
+<h2 id='identity-id'>/identity/{id}</h2><h3 id='get-4'><strong>get</strong></h3>
+<p><strong>Description:</strong> Read one identity by id</p>
 <h4 id='http-request-9'>http request</h4>
-<p><strong>GET</strong> /products </p>
-
-<p><strong>Responses</strong></p>
-
-<table><thead>
-<tr>
-<th>Code</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>200</td>
-<td></td>
-</tr>
-</tbody></table>
-<h2 id='products-product_code'>/products/{product_code}</h2><h3 id='get-5'><strong>get</strong></h3>
-<p><strong>Description:</strong> Reads a single product by product code</p>
-<h4 id='http-request-10'>http request</h4>
-<p><strong>GET</strong> /products/{product_code} </p>
+<p><strong>GET</strong> /identity/{id} </p>
 
 <p><strong>Parameters</strong></p>
 
@@ -765,9 +780,16 @@ All the documentation code examples use our sandbox environment. When you are do
 </tr>
 </thead><tbody>
 <tr>
-<td>product_code</td>
+<td>id</td>
 <td>path</td>
-<td>The product code of the product.</td>
+<td>The ID of the Identity</td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+<tr>
+<td>Authorization</td>
+<td>header</td>
+<td>The Authorization header, MUST be <code>Bearer {{access_token}}</code></td>
 <td>Yes</td>
 <td>string</td>
 </tr>
@@ -791,9 +813,9 @@ All the documentation code examples use our sandbox environment. When you are do
 </tr>
 </tbody></table>
 <h3 id='put-2'><strong>put</strong></h3>
-<p><strong>Description:</strong> Update a product by product code</p>
-<h4 id='http-request-11'>http request</h4>
-<p><strong>PUT</strong> /products/{product_code} </p>
+<p><strong>Description:</strong> Update an identity by id</p>
+<h4 id='http-request-10'>http request</h4>
+<p><strong>PUT</strong> /identity/{id} </p>
 
 <p><strong>Parameters</strong></p>
 
@@ -807,9 +829,16 @@ All the documentation code examples use our sandbox environment. When you are do
 </tr>
 </thead><tbody>
 <tr>
-<td>product_code</td>
+<td>id</td>
 <td>path</td>
-<td>The product code of the product.</td>
+<td>The ID of the Identity</td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+<tr>
+<td>Authorization</td>
+<td>header</td>
+<td>The Authorization header, MUST be <code>Bearer {{access_token}}</code></td>
 <td>Yes</td>
 <td>string</td>
 </tr>
@@ -844,9 +873,9 @@ All the documentation code examples use our sandbox environment. When you are do
 </tr>
 </tbody></table>
 <h3 id='delete-2'><strong>delete</strong></h3>
-<p><strong>Description:</strong> Delete a product by product code</p>
-<h4 id='http-request-12'>http request</h4>
-<p><strong>DELETE</strong> /products/{product_code} </p>
+<p><strong>Description:</strong> Delete an identity by id</p>
+<h4 id='http-request-11'>http request</h4>
+<p><strong>DELETE</strong> /identity/{id} </p>
 
 <p><strong>Parameters</strong></p>
 
@@ -860,9 +889,16 @@ All the documentation code examples use our sandbox environment. When you are do
 </tr>
 </thead><tbody>
 <tr>
-<td>product_code</td>
+<td>id</td>
 <td>path</td>
-<td>The product code of the product.</td>
+<td>The ID of the Identity</td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+<tr>
+<td>Authorization</td>
+<td>header</td>
+<td>The Authorization header, MUST be <code>Bearer {{access_token}}</code></td>
 <td>Yes</td>
 <td>string</td>
 </tr>
@@ -885,13 +921,364 @@ All the documentation code examples use our sandbox environment. When you are do
 <td></td>
 </tr>
 </tbody></table>
+<h2 id='identities'>/identities</h2><h3 id='get-5'><strong>get</strong></h3>
+<p><strong>Description:</strong> List all identities created by currently logged in user</p>
+<h4 id='http-request-12'>http request</h4>
+<p><strong>GET</strong> /identities </p>
+
+<p><strong>Parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Authorization</td>
+<td>header</td>
+<td>The Authorization header, MUST be <code>Bearer {{access_token}}</code></td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+</tbody></table>
+
+<p><strong>Responses</strong></p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id='identities-from_identity-link-to_identity'>/identities/{from_identity}/link/{to_identity}</h2><h3 id='post-4'><strong>post</strong></h3>
+<p><strong>Description:</strong> Creates a new link between two identities</p>
+<h4 id='http-request-13'>http request</h4>
+<p><strong>POST</strong> /identities/{from_identity}/link/{to_identity} </p>
+
+<p><strong>Parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>from_identity</td>
+<td>path</td>
+<td>The starting identity ID of the link</td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+<tr>
+<td>to_identity</td>
+<td>path</td>
+<td>The ending identity ID of the link</td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+<tr>
+<td>Authorization</td>
+<td>header</td>
+<td>The Authorization header, MUST be <code>Bearer {{access_token}}</code></td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+<tr>
+<td>body</td>
+<td>body</td>
+<td></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<p><strong>Responses</strong></p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>201</td>
+<td></td>
+</tr>
+<tr>
+<td>404</td>
+<td></td>
+</tr>
+<tr>
+<td>422</td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id='identities-from_identity-link-to_identity-type'>/identities/{from_identity}/link/{to_identity}/{type}</h2><h3 id='put-3'><strong>put</strong></h3>
+<p><strong>Description:</strong> Update a link</p>
+<h4 id='http-request-14'>http request</h4>
+<p><strong>PUT</strong> /identities/{from_identity}/link/{to_identity}/{type} </p>
+
+<p><strong>Parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>type</td>
+<td>path</td>
+<td>The link type</td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+<tr>
+<td>from_identity</td>
+<td>path</td>
+<td>The starting identity ID of the link</td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+<tr>
+<td>to_identity</td>
+<td>path</td>
+<td>The ending identity ID of the link</td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+<tr>
+<td>Authorization</td>
+<td>header</td>
+<td>The Authorization header, MUST be <code>Bearer {{access_token}}</code></td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+<tr>
+<td>body</td>
+<td>body</td>
+<td></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<p><strong>Responses</strong></p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>201</td>
+<td></td>
+</tr>
+<tr>
+<td>404</td>
+<td></td>
+</tr>
+<tr>
+<td>422</td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id='delete-3'><strong>delete</strong></h3>
+<p><strong>Description:</strong> Delete a link by type</p>
+<h4 id='http-request-15'>http request</h4>
+<p><strong>DELETE</strong> /identities/{from_identity}/link/{to_identity}/{type} </p>
+
+<p><strong>Parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>type</td>
+<td>path</td>
+<td>The link type</td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+<tr>
+<td>from_identity</td>
+<td>path</td>
+<td>The starting identity ID of the link</td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+<tr>
+<td>to_identity</td>
+<td>path</td>
+<td>The ending identity ID of the link</td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+<tr>
+<td>Authorization</td>
+<td>header</td>
+<td>The Authorization header, MUST be <code>Bearer {{access_token}}</code></td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+</tbody></table>
+
+<p><strong>Responses</strong></p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>204</td>
+<td></td>
+</tr>
+<tr>
+<td>404</td>
+<td></td>
+</tr>
+<tr>
+<td>422</td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id='identities-id-links'>/identities/{id}/links</h2><h3 id='get-6'><strong>get</strong></h3>
+<p><strong>Description:</strong> List all links for a given identity</p>
+<h4 id='http-request-16'>http request</h4>
+<p><strong>GET</strong> /identities/{id}/links </p>
+
+<p><strong>Parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>path</td>
+<td>The ID of the identity</td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+<tr>
+<td>Authorization</td>
+<td>header</td>
+<td>The Authorization header, MUST be <code>Bearer {{access_token}}</code></td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+</tbody></table>
+
+<p><strong>Responses</strong></p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td></td>
+</tr>
+<tr>
+<td>404</td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id='identities-id-links-type'>/identities/{id}/links/{type}</h2><h3 id='get-7'><strong>get</strong></h3>
+<p><strong>Description:</strong> List all links of type {type} for given identity</p>
+<h4 id='http-request-17'>http request</h4>
+<p><strong>GET</strong> /identities/{id}/links/{type} </p>
+
+<p><strong>Parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>type</td>
+<td>path</td>
+<td>The link type</td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+<tr>
+<td>id</td>
+<td>path</td>
+<td>The ID of the identity</td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+<tr>
+<td>Authorization</td>
+<td>header</td>
+<td>The Authorization header, MUST be <code>Bearer {{access_token}}</code></td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+</tbody></table>
+
+<p><strong>Responses</strong></p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td></td>
+</tr>
+<tr>
+<td>404</td>
+<td></td>
+</tr>
+</tbody></table>
 
 <!-- Converted with the swagger-to-slate https://github.com/lavkumarv/swagger-to-slate -->
 <h1 id='message-api'>Message API</h1>
 <p><strong>Version:</strong> v1 </p>
-<h2 id='message'>/message</h2><h3 id='post-4'><strong>post</strong></h3>
+<h2 id='message'>/message</h2><h3 id='post-5'><strong>post</strong></h3>
 <p><strong>Description:</strong> Create a new message</p>
-<h4 id='http-request-13'>http request</h4>
+<h4 id='http-request-18'>http request</h4>
 <p><strong>POST</strong> /message </p>
 
 <p><strong>Parameters</strong></p>
@@ -938,9 +1325,9 @@ All the documentation code examples use our sandbox environment. When you are do
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='message-id'>/message/{id}</h2><h3 id='get-6'><strong>get</strong></h3>
+<h2 id='message-id'>/message/{id}</h2><h3 id='get-8'><strong>get</strong></h3>
 <p><strong>Description:</strong> Read one message by id</p>
-<h4 id='http-request-14'>http request</h4>
+<h4 id='http-request-19'>http request</h4>
 <p><strong>GET</strong> /message/{id} </p>
 
 <p><strong>Parameters</strong></p>
@@ -987,9 +1374,9 @@ All the documentation code examples use our sandbox environment. When you are do
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='put-3'><strong>put</strong></h3>
+<h3 id='put-4'><strong>put</strong></h3>
 <p><strong>Description:</strong> Update a message by id</p>
-<h4 id='http-request-15'>http request</h4>
+<h4 id='http-request-20'>http request</h4>
 <p><strong>PUT</strong> /message/{id} </p>
 
 <p><strong>Parameters</strong></p>
@@ -1047,9 +1434,9 @@ All the documentation code examples use our sandbox environment. When you are do
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='delete-3'><strong>delete</strong></h3>
+<h3 id='delete-4'><strong>delete</strong></h3>
 <p><strong>Description:</strong> Delete a message by id</p>
-<h4 id='http-request-16'>http request</h4>
+<h4 id='http-request-21'>http request</h4>
 <p><strong>DELETE</strong> /message/{id} </p>
 
 <p><strong>Parameters</strong></p>
@@ -1096,9 +1483,9 @@ All the documentation code examples use our sandbox environment. When you are do
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='message-id-read'>/message/{id}/read</h2><h3 id='post-5'><strong>post</strong></h3>
+<h2 id='message-id-read'>/message/{id}/read</h2><h3 id='post-6'><strong>post</strong></h3>
 <p><strong>Description:</strong> Marks a message read by the currently logged in user.</p>
-<h4 id='http-request-17'>http request</h4>
+<h4 id='http-request-22'>http request</h4>
 <p><strong>POST</strong> /message/{id}/read </p>
 
 <p><strong>Parameters</strong></p>
@@ -1145,9 +1532,9 @@ All the documentation code examples use our sandbox environment. When you are do
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='messages-toidentity-list'>/messages/{toidentity}/list</h2><h3 id='get-7'><strong>get</strong></h3>
+<h2 id='messages-toidentity-list'>/messages/{toidentity}/list</h2><h3 id='get-9'><strong>get</strong></h3>
 <p><strong>Description:</strong> List all messages belonging to the &quot;to&quot; identity.</p>
-<h4 id='http-request-18'>http request</h4>
+<h4 id='http-request-23'>http request</h4>
 <p><strong>GET</strong> /messages/{toIdentity}/list </p>
 
 <p><strong>Parameters</strong></p>
@@ -1187,6 +1574,207 @@ All the documentation code examples use our sandbox environment. When you are do
 </thead><tbody>
 <tr>
 <td>200</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<!-- Converted with the swagger-to-slate https://github.com/lavkumarv/swagger-to-slate -->
+<h1 id='product-api'>Product API</h1>
+<p><strong>Version:</strong> v1 </p>
+<h2 id='products'>/products</h2><h3 id='post-7'><strong>post</strong></h3>
+<p><strong>Description:</strong> Create a new product</p>
+<h4 id='http-request-24'>http request</h4>
+<p><strong>POST</strong> /products </p>
+
+<p><strong>Parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>body</td>
+<td>body</td>
+<td></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<p><strong>Responses</strong></p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>201</td>
+<td></td>
+</tr>
+<tr>
+<td>422</td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id='get-10'><strong>get</strong></h3>
+<p><strong>Description:</strong> Lists all available products.</p>
+<h4 id='http-request-25'>http request</h4>
+<p><strong>GET</strong> /products </p>
+
+<p><strong>Responses</strong></p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id='products-product_code'>/products/{product_code}</h2><h3 id='get-11'><strong>get</strong></h3>
+<p><strong>Description:</strong> Reads a single product by product code</p>
+<h4 id='http-request-26'>http request</h4>
+<p><strong>GET</strong> /products/{product_code} </p>
+
+<p><strong>Parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>product_code</td>
+<td>path</td>
+<td>The product code of the product.</td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+</tbody></table>
+
+<p><strong>Responses</strong></p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td></td>
+</tr>
+<tr>
+<td>404</td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id='put-5'><strong>put</strong></h3>
+<p><strong>Description:</strong> Update a product by product code</p>
+<h4 id='http-request-27'>http request</h4>
+<p><strong>PUT</strong> /products/{product_code} </p>
+
+<p><strong>Parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>product_code</td>
+<td>path</td>
+<td>The product code of the product.</td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+<tr>
+<td>body</td>
+<td>body</td>
+<td></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<p><strong>Responses</strong></p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td></td>
+</tr>
+<tr>
+<td>404</td>
+<td></td>
+</tr>
+<tr>
+<td>422</td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id='delete-5'><strong>delete</strong></h3>
+<p><strong>Description:</strong> Delete a product by product code</p>
+<h4 id='http-request-28'>http request</h4>
+<p><strong>DELETE</strong> /products/{product_code} </p>
+
+<p><strong>Parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>product_code</td>
+<td>path</td>
+<td>The product code of the product.</td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+</tbody></table>
+
+<p><strong>Responses</strong></p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>204</td>
+<td></td>
+</tr>
+<tr>
+<td>404</td>
 <td></td>
 </tr>
 </tbody></table>
