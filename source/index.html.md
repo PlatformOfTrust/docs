@@ -225,6 +225,39 @@ client.auth.get_request_token()
 | 200 |  |
 
 <!-- Converted with the swagger-to-slate https://github.com/lavkumarv/swagger-to-slate -->
+# Context API
+
+**Version:** v1 
+
+## /health
+### **get** 
+
+**Description:** Health check endpoint
+
+#### http request 
+**GET** /health 
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 200 |  |
+
+## /contexts
+### **get** 
+
+**Description:** Returns a list of all defined contexts
+
+#### http request 
+**GET** /contexts 
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 200 |  |
+
+<!-- Converted with the swagger-to-slate https://github.com/lavkumarv/swagger-to-slate -->
 # Identity API
 
 **Version:** v1 
