@@ -61,9 +61,9 @@ def concatenate_files():
       for index, line in enumerate(infile):
         if index > 18:
           if line.startswith("#"):
-            ofile.write("#"+line.lower().replace("***", "**").replace("`",""))
+            ofile.write("#"+line.lower().replace("***", "**"))
           else:
-            ofile.write(line.replace("***", "**").replace("`",""))
+            ofile.write(line.replace("***", "**").replace("**GET**","GET").replace("**POST**","POST").replace("**PUT**","PUT").replace("**DELETE**","DELETE"))
   print("\n\nSlate file: "+str(outfile)+" created.")
 for api in APIs:
   api_raml_to_slate(api)

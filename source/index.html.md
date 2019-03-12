@@ -82,7 +82,7 @@ client.auth.get_request_token()
 **Description:** Health check endpoint
 
 #### http request 
-**GET** /health 
+`**GET** /health` 
 
 **Responses**
 
@@ -96,7 +96,7 @@ client.auth.get_request_token()
 **Description:** Fetch data product
 
 #### http request 
-**POST** /fetch-data-product 
+`**POST** /fetch-data-product` 
 
 **Parameters**
 
@@ -122,13 +122,13 @@ client.auth.get_request_token()
 **Description:** Create a new calendar entry
 
 #### http request 
-**POST** /calendar 
+`**POST** /calendar` 
 
 **Parameters**
 
 | Name | Located in | Description | Required | Type |
 | ---- | ---------- | ----------- | -------- | ---- |
-| Authorization | header | The Authorization header, MUST be Bearer {{access_token}} | Yes | string |
+| Authorization | header | The Authorization header, MUST be `Bearer {{access_token}}` | Yes | string |
 | body | body |  | Yes |  |
 
 **Responses**
@@ -144,14 +144,14 @@ client.auth.get_request_token()
 **Description:** Read one calendar by id
 
 #### http request 
-**GET** /calendar/{id} 
+`**GET** /calendar/{id}` 
 
 **Parameters**
 
 | Name | Located in | Description | Required | Type |
 | ---- | ---------- | ----------- | -------- | ---- |
 | id | path | The ID of the calendar | Yes | string |
-| Authorization | header | The Authorization header, MUST be Bearer {{access_token}} | Yes | string |
+| Authorization | header | The Authorization header, MUST be `Bearer {{access_token}}` | Yes | string |
 
 **Responses**
 
@@ -165,14 +165,14 @@ client.auth.get_request_token()
 **Description:** Update a calendar by id
 
 #### http request 
-**PUT** /calendar/{id} 
+`**PUT** /calendar/{id}` 
 
 **Parameters**
 
 | Name | Located in | Description | Required | Type |
 | ---- | ---------- | ----------- | -------- | ---- |
 | id | path | The ID of the calendar | Yes | string |
-| Authorization | header | The Authorization header, MUST be Bearer {{access_token}} | Yes | string |
+| Authorization | header | The Authorization header, MUST be `Bearer {{access_token}}` | Yes | string |
 | body | body |  | Yes |  |
 
 **Responses**
@@ -188,14 +188,14 @@ client.auth.get_request_token()
 **Description:** Delete a calendar by id
 
 #### http request 
-**DELETE** /calendar/{id} 
+`**DELETE** /calendar/{id}` 
 
 **Parameters**
 
 | Name | Located in | Description | Required | Type |
 | ---- | ---------- | ----------- | -------- | ---- |
 | id | path | The ID of the calendar | Yes | string |
-| Authorization | header | The Authorization header, MUST be Bearer {{access_token}} | Yes | string |
+| Authorization | header | The Authorization header, MUST be `Bearer {{access_token}}` | Yes | string |
 
 **Responses**
 
@@ -210,14 +210,14 @@ client.auth.get_request_token()
 **Description:** List all calendars belonging to the "to" identity.
 
 #### http request 
-**GET** /calendar/{toIdentity}/list 
+`**GET** /calendar/{toIdentity}/list` 
 
 **Parameters**
 
 | Name | Located in | Description | Required | Type |
 | ---- | ---------- | ----------- | -------- | ---- |
 | toIdentity | path | The identity to which the calendar belongs to. | Yes | string |
-| Authorization | header | The Authorization header, MUST be Bearer {{access_token}} | Yes | string |
+| Authorization | header | The Authorization header, MUST be `Bearer {{access_token}}` | Yes | string |
 
 **Responses**
 
@@ -236,7 +236,7 @@ client.auth.get_request_token()
 **Description:** Create a new product
 
 #### http request 
-**POST** /products 
+`**POST** /products` 
 
 **Parameters**
 
@@ -256,7 +256,7 @@ client.auth.get_request_token()
 **Description:** Lists all available products.
 
 #### http request 
-**GET** /products 
+`**GET** /products` 
 
 **Responses**
 
@@ -270,7 +270,7 @@ client.auth.get_request_token()
 **Description:** Reads a single product by product code
 
 #### http request 
-**GET** /products/{product_code} 
+`**GET** /products/{product_code}` 
 
 **Parameters**
 
@@ -290,7 +290,7 @@ client.auth.get_request_token()
 **Description:** Update a product by product code
 
 #### http request 
-**PUT** /products/{product_code} 
+`**PUT** /products/{product_code}` 
 
 **Parameters**
 
@@ -312,7 +312,7 @@ client.auth.get_request_token()
 **Description:** Delete a product by product code
 
 #### http request 
-**DELETE** /products/{product_code} 
+`**DELETE** /products/{product_code}` 
 
 **Parameters**
 
