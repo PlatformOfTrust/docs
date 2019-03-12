@@ -72,6 +72,7 @@ client.auth.get_request_token()
 ```
 
 # Broker API
+The Broker API provides means to connect a service to a translator that will return desired data from different sources. The data broker does not mangle the data in any way, it only functions as a proxy between services and translators.
 
 **Version:** v0.1 
 
@@ -226,6 +227,7 @@ client.auth.get_request_token()
 
 <!-- Converted with the swagger-to-slate https://github.com/lavkumarv/swagger-to-slate -->
 # Context API
+The Context API provides means to list available contexts in the PlatformOfTrust/standards repository in GitHub.
 
 **Version:** v1 
 
@@ -259,6 +261,7 @@ client.auth.get_request_token()
 
 <!-- Converted with the swagger-to-slate https://github.com/lavkumarv/swagger-to-slate -->
 # Identity API
+The Identity API provides means to create, update and delete digital twins (identities) and manage links between them. The links provides the direction and type (sometimes called role) of the link.
 
 **Version:** v1 
 
@@ -628,6 +631,7 @@ client.auth.get_request_token()
 
 <!-- Converted with the swagger-to-slate https://github.com/lavkumarv/swagger-to-slate -->
 # Product API
+The Product API provides means to manage products provided by PoT core. The product defines the URL to the translator, as well as a product code to use when requesting data from the translator.
 
 **Version:** v1 
 

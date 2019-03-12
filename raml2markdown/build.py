@@ -54,6 +54,13 @@ def concatenate_files():
       slatefile = Path("./slate/" + api + ".md")
 
       ofile.write("# "+api.replace("-", " ").replace("api","API")+"\n")
+
+      # Add description from separate file
+      descfile = Path("./slate/" +api.lower()+ "-desc.md")
+
+      if descfile.exists():
+        with open(Path(descfile)) as dfile:
+          ofile.write(dfile.read())
       infile = open(slatefile, 'r').readlines()
       for index, line in enumerate(infile):
         # Ugly way of getting rid of some markup in the beginning of each file. Get everything after line 18 and
