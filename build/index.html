@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>Platform Of Trust Documentation</title>
+    <title>New Platform Of Trust Documentation</title>
 
     <style>
       .highlight table td { padding: 5px; }
@@ -253,15 +253,75 @@
               </ul>
           </li>
           <li>
-            <a href="#products-api" class="toc-h1 toc-link" data-title="Products API">Products API</a>
+            <a href="#health" class="toc-h1 toc-link" data-title="/HEALTH">/HEALTH</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#health" class="toc-h2 toc-link" data-title="/HEALTH">/HEALTH</a>
+                    <a href="#get" class="toc-h2 toc-link" data-title="GET"><strong><em>GET</em></strong></a>
                   </li>
               </ul>
           </li>
           <li>
-            <a href="#context-api" class="toc-h1 toc-link" data-title="Context API">Context API</a>
+            <a href="#fetch-data-product" class="toc-h1 toc-link" data-title="/FETCH-DATA-PRODUCT">/FETCH-DATA-PRODUCT</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#post" class="toc-h2 toc-link" data-title="POST"><strong><em>POST</em></strong></a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#calendar" class="toc-h1 toc-link" data-title="/CALENDAR">/CALENDAR</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#post-2" class="toc-h2 toc-link" data-title="POST"><strong><em>POST</em></strong></a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#calendar-id" class="toc-h1 toc-link" data-title="/CALENDAR/{ID}">/CALENDAR/{ID}</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#get-2" class="toc-h2 toc-link" data-title="GET"><strong><em>GET</em></strong></a>
+                  </li>
+                  <li>
+                    <a href="#put" class="toc-h2 toc-link" data-title="PUT"><strong><em>PUT</em></strong></a>
+                  </li>
+                  <li>
+                    <a href="#delete" class="toc-h2 toc-link" data-title="DELETE"><strong><em>DELETE</em></strong></a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#calendar-toidentity-list" class="toc-h1 toc-link" data-title="/CALENDAR/{TOIDENTITY}/LIST">/CALENDAR/{TOIDENTITY}/LIST</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#get-3" class="toc-h2 toc-link" data-title="GET"><strong><em>GET</em></strong></a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#products" class="toc-h1 toc-link" data-title="/PRODUCTS">/PRODUCTS</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#post-3" class="toc-h2 toc-link" data-title="POST"><strong><em>POST</em></strong></a>
+                  </li>
+                  <li>
+                    <a href="#get-4" class="toc-h2 toc-link" data-title="GET"><strong><em>GET</em></strong></a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#products-product_code" class="toc-h1 toc-link" data-title="/PRODUCTS/{PRODUCT_CODE}">/PRODUCTS/{PRODUCT_CODE}</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#get-5" class="toc-h2 toc-link" data-title="GET"><strong><em>GET</em></strong></a>
+                  </li>
+                  <li>
+                    <a href="#put-2" class="toc-h2 toc-link" data-title="PUT"><strong><em>PUT</em></strong></a>
+                  </li>
+                  <li>
+                    <a href="#delete-2" class="toc-h2 toc-link" data-title="DELETE"><strong><em>DELETE</em></strong></a>
+                  </li>
+              </ul>
           </li>
           <li>
             <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
@@ -325,30 +385,373 @@ All the documentation code examples use our sandbox environment. When you are do
 <span class="n">client</span> <span class="o">=</span> <span class="n">upwork</span><span class="o">.</span><span class="n">Client</span><span class="p">(</span><span class="n">public_key</span><span class="p">,</span> <span class="n">secret_key</span><span class="p">,</span> <span class="o">**</span><span class="n">credentials</span><span class="p">)</span>
 <span class="n">client</span><span class="o">.</span><span class="n">auth</span><span class="o">.</span><span class="n">get_request_token</span><span class="p">()</span>
 
-</code></pre><h1 id='products-api'>Products API</h1>
-<p><strong>Version:</strong> v1 </p>
-
-<p>API Description should come from the code as well...</p>
-<h2 id='health'>/HEALTH</h2>
-<p>Jotain kuvausta.</p>
-<pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://sandbox.oftrust.net/api/products"</span>
-  -X GET
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><h3 id='get'><strong><em>GET</em></strong></h3>
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"deleted"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">":("</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p><strong>Description:</strong> Get all products </p>
+</code></pre>
+<p><strong>Version:</strong> v0.1 </p>
+<h1 id='health'>/HEALTH</h1><h2 id='get'><strong><em>GET</em></strong></h2>
+<p><strong>Description:</strong> Health check endpoint</p>
 <h3 id='http-request'>HTTP Request</h3>
+<p><code>***GET*** /health</code> </p>
+
+<p><strong>Responses</strong></p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td></td>
+</tr>
+</tbody></table>
+<h1 id='fetch-data-product'>/FETCH-DATA-PRODUCT</h1><h2 id='post'><strong><em>POST</em></strong></h2>
+<p><strong>Description:</strong> Fetch data product</p>
+<h3 id='http-request-2'>HTTP Request</h3>
+<p><code>***POST*** /fetch-data-product</code> </p>
+
+<p><strong>Parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>body</td>
+<td>body</td>
+<td></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<p><strong>Responses</strong></p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td></td>
+</tr>
+<tr>
+<td>422</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<!-- Converted with the swagger-to-slate https://github.com/lavkumarv/swagger-to-slate -->
+
+<p><strong>Version:</strong> v1 </p>
+<h1 id='calendar'>/CALENDAR</h1><h2 id='post-2'><strong><em>POST</em></strong></h2>
+<p><strong>Description:</strong> Create a new calendar entry</p>
+<h3 id='http-request-3'>HTTP Request</h3>
+<p><code>***POST*** /calendar</code> </p>
+
+<p><strong>Parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Authorization</td>
+<td>header</td>
+<td>The Authorization header, MUST be <code>Bearer {{access_token}}</code></td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+<tr>
+<td>body</td>
+<td>body</td>
+<td></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<p><strong>Responses</strong></p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>201</td>
+<td></td>
+</tr>
+<tr>
+<td>422</td>
+<td></td>
+</tr>
+</tbody></table>
+<h1 id='calendar-id'>/CALENDAR/{ID}</h1><h2 id='get-2'><strong><em>GET</em></strong></h2>
+<p><strong>Description:</strong> Read one calendar by id</p>
+<h3 id='http-request-4'>HTTP Request</h3>
+<p><code>***GET*** /calendar/{id}</code> </p>
+
+<p><strong>Parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>path</td>
+<td>The ID of the calendar</td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+<tr>
+<td>Authorization</td>
+<td>header</td>
+<td>The Authorization header, MUST be <code>Bearer {{access_token}}</code></td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+</tbody></table>
+
+<p><strong>Responses</strong></p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td></td>
+</tr>
+<tr>
+<td>404</td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id='put'><strong><em>PUT</em></strong></h2>
+<p><strong>Description:</strong> Update a calendar by id</p>
+<h3 id='http-request-5'>HTTP Request</h3>
+<p><code>***PUT*** /calendar/{id}</code> </p>
+
+<p><strong>Parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>path</td>
+<td>The ID of the calendar</td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+<tr>
+<td>Authorization</td>
+<td>header</td>
+<td>The Authorization header, MUST be <code>Bearer {{access_token}}</code></td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+<tr>
+<td>body</td>
+<td>body</td>
+<td></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<p><strong>Responses</strong></p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td></td>
+</tr>
+<tr>
+<td>404</td>
+<td></td>
+</tr>
+<tr>
+<td>422</td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id='delete'><strong><em>DELETE</em></strong></h2>
+<p><strong>Description:</strong> Delete a calendar by id</p>
+<h3 id='http-request-6'>HTTP Request</h3>
+<p><code>***DELETE*** /calendar/{id}</code> </p>
+
+<p><strong>Parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id</td>
+<td>path</td>
+<td>The ID of the calendar</td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+<tr>
+<td>Authorization</td>
+<td>header</td>
+<td>The Authorization header, MUST be <code>Bearer {{access_token}}</code></td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+</tbody></table>
+
+<p><strong>Responses</strong></p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>204</td>
+<td></td>
+</tr>
+<tr>
+<td>404</td>
+<td></td>
+</tr>
+</tbody></table>
+<h1 id='calendar-toidentity-list'>/CALENDAR/{TOIDENTITY}/LIST</h1><h2 id='get-3'><strong><em>GET</em></strong></h2>
+<p><strong>Description:</strong> List all calendars belonging to the &quot;to&quot; identity.</p>
+<h3 id='http-request-7'>HTTP Request</h3>
+<p><code>***GET*** /calendar/{toIdentity}/list</code> </p>
+
+<p><strong>Parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>toIdentity</td>
+<td>path</td>
+<td>The identity to which the calendar belongs to.</td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+<tr>
+<td>Authorization</td>
+<td>header</td>
+<td>The Authorization header, MUST be <code>Bearer {{access_token}}</code></td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+</tbody></table>
+
+<p><strong>Responses</strong></p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<!-- Converted with the swagger-to-slate https://github.com/lavkumarv/swagger-to-slate -->
+
+<p><strong>Version:</strong> v1 </p>
+<h1 id='products'>/PRODUCTS</h1><h2 id='post-3'><strong><em>POST</em></strong></h2>
+<p><strong>Description:</strong> Create a new product</p>
+<h3 id='http-request-8'>HTTP Request</h3>
+<p><code>***POST*** /products</code> </p>
+
+<p><strong>Parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>body</td>
+<td>body</td>
+<td></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<p><strong>Responses</strong></p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>201</td>
+<td></td>
+</tr>
+<tr>
+<td>422</td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id='get-4'><strong><em>GET</em></strong></h2>
+<p><strong>Description:</strong> Lists all available products.</p>
+<h3 id='http-request-9'>HTTP Request</h3>
 <p><code>***GET*** /products</code> </p>
 
 <p><strong>Responses</strong></p>
@@ -364,21 +767,144 @@ All the documentation code examples use our sandbox environment. When you are do
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='post'><strong><em>POST</em></strong></h3><pre class="highlight shell tab-shell"><code><span class="c"># Notice the sandbox URL, change to production when needed. </span>
-curl <span class="s2">"http://sandbox.oftrust.net/api/translator/products"</span> <span class="se">\</span>
-  -X POST <span class="se">\</span>
-  -H <span class="s2">"X-PoT-Signature: xxx"</span> <span class="se">\</span>
-  -H <span class="s2">"X-PoT-Token: meowmeowmeow"</span> <span class="se">\</span>
-  -H <span class="s2">"X-PoT-App: xxx"</span> 
-</code></pre>
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"product"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">":("</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre><h1 id='context-api'>Context API</h1>
+<h1 id='products-product_code'>/PRODUCTS/{PRODUCT_CODE}</h1><h2 id='get-5'><strong><em>GET</em></strong></h2>
+<p><strong>Description:</strong> Reads a single product by product code</p>
+<h3 id='http-request-10'>HTTP Request</h3>
+<p><code>***GET*** /products/{product_code}</code> </p>
+
+<p><strong>Parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>product_code</td>
+<td>path</td>
+<td>The product code of the product.</td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+</tbody></table>
+
+<p><strong>Responses</strong></p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td></td>
+</tr>
+<tr>
+<td>404</td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id='put-2'><strong><em>PUT</em></strong></h2>
+<p><strong>Description:</strong> Update a product by product code</p>
+<h3 id='http-request-11'>HTTP Request</h3>
+<p><code>***PUT*** /products/{product_code}</code> </p>
+
+<p><strong>Parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>product_code</td>
+<td>path</td>
+<td>The product code of the product.</td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+<tr>
+<td>body</td>
+<td>body</td>
+<td></td>
+<td>Yes</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<p><strong>Responses</strong></p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td></td>
+</tr>
+<tr>
+<td>404</td>
+<td></td>
+</tr>
+<tr>
+<td>422</td>
+<td></td>
+</tr>
+</tbody></table>
+<h2 id='delete-2'><strong><em>DELETE</em></strong></h2>
+<p><strong>Description:</strong> Delete a product by product code</p>
+<h3 id='http-request-12'>HTTP Request</h3>
+<p><code>***DELETE*** /products/{product_code}</code> </p>
+
+<p><strong>Parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>product_code</td>
+<td>path</td>
+<td>The product code of the product.</td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+</tbody></table>
+
+<p><strong>Responses</strong></p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>204</td>
+<td></td>
+</tr>
+<tr>
+<td>404</td>
+<td></td>
+</tr>
+</tbody></table>
+
 <!-- Converted with the swagger-to-slate https://github.com/lavkumarv/swagger-to-slate -->
 <h1 id='authentication'>Authentication</h1>
 <p>It&#39;s typically a good idea to explain the whole authentication process, because even to this day not everyone is familiar with how they work. In a nutshell <a href="https://www.oauth.com/oauth2-servers/single-page-apps/#authorization">this is what we use</a></p>
