@@ -41,7 +41,7 @@ def api_raml_to_slate(apiname):
       print("RAML -> Slate formatted md file creation failed. Trying next in array.")
 
 def concatenate_files():
-  outfile = Path("slate/index.html.md")
+  outfile = Path("../source/index.html.md")
   if outfile.exists():
     os.remove(outfile)
   else:
@@ -62,8 +62,10 @@ def concatenate_files():
         if index > 18:
           if line.startswith("#"):
             ofile.write("#"+line.lower().replace("***", "**"))
+          elif line.startswith("`***"):
+            ofile.write(line.lower().replace("***", "**").replace("`", ""))
           else:
-            ofile.write(line.replace("***", "**").replace("**GET**","GET").replace("**POST**","POST").replace("**PUT**","PUT").replace("**DELETE**","DELETE"))
+            ofile.write(line.replace("***", "**"))
   print("\n\nSlate file: "+str(outfile)+" created.")
 for api in APIs:
   api_raml_to_slate(api)
