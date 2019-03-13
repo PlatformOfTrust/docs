@@ -24,17 +24,48 @@ search: true
 
 # Platform of Trust API Documentation
 
-This could be rather static introduction to Platform of Trust APIs and written in separate file. Then just preprocess the files and merge all, or do it 
-manually. Nope! Includes go all to bottom. 
+## What is Platform of Trust?
+Communally built Platform of Trust provides a trustworthy and easy-to-use surrounding where you can utilize a vast data pool and develop everyday services for your
+customers with the help from the developer community and without a need for pricey and time-consuming integrations.  
+
+Platform of Trust has Finnish origins, but it’s built to expand globally through the network of built environment innovation hubs.
+
+**Developer Portal**
+
+Our [Developer Portal](https://developers.oftrust.net) is your one-stop-shop. From there you'll find getting started guides, use case descriptions and 
+
+**Market place**
+
+Market place is the bazaar to find more data products to use in application development. Visa versa, it is also the service where your data products are added during the integration process. 
 
 # Getting started
 
-## Auth practices
-We use OAuth xxx flow. Every API call is required to have ..... Read more from [Authentication section](#authentication)
+## Auth Flow
+
+It's typically a good idea to explain the whole authentication process, because even to this day not everyone is familiar with how they work. In a nutshell [this is what we use](https://www.oauth.com/oauth2-servers/single-page-apps/#authorization)
+
+The basic flow of how it goes is:
+
+1. user gets redirected from YOUR frontend to YOUR backend's `/login` endpoint or similar
+
+2. the `/login` endpoint generates a `state` parameter for it's own security by e.g. signing the current timestamp with a secret from it's config
+
+3. the `/login` endpoint redirects the user to the login portal with parameters that define the application the user is coming from (client_id, redirect_uri) as well as the state and that we're going to do a code exchange
+
+4. login portal takes care of identifying the user
+
+5. login portal sends user back to YOUR backend's "return url", e.g. `/login/complete` with the new code and the state you provided etc.
+
+6. you validate the state seems valid, isn't too old, etc.
+
+7. you send this code with your client secret to the authorization backend in a server to server -request and get back the actual login token
+
+8. you set the token in a cookie (preferably with `httpOnly; secure; SameSite=strict`)
+
 
 ## Standards used
 
-* For time and dates we use a subset of ISO-8601 - [RFC 3339](https://www.ietf.org/rfc/rfc3339.txt). Example <code>2008-09-15T15:53:00+05:00</code>
+* For **dates** we use a subset of ISO-8601 - [RFC 3339](https://www.ietf.org/rfc/rfc3339.txt). Example <code>2008-09-15T15:53:00+05:00</code>
 
 ## Code Examples 
 

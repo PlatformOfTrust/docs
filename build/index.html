@@ -223,12 +223,17 @@
       <ul id="toc" class="toc-list-h1">
           <li>
             <a href="#platform-of-trust-api-documentation" class="toc-h1 toc-link" data-title="Platform of Trust API Documentation">Platform of Trust API Documentation</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#what-is-platform-of-trust" class="toc-h2 toc-link" data-title="What is Platform of Trust?">What is Platform of Trust?</a>
+                  </li>
+              </ul>
           </li>
           <li>
             <a href="#getting-started" class="toc-h1 toc-link" data-title="Getting started">Getting started</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#auth-practices" class="toc-h2 toc-link" data-title="Auth practices">Auth practices</a>
+                    <a href="#auth-flow" class="toc-h2 toc-link" data-title="Auth Flow">Auth Flow</a>
                   </li>
                   <li>
                     <a href="#standards-used" class="toc-h2 toc-link" data-title="Standards used">Standards used</a>
@@ -375,14 +380,37 @@
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
-        <h1 id='platform-of-trust-api-documentation'>Platform of Trust API Documentation</h1>
-<p>This could be rather static introduction to Platform of Trust APIs and written in separate file. Then just preprocess the files and merge all, or do it 
-manually. Nope! Includes go all to bottom. </p>
-<h1 id='getting-started'>Getting started</h1><h2 id='auth-practices'>Auth practices</h2>
-<p>We use OAuth xxx flow. Every API call is required to have ..... Read more from <a href="#authentication">Authentication section</a></p>
+        <h1 id='platform-of-trust-api-documentation'>Platform of Trust API Documentation</h1><h2 id='what-is-platform-of-trust'>What is Platform of Trust?</h2>
+<p>Communally built Platform of Trust provides a trustworthy and easy-to-use surrounding where you can utilize a vast data pool and develop everyday services for your
+customers with the help from the developer community and without a need for pricey and time-consuming integrations.  </p>
+
+<p>Platform of Trust has Finnish origins, but it’s built to expand globally through the network of built environment innovation hubs.</p>
+
+<p><strong>Developer Portal</strong></p>
+
+<p>Our <a href="https://developers.oftrust.net">Developer Portal</a> is your one-stop-shop. From there you&#39;ll find getting started guides, use case descriptions and </p>
+
+<p><strong>Market place</strong></p>
+
+<p>Market place is the bazaar to find more data products to use in application development. Visa versa, it is also the service where your data products are added during the integration process. </p>
+<h1 id='getting-started'>Getting started</h1><h2 id='auth-flow'>Auth Flow</h2>
+<p>It&#39;s typically a good idea to explain the whole authentication process, because even to this day not everyone is familiar with how they work. In a nutshell <a href="https://www.oauth.com/oauth2-servers/single-page-apps/#authorization">this is what we use</a></p>
+
+<p>The basic flow of how it goes is:</p>
+
+<ol>
+<li><p>user gets redirected from YOUR frontend to YOUR backend&#39;s <code>/login</code> endpoint or similar</p></li>
+<li><p>the <code>/login</code> endpoint generates a <code>state</code> parameter for it&#39;s own security by e.g. signing the current timestamp with a secret from it&#39;s config</p></li>
+<li><p>the <code>/login</code> endpoint redirects the user to the login portal with parameters that define the application the user is coming from (client_id, redirect_uri) as well as the state and that we&#39;re going to do a code exchange</p></li>
+<li><p>login portal takes care of identifying the user</p></li>
+<li><p>login portal sends user back to YOUR backend&#39;s &quot;return url&quot;, e.g. <code>/login/complete</code> with the new code and the state you provided etc.</p></li>
+<li><p>you validate the state seems valid, isn&#39;t too old, etc.</p></li>
+<li><p>you send this code with your client secret to the authorization backend in a server to server -request and get back the actual login token</p></li>
+<li><p>you set the token in a cookie (preferably with <code>httpOnly; secure; SameSite=strict</code>)</p></li>
+</ol>
 <h2 id='standards-used'>Standards used</h2>
 <ul>
-<li>For time and dates we use a subset of ISO-8601 - <a href="https://www.ietf.org/rfc/rfc3339.txt">RFC 3339</a>. Example <code>2008-09-15T15:53:00+05:00</code></li>
+<li>For <strong>dates</strong> we use a subset of ISO-8601 - <a href="https://www.ietf.org/rfc/rfc3339.txt">RFC 3339</a>. Example <code>2008-09-15T15:53:00+05:00</code></li>
 </ul>
 <h2 id='code-examples'>Code Examples</h2>
 <aside class="warning">
