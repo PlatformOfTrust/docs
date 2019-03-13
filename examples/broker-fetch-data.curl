@@ -1,0 +1,11 @@
+curl -X POST https://api-sandbox.oftrust.net/broker/v0.1/fetch-data-product \
+-H "Content-Type: application/json" \
+-H "X-Pot-Signature: Ts8BMRV645X3VfEjF4MM0RQ1FVw48/UbJp3EAWfrrl8=" \
+-H "X-Pot-App: 1ce68be9-e494-4b0f-a4c5-feca2bbb703c" \
+-d '{
+	"timestamp": "2019-02-27T14:38:00+02:00",
+	"productCode": "business-identity-test",
+	"parameters": {
+		 "businessId": "2464491-9"
+	}
+}'
