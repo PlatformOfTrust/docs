@@ -3,7 +3,7 @@
 title: Platform Of Trust Documentation 
 
 language_tabs: 
-   - shell 
+   - cURL 
    - java
    - python
    - javascript
@@ -42,7 +42,7 @@ Market place is the bazaar to find more data products to use in application deve
 
 ## Auth Flow
 
-It's typically a good idea to explain the whole authentication process, because even to this day not everyone is familiar with how they work. In a nutshell [this is what we use](https://www.oauth.com/oauth2-servers/single-page-apps/#authorization)
+It's typically a good idea to explain the whole authentication process, because even to this day not everyone is familiar with how they work. In a nutshell [this OAuth single page auth flow is what we use](https://www.oauth.com/oauth2-servers/single-page-apps/#authorization)
 
 The basic flow of how it goes is:
 
