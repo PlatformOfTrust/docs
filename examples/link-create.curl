@@ -1,0 +1,22 @@
+curl -X POST https://api-sandbox.oftrust.net/identities/fbd106c5-c594-4416-a87e-f61e578fe829/link/86201e7d-6784-454b-9839-f7a6286f1791 \
+-H "Content-Type: application/json" \
+-H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzY29w...DVs5aaf" \
+-d '{
+	"context": "https://platformoftrust.github.io/standards/contexts/link-link.jsonld",
+	"type": "Link"
+}'
+
+# Response
+HTTP/1.0 201 Created
+
+{
+  "@context": "https://platformoftrust.github.io/standards/contexts/link-link.jsonld",
+  "@type": "Link",
+  "@id": "e6c2f90f-6b8f-4bfb-87a9-16ae5250d19a",
+  "from": "fbd106c5-c594-4416-a87e-f61e578fe829",
+  "to": "86201e7d-6784-454b-9839-f7a6286f1791",
+  "createdBy": "34fe0b13-e031-4ef2-822e-17eabad63259",
+  "updatedBy": null,
+  "createdAt": "2019-03-14T13:38:06+00:00",
+  "updatedAt": "2019-03-14T13:38:06+00:00"
+}

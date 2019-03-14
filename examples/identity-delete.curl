@@ -1,0 +1,5 @@
+curl -X DELETE https://api-sandbox.oftrust.net/identity/v1/identity/ \
+-H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzY29w...DVs5aaf"
+
+# Response
+HTTP/1.0 204 No Content
