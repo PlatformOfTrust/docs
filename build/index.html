@@ -1772,7 +1772,43 @@ All the documentation code examples use our sandbox environment. When you are do
 </tbody></table>
 <h3 id='put-5'><strong>put</strong></h3>
 <p><strong>Description:</strong> Update a product by product code</p>
-<h4 id='http-request-29'>http request</h4>
+<h4 id='http-request-29'>http request</h4><pre class="highlight shell tab-shell"><code>curl -X PUT https://api-sandbox.oftrust.net/product/v1/products/business-identity-test <span class="se">\</span>
+-H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+-d <span class="s1">'{
+    "dataContext": "https://platformoftrust.github.io/standards/contexts/product-data.jsonld",
+    "parameterContext": "https://platformoftrust.github.io/standards/contexts/product-parameters.jsonld",
+    "name": "Testing business identity",
+    "translatorUrl": "http://translator-test-backend-app/business-identity",
+    "organizationPublicKeys": [
+    {
+      "url": "https://example.com/example.pub",
+      "type": "RsaSignature2018"
+    }
+  ],
+  "description": "Test translator business information",
+  "imageUrl": "http://example.com/image.png"
+}'</span>
+
+<span class="c"># Response</span>
+<span class="o">{</span>
+  <span class="s2">"@context"</span>: <span class="s2">"https://platformoftrust.github.io/standards/contexts/product.jsonld"</span>,
+  <span class="s2">"@type"</span>: <span class="s2">"Product"</span>,
+  <span class="s2">"@id"</span>: <span class="s2">"https://api-sandbox.oftrust.net/product/v1/products/business-identity-test"</span>,
+  <span class="s2">"productCode"</span>: <span class="s2">"business-identity-test"</span>,
+  <span class="s2">"dataContext"</span>: <span class="s2">"https://platformoftrust.github.io/standards/contexts/product-data.jsonld"</span>,
+  <span class="s2">"parameterContext"</span>: <span class="s2">"https://platformoftrust.github.io/standards/contexts/product-parameters.jsonld"</span>,
+  <span class="s2">"translatorUrl"</span>: <span class="s2">"http://translator-test-backend-app/business-identity"</span>,
+  <span class="s2">"name"</span>: <span class="s2">"Testing business identity"</span>,
+  <span class="s2">"organizationPublicKeys"</span>: <span class="o">[</span>
+    <span class="o">{</span>
+      <span class="s2">"url"</span>: <span class="s2">"https://example.com/example.pub"</span>,
+      <span class="s2">"type"</span>: <span class="s2">"RsaSignature2018"</span>
+    <span class="o">}</span>
+  <span class="o">]</span>,
+  <span class="s2">"description"</span>: <span class="s2">"Test translator business information"</span>,
+  <span class="s2">"imageUrl"</span>: <span class="s2">"http://example.com/image.png"</span>
+<span class="o">}</span>
+</code></pre>
 <p><strong>PUT</strong> /products/{product_code} </p>
 
 <p><strong>Parameters</strong></p>

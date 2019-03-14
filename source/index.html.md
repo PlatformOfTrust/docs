@@ -3,7 +3,7 @@
 title: Platform Of Trust Documentation 
 
 language_tabs: 
-   - shell 
+   - cURL 
    - java
    - python
    - javascript
@@ -723,8 +723,10 @@ The Product API provides means to manage products provided by PoT core. The prod
 
 ### **put** 
 
-```shell
+**Description:** Update a product by product code
 
+#### http request 
+```shell
 curl -X PUT https://api-sandbox.oftrust.net/product/v1/products/business-identity-test \
 -H "Content-Type: application/json" \
 -d '{
@@ -761,31 +763,7 @@ curl -X PUT https://api-sandbox.oftrust.net/product/v1/products/business-identit
   "description": "Test translator business information",
   "imageUrl": "http://example.com/image.png"
 }
-
-
 ```
-
-```java
-
-Coming soon! Contribute Java code example by making a pull request in Github!
-
-```
-
-```python
-
-Coming soon!
-
-```
-
-```javascript
-
-Coming soon!
-
-```
-
-**Description:** Update a product by product code
-
-#### http request 
 **PUT** /products/{product_code} 
 
 **Parameters**

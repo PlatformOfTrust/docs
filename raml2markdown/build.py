@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import os
+import re
 from pathlib import Path
 import subprocess
 
@@ -63,6 +64,21 @@ def concatenate_files():
           ofile.write(dfile.read())
       infile = open(slatefile, 'r').readlines()
       for index, line in enumerate(infile):
+
+        # Now match the lines after which the code examples are injected.
+        # example of one line: `***PUT*** /products/{product_code}`
+        # That should match PUT_products_product_code.curl in examples folder
+        example_file = str(line)
+        example_file = re.sub('[`#* {}]', '', example_file)
+        example_file = re.sub('[/]', '_', example_file)
+        example_file = example_file.rstrip(os.linesep)
+        example_file_path = Path("./examples/" + example_file + ".curl")
+        if example_file_path.exists():
+          with open(example_file_path) as efile:
+            print(str(example_file_path))
+            ofile.write("```shell\n")
+            ofile.write(efile.read())
+            ofile.write("```\n")
         # Ugly way of getting rid of some markup in the beginning of each file. Get everything after line 18 and
         # save to final markdown file
         if index > 18:
@@ -71,9 +87,6 @@ def concatenate_files():
             ofile.write("#"+line.lower().replace("***", "**"))
           elif line.startswith("`***"):
             ofile.write(line.replace("***", "**").replace("`", ""))
-          # Now match the lines after which the code examples are injected.
-          # example of one line: `***PUT*** /products/{product_code}`
-          # That should match PUT_products_product_code.curl in examples folder
           else:
             ofile.write(line.replace("***", "**"))
   print("\n\nSlate file: "+str(outfile)+" created.")
