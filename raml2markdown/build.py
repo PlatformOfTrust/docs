@@ -66,10 +66,14 @@ def concatenate_files():
         # Ugly way of getting rid of some markup in the beginning of each file. Get everything after line 18 and
         # save to final markdown file
         if index > 18:
+          # Some markdown cleanup since the converters mess things up
           if line.startswith("#"):
             ofile.write("#"+line.lower().replace("***", "**"))
           elif line.startswith("`***"):
             ofile.write(line.replace("***", "**").replace("`", ""))
+          # Now match the lines after which the code examples are injected.
+          # example of one line: `***PUT*** /products/{product_code}`
+          # That should match PUT_products_product_code.curl in examples folder
           else:
             ofile.write(line.replace("***", "**"))
   print("\n\nSlate file: "+str(outfile)+" created.")

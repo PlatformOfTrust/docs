@@ -3,7 +3,7 @@
 title: Platform Of Trust Documentation 
 
 language_tabs: 
-   - cURL 
+   - shell 
    - java
    - python
    - javascript
@@ -722,6 +722,66 @@ The Product API provides means to manage products provided by PoT core. The prod
 | 404 |  |
 
 ### **put** 
+
+```shell
+
+curl -X PUT https://api-sandbox.oftrust.net/product/v1/products/business-identity-test \
+-H "Content-Type: application/json" \
+-d '{
+	"dataContext": "https://platformoftrust.github.io/standards/contexts/product-data.jsonld",
+	"parameterContext": "https://platformoftrust.github.io/standards/contexts/product-parameters.jsonld",
+	"name": "Testing business identity",
+	"translatorUrl": "http://translator-test-backend-app/business-identity",
+	"organizationPublicKeys": [
+    {
+      "url": "https://example.com/example.pub",
+      "type": "RsaSignature2018"
+    }
+  ],
+  "description": "Test translator business information",
+  "imageUrl": "http://example.com/image.png"
+}'
+
+# Response
+{
+  "@context": "https://platformoftrust.github.io/standards/contexts/product.jsonld",
+  "@type": "Product",
+  "@id": "https://api-sandbox.oftrust.net/product/v1/products/business-identity-test",
+  "productCode": "business-identity-test",
+  "dataContext": "https://platformoftrust.github.io/standards/contexts/product-data.jsonld",
+  "parameterContext": "https://platformoftrust.github.io/standards/contexts/product-parameters.jsonld",
+  "translatorUrl": "http://translator-test-backend-app/business-identity",
+  "name": "Testing business identity",
+  "organizationPublicKeys": [
+    {
+      "url": "https://example.com/example.pub",
+      "type": "RsaSignature2018"
+    }
+  ],
+  "description": "Test translator business information",
+  "imageUrl": "http://example.com/image.png"
+}
+
+
+```
+
+```java
+
+Coming soon! Contribute Java code example by making a pull request in Github!
+
+```
+
+```python
+
+Coming soon!
+
+```
+
+```javascript
+
+Coming soon!
+
+```
 
 **Description:** Update a product by product code
 
