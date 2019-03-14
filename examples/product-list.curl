@@ -1,6 +1,8 @@
 curl https://api-sandbox.oftrust.net/product/v1/products
 
 # Response
+HTTP/1.0 200 OK
+
 {
   "@context": "https://schema.org/",
   "@type": "collection",

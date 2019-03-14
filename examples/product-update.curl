@@ -16,6 +16,7 @@ curl -X PUT https://api-sandbox.oftrust.net/product/v1/products/business-identit
 }'
 
 # Response
+HTTP/1.0 200 OK
 {
   "@context": "https://platformoftrust.github.io/standards/contexts/product.jsonld",
   "@type": "Product",

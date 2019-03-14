@@ -1,1 +1,4 @@
 curl -X DELETE https://api-sandbox.oftrust.net/product/v1/products/business-identity-test
+
+# Response
+HTTP/1.0 204 No Content
