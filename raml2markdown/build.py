@@ -75,10 +75,8 @@ def concatenate_files():
         example_file_path = Path("./examples/" + example_file + ".curl")
         if example_file_path.exists():
           with open(example_file_path) as efile:
-            print(str(example_file_path))
-            ofile.write("```shell\n")
-            ofile.write(efile.read())
-            ofile.write("```\n")
+            print("Found example cURL file: "+str(example_file_path))
+            ofile.write("```shell\n"+ efile.read() + "```\n<br/><br/>")
         # Ugly way of getting rid of some markup in the beginning of each file. Get everything after line 18 and
         # save to final markdown file
         if index > 18:

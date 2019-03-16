@@ -1363,8 +1363,39 @@ All the documentation code examples use our sandbox environment. When you are do
 <p><strong>Version:</strong> v1 </p>
 <h2 id='message'>/message</h2><h3 id='post-5'><strong>post</strong></h3>
 <p><strong>Description:</strong> Create a new message</p>
-<h4 id='http-request-20'>http request</h4>
-<p><strong>POST</strong> /message </p>
+<h4 id='http-request-20'>http request</h4><pre class="highlight shell tab-shell"><code>curl -X POST https://api-sandbox.oftrust.net/message/v1/message <span class="se">\</span>
+-H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+-H <span class="s2">"Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzY29w...DVs5aaf"</span> <span class="se">\</span>
+-d <span class="s1">'{
+    "toIdentity": "34fe0b13-e031-4ef2-822e-17eabad63259",
+    "subject": "Test message nr 1",
+    "content": "Testing the message api",
+    "cc": [
+        "34fe0b13-e031-4ef2-822e-17eabad63259"
+    ]
+}'</span>
+
+<span class="c"># Response</span>
+HTTP/1.0 201 Created
+
+<span class="o">{</span>
+  <span class="s2">"@context"</span>: <span class="s2">"https://platformoftrust.github.io/standards/contexts/message.jsonld"</span>,
+  <span class="s2">"@type"</span>: <span class="s2">"Message"</span>,
+  <span class="s2">"@id"</span>: <span class="s2">"3a9e31ff-b654-4069-8361-6b446dc04c95"</span>,
+  <span class="s2">"toIdentity"</span>: <span class="s2">"34fe0b13-e031-4ef2-822e-17eabad63259"</span>,
+  <span class="s2">"subject"</span>: <span class="s2">"Test message nr 1"</span>,
+  <span class="s2">"content"</span>: <span class="s2">"Testing the message api"</span>,
+  <span class="s2">"cc"</span>: <span class="o">[</span>
+    <span class="s2">"34fe0b13-e031-4ef2-822e-17eabad63259"</span>
+  <span class="o">]</span>,
+  <span class="s2">"readBy"</span>: <span class="o">[]</span>,
+  <span class="s2">"createdBy"</span>: <span class="s2">"34fe0b13-e031-4ef2-822e-17eabad63259"</span>,
+  <span class="s2">"updatedBy"</span>: null,
+  <span class="s2">"createdAt"</span>: <span class="s2">"2019-03-14T13:55:12+00:00"</span>,
+  <span class="s2">"updatedAt"</span>: <span class="s2">"2019-03-14T13:55:12+00:00"</span>
+<span class="o">}</span>
+</code></pre>
+<p><br/><br/><strong>POST</strong> /message </p>
 
 <p><strong>Parameters</strong></p>
 
@@ -1412,8 +1443,30 @@ All the documentation code examples use our sandbox environment. When you are do
 </tbody></table>
 <h2 id='message-id'>/message/{id}</h2><h3 id='get-10'><strong>get</strong></h3>
 <p><strong>Description:</strong> Read one message by id</p>
-<h4 id='http-request-21'>http request</h4>
-<p><strong>GET</strong> /message/{id} </p>
+<h4 id='http-request-21'>http request</h4><pre class="highlight shell tab-shell"><code>curl https://api-sandbox.oftrust.net/message/v1/message/3a9e31ff-b654-4069-8361-6b446dc04c95 <span class="se">\</span>
+-H <span class="s2">"Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzY29w...DVs5aaf"</span>
+
+<span class="c"># Response</span>
+HTTP/1.0 200 OK
+
+<span class="o">{</span>
+  <span class="s2">"@context"</span>: <span class="s2">"https://platformoftrust.github.io/standards/contexts/message.jsonld"</span>,
+  <span class="s2">"@type"</span>: <span class="s2">"Message"</span>,
+  <span class="s2">"@id"</span>: <span class="s2">"3a9e31ff-b654-4069-8361-6b446dc04c95"</span>,
+  <span class="s2">"toIdentity"</span>: <span class="s2">"34fe0b13-e031-4ef2-822e-17eabad63259"</span>,
+  <span class="s2">"subject"</span>: <span class="s2">"Test message nr 1"</span>,
+  <span class="s2">"content"</span>: <span class="s2">"Testing the message api"</span>,
+  <span class="s2">"cc"</span>: <span class="o">[</span>
+    <span class="s2">"34fe0b13-e031-4ef2-822e-17eabad63259"</span>
+  <span class="o">]</span>,
+  <span class="s2">"readBy"</span>: <span class="o">[]</span>,
+  <span class="s2">"createdBy"</span>: <span class="s2">"34fe0b13-e031-4ef2-822e-17eabad63259"</span>,
+  <span class="s2">"updatedBy"</span>: null,
+  <span class="s2">"createdAt"</span>: <span class="s2">"2019-03-14T13:55:12+00:00"</span>,
+  <span class="s2">"updatedAt"</span>: <span class="s2">"2019-03-14T13:55:12+00:00"</span>
+<span class="o">}</span>
+</code></pre>
+<p><br/><br/><strong>GET</strong> /message/{id} </p>
 
 <p><strong>Parameters</strong></p>
 
@@ -1461,8 +1514,35 @@ All the documentation code examples use our sandbox environment. When you are do
 </tbody></table>
 <h3 id='put-4'><strong>put</strong></h3>
 <p><strong>Description:</strong> Update a message by id</p>
-<h4 id='http-request-22'>http request</h4>
-<p><strong>PUT</strong> /message/{id} </p>
+<h4 id='http-request-22'>http request</h4><pre class="highlight shell tab-shell"><code>curl -X PUT https://api-sandbox.oftrust.net/message/v1/message/3a9e...04c95 <span class="se">\</span>
+-H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+-H <span class="s2">"Authorization: Bearer eyJ0eXAiOiJKV1QiLC29w...DVs5aaf"</span> <span class="se">\</span>
+-d <span class="s1">'{
+    "subject": "Updated Test message",
+    "content": "Testing the message api"
+}'</span>
+
+<span class="c"># Response</span>
+HTTP/1.0 200 OK
+
+<span class="o">{</span>
+  <span class="s2">"@context"</span>: <span class="s2">"https://platformoftrust.github.io/standards/contexts/message.jsonld"</span>,
+  <span class="s2">"@type"</span>: <span class="s2">"Message"</span>,
+  <span class="s2">"@id"</span>: <span class="s2">"3a9e31ff-b654-4069-8361-6b446dc04c95"</span>,
+  <span class="s2">"toIdentity"</span>: <span class="s2">"34fe0b13-e031-4ef2-822e-17eabad63259"</span>,
+  <span class="s2">"subject"</span>: <span class="s2">"Updated Test message"</span>,
+  <span class="s2">"content"</span>: <span class="s2">"Testing the message api"</span>,
+  <span class="s2">"cc"</span>: <span class="o">[</span>
+    <span class="s2">"34fe0b13-e031-4ef2-822e-17eabad63259"</span>
+  <span class="o">]</span>,
+  <span class="s2">"readBy"</span>: <span class="o">[]</span>,
+  <span class="s2">"createdBy"</span>: <span class="s2">"34fe0b13-e031-4ef2-822e-17eabad63259"</span>,
+  <span class="s2">"updatedBy"</span>: <span class="s2">"34fe0b13-e031-4ef2-822e-17eabad63259"</span>,
+  <span class="s2">"createdAt"</span>: <span class="s2">"2019-03-14T13:55:12+00:00"</span>,
+  <span class="s2">"updatedAt"</span>: <span class="s2">"2019-03-14T13:58:13+00:00"</span>
+<span class="o">}</span>
+</code></pre>
+<p><br/><br/><strong>PUT</strong> /message/{id} </p>
 
 <p><strong>Parameters</strong></p>
 
@@ -1521,8 +1601,13 @@ All the documentation code examples use our sandbox environment. When you are do
 </tbody></table>
 <h3 id='delete-4'><strong>delete</strong></h3>
 <p><strong>Description:</strong> Delete a message by id</p>
-<h4 id='http-request-23'>http request</h4>
-<p><strong>DELETE</strong> /message/{id} </p>
+<h4 id='http-request-23'>http request</h4><pre class="highlight shell tab-shell"><code>curl -X DELETE https://api-sandbox.oftrust.net/message/v1/message/3a9e31ff-b654-4069-8361-6b446dc04c95 <span class="se">\</span>
+-H <span class="s2">"Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzY29w...DVs5aaf"</span>
+
+<span class="c"># Response</span>
+HTTP/1.0 204 No Content
+</code></pre>
+<p><br/><br/><strong>DELETE</strong> /message/{id} </p>
 
 <p><strong>Parameters</strong></p>
 
@@ -1570,8 +1655,14 @@ All the documentation code examples use our sandbox environment. When you are do
 </tbody></table>
 <h2 id='message-id-read'>/message/{id}/read</h2><h3 id='post-6'><strong>post</strong></h3>
 <p><strong>Description:</strong> Marks a message read by the currently logged in user.</p>
-<h4 id='http-request-24'>http request</h4>
-<p><strong>POST</strong> /message/{id}/read </p>
+<h4 id='http-request-24'>http request</h4><pre class="highlight shell tab-shell"><code>curl -X POST https://api-sandbox.oftrust.net/message/v1/message/3a9e31ff-b654-4069-8361-6b446dc04c95/read
+-H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+-H <span class="s2">"Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzY29w...DVs5aaf"</span>
+
+<span class="c"># Response</span>
+HTTP/1.0 200 OK
+</code></pre>
+<p><br/><br/><strong>POST</strong> /message/{id}/read </p>
 
 <p><strong>Parameters</strong></p>
 
@@ -1670,8 +1761,45 @@ All the documentation code examples use our sandbox environment. When you are do
 <p><strong>Version:</strong> v1 </p>
 <h2 id='products'>/products</h2><h3 id='post-7'><strong>post</strong></h3>
 <p><strong>Description:</strong> Create a new product</p>
-<h4 id='http-request-26'>http request</h4>
-<p><strong>POST</strong> /products </p>
+<h4 id='http-request-26'>http request</h4><pre class="highlight shell tab-shell"><code>curl -X POST https://api-sandbox.oftrust.net/product/v1/products <span class="se">\</span>
+-H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+-d <span class="s1">'{
+  "dataContext": "https://platformoftrust.github.io/standards/contexts/product-data.jsonld",
+  "parameterContext": "https://platformoftrust.github.io/standards/contexts/product-parameters.jsonld",
+  "productCode": "business-identity-test",
+  "name": "Business identity",
+  "translatorUrl": "http://translator-test-backend-app/business-identity",
+  "organizationPublicKeys": [
+    {
+      "url": "https://example.com/example.pub",
+      "type": "RsaSignature2018"
+    }
+  ],
+  "description": "Test translator business information"
+}'</span>
+
+<span class="c"># Response</span>
+HTTP/1.0 201 Created
+<span class="o">{</span>
+  <span class="s2">"@context"</span>: <span class="s2">"https://platformoftrust.github.io/standards/contexts/product.jsonld"</span>,
+  <span class="s2">"@type"</span>: <span class="s2">"Product"</span>,
+  <span class="s2">"@id"</span>: <span class="s2">"https://api-sandbox.oftrust.net/product/v1/products/business-identity-test"</span>,
+  <span class="s2">"productCode"</span>: <span class="s2">"business-identity-test"</span>,
+  <span class="s2">"dataContext"</span>: <span class="s2">"https://platformoftrust.github.io/standards/contexts/product-data.jsonld"</span>,
+  <span class="s2">"parameterContext"</span>: <span class="s2">"https://platformoftrust.github.io/standards/contexts/product-parameters.jsonld"</span>,
+  <span class="s2">"translatorUrl"</span>: <span class="s2">"http://translator-test-backend-app/business-identity"</span>,
+  <span class="s2">"name"</span>: <span class="s2">"Business identity"</span>,
+  <span class="s2">"organizationPublicKeys"</span>: <span class="o">[</span>
+    <span class="o">{</span>
+      <span class="s2">"url"</span>: <span class="s2">"https://example.com/example.pub"</span>,
+      <span class="s2">"type"</span>: <span class="s2">"RsaSignature2018"</span>
+    <span class="o">}</span>
+  <span class="o">]</span>,
+  <span class="s2">"description"</span>: <span class="s2">"Test translator business information"</span>,
+  <span class="s2">"imageUrl"</span>: null
+<span class="o">}</span>
+</code></pre>
+<p><br/><br/><strong>POST</strong> /products </p>
 
 <p><strong>Parameters</strong></p>
 
@@ -1730,8 +1858,31 @@ All the documentation code examples use our sandbox environment. When you are do
 </tbody></table>
 <h2 id='products-product_code'>/products/{product_code}</h2><h3 id='get-13'><strong>get</strong></h3>
 <p><strong>Description:</strong> Reads a single product by product code</p>
-<h4 id='http-request-28'>http request</h4>
-<p><strong>GET</strong> /products/{product_code} </p>
+<h4 id='http-request-28'>http request</h4><pre class="highlight shell tab-shell"><code>curl https://api-sandbox.oftrust.net/product/v1/products/business-identity-test
+
+<span class="c"># Response</span>
+HTTP/1.0 200 OK
+
+<span class="o">{</span>
+  <span class="s2">"@context"</span>: <span class="s2">"https://platformoftrust.github.io/standards/contexts/product.jsonld"</span>,
+  <span class="s2">"@type"</span>: <span class="s2">"Product"</span>,
+  <span class="s2">"@id"</span>: <span class="s2">"https://api-sandbox.oftrust.net/product/v1/products/business-identity-test"</span>,
+  <span class="s2">"productCode"</span>: <span class="s2">"business-identity-test"</span>,
+  <span class="s2">"dataContext"</span>: <span class="s2">"https://platformoftrust.github.io/standards/contexts/product-data.jsonld"</span>,
+  <span class="s2">"parameterContext"</span>: <span class="s2">"https://platformoftrust.github.io/standards/contexts/product-parameters.jsonld"</span>,
+  <span class="s2">"translatorUrl"</span>: <span class="s2">"http://translator-test-backend-app/business-identity"</span>,
+  <span class="s2">"name"</span>: <span class="s2">"Business identity"</span>,
+  <span class="s2">"organizationPublicKeys"</span>: <span class="o">[</span>
+    <span class="o">{</span>
+      <span class="s2">"url"</span>: <span class="s2">"https://example.com/example.pub"</span>,
+      <span class="s2">"type"</span>: <span class="s2">"RsaSignature2018"</span>
+    <span class="o">}</span>
+  <span class="o">]</span>,
+  <span class="s2">"description"</span>: <span class="s2">"Test translator business information"</span>,
+  <span class="s2">"imageUrl"</span>: null
+<span class="o">}</span>
+</code></pre>
+<p><br/><br/><strong>GET</strong> /products/{product_code} </p>
 
 <p><strong>Parameters</strong></p>
 
@@ -1790,6 +1941,7 @@ All the documentation code examples use our sandbox environment. When you are do
 }'</span>
 
 <span class="c"># Response</span>
+HTTP/1.0 200 OK
 <span class="o">{</span>
   <span class="s2">"@context"</span>: <span class="s2">"https://platformoftrust.github.io/standards/contexts/product.jsonld"</span>,
   <span class="s2">"@type"</span>: <span class="s2">"Product"</span>,
@@ -1809,7 +1961,7 @@ All the documentation code examples use our sandbox environment. When you are do
   <span class="s2">"imageUrl"</span>: <span class="s2">"http://example.com/image.png"</span>
 <span class="o">}</span>
 </code></pre>
-<p><strong>PUT</strong> /products/{product_code} </p>
+<p><br/><br/><strong>PUT</strong> /products/{product_code} </p>
 
 <p><strong>Parameters</strong></p>
 
@@ -1861,8 +2013,12 @@ All the documentation code examples use our sandbox environment. When you are do
 </tbody></table>
 <h3 id='delete-5'><strong>delete</strong></h3>
 <p><strong>Description:</strong> Delete a product by product code</p>
-<h4 id='http-request-30'>http request</h4>
-<p><strong>DELETE</strong> /products/{product_code} </p>
+<h4 id='http-request-30'>http request</h4><pre class="highlight shell tab-shell"><code>curl -X DELETE https://api-sandbox.oftrust.net/product/v1/products/business-identity-test
+
+<span class="c"># Response</span>
+HTTP/1.0 204 No Content
+</code></pre>
+<p><br/><br/><strong>DELETE</strong> /products/{product_code} </p>
 
 <p><strong>Parameters</strong></p>
 

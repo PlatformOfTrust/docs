@@ -535,7 +535,40 @@ The Identity API provides means to create, update and delete digital twins (iden
 **Description:** Create a new message
 
 #### http request 
-**POST** /message 
+```shell
+curl -X POST https://api-sandbox.oftrust.net/message/v1/message \
+-H "Content-Type: application/json" \
+-H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzY29w...DVs5aaf" \
+-d '{
+	"toIdentity": "34fe0b13-e031-4ef2-822e-17eabad63259",
+	"subject": "Test message nr 1",
+	"content": "Testing the message api",
+	"cc": [
+		"34fe0b13-e031-4ef2-822e-17eabad63259"
+	]
+}'
+
+# Response
+HTTP/1.0 201 Created
+
+{
+  "@context": "https://platformoftrust.github.io/standards/contexts/message.jsonld",
+  "@type": "Message",
+  "@id": "3a9e31ff-b654-4069-8361-6b446dc04c95",
+  "toIdentity": "34fe0b13-e031-4ef2-822e-17eabad63259",
+  "subject": "Test message nr 1",
+  "content": "Testing the message api",
+  "cc": [
+    "34fe0b13-e031-4ef2-822e-17eabad63259"
+  ],
+  "readBy": [],
+  "createdBy": "34fe0b13-e031-4ef2-822e-17eabad63259",
+  "updatedBy": null,
+  "createdAt": "2019-03-14T13:55:12+00:00",
+  "updatedAt": "2019-03-14T13:55:12+00:00"
+}
+```
+<br/><br/>**POST** /message 
 
 **Parameters**
 
@@ -557,7 +590,31 @@ The Identity API provides means to create, update and delete digital twins (iden
 **Description:** Read one message by id
 
 #### http request 
-**GET** /message/{id} 
+```shell
+curl https://api-sandbox.oftrust.net/message/v1/message/3a9e31ff-b654-4069-8361-6b446dc04c95 \
+-H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzY29w...DVs5aaf"
+
+# Response
+HTTP/1.0 200 OK
+
+{
+  "@context": "https://platformoftrust.github.io/standards/contexts/message.jsonld",
+  "@type": "Message",
+  "@id": "3a9e31ff-b654-4069-8361-6b446dc04c95",
+  "toIdentity": "34fe0b13-e031-4ef2-822e-17eabad63259",
+  "subject": "Test message nr 1",
+  "content": "Testing the message api",
+  "cc": [
+    "34fe0b13-e031-4ef2-822e-17eabad63259"
+  ],
+  "readBy": [],
+  "createdBy": "34fe0b13-e031-4ef2-822e-17eabad63259",
+  "updatedBy": null,
+  "createdAt": "2019-03-14T13:55:12+00:00",
+  "updatedAt": "2019-03-14T13:55:12+00:00"
+}
+```
+<br/><br/>**GET** /message/{id} 
 
 **Parameters**
 
@@ -578,7 +635,36 @@ The Identity API provides means to create, update and delete digital twins (iden
 **Description:** Update a message by id
 
 #### http request 
-**PUT** /message/{id} 
+```shell
+curl -X PUT https://api-sandbox.oftrust.net/message/v1/message/3a9e...04c95 \
+-H "Content-Type: application/json" \
+-H "Authorization: Bearer eyJ0eXAiOiJKV1QiLC29w...DVs5aaf" \
+-d '{
+	"subject": "Updated Test message",
+	"content": "Testing the message api"
+}'
+
+# Response
+HTTP/1.0 200 OK
+
+{
+  "@context": "https://platformoftrust.github.io/standards/contexts/message.jsonld",
+  "@type": "Message",
+  "@id": "3a9e31ff-b654-4069-8361-6b446dc04c95",
+  "toIdentity": "34fe0b13-e031-4ef2-822e-17eabad63259",
+  "subject": "Updated Test message",
+  "content": "Testing the message api",
+  "cc": [
+    "34fe0b13-e031-4ef2-822e-17eabad63259"
+  ],
+  "readBy": [],
+  "createdBy": "34fe0b13-e031-4ef2-822e-17eabad63259",
+  "updatedBy": "34fe0b13-e031-4ef2-822e-17eabad63259",
+  "createdAt": "2019-03-14T13:55:12+00:00",
+  "updatedAt": "2019-03-14T13:58:13+00:00"
+}
+```
+<br/><br/>**PUT** /message/{id} 
 
 **Parameters**
 
@@ -601,7 +687,14 @@ The Identity API provides means to create, update and delete digital twins (iden
 **Description:** Delete a message by id
 
 #### http request 
-**DELETE** /message/{id} 
+```shell
+curl -X DELETE https://api-sandbox.oftrust.net/message/v1/message/3a9e31ff-b654-4069-8361-6b446dc04c95 \
+-H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzY29w...DVs5aaf"
+
+# Response
+HTTP/1.0 204 No Content
+```
+<br/><br/>**DELETE** /message/{id} 
 
 **Parameters**
 
@@ -623,7 +716,15 @@ The Identity API provides means to create, update and delete digital twins (iden
 **Description:** Marks a message read by the currently logged in user.
 
 #### http request 
-**POST** /message/{id}/read 
+```shell
+curl -X POST https://api-sandbox.oftrust.net/message/v1/message/3a9e31ff-b654-4069-8361-6b446dc04c95/read
+-H "Content-Type: application/json" \
+-H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzY29w...DVs5aaf"
+
+# Response
+HTTP/1.0 200 OK
+```
+<br/><br/>**POST** /message/{id}/read 
 
 **Parameters**
 
@@ -672,7 +773,46 @@ The Product API provides means to manage products provided by PoT core. The prod
 **Description:** Create a new product
 
 #### http request 
-**POST** /products 
+```shell
+curl -X POST https://api-sandbox.oftrust.net/product/v1/products \
+-H "Content-Type: application/json" \
+-d '{
+  "dataContext": "https://platformoftrust.github.io/standards/contexts/product-data.jsonld",
+  "parameterContext": "https://platformoftrust.github.io/standards/contexts/product-parameters.jsonld",
+  "productCode": "business-identity-test",
+  "name": "Business identity",
+  "translatorUrl": "http://translator-test-backend-app/business-identity",
+  "organizationPublicKeys": [
+    {
+      "url": "https://example.com/example.pub",
+      "type": "RsaSignature2018"
+    }
+  ],
+  "description": "Test translator business information"
+}'
+
+# Response
+HTTP/1.0 201 Created
+{
+  "@context": "https://platformoftrust.github.io/standards/contexts/product.jsonld",
+  "@type": "Product",
+  "@id": "https://api-sandbox.oftrust.net/product/v1/products/business-identity-test",
+  "productCode": "business-identity-test",
+  "dataContext": "https://platformoftrust.github.io/standards/contexts/product-data.jsonld",
+  "parameterContext": "https://platformoftrust.github.io/standards/contexts/product-parameters.jsonld",
+  "translatorUrl": "http://translator-test-backend-app/business-identity",
+  "name": "Business identity",
+  "organizationPublicKeys": [
+    {
+      "url": "https://example.com/example.pub",
+      "type": "RsaSignature2018"
+    }
+  ],
+  "description": "Test translator business information",
+  "imageUrl": null
+}
+```
+<br/><br/>**POST** /products 
 
 **Parameters**
 
@@ -706,7 +846,32 @@ The Product API provides means to manage products provided by PoT core. The prod
 **Description:** Reads a single product by product code
 
 #### http request 
-**GET** /products/{product_code} 
+```shell
+curl https://api-sandbox.oftrust.net/product/v1/products/business-identity-test
+
+# Response
+HTTP/1.0 200 OK
+
+{
+  "@context": "https://platformoftrust.github.io/standards/contexts/product.jsonld",
+  "@type": "Product",
+  "@id": "https://api-sandbox.oftrust.net/product/v1/products/business-identity-test",
+  "productCode": "business-identity-test",
+  "dataContext": "https://platformoftrust.github.io/standards/contexts/product-data.jsonld",
+  "parameterContext": "https://platformoftrust.github.io/standards/contexts/product-parameters.jsonld",
+  "translatorUrl": "http://translator-test-backend-app/business-identity",
+  "name": "Business identity",
+  "organizationPublicKeys": [
+    {
+      "url": "https://example.com/example.pub",
+      "type": "RsaSignature2018"
+    }
+  ],
+  "description": "Test translator business information",
+  "imageUrl": null
+}
+```
+<br/><br/>**GET** /products/{product_code} 
 
 **Parameters**
 
@@ -745,6 +910,7 @@ curl -X PUT https://api-sandbox.oftrust.net/product/v1/products/business-identit
 }'
 
 # Response
+HTTP/1.0 200 OK
 {
   "@context": "https://platformoftrust.github.io/standards/contexts/product.jsonld",
   "@type": "Product",
@@ -764,7 +930,7 @@ curl -X PUT https://api-sandbox.oftrust.net/product/v1/products/business-identit
   "imageUrl": "http://example.com/image.png"
 }
 ```
-**PUT** /products/{product_code} 
+<br/><br/>**PUT** /products/{product_code} 
 
 **Parameters**
 
@@ -786,7 +952,13 @@ curl -X PUT https://api-sandbox.oftrust.net/product/v1/products/business-identit
 **Description:** Delete a product by product code
 
 #### http request 
-**DELETE** /products/{product_code} 
+```shell
+curl -X DELETE https://api-sandbox.oftrust.net/product/v1/products/business-identity-test
+
+# Response
+HTTP/1.0 204 No Content
+```
+<br/><br/>**DELETE** /products/{product_code} 
 
 **Parameters**
 
