@@ -1,13 +1,14 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "LifeEngine",
+    "title": "Message",
+    "description": "The message API provides means to create/send messages to identities.\nYou can send a message to any identity, e.g. a housing company, where all\nusers who has access to the housing company identity and its messages can\nread the message.\n\nThe message requires a `\"to\"`-identity, the ID of the identity to which\nthe message applies to.\nA message `subject` and its `content` should be added as well.\n\nThe `cc` is a list of user IDs to whom the message can be CC'd to.\nA notification about the message will be sent to these users.\n",
     "version": "v1"
   },
-  "host": "192.168.99.100:31000",
-  "basePath": "/message/v1",
+  "host": "api-sandbox.oftrust.net",
+  "x-basePath": "/message/{version}",
   "schemes": [
-    "http"
+    "https"
   ],
   "consumes": [
     "application/json"

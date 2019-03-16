@@ -1,9 +1,13 @@
 #%RAML 1.0
 ---
-title: LifeEngine
+title: Identity
 version: v1
-baseUri: http://192.168.99.100:32000/identity/v1
+baseUri: https://api-sandbox.oftrust.net/identity/{version}
 mediaType: application/json
+description: |
+  The Identity API provides means to create, update and delete digital twins
+  (identities) and manage links between them.
+  The links provides the direction and type (sometimes called role) of the link.
 types:
   identity:
     type: object

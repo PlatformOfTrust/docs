@@ -2,10 +2,11 @@
   "swagger": "2.0",
   "info": {
     "title": "Platform Of Trust Data Broker",
+    "description": "The Broker API provides means to connect a service to a translator that will\nreturn desired data from different sources. The data broker does not mangle\nthe data in any way, it only functions as a proxy between services and\ntranslators.\n",
     "version": "v0.1"
   },
-  "host": "api.oftrust.net",
-  "x-basePath": "/{version}",
+  "host": "api-sandbox.oftrust.net",
+  "x-basePath": "/broker/{version}",
   "schemes": [
     "https"
   ],
@@ -21,7 +22,7 @@
       "properties": {
         "timestamp": {
           "description": "A timestamp in RFC3339 format",
-          "example": "2018-11-01T12:00:00Z",
+          "example": "2018-11-01T12:00:00+00:00",
           "type": "string"
         },
         "productCode": {
@@ -46,20 +47,6 @@
     }
   },
   "paths": {
-    "/health": {
-      "get": {
-        "description": "Health check endpoint",
-        "operationId": "GET_health",
-        "responses": {
-          "200": {
-            "description": "",
-            "schema": {
-              "example": {}
-            }
-          }
-        }
-      }
-    },
     "/fetch-data-product": {
       "post": {
         "description": "Fetch data product",
@@ -91,7 +78,7 @@
           {
             "schema": {
               "example": {
-                "timestamp": "2018-11-01T12:00:00Z",
+                "timestamp": "2018-11-01T12:00:00+00:00",
                 "productCode": "product-1",
                 "parameters": {
                   "param-1": "Value",

@@ -1,1 +1,0 @@
-The Broker API provides means to connect a service to a translator that will return desired data from different sources. The data broker does not mangle the data in any way, it only functions as a proxy between services and translators.

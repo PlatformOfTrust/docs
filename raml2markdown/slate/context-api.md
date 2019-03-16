@@ -18,21 +18,16 @@ search: true
 
 # Introduction 
 
+The Context API provides means to list available JSON-LD contexts in the
+PlatformOfTrust/standards repository in GitHub.
+
+The contexts defines the semantic meaning of the keys in the responses from the APIs.
+When creating a new identity, choose which type of identity to create by
+choosing the correct context. The context will then define the attributes the
+identity can have.
+ 
+
 **Version:** v1 
-
-# /HEALTH
-## ***GET*** 
-
-**Description:** Health check endpoint
-
-### HTTP Request 
-`***GET*** /health` 
-
-**Responses**
-
-| Code | Description |
-| ---- | ----------- |
-| 200 |  |
 
 # /CONTEXTS
 ## ***GET*** 

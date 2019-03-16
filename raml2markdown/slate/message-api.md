@@ -1,6 +1,6 @@
 --- 
 
-title: LifeEngine 
+title: Message 
 
 language_tabs: 
    - shell 
@@ -17,6 +17,19 @@ search: true
 --- 
 
 # Introduction 
+
+The message API provides means to create/send messages to identities.
+You can send a message to any identity, e.g. a housing company, where all
+users who has access to the housing company identity and its messages can
+read the message.
+
+The message requires a `"to"`-identity, the ID of the identity to which
+the message applies to.
+A message `subject` and its `content` should be added as well.
+
+The `cc` is a list of user IDs to whom the message can be CC'd to.
+A notification about the message will be sent to these users.
+ 
 
 **Version:** v1 
 

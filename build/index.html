@@ -261,9 +261,6 @@
             <a href="#broker-api" class="toc-h1 toc-link" data-title="Broker API">Broker API</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#health" class="toc-h2 toc-link" data-title="/health">/health</a>
-                  </li>
-                  <li>
                     <a href="#fetch-data-product" class="toc-h2 toc-link" data-title="/fetch-data-product">/fetch-data-product</a>
                   </li>
               </ul>
@@ -285,9 +282,6 @@
           <li>
             <a href="#context-api" class="toc-h1 toc-link" data-title="Context API">Context API</a>
               <ul class="toc-list-h2">
-                  <li>
-                    <a href="#health-2" class="toc-h2 toc-link" data-title="/health">/health</a>
-                  </li>
                   <li>
                     <a href="#contexts" class="toc-h2 toc-link" data-title="/contexts">/contexts</a>
                   </li>
@@ -381,10 +375,21 @@
       <div class="dark-box"></div>
       <div class="content">
         <h1 id='platform-of-trust-api-documentation'>Platform of Trust API Documentation</h1><h2 id='what-is-platform-of-trust'>What is Platform of Trust?</h2>
-<p>Communally built Platform of Trust provides a trustworthy and easy-to-use surrounding where you can utilize a vast data pool and develop everyday services for your
-customers with the help from the developer community and without a need for pricey and time-consuming integrations.  </p>
+<blockquote>
+<p>Some instructions and tips to make your life easier (and less support requests to us): </p>
 
-<p>Platform of Trust has Finnish origins, but it’s built to expand globally through the network of built environment innovation hubs.</p>
+<ul>
+<li><p>Endpoints related code examples are constructed against <strong>SANDBOX environment <code>https://api-sandbox.oftrust.net/</code></strong>. </p></li>
+<li><p>In <strong>PRODUCTION</strong> use, change domain in api endpoints to <code>https://api.oftrust.net/</code></p></li>
+</ul>
+
+<p>If you found a bug or missing information in the documentation, contact us at dev@oftrust.net or create an <a href="https://github.com/PlatformOfTrust/docs/issues/new">issue in Github</a>. </p>
+</blockquote>
+
+<p>Communally built Platform of Trust provides a trustworthy and easy-to-use surrounding where you can utilize a vast data pool and develop everyday services for your<code>
+customers with the help from the developer community and without a need for pricey and time-consuming integrations.  
+</code>`
+Platform of Trust has Finnish origins, but it’s built to expand globally through the network of built environment innovation hubs.</p>
 
 <p><strong>Developer Portal</strong></p>
 
@@ -432,30 +437,15 @@ All the documentation code examples use our sandbox environment. When you are do
 <span class="n">client</span><span class="o">.</span><span class="n">auth</span><span class="o">.</span><span class="n">get_request_token</span><span class="p">()</span>
 
 </code></pre><h1 id='broker-api'>Broker API</h1>
-<p>The Broker API provides means to connect a service to a translator that will return desired data from different sources. The data broker does not mangle the data in any way, it only functions as a proxy between services and translators.</p>
+<p>The Broker API provides means to connect a service to a translator that will
+return desired data from different sources. The data broker does not mangle
+the data in any way, it only functions as a proxy between services and
+translators.</p>
 
 <p><strong>Version:</strong> v0.1 </p>
-<h2 id='health'>/health</h2><h3 id='get'><strong>get</strong></h3>
-<p><strong>Description:</strong> Health check endpoint</p>
-<h4 id='http-request'>http request</h4>
-<p><strong>GET</strong> /health </p>
-
-<p><strong>Responses</strong></p>
-
-<table><thead>
-<tr>
-<th>Code</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>200</td>
-<td></td>
-</tr>
-</tbody></table>
 <h2 id='fetch-data-product'>/fetch-data-product</h2><h3 id='post'><strong>post</strong></h3>
 <p><strong>Description:</strong> Fetch data product</p>
-<h4 id='http-request-2'>http request</h4>
+<h4 id='http-request'>http request</h4>
 <p><strong>POST</strong> /fetch-data-product </p>
 
 <p><strong>Parameters</strong></p>
@@ -498,11 +488,73 @@ All the documentation code examples use our sandbox environment. When you are do
 
 <!-- Converted with the swagger-to-slate https://github.com/lavkumarv/swagger-to-slate -->
 <h1 id='calendar-api'>Calendar API</h1>
+<p>The calendar API provides means to create calendar entries to identities.
+You can e.g. create an event for a housing company identity, a reservation
+to a room identity, or just a regular calendar entry to any identity you want.</p>
+
+<p>The calendar entry requires a <code>&quot;to&quot;</code>-identity, the ID of the identity to which
+the calendar entry applies to. Specify a type for the entry, e.g.
+<code>Event</code>, <code>Reservation</code>, <code>CalendarEntry</code>. Give the calendar entry a title, e.g.
+&quot;Housewarming party&quot;, a start date, when the entry starts, and an end date
+when the entry ends. The dates are in RFC3339 format, and will be saved in UTC
+time.
+You can specify if an entry repeats, as defined in ISO 8601 repeating
+intervals. A location can be added as well, if needed, as a string, e.g.
+&quot;Living room&quot;.
+The <code>cc</code> is a list of user IDs to whom the calendar entry can be CC&#39;d to.
+A notification about the entry will be sent to these users.</p>
+
 <p><strong>Version:</strong> v1 </p>
 <h2 id='calendar'>/calendar</h2><h3 id='post-2'><strong>post</strong></h3>
 <p><strong>Description:</strong> Create a new calendar entry</p>
-<h4 id='http-request-3'>http request</h4>
-<p><strong>POST</strong> /calendar </p>
+<h4 id='http-request-2'>http request</h4>
+<blockquote>
+<p>Example:</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl -X POST https://api-sandbox.oftrust.net/calendar/v1/calendar <span class="se">\</span>
+-H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+-H <span class="s2">"Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzY29w...DVs5aaf"</span> <span class="se">\</span>
+-d <span class="s1">'{
+    "toIdentity": "34fe0b13-e031-4ef2-822e-17eabad63259",
+  "type": "Event",
+    "title": "Autumn feast 2",
+    "startDate": "2019-08-10T17:00:00+02:00",
+    "endDate": "2019-08-10T20:00:00+02:00",
+    "repeats": null,
+    "content": "Autumn feast",
+    "location": "Courtyard",
+    "cc": [
+        "34fe0b13-e031-4ef2-822e-17eabad63259"
+    ]
+}'</span>
+
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>HTTP/1.0 201 Created
+
+<span class="o">{</span>
+  <span class="s2">"@context"</span>: <span class="s2">"https://platformoftrust.github.io/standards/contexts/calendar.jsonld"</span>,
+  <span class="s2">"@type"</span>: <span class="s2">"Event"</span>,
+  <span class="s2">"@id"</span>: <span class="s2">"67fa7be3-0c7d-4318-a09a-585181d1e6f3"</span>,
+  <span class="s2">"toIdentity"</span>: <span class="s2">"34fe0b13-e031-4ef2-822e-17eabad63259"</span>,
+  <span class="s2">"title"</span>: <span class="s2">"Autumn feast 2"</span>,
+  <span class="s2">"startDate"</span>: <span class="s2">"2019-08-10T15:00:00+00:00"</span>,
+  <span class="s2">"endDate"</span>: <span class="s2">"2019-08-10T18:00:00+00:00"</span>,
+  <span class="s2">"repeats"</span>: null,
+  <span class="s2">"content"</span>: <span class="s2">"Autumn feast"</span>,
+  <span class="s2">"location"</span>: <span class="s2">"Courtyard"</span>,
+  <span class="s2">"cc"</span>: <span class="o">[</span>
+    <span class="s2">"34fe0b13-e031-4ef2-822e-17eabad63259"</span>
+  <span class="o">]</span>,
+  <span class="s2">"createdBy"</span>: <span class="s2">"34fe0b13-e031-4ef2-822e-17eabad63259"</span>,
+  <span class="s2">"updatedBy"</span>: null,
+  <span class="s2">"createdAt"</span>: <span class="s2">"2019-03-14T14:02:29+00:00"</span>,
+  <span class="s2">"updatedAt"</span>: <span class="s2">"2019-03-14T14:02:29+00:00"</span>
+<span class="o">}</span>
+</code></pre>
+<p><br/><br/><strong>POST</strong> /calendar </p>
 
 <p><strong>Parameters</strong></p>
 
@@ -548,9 +600,9 @@ All the documentation code examples use our sandbox environment. When you are do
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='calendar-id'>/calendar/{id}</h2><h3 id='get-2'><strong>get</strong></h3>
+<h2 id='calendar-id'>/calendar/{id}</h2><h3 id='get'><strong>get</strong></h3>
 <p><strong>Description:</strong> Read one calendar by id</p>
-<h4 id='http-request-4'>http request</h4>
+<h4 id='http-request-3'>http request</h4>
 <p><strong>GET</strong> /calendar/{id} </p>
 
 <p><strong>Parameters</strong></p>
@@ -599,7 +651,7 @@ All the documentation code examples use our sandbox environment. When you are do
 </tbody></table>
 <h3 id='put'><strong>put</strong></h3>
 <p><strong>Description:</strong> Update a calendar by id</p>
-<h4 id='http-request-5'>http request</h4>
+<h4 id='http-request-4'>http request</h4>
 <p><strong>PUT</strong> /calendar/{id} </p>
 
 <p><strong>Parameters</strong></p>
@@ -659,7 +711,7 @@ All the documentation code examples use our sandbox environment. When you are do
 </tbody></table>
 <h3 id='delete'><strong>delete</strong></h3>
 <p><strong>Description:</strong> Delete a calendar by id</p>
-<h4 id='http-request-6'>http request</h4>
+<h4 id='http-request-5'>http request</h4>
 <p><strong>DELETE</strong> /calendar/{id} </p>
 
 <p><strong>Parameters</strong></p>
@@ -706,9 +758,9 @@ All the documentation code examples use our sandbox environment. When you are do
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='calendar-toidentity-list'>/calendar/{toidentity}/list</h2><h3 id='get-3'><strong>get</strong></h3>
+<h2 id='calendar-toidentity-list'>/calendar/{toidentity}/list</h2><h3 id='get-2'><strong>get</strong></h3>
 <p><strong>Description:</strong> List all calendars belonging to the &quot;to&quot; identity.</p>
-<h4 id='http-request-7'>http request</h4>
+<h4 id='http-request-6'>http request</h4>
 <p><strong>GET</strong> /calendar/{toIdentity}/list </p>
 
 <p><strong>Parameters</strong></p>
@@ -754,30 +806,18 @@ All the documentation code examples use our sandbox environment. When you are do
 
 <!-- Converted with the swagger-to-slate https://github.com/lavkumarv/swagger-to-slate -->
 <h1 id='context-api'>Context API</h1>
-<p>The Context API provides means to list available contexts in the PlatformOfTrust/standards repository in GitHub.</p>
+<p>The Context API provides means to list available JSON-LD contexts in the
+PlatformOfTrust/standards repository in GitHub.</p>
+
+<p>The contexts defines the semantic meaning of the keys in the responses from the APIs.
+When creating a new identity, choose which type of identity to create by
+choosing the correct context. The context will then define the attributes the
+identity can have.</p>
 
 <p><strong>Version:</strong> v1 </p>
-<h2 id='health-2'>/health</h2><h3 id='get-4'><strong>get</strong></h3>
-<p><strong>Description:</strong> Health check endpoint</p>
-<h4 id='http-request-8'>http request</h4>
-<p><strong>GET</strong> /health </p>
-
-<p><strong>Responses</strong></p>
-
-<table><thead>
-<tr>
-<th>Code</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>200</td>
-<td></td>
-</tr>
-</tbody></table>
-<h2 id='contexts'>/contexts</h2><h3 id='get-5'><strong>get</strong></h3>
+<h2 id='contexts'>/contexts</h2><h3 id='get-3'><strong>get</strong></h3>
 <p><strong>Description:</strong> Returns a list of all defined contexts</p>
-<h4 id='http-request-9'>http request</h4>
+<h4 id='http-request-7'>http request</h4>
 <p><strong>GET</strong> /contexts </p>
 
 <p><strong>Responses</strong></p>
@@ -796,12 +836,14 @@ All the documentation code examples use our sandbox environment. When you are do
 
 <!-- Converted with the swagger-to-slate https://github.com/lavkumarv/swagger-to-slate -->
 <h1 id='identity-api'>Identity API</h1>
-<p>The Identity API provides means to create, update and delete digital twins (identities) and manage links between them. The links provides the direction and type (sometimes called role) of the link.</p>
+<p>The Identity API provides means to create, update and delete digital twins
+(identities) and manage links between them.
+The links provides the direction and type (sometimes called role) of the link.</p>
 
 <p><strong>Version:</strong> v1 </p>
 <h2 id='identity'>/identity</h2><h3 id='post-3'><strong>post</strong></h3>
 <p><strong>Description:</strong> Create a new identity</p>
-<h4 id='http-request-10'>http request</h4>
+<h4 id='http-request-8'>http request</h4>
 <p><strong>POST</strong> /identity </p>
 
 <p><strong>Parameters</strong></p>
@@ -848,9 +890,9 @@ All the documentation code examples use our sandbox environment. When you are do
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='identity-id'>/identity/{id}</h2><h3 id='get-6'><strong>get</strong></h3>
+<h2 id='identity-id'>/identity/{id}</h2><h3 id='get-4'><strong>get</strong></h3>
 <p><strong>Description:</strong> Read one identity by id</p>
-<h4 id='http-request-11'>http request</h4>
+<h4 id='http-request-9'>http request</h4>
 <p><strong>GET</strong> /identity/{id} </p>
 
 <p><strong>Parameters</strong></p>
@@ -899,7 +941,7 @@ All the documentation code examples use our sandbox environment. When you are do
 </tbody></table>
 <h3 id='put-2'><strong>put</strong></h3>
 <p><strong>Description:</strong> Update an identity by id</p>
-<h4 id='http-request-12'>http request</h4>
+<h4 id='http-request-10'>http request</h4>
 <p><strong>PUT</strong> /identity/{id} </p>
 
 <p><strong>Parameters</strong></p>
@@ -959,7 +1001,7 @@ All the documentation code examples use our sandbox environment. When you are do
 </tbody></table>
 <h3 id='delete-2'><strong>delete</strong></h3>
 <p><strong>Description:</strong> Delete an identity by id</p>
-<h4 id='http-request-13'>http request</h4>
+<h4 id='http-request-11'>http request</h4>
 <p><strong>DELETE</strong> /identity/{id} </p>
 
 <p><strong>Parameters</strong></p>
@@ -1006,9 +1048,9 @@ All the documentation code examples use our sandbox environment. When you are do
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='identities'>/identities</h2><h3 id='get-7'><strong>get</strong></h3>
+<h2 id='identities'>/identities</h2><h3 id='get-5'><strong>get</strong></h3>
 <p><strong>Description:</strong> List all identities created by currently logged in user</p>
-<h4 id='http-request-14'>http request</h4>
+<h4 id='http-request-12'>http request</h4>
 <p><strong>GET</strong> /identities </p>
 
 <p><strong>Parameters</strong></p>
@@ -1046,7 +1088,7 @@ All the documentation code examples use our sandbox environment. When you are do
 </tbody></table>
 <h2 id='identities-from_identity-link-to_identity'>/identities/{from_identity}/link/{to_identity}</h2><h3 id='post-4'><strong>post</strong></h3>
 <p><strong>Description:</strong> Creates a new link between two identities</p>
-<h4 id='http-request-15'>http request</h4>
+<h4 id='http-request-13'>http request</h4>
 <p><strong>POST</strong> /identities/{from_identity}/link/{to_identity} </p>
 
 <p><strong>Parameters</strong></p>
@@ -1113,7 +1155,7 @@ All the documentation code examples use our sandbox environment. When you are do
 </tbody></table>
 <h2 id='identities-from_identity-link-to_identity-type'>/identities/{from_identity}/link/{to_identity}/{type}</h2><h3 id='put-3'><strong>put</strong></h3>
 <p><strong>Description:</strong> Update a link</p>
-<h4 id='http-request-16'>http request</h4>
+<h4 id='http-request-14'>http request</h4>
 <p><strong>PUT</strong> /identities/{from_identity}/link/{to_identity}/{type} </p>
 
 <p><strong>Parameters</strong></p>
@@ -1187,7 +1229,7 @@ All the documentation code examples use our sandbox environment. When you are do
 </tbody></table>
 <h3 id='delete-3'><strong>delete</strong></h3>
 <p><strong>Description:</strong> Delete a link by type</p>
-<h4 id='http-request-17'>http request</h4>
+<h4 id='http-request-15'>http request</h4>
 <p><strong>DELETE</strong> /identities/{from_identity}/link/{to_identity}/{type} </p>
 
 <p><strong>Parameters</strong></p>
@@ -1252,9 +1294,9 @@ All the documentation code examples use our sandbox environment. When you are do
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='identities-id-links'>/identities/{id}/links</h2><h3 id='get-8'><strong>get</strong></h3>
+<h2 id='identities-id-links'>/identities/{id}/links</h2><h3 id='get-6'><strong>get</strong></h3>
 <p><strong>Description:</strong> List all links for a given identity</p>
-<h4 id='http-request-18'>http request</h4>
+<h4 id='http-request-16'>http request</h4>
 <p><strong>GET</strong> /identities/{id}/links </p>
 
 <p><strong>Parameters</strong></p>
@@ -1301,9 +1343,9 @@ All the documentation code examples use our sandbox environment. When you are do
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='identities-id-links-type'>/identities/{id}/links/{type}</h2><h3 id='get-9'><strong>get</strong></h3>
+<h2 id='identities-id-links-type'>/identities/{id}/links/{type}</h2><h3 id='get-7'><strong>get</strong></h3>
 <p><strong>Description:</strong> List all links of type {type} for given identity</p>
-<h4 id='http-request-19'>http request</h4>
+<h4 id='http-request-17'>http request</h4>
 <p><strong>GET</strong> /identities/{id}/links/{type} </p>
 
 <p><strong>Parameters</strong></p>
@@ -1360,10 +1402,26 @@ All the documentation code examples use our sandbox environment. When you are do
 
 <!-- Converted with the swagger-to-slate https://github.com/lavkumarv/swagger-to-slate -->
 <h1 id='message-api'>Message API</h1>
+<p>The message API provides means to create/send messages to identities.
+You can send a message to any identity, e.g. a housing company, where all
+users who has access to the housing company identity and its messages can
+read the message.</p>
+
+<p>The message requires a <code>&quot;to&quot;</code>-identity, the ID of the identity to which
+the message applies to.
+A message <code>subject</code> and its <code>content</code> should be added as well.</p>
+
+<p>The <code>cc</code> is a list of user IDs to whom the message can be CC&#39;d to.
+A notification about the message will be sent to these users.</p>
+
 <p><strong>Version:</strong> v1 </p>
 <h2 id='message'>/message</h2><h3 id='post-5'><strong>post</strong></h3>
 <p><strong>Description:</strong> Create a new message</p>
-<h4 id='http-request-20'>http request</h4><pre class="highlight shell tab-shell"><code>curl -X POST https://api-sandbox.oftrust.net/message/v1/message <span class="se">\</span>
+<h4 id='http-request-18'>http request</h4>
+<blockquote>
+<p>Example:</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl -X POST https://api-sandbox.oftrust.net/message/v1/message <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
 -H <span class="s2">"Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzY29w...DVs5aaf"</span> <span class="se">\</span>
 -d <span class="s1">'{
@@ -1375,8 +1433,11 @@ All the documentation code examples use our sandbox environment. When you are do
     ]
 }'</span>
 
-<span class="c"># Response</span>
-HTTP/1.0 201 Created
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>HTTP/1.0 201 Created
 
 <span class="o">{</span>
   <span class="s2">"@context"</span>: <span class="s2">"https://platformoftrust.github.io/standards/contexts/message.jsonld"</span>,
@@ -1441,13 +1502,20 @@ HTTP/1.0 201 Created
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='message-id'>/message/{id}</h2><h3 id='get-10'><strong>get</strong></h3>
+<h2 id='message-id'>/message/{id}</h2><h3 id='get-8'><strong>get</strong></h3>
 <p><strong>Description:</strong> Read one message by id</p>
-<h4 id='http-request-21'>http request</h4><pre class="highlight shell tab-shell"><code>curl https://api-sandbox.oftrust.net/message/v1/message/3a9e31ff-b654-4069-8361-6b446dc04c95 <span class="se">\</span>
+<h4 id='http-request-19'>http request</h4>
+<blockquote>
+<p>Example:</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl https://api-sandbox.oftrust.net/message/v1/message/3a9e31ff-b654-4069-8361-6b446dc04c95 <span class="se">\</span>
 -H <span class="s2">"Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzY29w...DVs5aaf"</span>
 
-<span class="c"># Response</span>
-HTTP/1.0 200 OK
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>HTTP/1.0 200 OK
 
 <span class="o">{</span>
   <span class="s2">"@context"</span>: <span class="s2">"https://platformoftrust.github.io/standards/contexts/message.jsonld"</span>,
@@ -1514,7 +1582,11 @@ HTTP/1.0 200 OK
 </tbody></table>
 <h3 id='put-4'><strong>put</strong></h3>
 <p><strong>Description:</strong> Update a message by id</p>
-<h4 id='http-request-22'>http request</h4><pre class="highlight shell tab-shell"><code>curl -X PUT https://api-sandbox.oftrust.net/message/v1/message/3a9e...04c95 <span class="se">\</span>
+<h4 id='http-request-20'>http request</h4>
+<blockquote>
+<p>Example:</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl -X PUT https://api-sandbox.oftrust.net/message/v1/message/3a9e...04c95 <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
 -H <span class="s2">"Authorization: Bearer eyJ0eXAiOiJKV1QiLC29w...DVs5aaf"</span> <span class="se">\</span>
 -d <span class="s1">'{
@@ -1522,8 +1594,11 @@ HTTP/1.0 200 OK
     "content": "Testing the message api"
 }'</span>
 
-<span class="c"># Response</span>
-HTTP/1.0 200 OK
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>HTTP/1.0 200 OK
 
 <span class="o">{</span>
   <span class="s2">"@context"</span>: <span class="s2">"https://platformoftrust.github.io/standards/contexts/message.jsonld"</span>,
@@ -1601,11 +1676,18 @@ HTTP/1.0 200 OK
 </tbody></table>
 <h3 id='delete-4'><strong>delete</strong></h3>
 <p><strong>Description:</strong> Delete a message by id</p>
-<h4 id='http-request-23'>http request</h4><pre class="highlight shell tab-shell"><code>curl -X DELETE https://api-sandbox.oftrust.net/message/v1/message/3a9e31ff-b654-4069-8361-6b446dc04c95 <span class="se">\</span>
+<h4 id='http-request-21'>http request</h4>
+<blockquote>
+<p>Example:</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl -X DELETE https://api-sandbox.oftrust.net/message/v1/message/3a9e31ff-b654-4069-8361-6b446dc04c95 <span class="se">\</span>
 -H <span class="s2">"Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzY29w...DVs5aaf"</span>
 
-<span class="c"># Response</span>
-HTTP/1.0 204 No Content
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>HTTP/1.0 204 No Content
 </code></pre>
 <p><br/><br/><strong>DELETE</strong> /message/{id} </p>
 
@@ -1655,12 +1737,19 @@ HTTP/1.0 204 No Content
 </tbody></table>
 <h2 id='message-id-read'>/message/{id}/read</h2><h3 id='post-6'><strong>post</strong></h3>
 <p><strong>Description:</strong> Marks a message read by the currently logged in user.</p>
-<h4 id='http-request-24'>http request</h4><pre class="highlight shell tab-shell"><code>curl -X POST https://api-sandbox.oftrust.net/message/v1/message/3a9e31ff-b654-4069-8361-6b446dc04c95/read
+<h4 id='http-request-22'>http request</h4>
+<blockquote>
+<p>Example:</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl -X POST https://api-sandbox.oftrust.net/message/v1/message/3a9e31ff-b654-4069-8361-6b446dc04c95/read
 -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
 -H <span class="s2">"Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzY29w...DVs5aaf"</span>
 
-<span class="c"># Response</span>
-HTTP/1.0 200 OK
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>HTTP/1.0 200 OK
 </code></pre>
 <p><br/><br/><strong>POST</strong> /message/{id}/read </p>
 
@@ -1708,9 +1797,9 @@ HTTP/1.0 200 OK
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='messages-toidentity-list'>/messages/{toidentity}/list</h2><h3 id='get-11'><strong>get</strong></h3>
+<h2 id='messages-toidentity-list'>/messages/{toidentity}/list</h2><h3 id='get-9'><strong>get</strong></h3>
 <p><strong>Description:</strong> List all messages belonging to the &quot;to&quot; identity.</p>
-<h4 id='http-request-25'>http request</h4>
+<h4 id='http-request-23'>http request</h4>
 <p><strong>GET</strong> /messages/{toIdentity}/list </p>
 
 <p><strong>Parameters</strong></p>
@@ -1756,12 +1845,18 @@ HTTP/1.0 200 OK
 
 <!-- Converted with the swagger-to-slate https://github.com/lavkumarv/swagger-to-slate -->
 <h1 id='product-api'>Product API</h1>
-<p>The Product API provides means to manage products provided by PoT core. The product defines the URL to the translator, as well as a product code to use when requesting data from the translator.</p>
+<p>The Product API provides means to manage products provided by PoT core.
+The product defines the URL to the translator, as well as a product code to
+use when requesting data from the translator.</p>
 
 <p><strong>Version:</strong> v1 </p>
 <h2 id='products'>/products</h2><h3 id='post-7'><strong>post</strong></h3>
 <p><strong>Description:</strong> Create a new product</p>
-<h4 id='http-request-26'>http request</h4><pre class="highlight shell tab-shell"><code>curl -X POST https://api-sandbox.oftrust.net/product/v1/products <span class="se">\</span>
+<h4 id='http-request-24'>http request</h4>
+<blockquote>
+<p>Example:</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl -X POST https://api-sandbox.oftrust.net/product/v1/products <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
 -d <span class="s1">'{
   "dataContext": "https://platformoftrust.github.io/standards/contexts/product-data.jsonld",
@@ -1778,8 +1873,11 @@ HTTP/1.0 200 OK
   "description": "Test translator business information"
 }'</span>
 
-<span class="c"># Response</span>
-HTTP/1.0 201 Created
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>HTTP/1.0 201 Created
 <span class="o">{</span>
   <span class="s2">"@context"</span>: <span class="s2">"https://platformoftrust.github.io/standards/contexts/product.jsonld"</span>,
   <span class="s2">"@type"</span>: <span class="s2">"Product"</span>,
@@ -1838,9 +1936,9 @@ HTTP/1.0 201 Created
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='get-12'><strong>get</strong></h3>
+<h3 id='get-10'><strong>get</strong></h3>
 <p><strong>Description:</strong> Lists all available products.</p>
-<h4 id='http-request-27'>http request</h4>
+<h4 id='http-request-25'>http request</h4>
 <p><strong>GET</strong> /products </p>
 
 <p><strong>Responses</strong></p>
@@ -1856,12 +1954,19 @@ HTTP/1.0 201 Created
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='products-product_code'>/products/{product_code}</h2><h3 id='get-13'><strong>get</strong></h3>
+<h2 id='products-product_code'>/products/{product_code}</h2><h3 id='get-11'><strong>get</strong></h3>
 <p><strong>Description:</strong> Reads a single product by product code</p>
-<h4 id='http-request-28'>http request</h4><pre class="highlight shell tab-shell"><code>curl https://api-sandbox.oftrust.net/product/v1/products/business-identity-test
+<h4 id='http-request-26'>http request</h4>
+<blockquote>
+<p>Example:</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl https://api-sandbox.oftrust.net/product/v1/products/business-identity-test
 
-<span class="c"># Response</span>
-HTTP/1.0 200 OK
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>HTTP/1.0 200 OK
 
 <span class="o">{</span>
   <span class="s2">"@context"</span>: <span class="s2">"https://platformoftrust.github.io/standards/contexts/product.jsonld"</span>,
@@ -1923,7 +2028,11 @@ HTTP/1.0 200 OK
 </tbody></table>
 <h3 id='put-5'><strong>put</strong></h3>
 <p><strong>Description:</strong> Update a product by product code</p>
-<h4 id='http-request-29'>http request</h4><pre class="highlight shell tab-shell"><code>curl -X PUT https://api-sandbox.oftrust.net/product/v1/products/business-identity-test <span class="se">\</span>
+<h4 id='http-request-27'>http request</h4>
+<blockquote>
+<p>Example:</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl -X PUT https://api-sandbox.oftrust.net/product/v1/products/business-identity-test <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
 -d <span class="s1">'{
     "dataContext": "https://platformoftrust.github.io/standards/contexts/product-data.jsonld",
@@ -1940,8 +2049,11 @@ HTTP/1.0 200 OK
   "imageUrl": "http://example.com/image.png"
 }'</span>
 
-<span class="c"># Response</span>
-HTTP/1.0 200 OK
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>HTTP/1.0 200 OK
 <span class="o">{</span>
   <span class="s2">"@context"</span>: <span class="s2">"https://platformoftrust.github.io/standards/contexts/product.jsonld"</span>,
   <span class="s2">"@type"</span>: <span class="s2">"Product"</span>,
@@ -2013,10 +2125,17 @@ HTTP/1.0 200 OK
 </tbody></table>
 <h3 id='delete-5'><strong>delete</strong></h3>
 <p><strong>Description:</strong> Delete a product by product code</p>
-<h4 id='http-request-30'>http request</h4><pre class="highlight shell tab-shell"><code>curl -X DELETE https://api-sandbox.oftrust.net/product/v1/products/business-identity-test
+<h4 id='http-request-28'>http request</h4>
+<blockquote>
+<p>Example:</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>curl -X DELETE https://api-sandbox.oftrust.net/product/v1/products/business-identity-test
 
-<span class="c"># Response</span>
-HTTP/1.0 204 No Content
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight shell tab-shell"><code>HTTP/1.0 204 No Content
 </code></pre>
 <p><br/><br/><strong>DELETE</strong> /products/{product_code} </p>
 

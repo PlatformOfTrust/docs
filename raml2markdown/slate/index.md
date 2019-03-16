@@ -22,12 +22,25 @@ search: true
 
 --- 
 
+
 # Platform of Trust API Documentation
 
-## What is Platform of Trust?
-Communally built Platform of Trust provides a trustworthy and easy-to-use surrounding where you can utilize a vast data pool and develop everyday services for your
-customers with the help from the developer community and without a need for pricey and time-consuming integrations.  
 
+## What is Platform of Trust?
+
+> Some instructions and tips to make your life easier (and less support requests to us): 
+
+> - Endpoints related code examples are constructed against **SANDBOX environment `https://api-sandbox.oftrust.net/`**. 
+
+> - In **PRODUCTION** use, change domain in api endpoints to `https://api.oftrust.net/`
+
+> If you found a bug or missing information in the documentation, contact us at dev@oftrust.net or create an [issue in Github](https://github.com/PlatformOfTrust/docs/issues/new). 
+
+
+
+Communally built Platform of Trust provides a trustworthy and easy-to-use surrounding where you can utilize a vast data pool and develop everyday services for your`
+customers with the help from the developer community and without a need for pricey and time-consuming integrations.  
+``
 Platform of Trust has Finnish origins, but it’s built to expand globally through the network of built environment innovation hubs.
 
 **Developer Portal**

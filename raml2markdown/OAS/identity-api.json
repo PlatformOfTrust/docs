@@ -1,13 +1,14 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "LifeEngine",
+    "title": "Identity",
+    "description": "The Identity API provides means to create, update and delete digital twins\n(identities) and manage links between them.\nThe links provides the direction and type (sometimes called role) of the link.\n",
     "version": "v1"
   },
-  "host": "192.168.99.100:32000",
-  "basePath": "/identity/v1",
+  "host": "api-sandbox.oftrust.net",
+  "x-basePath": "/identity/{version}",
   "schemes": [
-    "http"
+    "https"
   ],
   "consumes": [
     "application/json"

@@ -4,6 +4,7 @@
   "productCode": "<product code>",
   "name": "<product name>",
   "translatorUrl": "<translator URL>",
+  "sharedSecret": "<shared secret>",
   "organizationPublicKeys": [
     {
       "url": "<public key URL>",

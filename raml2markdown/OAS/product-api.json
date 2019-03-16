@@ -2,12 +2,13 @@
   "swagger": "2.0",
   "info": {
     "title": "Platform Of Trust Product API",
+    "description": "The Product API provides means to manage products provided by PoT core.\nThe product defines the URL to the translator, as well as a product code to\nuse when requesting data from the translator.\n",
     "version": "v1"
   },
-  "host": "192.168.99.100:32000",
-  "basePath": "/product/v1",
+  "host": "api-sandbox.oftrust.net",
+  "x-basePath": "/product/{version}",
   "schemes": [
-    "http"
+    "https"
   ],
   "consumes": [
     "application/json"
@@ -44,6 +45,11 @@
           "example": "https://example.com/translator",
           "type": "string"
         },
+        "sharedSecret": {
+          "description": "The shared secret for the product. Used for generating the signature of the payload.",
+          "example": "very_secret123",
+          "type": "string"
+        },
         "organizationPublicKeys": {
           "description": "Organization public keys. Each object in the list MUST have the keys\n`url` and `type`, where `url` is the full URL to the public key used\nfor signing the data, and the `type` defines the type of the signature.\n",
           "example": [
@@ -75,6 +81,7 @@
         "productCode",
         "name",
         "translatorUrl",
+        "sharedSecret",
         "organizationPublicKeys"
       ]
     }
@@ -210,6 +217,7 @@
                 "productCode": "<product code>",
                 "name": "<product name>",
                 "translatorUrl": "<translator URL>",
+                "sharedSecret": "<shared secret>",
                 "organizationPublicKeys": [
                   {
                     "url": "<public key URL>",
@@ -569,6 +577,7 @@
                 "dataContext": "<data context URL>",
                 "parameterContext": "<parameter context URL>",
                 "productCode": "<product code>",
+                "sharedSecret": "<shared secret>",
                 "name": "<product name>",
                 "translatorUrl": "<translator URL>",
                 "organizationPublicKeys": [

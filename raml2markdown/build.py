@@ -57,13 +57,15 @@ def concatenate_files():
       ofile.write("# "+api.replace("-", " ").replace("api","API")+"\n")
 
       # Add description from separate file
-      descfile = Path("./slate/" +api.lower()+ "-desc.md")
+      # descfile = Path("./slate/" +api.lower()+ "-desc.md")
+      #if descfile.exists():
+      #  with open(Path(descfile)) as dfile:
+      #    ofile.write(dfile.read())
 
-      if descfile.exists():
-        with open(Path(descfile)) as dfile:
-          ofile.write(dfile.read())
       infile = open(slatefile, 'r').readlines()
       for index, line in enumerate(infile):
+
+        example_desc = "\n\n> Example:\n\n"
 
         # Now match the lines after which the code examples are injected.
         # example of one line: `***PUT*** /products/{product_code}`
@@ -74,9 +76,11 @@ def concatenate_files():
         example_file = example_file.rstrip(os.linesep)
         example_file_path = Path("./examples/" + example_file + ".curl")
         if example_file_path.exists():
+          ofile.write(example_desc)
           with open(example_file_path) as efile:
             print("Found example cURL file: "+str(example_file_path))
-            ofile.write("```shell\n"+ efile.read() + "```\n<br/><br/>")
+            newText = efile.read().replace('# Response', '``` \n\n > The above command returns JSON structured like this:\n\n ```shell')
+            ofile.write("```shell\n"+ newText + "```\n<br/><br/>")
         # Ugly way of getting rid of some markup in the beginning of each file. Get everything after line 18 and
         # save to final markdown file
         if index > 18:

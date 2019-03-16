@@ -1,6 +1,6 @@
 --- 
 
-title: LifeEngine 
+title: Calendar 
 
 language_tabs: 
    - shell 
@@ -17,6 +17,23 @@ search: true
 --- 
 
 # Introduction 
+
+The calendar API provides means to create calendar entries to identities.
+You can e.g. create an event for a housing company identity, a reservation
+to a room identity, or just a regular calendar entry to any identity you want.
+
+The calendar entry requires a `"to"`-identity, the ID of the identity to which
+the calendar entry applies to. Specify a type for the entry, e.g.
+`Event`, `Reservation`, `CalendarEntry`. Give the calendar entry a title, e.g.
+"Housewarming party", a start date, when the entry starts, and an end date
+when the entry ends. The dates are in RFC3339 format, and will be saved in UTC
+time.
+You can specify if an entry repeats, as defined in ISO 8601 repeating
+intervals. A location can be added as well, if needed, as a string, e.g.
+"Living room".
+The `cc` is a list of user IDs to whom the calendar entry can be CC'd to.
+A notification about the entry will be sent to these users.
+ 
 
 **Version:** v1 
 

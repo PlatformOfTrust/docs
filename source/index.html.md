@@ -22,12 +22,25 @@ search: true
 
 --- 
 
+
 # Platform of Trust API Documentation
 
-## What is Platform of Trust?
-Communally built Platform of Trust provides a trustworthy and easy-to-use surrounding where you can utilize a vast data pool and develop everyday services for your
-customers with the help from the developer community and without a need for pricey and time-consuming integrations.  
 
+## What is Platform of Trust?
+
+> Some instructions and tips to make your life easier (and less support requests to us): 
+
+> - Endpoints related code examples are constructed against **SANDBOX environment `https://api-sandbox.oftrust.net/`**. 
+
+> - In **PRODUCTION** use, change domain in api endpoints to `https://api.oftrust.net/`
+
+> If you found a bug or missing information in the documentation, contact us at dev@oftrust.net or create an [issue in Github](https://github.com/PlatformOfTrust/docs/issues/new). 
+
+
+
+Communally built Platform of Trust provides a trustworthy and easy-to-use surrounding where you can utilize a vast data pool and develop everyday services for your`
+customers with the help from the developer community and without a need for pricey and time-consuming integrations.  
+``
 Platform of Trust has Finnish origins, but it’s built to expand globally through the network of built environment innovation hubs.
 
 **Developer Portal**
@@ -103,23 +116,14 @@ client.auth.get_request_token()
 ```
 
 # Broker API
-The Broker API provides means to connect a service to a translator that will return desired data from different sources. The data broker does not mangle the data in any way, it only functions as a proxy between services and translators.
+
+The Broker API provides means to connect a service to a translator that will
+return desired data from different sources. The data broker does not mangle
+the data in any way, it only functions as a proxy between services and
+translators.
+ 
 
 **Version:** v0.1 
-
-## /health
-### **get** 
-
-**Description:** Health check endpoint
-
-#### http request 
-**GET** /health 
-
-**Responses**
-
-| Code | Description |
-| ---- | ----------- |
-| 200 |  |
 
 ## /fetch-data-product
 ### **post** 
@@ -145,6 +149,23 @@ The Broker API provides means to connect a service to a translator that will ret
 <!-- Converted with the swagger-to-slate https://github.com/lavkumarv/swagger-to-slate -->
 # Calendar API
 
+The calendar API provides means to create calendar entries to identities.
+You can e.g. create an event for a housing company identity, a reservation
+to a room identity, or just a regular calendar entry to any identity you want.
+
+The calendar entry requires a `"to"`-identity, the ID of the identity to which
+the calendar entry applies to. Specify a type for the entry, e.g.
+`Event`, `Reservation`, `CalendarEntry`. Give the calendar entry a title, e.g.
+"Housewarming party", a start date, when the entry starts, and an end date
+when the entry ends. The dates are in RFC3339 format, and will be saved in UTC
+time.
+You can specify if an entry repeats, as defined in ISO 8601 repeating
+intervals. A location can be added as well, if needed, as a string, e.g.
+"Living room".
+The `cc` is a list of user IDs to whom the calendar entry can be CC'd to.
+A notification about the entry will be sent to these users.
+ 
+
 **Version:** v1 
 
 ## /calendar
@@ -153,7 +174,56 @@ The Broker API provides means to connect a service to a translator that will ret
 **Description:** Create a new calendar entry
 
 #### http request 
-**POST** /calendar 
+
+
+> Example:
+
+```shell
+curl -X POST https://api-sandbox.oftrust.net/calendar/v1/calendar \
+-H "Content-Type: application/json" \
+-H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzY29w...DVs5aaf" \
+-d '{
+	"toIdentity": "34fe0b13-e031-4ef2-822e-17eabad63259",
+  "type": "Event",
+	"title": "Autumn feast 2",
+	"startDate": "2019-08-10T17:00:00+02:00",
+	"endDate": "2019-08-10T20:00:00+02:00",
+	"repeats": null,
+	"content": "Autumn feast",
+	"location": "Courtyard",
+	"cc": [
+		"34fe0b13-e031-4ef2-822e-17eabad63259"
+	]
+}'
+
+``` 
+
+ > The above command returns JSON structured like this:
+
+ ```shell
+HTTP/1.0 201 Created
+
+{
+  "@context": "https://platformoftrust.github.io/standards/contexts/calendar.jsonld",
+  "@type": "Event",
+  "@id": "67fa7be3-0c7d-4318-a09a-585181d1e6f3",
+  "toIdentity": "34fe0b13-e031-4ef2-822e-17eabad63259",
+  "title": "Autumn feast 2",
+  "startDate": "2019-08-10T15:00:00+00:00",
+  "endDate": "2019-08-10T18:00:00+00:00",
+  "repeats": null,
+  "content": "Autumn feast",
+  "location": "Courtyard",
+  "cc": [
+    "34fe0b13-e031-4ef2-822e-17eabad63259"
+  ],
+  "createdBy": "34fe0b13-e031-4ef2-822e-17eabad63259",
+  "updatedBy": null,
+  "createdAt": "2019-03-14T14:02:29+00:00",
+  "updatedAt": "2019-03-14T14:02:29+00:00"
+}
+```
+<br/><br/>**POST** /calendar 
 
 **Parameters**
 
@@ -258,23 +328,17 @@ The Broker API provides means to connect a service to a translator that will ret
 
 <!-- Converted with the swagger-to-slate https://github.com/lavkumarv/swagger-to-slate -->
 # Context API
-The Context API provides means to list available contexts in the PlatformOfTrust/standards repository in GitHub.
+
+The Context API provides means to list available JSON-LD contexts in the
+PlatformOfTrust/standards repository in GitHub.
+
+The contexts defines the semantic meaning of the keys in the responses from the APIs.
+When creating a new identity, choose which type of identity to create by
+choosing the correct context. The context will then define the attributes the
+identity can have.
+ 
 
 **Version:** v1 
-
-## /health
-### **get** 
-
-**Description:** Health check endpoint
-
-#### http request 
-**GET** /health 
-
-**Responses**
-
-| Code | Description |
-| ---- | ----------- |
-| 200 |  |
 
 ## /contexts
 ### **get** 
@@ -292,7 +356,11 @@ The Context API provides means to list available contexts in the PlatformOfTrust
 
 <!-- Converted with the swagger-to-slate https://github.com/lavkumarv/swagger-to-slate -->
 # Identity API
-The Identity API provides means to create, update and delete digital twins (identities) and manage links between them. The links provides the direction and type (sometimes called role) of the link.
+
+The Identity API provides means to create, update and delete digital twins
+(identities) and manage links between them.
+The links provides the direction and type (sometimes called role) of the link.
+ 
 
 **Version:** v1 
 
@@ -527,6 +595,19 @@ The Identity API provides means to create, update and delete digital twins (iden
 <!-- Converted with the swagger-to-slate https://github.com/lavkumarv/swagger-to-slate -->
 # Message API
 
+The message API provides means to create/send messages to identities.
+You can send a message to any identity, e.g. a housing company, where all
+users who has access to the housing company identity and its messages can
+read the message.
+
+The message requires a `"to"`-identity, the ID of the identity to which
+the message applies to.
+A message `subject` and its `content` should be added as well.
+
+The `cc` is a list of user IDs to whom the message can be CC'd to.
+A notification about the message will be sent to these users.
+ 
+
 **Version:** v1 
 
 ## /message
@@ -535,6 +616,10 @@ The Identity API provides means to create, update and delete digital twins (iden
 **Description:** Create a new message
 
 #### http request 
+
+
+> Example:
+
 ```shell
 curl -X POST https://api-sandbox.oftrust.net/message/v1/message \
 -H "Content-Type: application/json" \
@@ -548,7 +633,11 @@ curl -X POST https://api-sandbox.oftrust.net/message/v1/message \
 	]
 }'
 
-# Response
+``` 
+
+ > The above command returns JSON structured like this:
+
+ ```shell
 HTTP/1.0 201 Created
 
 {
@@ -590,11 +679,19 @@ HTTP/1.0 201 Created
 **Description:** Read one message by id
 
 #### http request 
+
+
+> Example:
+
 ```shell
 curl https://api-sandbox.oftrust.net/message/v1/message/3a9e31ff-b654-4069-8361-6b446dc04c95 \
 -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzY29w...DVs5aaf"
 
-# Response
+``` 
+
+ > The above command returns JSON structured like this:
+
+ ```shell
 HTTP/1.0 200 OK
 
 {
@@ -635,6 +732,10 @@ HTTP/1.0 200 OK
 **Description:** Update a message by id
 
 #### http request 
+
+
+> Example:
+
 ```shell
 curl -X PUT https://api-sandbox.oftrust.net/message/v1/message/3a9e...04c95 \
 -H "Content-Type: application/json" \
@@ -644,7 +745,11 @@ curl -X PUT https://api-sandbox.oftrust.net/message/v1/message/3a9e...04c95 \
 	"content": "Testing the message api"
 }'
 
-# Response
+``` 
+
+ > The above command returns JSON structured like this:
+
+ ```shell
 HTTP/1.0 200 OK
 
 {
@@ -687,11 +792,19 @@ HTTP/1.0 200 OK
 **Description:** Delete a message by id
 
 #### http request 
+
+
+> Example:
+
 ```shell
 curl -X DELETE https://api-sandbox.oftrust.net/message/v1/message/3a9e31ff-b654-4069-8361-6b446dc04c95 \
 -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzY29w...DVs5aaf"
 
-# Response
+``` 
+
+ > The above command returns JSON structured like this:
+
+ ```shell
 HTTP/1.0 204 No Content
 ```
 <br/><br/>**DELETE** /message/{id} 
@@ -716,12 +829,20 @@ HTTP/1.0 204 No Content
 **Description:** Marks a message read by the currently logged in user.
 
 #### http request 
+
+
+> Example:
+
 ```shell
 curl -X POST https://api-sandbox.oftrust.net/message/v1/message/3a9e31ff-b654-4069-8361-6b446dc04c95/read
 -H "Content-Type: application/json" \
 -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzY29w...DVs5aaf"
 
-# Response
+``` 
+
+ > The above command returns JSON structured like this:
+
+ ```shell
 HTTP/1.0 200 OK
 ```
 <br/><br/>**POST** /message/{id}/read 
@@ -763,7 +884,11 @@ HTTP/1.0 200 OK
 
 <!-- Converted with the swagger-to-slate https://github.com/lavkumarv/swagger-to-slate -->
 # Product API
-The Product API provides means to manage products provided by PoT core. The product defines the URL to the translator, as well as a product code to use when requesting data from the translator.
+
+The Product API provides means to manage products provided by PoT core.
+The product defines the URL to the translator, as well as a product code to
+use when requesting data from the translator.
+ 
 
 **Version:** v1 
 
@@ -773,6 +898,10 @@ The Product API provides means to manage products provided by PoT core. The prod
 **Description:** Create a new product
 
 #### http request 
+
+
+> Example:
+
 ```shell
 curl -X POST https://api-sandbox.oftrust.net/product/v1/products \
 -H "Content-Type: application/json" \
@@ -791,7 +920,11 @@ curl -X POST https://api-sandbox.oftrust.net/product/v1/products \
   "description": "Test translator business information"
 }'
 
-# Response
+``` 
+
+ > The above command returns JSON structured like this:
+
+ ```shell
 HTTP/1.0 201 Created
 {
   "@context": "https://platformoftrust.github.io/standards/contexts/product.jsonld",
@@ -846,10 +979,18 @@ HTTP/1.0 201 Created
 **Description:** Reads a single product by product code
 
 #### http request 
+
+
+> Example:
+
 ```shell
 curl https://api-sandbox.oftrust.net/product/v1/products/business-identity-test
 
-# Response
+``` 
+
+ > The above command returns JSON structured like this:
+
+ ```shell
 HTTP/1.0 200 OK
 
 {
@@ -891,6 +1032,10 @@ HTTP/1.0 200 OK
 **Description:** Update a product by product code
 
 #### http request 
+
+
+> Example:
+
 ```shell
 curl -X PUT https://api-sandbox.oftrust.net/product/v1/products/business-identity-test \
 -H "Content-Type: application/json" \
@@ -909,7 +1054,11 @@ curl -X PUT https://api-sandbox.oftrust.net/product/v1/products/business-identit
   "imageUrl": "http://example.com/image.png"
 }'
 
-# Response
+``` 
+
+ > The above command returns JSON structured like this:
+
+ ```shell
 HTTP/1.0 200 OK
 {
   "@context": "https://platformoftrust.github.io/standards/contexts/product.jsonld",
@@ -952,10 +1101,18 @@ HTTP/1.0 200 OK
 **Description:** Delete a product by product code
 
 #### http request 
+
+
+> Example:
+
 ```shell
 curl -X DELETE https://api-sandbox.oftrust.net/product/v1/products/business-identity-test
 
-# Response
+``` 
+
+ > The above command returns JSON structured like this:
+
+ ```shell
 HTTP/1.0 204 No Content
 ```
 <br/><br/>**DELETE** /products/{product_code} 

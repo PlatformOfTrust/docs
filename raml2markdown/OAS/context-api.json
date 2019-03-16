@@ -2,12 +2,13 @@
   "swagger": "2.0",
   "info": {
     "title": "Context",
+    "description": "The Context API provides means to list available JSON-LD contexts in the\nPlatformOfTrust/standards repository in GitHub.\n\nThe contexts defines the semantic meaning of the keys in the responses from the APIs.\nWhen creating a new identity, choose which type of identity to create by\nchoosing the correct context. The context will then define the attributes the\nidentity can have.\n",
     "version": "v1"
   },
-  "host": "192.168.99.100:32000",
-  "basePath": "/context/v1",
+  "host": "api-sandbox.oftrust.net",
+  "x-basePath": "/context/{version}",
   "schemes": [
-    "http"
+    "https"
   ],
   "consumes": [
     "application/json"
@@ -43,20 +44,6 @@
     }
   },
   "paths": {
-    "/health": {
-      "get": {
-        "description": "Health check endpoint",
-        "operationId": "GET_health",
-        "responses": {
-          "200": {
-            "description": "",
-            "schema": {
-              "example": {}
-            }
-          }
-        }
-      }
-    },
     "/contexts": {
       "get": {
         "description": "Returns a list of all defined contexts",

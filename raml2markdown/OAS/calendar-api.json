@@ -1,13 +1,14 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "LifeEngine",
+    "title": "Calendar",
+    "description": "The calendar API provides means to create calendar entries to identities.\nYou can e.g. create an event for a housing company identity, a reservation\nto a room identity, or just a regular calendar entry to any identity you want.\n\nThe calendar entry requires a `\"to\"`-identity, the ID of the identity to which\nthe calendar entry applies to. Specify a type for the entry, e.g.\n`Event`, `Reservation`, `CalendarEntry`. Give the calendar entry a title, e.g.\n\"Housewarming party\", a start date, when the entry starts, and an end date\nwhen the entry ends. The dates are in RFC3339 format, and will be saved in UTC\ntime.\nYou can specify if an entry repeats, as defined in ISO 8601 repeating\nintervals. A location can be added as well, if needed, as a string, e.g.\n\"Living room\".\nThe `cc` is a list of user IDs to whom the calendar entry can be CC'd to.\nA notification about the entry will be sent to these users.\n",
     "version": "v1"
   },
-  "host": "192.168.99.100:32000",
-  "basePath": "/calendar/v1",
+  "host": "api-sandbox.oftrust.net",
+  "x-basePath": "/calendar/{version}",
   "schemes": [
-    "http"
+    "https"
   ],
   "consumes": [
     "application/json"

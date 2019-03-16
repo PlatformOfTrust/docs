@@ -2,8 +2,13 @@
 ---
 title: Platform Of Trust Data Broker
 version: v0.1
-baseUri: https://api.oftrust.net/{version}
+baseUri: https://api-sandbox.oftrust.net/broker/{version}
 mediaType: application/json
+description: |
+  The Broker API provides means to connect a service to a translator that will
+  return desired data from different sources. The data broker does not mangle
+  the data in any way, it only functions as a proxy between services and
+  translators.
 types:
   data-product-request:
     type: object
@@ -11,7 +16,7 @@ types:
       timestamp:
         description: A timestamp in RFC3339 format
         type: string
-        example: 2018-11-01T12:00:00Z
+        example: 2018-11-01T12:00:00+00:00
       productCode:
         description: The data product's product code
         type: string
@@ -24,14 +29,6 @@ types:
             "param-1": "param-1 value",
             "param-2": "param-2 value"
           }
-/health:
-  description: Health checks
-  get:
-    description: Health check endpoint
-    responses:
-      200:
-        body:
-          example: {}
 /fetch-data-product:
   description: Data products
   post:
@@ -40,7 +37,7 @@ types:
       type: data-product-request
       example: |
         {
-          "timestamp": "2018-11-01T12:00:00Z",
+          "timestamp": "2018-11-01T12:00:00+00:00",
           "productCode": "product-1",
           "parameters": {
             "param-1": "Value",

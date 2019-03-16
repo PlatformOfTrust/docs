@@ -2,8 +2,12 @@
 ---
 title: Platform Of Trust Product API
 version: v1
-baseUri: http://192.168.99.100:32000/product/v1
+baseUri: https://api-sandbox.oftrust.net/product/{version}
 mediaType: application/json
+description: |
+  The Product API provides means to manage products provided by PoT core.
+  The product defines the URL to the translator, as well as a product code to
+  use when requesting data from the translator.
 types:
   product:
     type: object
@@ -33,6 +37,10 @@ types:
         description: The URL to the corresponding translator for the product.
         type: string
         example: https://example.com/translator
+      sharedSecret:
+        description: The shared secret for the product. Used for generating the signature of the payload.
+        type: string
+        example: very_secret123
       organizationPublicKeys:
         description: |
           Organization public keys. Each object in the list MUST have the keys
