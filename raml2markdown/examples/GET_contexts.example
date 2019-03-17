@@ -1,0 +1,27 @@
+```python
+sys.stdout.write("Python example missing. Why not contribute one for us?")
+```
+
+```shell
+cURL example not found. Why not contribute one for us?
+```
+
+```javascript
+console.error("Javascript example missing. Why not contribute one for us?");
+```
+
+
+```java
+System.out.print("Java example missing. Why not contribute one for us?");
+```
+
+> The above example should return `JSON` structured like this:
+
+```json
+HTTP/1.0 200 OK
+
+{
+  ...
+}
+
+```

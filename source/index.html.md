@@ -3,7 +3,7 @@
 title: Platform Of Trust Documentation 
 
 language_tabs: 
-   - cURL 
+   - shell 
    - java
    - python
    - javascript
@@ -78,7 +78,25 @@ The basic flow of how it goes is:
 
 ## Standards used
 
-* For **dates** we use a subset of ISO-8601 - [RFC 3339](https://www.ietf.org/rfc/rfc3339.txt). Example <code>2008-09-15T15:53:00+05:00</code>
+**Dates**: we use a subset of ISO-8601 - [RFC 3339](https://www.ietf.org/rfc/rfc3339.txt). Example <code>2008-09-15T15:53:00+05:00</code>
+
+**Core Ontology**: The Platform Of Trust core ontology can be found as a JSON-LD ontology file under [ontologies/pot.jsonld](https://github.com/PlatformOfTrust/standards/blob/master/ontologies/pot.jsonld).
+
+Each identity type has their own context which
+describes the attributes the identity has. The context file name gives a notion
+of whether the context is for an `identity` or a `link`. 
+
+The identity describes the real world identities, such as apartments, 
+buildings, rooms etc. The links are the relations between identities. 
+As an example, the `Tenant`-link can be applied between
+a user identity and an apartment identity, meaning that the user is a tenant
+in the apartment.
+
+If only a link between identities is needed, without any kind
+of role, the generic `link-link.jsonld` can be used 
+[contexts/link-link.jsonld](https://github.com/PlatformOfTrust/standards/tree/master/contexts/link-link.jsonld).
+
+Read more from [Github](https://github.com/PlatformOfTrust/standards/blob/master/README.md)
 
 ## Code Examples 
 
@@ -94,7 +112,13 @@ To make API requests, you need to authenticate to Upwork API. Currently, we supp
 
 ## Client credentials
 
-For each application you develop, you need to obtain new client credentials. These include a client identifier and a client shared-secret. You can find these credentials at https://developers.oftrust.net/profile while logged into your Upwork account. You will receive a public and a private key for each client identifier and client shared-secret you request.
+For each application you develop, you need to obtain new client credentials. 
+These include a client identifier and a client shared-secret. 
+You can find these credentials at https://developers.oftrust.net/profile 
+while logged into your account. 
+
+You will receive a public and a private key for each client identifier and 
+client shared-secret you API request.
 
 
 ## OAuth 2.0 workflow
@@ -131,6 +155,71 @@ translators.
 **Description:** Fetch data product
 
 #### http request 
+
+
+ > Example for: POST /fetch-data-product 
+
+
+```python
+sys.stdout.write("Python example missing. Why not contribute one for us?")
+```
+
+```shell
+curl -X POST https://api-sandbox.oftrust.net/broker/v0.1/fetch-data-product \
+-H "Content-Type: application/json" \
+-H "X-Pot-Signature: Ioma1gqOVFUBrXiziWSCLqBG4vFozG3YgzPzillNip0=" \
+-H "X-Pot-App: 379780e4-b511-4fa9-aef8-bda9bd58ab89" \
+-H "X-Pot-Token: eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzY29w...DVs5aaf" \
+-d '{
+	"timestamp": "2019-02-27T14:38:00+02:00",
+	"productCode": "business-identity-test",
+	"parameters": {
+		 "businessId": "1234567-8"
+	}
+}'
+```
+
+```javascript
+console.error("Javascript example missing. Why not contribute one for us?");
+```
+
+
+```java
+System.out.print("Java example missing. Why not contribute one for us?");
+```
+
+> The above example should return `JSON` structured like this:
+
+```json
+HTTP/1.0 200 OK
+
+{
+  "@context": "https://platformoftrust.github.io/standards/contexts/prh-data-product.jsonld",
+  "data": {
+    "@context": "https://platformoftrust.github.io/standards/contexts/prh-data-product-parameters.jsonld",
+    "@type": "BusinessIdentity",
+    "totalResults": 1,
+    "offset": 0,
+    "items": [
+      {
+        "name": "Example Company Oy",
+        "businessId": "1234567-8",
+        "companyForm": "OY",
+        "registrationDate": "2015-02-05"
+      }
+    ]
+  },
+  "signature": {
+    "type": "RsaSignature2018",
+    "created": "2019-03-14T10:33:31+00:00",
+    "creator": "https://example.com/example.pub",
+    "signatureValue": "MJWJxS3rh0hylgGyIILROiF4t+/w+gH...iTuKR8KhPMe4XVQ1I="
+  }
+}
+
+```
+
+
 **POST** /fetch-data-product 
 
 **Parameters**
@@ -176,7 +265,12 @@ A notification about the entry will be sent to these users.
 #### http request 
 
 
-> Example:
+ > Example for: POST /calendar 
+
+
+```python
+sys.stdout.write("Python example missing. Why not contribute one for us?")
+```
 
 ```shell
 curl -X POST https://api-sandbox.oftrust.net/calendar/v1/calendar \
@@ -195,12 +289,20 @@ curl -X POST https://api-sandbox.oftrust.net/calendar/v1/calendar \
 		"34fe0b13-e031-4ef2-822e-17eabad63259"
 	]
 }'
+```
 
-``` 
+```javascript
+console.error("Javascript example missing. Why not contribute one for us?");
+```
 
- > The above command returns JSON structured like this:
 
- ```shell
+```java
+System.out.print("Java example missing. Why not contribute one for us?");
+```
+
+> The above example should return `JSON` structured like this:
+
+```json
 HTTP/1.0 201 Created
 
 {
@@ -222,8 +324,11 @@ HTTP/1.0 201 Created
   "createdAt": "2019-03-14T14:02:29+00:00",
   "updatedAt": "2019-03-14T14:02:29+00:00"
 }
+
 ```
-<br/><br/>**POST** /calendar 
+
+
+**POST** /calendar 
 
 **Parameters**
 
@@ -245,6 +350,57 @@ HTTP/1.0 201 Created
 **Description:** Read one calendar by id
 
 #### http request 
+
+
+ > Example for: GET /calendar/{id} 
+
+
+```python
+sys.stdout.write("Python example missing. Why not contribute one for us?")
+```
+
+```shell
+curl https://api-sandbox.oftrust.net/calendar/v1/calendar/67fa7be3-0c7d-4318-a09a-585181d1e6f3 \
+-H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzY29w...DVs5aaf"
+```
+
+```javascript
+console.error("Javascript example missing. Why not contribute one for us?");
+```
+
+
+```java
+System.out.print("Java example missing. Why not contribute one for us?");
+```
+
+> The above example should return `JSON` structured like this:
+
+```json
+HTTP/1.0 200 OK
+
+{
+  "@context": "https://platformoftrust.github.io/standards/contexts/calendar.jsonld",
+  "@type": "Event",
+  "@id": "67fa7be3-0c7d-4318-a09a-585181d1e6f3",
+  "toIdentity": "34fe0b13-e031-4ef2-822e-17eabad63259",
+  "title": "Autumn feast 2",
+  "startDate": "2019-08-10T15:00:00+00:00",
+  "endDate": "2019-08-10T18:00:00+00:00",
+  "repeats": null,
+  "content": "Autumn feast",
+  "location": "Courtyard",
+  "cc": [
+    "34fe0b13-e031-4ef2-822e-17eabad63259"
+  ],
+  "createdBy": "34fe0b13-e031-4ef2-822e-17eabad63259",
+  "updatedBy": null,
+  "createdAt": "2019-03-14T14:02:29+00:00",
+  "updatedAt": "2019-03-14T14:02:29+00:00"
+}
+
+```
+
+
 **GET** /calendar/{id} 
 
 **Parameters**
@@ -266,6 +422,62 @@ HTTP/1.0 201 Created
 **Description:** Update a calendar by id
 
 #### http request 
+
+
+ > Example for: PUT /calendar/{id} 
+
+
+```python
+sys.stdout.write("Python example missing. Why not contribute one for us?")
+```
+
+```shell
+curl -X PUT https://api-sandbox.oftrust.net/calendar/v1/calendar/67fa7be3-0c7d-4318-a09a-585181d1e6f3 \
+-H "Content-Type: application/json" \
+-H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzY29w...DVs5aaf" \
+-d '{
+	"toIdentity": "34fe0b13-e031-4ef2-822e-17eabad63259",
+	"title": "Autumn feast 3",
+}'
+```
+
+```javascript
+console.error("Javascript example missing. Why not contribute one for us?");
+```
+
+
+```java
+System.out.print("Java example missing. Why not contribute one for us?");
+```
+
+> The above example should return `JSON` structured like this:
+
+```json
+HTTP/1.0 201 Created
+
+{
+  "@context": "https://platformoftrust.github.io/standards/contexts/calendar.jsonld",
+  "@type": "Event",
+  "@id": "67fa7be3-0c7d-4318-a09a-585181d1e6f3",
+  "toIdentity": "34fe0b13-e031-4ef2-822e-17eabad63259",
+  "title": "Autumn feast 2",
+  "startDate": "2019-08-10T15:00:00+00:00",
+  "endDate": "2019-08-10T18:00:00+00:00",
+  "repeats": null,
+  "content": "Autumn feast",
+  "location": "Courtyard",
+  "cc": [
+    "34fe0b13-e031-4ef2-822e-17eabad63259"
+  ],
+  "createdBy": "34fe0b13-e031-4ef2-822e-17eabad63259",
+  "updatedBy": null,
+  "createdAt": "2019-03-14T14:02:29+00:00",
+  "updatedAt": "2019-03-14T14:02:29+00:00"
+}
+
+```
+
+
 **PUT** /calendar/{id} 
 
 **Parameters**
@@ -289,6 +501,36 @@ HTTP/1.0 201 Created
 **Description:** Delete a calendar by id
 
 #### http request 
+
+
+ > Example for: DELETE /calendar/{id} 
+
+
+```python
+sys.stdout.write("Python example missing. Why not contribute one for us?")
+```
+
+```shell
+curl -X DELETE https://api-sandbox.oftrust.net/calendar/v1/calendar/67fa7be3-0c7d-4318-a09a-585181d1e6f3 \
+-H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzY29w...DVs5aaf"
+```
+
+```javascript
+console.error("Javascript example missing. Why not contribute one for us?");
+```
+
+
+```java
+System.out.print("Java example missing. Why not contribute one for us?");
+```
+
+> The above example should return header structured like this:
+
+```json
+HTTP/1.0 204 No Content
+```
+
+
 **DELETE** /calendar/{id} 
 
 **Parameters**
@@ -346,6 +588,40 @@ identity can have.
 **Description:** Returns a list of all defined contexts
 
 #### http request 
+
+
+ > Example for: GET /contexts 
+
+
+```python
+sys.stdout.write("Python example missing. Why not contribute one for us?")
+```
+
+```shell
+cURL example not found. Why not contribute one for us?
+```
+
+```javascript
+console.error("Javascript example missing. Why not contribute one for us?");
+```
+
+
+```java
+System.out.print("Java example missing. Why not contribute one for us?");
+```
+
+> The above example should return `JSON` structured like this:
+
+```json
+HTTP/1.0 200 OK
+
+{
+  ...
+}
+
+```
+
+
 **GET** /contexts 
 
 **Responses**
@@ -370,6 +646,65 @@ The links provides the direction and type (sometimes called role) of the link.
 **Description:** Create a new identity
 
 #### http request 
+
+
+ > Example for: POST /identity 
+
+
+```python
+sys.stdout.write("Python example missing. Why not contribute one for us?")
+```
+
+```shell
+curl -X POST https://api-sandbox.oftrust.net/identity/v1/identity \
+-H "Content-Type: application/json" \
+-H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzY29w...DVs5aaf" \
+-d '{
+	"context": "http://platformoftrust.github.io/standards/contexts/identity-person.jsonld",
+	"type": "Person",
+	"name": "John Doe",
+	"data": {
+		"firstName": "John",
+		"lastName": "Doe"
+	}
+}'
+```
+
+```javascript
+console.error("Javascript example missing. Why not contribute one for us?");
+```
+
+
+```java
+System.out.print("Java example missing. Why not contribute one for us?");
+```
+
+> The above example should return `JSON` structured like this:
+
+```json
+HTTP/1.0 201 Created
+
+{
+  "@context": "http://platformoftrust.github.io/standards/contexts/identity-person.jsonld",
+  "@type": "Person",
+  "@id": "fbd106c5-c594-4416-a87e-f61e578fe829",
+  "name": "John Doe",
+  "data": {
+    "firstName": "John",
+    "lastName": "Doe"
+  },
+  "createdBy": "4c276e02-719c-4415-abba-a7afc4edc0c0",
+  "updatedBy": null,
+  "createdAt": "2019-03-14T10:50:51+00:00",
+  "updatedAt": "2019-03-14T10:50:51+00:00",
+  "status": 0,
+  "inLinks": [],
+  "outLinks": []
+}
+
+```
+
+
 **POST** /identity 
 
 **Parameters**
@@ -575,6 +910,55 @@ The links provides the direction and type (sometimes called role) of the link.
 **Description:** List all links of type {type} for given identity
 
 #### http request 
+
+
+ > Example for: GET /identities/{id}/links/{type} 
+
+
+```python
+sys.stdout.write("Python example missing. Why not contribute one for us?")
+```
+
+```shell
+curl https://api-sandbox.oftrust.net/identities/35ee9e31-acee-42b4-ac7b-675790cc2721/links/Link \
+-H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzY29w...DVs5aaf"
+```
+
+```javascript
+console.error("Javascript example missing. Why not contribute one for us?");
+```
+
+
+```java
+System.out.print("Java example missing. Why not contribute one for us?");
+```
+
+> The above example should return `JSON` structured like this:
+
+```json
+HTTP/1.0 200 OK
+
+{
+  "@context": "https://schema.org/",
+  "@type": "collection",
+  "ItemList": [
+    {
+      "@context": "https://platformoftrust.github.io/standards/contexts/link-link.jsonld",
+      "@type": "Link",
+      "@id": "10fab397-db00-424c-8281-8115b1985d23",
+      "from": "86201e7d-6784-454b-9839-f7a6286f1791",
+      "to": "35ee9e31-acee-42b4-ac7b-675790cc2721",
+      "createdBy": "34fe0b13-e031-4ef2-822e-17eabad63259",
+      "updatedBy": null,
+      "createdAt": "2019-03-14T13:46:15+00:00",
+      "updatedAt": "2019-03-14T13:46:15+00:00"
+    }
+  ]
+}
+
+```
+
+
 **GET** /identities/{id}/links/{type} 
 
 **Parameters**
@@ -618,7 +1002,12 @@ A notification about the message will be sent to these users.
 #### http request 
 
 
-> Example:
+ > Example for: POST /message 
+
+
+```python
+sys.stdout.write("Python example missing. Why not contribute one for us?")
+```
 
 ```shell
 curl -X POST https://api-sandbox.oftrust.net/message/v1/message \
@@ -632,12 +1021,20 @@ curl -X POST https://api-sandbox.oftrust.net/message/v1/message \
 		"34fe0b13-e031-4ef2-822e-17eabad63259"
 	]
 }'
+```
 
-``` 
+```javascript
+console.error("Javascript example missing. Why not contribute one for us?");
+```
 
- > The above command returns JSON structured like this:
 
- ```shell
+```java
+System.out.print("Java example missing. Why not contribute one for us?");
+```
+
+> The above example should return `JSON` structured like this:
+
+```json
 HTTP/1.0 201 Created
 
 {
@@ -656,8 +1053,11 @@ HTTP/1.0 201 Created
   "createdAt": "2019-03-14T13:55:12+00:00",
   "updatedAt": "2019-03-14T13:55:12+00:00"
 }
+
 ```
-<br/><br/>**POST** /message 
+
+
+**POST** /message 
 
 **Parameters**
 
@@ -681,17 +1081,30 @@ HTTP/1.0 201 Created
 #### http request 
 
 
-> Example:
+ > Example for: GET /message/{id} 
+
+
+```python
+sys.stdout.write("Python example missing. Why not contribute one for us?")
+```
 
 ```shell
 curl https://api-sandbox.oftrust.net/message/v1/message/3a9e31ff-b654-4069-8361-6b446dc04c95 \
 -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzY29w...DVs5aaf"
+```
 
-``` 
+```javascript
+console.error("Javascript example missing. Why not contribute one for us?");
+```
 
- > The above command returns JSON structured like this:
 
- ```shell
+```java
+System.out.print("Java example missing. Why not contribute one for us?");
+```
+
+> The above example should return `JSON` structured like this:
+
+```json
 HTTP/1.0 200 OK
 
 {
@@ -710,8 +1123,11 @@ HTTP/1.0 200 OK
   "createdAt": "2019-03-14T13:55:12+00:00",
   "updatedAt": "2019-03-14T13:55:12+00:00"
 }
+
 ```
-<br/><br/>**GET** /message/{id} 
+
+
+**GET** /message/{id} 
 
 **Parameters**
 
@@ -734,7 +1150,12 @@ HTTP/1.0 200 OK
 #### http request 
 
 
-> Example:
+ > Example for: PUT /message/{id} 
+
+
+```python
+sys.stdout.write("Python example missing. Why not contribute one for us?")
+```
 
 ```shell
 curl -X PUT https://api-sandbox.oftrust.net/message/v1/message/3a9e...04c95 \
@@ -744,12 +1165,20 @@ curl -X PUT https://api-sandbox.oftrust.net/message/v1/message/3a9e...04c95 \
 	"subject": "Updated Test message",
 	"content": "Testing the message api"
 }'
+```
 
-``` 
+```javascript
+console.error("Javascript example missing. Why not contribute one for us?");
+```
 
- > The above command returns JSON structured like this:
 
- ```shell
+```java
+System.out.print("Java example missing. Why not contribute one for us?");
+```
+
+> The above example should return `JSON` structured like this:
+
+```json
 HTTP/1.0 200 OK
 
 {
@@ -768,8 +1197,11 @@ HTTP/1.0 200 OK
   "createdAt": "2019-03-14T13:55:12+00:00",
   "updatedAt": "2019-03-14T13:58:13+00:00"
 }
+
 ```
-<br/><br/>**PUT** /message/{id} 
+
+
+**PUT** /message/{id} 
 
 **Parameters**
 
@@ -794,20 +1226,35 @@ HTTP/1.0 200 OK
 #### http request 
 
 
-> Example:
+ > Example for: DELETE /message/{id} 
+
+
+```python
+sys.stdout.write("Python example missing. Why not contribute one for us?")
+```
 
 ```shell
 curl -X DELETE https://api-sandbox.oftrust.net/message/v1/message/3a9e31ff-b654-4069-8361-6b446dc04c95 \
 -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzY29w...DVs5aaf"
+```
 
-``` 
+```javascript
+console.error("Javascript example missing. Why not contribute one for us?");
+```
 
- > The above command returns JSON structured like this:
 
- ```shell
+```java
+System.out.print("Java example missing. Why not contribute one for us?");
+```
+
+> The above example should return header structured like this:
+
+```json
 HTTP/1.0 204 No Content
 ```
-<br/><br/>**DELETE** /message/{id} 
+
+
+**DELETE** /message/{id} 
 
 **Parameters**
 
@@ -831,21 +1278,36 @@ HTTP/1.0 204 No Content
 #### http request 
 
 
-> Example:
+ > Example for: POST /message/{id}/read 
+
+
+```python
+sys.stdout.write("Python example missing. Why not contribute one for us?")
+```
 
 ```shell
 curl -X POST https://api-sandbox.oftrust.net/message/v1/message/3a9e31ff-b654-4069-8361-6b446dc04c95/read
 -H "Content-Type: application/json" \
 -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzY29w...DVs5aaf"
+```
 
-``` 
+```javascript
+console.error("Javascript example missing. Why not contribute one for us?");
+```
 
- > The above command returns JSON structured like this:
 
- ```shell
+```java
+System.out.print("Java example missing. Why not contribute one for us?");
+```
+
+> The above example should return `JSON` structured like this:
+
+```json
 HTTP/1.0 200 OK
 ```
-<br/><br/>**POST** /message/{id}/read 
+
+
+**POST** /message/{id}/read 
 
 **Parameters**
 
@@ -900,7 +1362,12 @@ use when requesting data from the translator.
 #### http request 
 
 
-> Example:
+ > Example for: POST /products 
+
+
+```python
+sys.stdout.write("Python example missing. Why not contribute one for us?")
+```
 
 ```shell
 curl -X POST https://api-sandbox.oftrust.net/product/v1/products \
@@ -919,12 +1386,20 @@ curl -X POST https://api-sandbox.oftrust.net/product/v1/products \
   ],
   "description": "Test translator business information"
 }'
+```
 
-``` 
+```javascript
+console.error("Javascript example missing. Why not contribute one for us?");
+```
 
- > The above command returns JSON structured like this:
 
- ```shell
+```java
+System.out.print("Java example missing. Why not contribute one for us?");
+```
+
+> The above example should return `JSON` structured like this:
+
+```json
 HTTP/1.0 201 Created
 {
   "@context": "https://platformoftrust.github.io/standards/contexts/product.jsonld",
@@ -944,8 +1419,11 @@ HTTP/1.0 201 Created
   "description": "Test translator business information",
   "imageUrl": null
 }
+
 ```
-<br/><br/>**POST** /products 
+
+
+**POST** /products 
 
 **Parameters**
 
@@ -981,16 +1459,29 @@ HTTP/1.0 201 Created
 #### http request 
 
 
-> Example:
+ > Example for: GET /products/{product_code} 
+
+
+```python
+sys.stdout.write("Python example missing. Why not contribute one for us?")
+```
 
 ```shell
 curl https://api-sandbox.oftrust.net/product/v1/products/business-identity-test
+```
 
-``` 
+```javascript
+console.error("Javascript example missing. Why not contribute one for us?");
+```
 
- > The above command returns JSON structured like this:
 
- ```shell
+```java
+System.out.print("Java example missing. Why not contribute one for us?");
+```
+
+> The above example should return `JSON` structured like this:
+
+```json
 HTTP/1.0 200 OK
 
 {
@@ -1011,8 +1502,11 @@ HTTP/1.0 200 OK
   "description": "Test translator business information",
   "imageUrl": null
 }
+
 ```
-<br/><br/>**GET** /products/{product_code} 
+
+
+**GET** /products/{product_code} 
 
 **Parameters**
 
@@ -1034,7 +1528,12 @@ HTTP/1.0 200 OK
 #### http request 
 
 
-> Example:
+ > Example for: PUT /products/{product_code} 
+
+
+```python
+sys.stdout.write("Python example missing. Why not contribute one for us?")
+```
 
 ```shell
 curl -X PUT https://api-sandbox.oftrust.net/product/v1/products/business-identity-test \
@@ -1053,13 +1552,22 @@ curl -X PUT https://api-sandbox.oftrust.net/product/v1/products/business-identit
   "description": "Test translator business information",
   "imageUrl": "http://example.com/image.png"
 }'
+```
 
-``` 
+```javascript
+console.error("Javascript example missing. Why not contribute one for us?");
+```
 
- > The above command returns JSON structured like this:
 
- ```shell
+```java
+System.out.print("Java example missing. Why not contribute one for us?");
+```
+
+> The above example should return `JSON` structured like this:
+
+```json
 HTTP/1.0 200 OK
+
 {
   "@context": "https://platformoftrust.github.io/standards/contexts/product.jsonld",
   "@type": "Product",
@@ -1078,8 +1586,12 @@ HTTP/1.0 200 OK
   "description": "Test translator business information",
   "imageUrl": "http://example.com/image.png"
 }
+
+
 ```
-<br/><br/>**PUT** /products/{product_code} 
+
+
+**PUT** /products/{product_code} 
 
 **Parameters**
 
@@ -1103,19 +1615,34 @@ HTTP/1.0 200 OK
 #### http request 
 
 
-> Example:
+ > Example for: DELETE /products/{product_code} 
+
+
+```python
+sys.stdout.write("Python example missing. Why not contribute one for us?")
+```
 
 ```shell
 curl -X DELETE https://api-sandbox.oftrust.net/product/v1/products/business-identity-test
+```
 
-``` 
+```javascript
+console.error("Javascript example missing. Why not contribute one for us?");
+```
 
- > The above command returns JSON structured like this:
 
- ```shell
+```java
+System.out.print("Java example missing. Why not contribute one for us?");
+```
+
+> The above example should return `JSON` structured like this:
+
+```json
 HTTP/1.0 204 No Content
 ```
-<br/><br/>**DELETE** /products/{product_code} 
+
+
+**DELETE** /products/{product_code} 
 
 **Parameters**
 

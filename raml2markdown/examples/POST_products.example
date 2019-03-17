@@ -1,3 +1,8 @@
+```python
+sys.stdout.write("Python example missing. Why not contribute one for us?")
+```
+
+```shell
 curl -X POST https://api-sandbox.oftrust.net/product/v1/products \
 -H "Content-Type: application/json" \
 -d '{
@@ -14,8 +19,20 @@ curl -X POST https://api-sandbox.oftrust.net/product/v1/products \
   ],
   "description": "Test translator business information"
 }'
+```
 
-# Response
+```javascript
+console.error("Javascript example missing. Why not contribute one for us?");
+```
+
+
+```java
+System.out.print("Java example missing. Why not contribute one for us?");
+```
+
+> The above example should return `JSON` structured like this:
+
+```json
 HTTP/1.0 201 Created
 {
   "@context": "https://platformoftrust.github.io/standards/contexts/product.jsonld",
@@ -35,3 +52,5 @@ HTTP/1.0 201 Created
   "description": "Test translator business information",
   "imageUrl": null
 }
+
+```

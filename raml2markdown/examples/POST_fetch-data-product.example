@@ -1,3 +1,8 @@
+```python
+sys.stdout.write("Python example missing. Why not contribute one for us?")
+```
+
+```shell
 curl -X POST https://api-sandbox.oftrust.net/broker/v0.1/fetch-data-product \
 -H "Content-Type: application/json" \
 -H "X-Pot-Signature: Ioma1gqOVFUBrXiziWSCLqBG4vFozG3YgzPzillNip0=" \
@@ -10,8 +15,20 @@ curl -X POST https://api-sandbox.oftrust.net/broker/v0.1/fetch-data-product \
 		 "businessId": "1234567-8"
 	}
 }'
+```
 
-# Response
+```javascript
+console.error("Javascript example missing. Why not contribute one for us?");
+```
+
+
+```java
+System.out.print("Java example missing. Why not contribute one for us?");
+```
+
+> The above example should return `JSON` structured like this:
+
+```json
 HTTP/1.0 200 OK
 
 {
@@ -37,3 +54,5 @@ HTTP/1.0 200 OK
     "signatureValue": "MJWJxS3rh0hylgGyIILROiF4t+/w+gH...iTuKR8KhPMe4XVQ1I="
   }
 }
+
+```

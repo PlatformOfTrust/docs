@@ -56,31 +56,34 @@ def concatenate_files():
 
       ofile.write("# "+api.replace("-", " ").replace("api","API")+"\n")
 
-      # Add description from separate file
-      # descfile = Path("./slate/" +api.lower()+ "-desc.md")
-      #if descfile.exists():
-      #  with open(Path(descfile)) as dfile:
-      #    ofile.write(dfile.read())
-
       infile = open(slatefile, 'r').readlines()
       for index, line in enumerate(infile):
-
-        example_desc = "\n\n> Example:\n\n"
 
         # Now match the lines after which the code examples are injected.
         # example of one line: `***PUT*** /products/{product_code}`
         # That should match PUT_products_product_code.curl in examples folder
-        example_file = str(line)
-        example_file = re.sub('[`#* {}]', '', example_file)
+        example_file= str(line)
+        example_file= re.sub('[`#* {}]', '', example_file)
         example_file = re.sub('[/]', '_', example_file)
         example_file = example_file.rstrip(os.linesep)
-        example_file_path = Path("./examples/" + example_file + ".curl")
+        example_file_curl_path = Path("./examples/" + example_file + ".curl")
+        example_file_python_path = Path("./examples/" + example_file + ".python")
+        example_file_json_path = Path("./examples/" + example_file + ".json")
+        example_file_path = Path("./examples/" + example_file + ".example")
+        # print(str(example_file_path))
+
+        example_method = str(line)
+        example_method = re.sub('[`#*]', '', example_method)
+
+        example_desc = "\n\n > Example for: "+example_method+"\n\n"
+
         if example_file_path.exists():
-          ofile.write(example_desc)
-          with open(example_file_path) as efile:
-            print("Found example cURL file: "+str(example_file_path))
-            newText = efile.read().replace('# Response', '``` \n\n > The above command returns JSON structured like this:\n\n ```shell')
-            ofile.write("```shell\n"+ newText + "```\n<br/><br/>")
+          with open(example_file_path) as sfile:
+            print("Found example file: " + str(example_file_path))
+            ofile.write(example_desc)
+            ofile.write(sfile.read()+"\n\n")
+
+
         # Ugly way of getting rid of some markup in the beginning of each file. Get everything after line 18 and
         # save to final markdown file
         if index > 18:
@@ -112,5 +115,6 @@ for api in APIs:
 # Merge all together
 concatenate_files()
 
+# Build deployable content as html
 make_html()
 
