@@ -797,6 +797,67 @@ HTTP/1.0 200 OK
 **Description:** Update an identity by id
 
 #### http request 
+
+
+ > Example for: PUT /identity/{id} 
+
+
+```python
+sys.stdout.write("Python example missing. Why not contribute one for us?")
+```
+
+```shell
+curl -X PUT https://api-sandbox.oftrust.net/identity/v1/identity/fbd106c5-c594-4416-a87e-f61e578fe829 \
+-H "Content-Type: application/json" \
+-H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzY29w...DVs5aaf" \
+-d '{
+	"context": "http://platformoftrust.github.io/standards/contexts/identity-person.jsonld",
+	"type": "Person",
+	"name": "John Doe",
+	"data": {
+		"firstName": "John",
+		"lastName": "Doe",
+		"gender": "Male"
+	}
+}'
+```
+
+```javascript
+console.error("Javascript example missing. Why not contribute one for us?");
+```
+
+
+```java
+System.out.print("Java example missing. Why not contribute one for us?");
+```
+
+> The above example should return `JSON` structured like this:
+
+```json
+HTTP/1.0 200 OK
+
+{
+  "@context": "http://platformoftrust.github.io/standards/contexts/identity-person.jsonld",
+  "@type": "Person",
+  "@id": "fbd106c5-c594-4416-a87e-f61e578fe829",
+  "name": "John Doe",
+  "data": {
+    "firstName": "John",
+    "lastName": "Doe",
+    "gender": "Male"
+  },
+  "createdBy": "4c276e02-719c-4415-abba-a7afc4edc0c0",
+  "updatedBy": "4c276e02-719c-4415-abba-a7afc4edc0c0",
+  "createdAt": "2019-03-14T10:50:51+00:00",
+  "updatedAt": "2019-03-14T11:17:35+00:00",
+  "status": 0,
+  "inLinks": [],
+  "outLinks": []
+}
+
+```
+
+
 **PUT** /identity/{id} 
 
 **Parameters**
@@ -820,6 +881,37 @@ HTTP/1.0 200 OK
 **Description:** Delete an identity by id
 
 #### http request 
+
+
+ > Example for: DELETE /identity/{id} 
+
+
+```python
+sys.stdout.write("Python example missing. Why not contribute one for us?")
+```
+
+```shell
+curl -X DELETE https://api-sandbox.oftrust.net/identity/v1/identity/sdssSsAaASew342SD3as14 \
+-H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzY29w...DVs5aaf"
+```
+
+```javascript
+console.error("Javascript example missing. Why not contribute one for us?");
+```
+
+
+```java
+System.out.print("Java example missing. Why not contribute one for us?");
+```
+
+> The above example should return `JSON` structured like this:
+
+```json
+HTTP/1.0 204 No Content
+
+```
+
+
 **DELETE** /identity/{id} 
 
 **Parameters**
