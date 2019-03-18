@@ -13,7 +13,7 @@ APIs = ["Broker-api", "Calendar-api", "Context-api", "Identity-api", "Message-ap
 def api_raml_to_slate(apiname):
   apiname = apiname.lower()
   jsonfile = Path("./OAS/"+apiname+".json")
-  slatefile = Path("./slate/"+apiname+".md")
+  slatefile = Path("./slate/"+apiname.lower()+".md")
 
   print("\nConverting "+apiname+" to Slate")
 
@@ -52,7 +52,7 @@ def concatenate_files():
     with open(Path("slate/index.md")) as infile:
       ofile.write(infile.read())
     for api in APIs:
-      slatefile = Path("./slate/" + api + ".md")
+      slatefile = Path("./slate/" + api.lower() + ".md")
 
       ofile.write("# "+api.replace("-", " ").replace("api","API")+"\n")
 
