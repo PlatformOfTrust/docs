@@ -17,4 +17,4 @@ sed -Ei 's@env node --harmony@env node@' lib/bin/*.js
 cd ..
 
 # Install swagger-to-slate node app
-npm i swagger-to-slate
+npm i -g swagger-to-slate
