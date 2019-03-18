@@ -1,4 +1,5 @@
 ```python
+import sys
 sys.stdout.write("Python example missing. Why not contribute one for us?")
 ```
 

@@ -161,6 +161,7 @@ translators.
 
 
 ```python
+import sys
 sys.stdout.write("Python example missing. Why not contribute one for us?")
 ```
 
@@ -269,6 +270,7 @@ A notification about the entry will be sent to these users.
 
 
 ```python
+import sys
 sys.stdout.write("Python example missing. Why not contribute one for us?")
 ```
 
@@ -356,6 +358,7 @@ HTTP/1.0 201 Created
 
 
 ```python
+import sys
 sys.stdout.write("Python example missing. Why not contribute one for us?")
 ```
 
@@ -428,6 +431,7 @@ HTTP/1.0 200 OK
 
 
 ```python
+import sys
 sys.stdout.write("Python example missing. Why not contribute one for us?")
 ```
 
@@ -507,6 +511,7 @@ HTTP/1.0 201 Created
 
 
 ```python
+import sys
 sys.stdout.write("Python example missing. Why not contribute one for us?")
 ```
 
@@ -594,6 +599,7 @@ identity can have.
 
 
 ```python
+import sys
 sys.stdout.write("Python example missing. Why not contribute one for us?")
 ```
 
@@ -652,6 +658,7 @@ The links provides the direction and type (sometimes called role) of the link.
 
 
 ```python
+import sys
 sys.stdout.write("Python example missing. Why not contribute one for us?")
 ```
 
@@ -733,6 +740,7 @@ HTTP/1.0 201 Created
 
 
 ```python
+import sys
 sys.stdout.write("Python example missing. Why not contribute one for us?")
 ```
 
@@ -803,6 +811,7 @@ HTTP/1.0 200 OK
 
 
 ```python
+import sys
 sys.stdout.write("Python example missing. Why not contribute one for us?")
 ```
 
@@ -887,6 +896,7 @@ HTTP/1.0 200 OK
 
 
 ```python
+import sys
 sys.stdout.write("Python example missing. Why not contribute one for us?")
 ```
 
@@ -940,6 +950,7 @@ HTTP/1.0 204 No Content
 
 
 ```python
+import sys
 sys.stdout.write("Python example missing. Why not contribute one for us?")
 ```
 
@@ -1114,6 +1125,7 @@ HTTP/1.0 200 OK
 
 
 ```python
+import sys
 sys.stdout.write("Python example missing. Why not contribute one for us?")
 ```
 
@@ -1204,6 +1216,7 @@ A notification about the message will be sent to these users.
 
 
 ```python
+import sys
 sys.stdout.write("Python example missing. Why not contribute one for us?")
 ```
 
@@ -1283,6 +1296,7 @@ HTTP/1.0 201 Created
 
 
 ```python
+import sys
 sys.stdout.write("Python example missing. Why not contribute one for us?")
 ```
 
@@ -1352,6 +1366,7 @@ HTTP/1.0 200 OK
 
 
 ```python
+import sys
 sys.stdout.write("Python example missing. Why not contribute one for us?")
 ```
 
@@ -1428,6 +1443,7 @@ HTTP/1.0 200 OK
 
 
 ```python
+import sys
 sys.stdout.write("Python example missing. Why not contribute one for us?")
 ```
 
@@ -1480,6 +1496,7 @@ HTTP/1.0 204 No Content
 
 
 ```python
+import sys
 sys.stdout.write("Python example missing. Why not contribute one for us?")
 ```
 
@@ -1564,6 +1581,7 @@ use when requesting data from the translator.
 
 
 ```python
+import sys
 sys.stdout.write("Python example missing. Why not contribute one for us?")
 ```
 
@@ -1647,6 +1665,7 @@ HTTP/1.0 201 Created
 
 
 ```python
+import sys
 sys.stdout.write("Python example missing. Why not contribute one for us?")
 ```
 
@@ -1712,6 +1731,7 @@ HTTP/1.0 200 OK
 
 
 ```python
+import sys
 sys.stdout.write("Python example missing. Why not contribute one for us?")
 ```
 
@@ -1781,6 +1801,7 @@ HTTP/1.0 200 OK
 
 
 ```python
+import sys
 sys.stdout.write("Python example missing. Why not contribute one for us?")
 ```
 
@@ -1868,6 +1889,7 @@ HTTP/1.0 200 OK
 
 
 ```python
+import sys
 sys.stdout.write("Python example missing. Why not contribute one for us?")
 ```
 
