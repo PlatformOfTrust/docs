@@ -2,7 +2,11 @@ language: python
 python:
   - "3.6"
 
+env:
+  - NODE_VERSION="10"
+
 before_install:
+  - nvm install $NODE_VERSION
   - ./setup.sh
 
 install: true
@@ -10,7 +14,6 @@ install: true
 script:
   - cd raml2markdown/
   - ./build.py
-
 
 # Deploy to GitHub pages
 deploy:
