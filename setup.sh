@@ -1,8 +1,10 @@
 #!/usr/bin/env bash
 
+set -exuo pipefail
+
 # Get and build oas-raml-converter
 
-cd docs/raml2markdown
+cd raml2markdown
 rm -rf ./oas-raml-converter
 git clone git@github.com:mulesoft/oas-raml-converter.git
 cd oas-raml-converter

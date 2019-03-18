@@ -8,7 +8,7 @@ before_install:
 install: true
 
 script:
-  - cd ./raml2markdown/
+  - cd raml2markdown/
   - ./build.py
 
 
