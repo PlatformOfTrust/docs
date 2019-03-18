@@ -37,10 +37,6 @@ types:
         description: The URL to the corresponding translator for the product.
         type: string
         example: https://example.com/translator
-      sharedSecret:
-        description: The shared secret for the product. Used for generating the signature of the payload.
-        type: string
-        example: very_secret123
       organizationPublicKeys:
         description: |
           Organization public keys. Each object in the list MUST have the keys
@@ -82,7 +78,8 @@ types:
         body:
           example: !include includes/examples/missing-mandatory-parameter.json
   get:
-    description: Lists all available products.
+    description: |
+      Lists all available products. *NOTE*: This is a CORS enabled endpoint.
     responses:
       200:
         body:
@@ -95,7 +92,8 @@ types:
         type: string
         example: product-1
     get:
-      description: Reads a single product by product code
+      description: |
+        Reads a single product by product code. *NOTE*: This is a CORS enabled endpoint.
       responses:
         200:
           body:
