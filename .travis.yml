@@ -10,7 +10,7 @@ install: true
 script:
   - cd raml2markdown/
   - ./build.py
-
+  - echo 'docs.oftrust.net' > build/CNAME
 
 # Deploy to GitHub pages
 deploy:
