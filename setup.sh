@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -exuo pipefail
+
 # Get and build oas-raml-converter
 
 cd docs/raml2markdown
