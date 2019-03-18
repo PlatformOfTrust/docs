@@ -1,10 +1,22 @@
-sudo: false
+language: python
+python:
+  - "3.6"
 
-language: ruby
+before_install:
+  - ./setup.sh
 
-rvm:
-  - 2.3.3
-  - 2.4.0
+install: true
 
-cache: bundler
-script: bundle exec middleman build
+script:
+  - cd ./raml2markdown/
+  - ./build.py
+
+
+# Deploy to GitHub pages
+deploy:
+  provider: pages
+  skip-cleanup: true
+  local-dir: build
+  github-token: $GITHUB_TOKEN
+  target-branch: gh-pages
+  repo: PlatformOfTrust/docs
