@@ -25,6 +25,11 @@ bundle exec middleman server
 
 You can now see the docs at http://localhost:4567. 
 
-### Build distribution
+### Rebuild API Docs
 
-Python script `raml2markdown/build.py` builds the documentation to `build` folder as static html content with CSS and other necessary files. 
+The current documentation is fully automated at the moment (except writing the code examples). 
+
+1.	Just add RAML to specific folder (https://github.com/PlatformOfTrust/docs/tree/master/raml2markdown/src),  
+2.	Add code examples (https://github.com/PlatformOfTrust/docs/tree/master/raml2markdown/examples), 
+3.	then run `build.py` and 
+4.	new docs is generated to https://github.com/PlatformOfTrust/docs/tree/master/build
