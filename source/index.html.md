@@ -1641,6 +1641,57 @@ HTTP/1.0 201 Created
 **Description:** Lists all available products.
 
 #### http request 
+
+
+ > Example for: GET /products 
+
+
+```python
+sys.stdout.write("Python example missing. Why not contribute one for us?")
+```
+
+```shell
+curl https://api-sandbox.oftrust.net/product/v1/products
+```
+
+```javascript
+console.error("Javascript example missing. Why not contribute one for us?");
+```
+
+
+```java
+System.out.print("Java example missing. Why not contribute one for us?");
+```
+
+> The above example should return `JSON` structured like this:
+
+```json
+HTTP/1.0 200 OK
+
+{
+  "@context": "https://schema.org/",
+  "@type": "collection",
+  "ItemList": [
+    {
+      "@context": "https://platformoftrust.github.io/standards/contexts/product.jsonld",
+      "@type": "Product",
+      "@id": "https://api-sandbox.oftrust.net/product/v1/products/prh-business-identity-data-product",
+      "productCode": "prh-business-identity-data-product",
+      "dataContext": null,
+      "parameterContext": "https://platformoftrust.github.io/standards/contexts/product-parameters.jsonld",
+      "translatorUrl": "http://translator-test-backend-app/business-identity",
+      "name": "PRH Business Identity",
+      "organizationPublicKeys": null,
+      "description": "Returns business information from the PRH Open Data API",
+      "imageUrl": null
+    },
+    ...
+  ]
+}
+
+```
+
+
 **GET** /products 
 
 **Responses**
