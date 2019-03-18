@@ -2,6 +2,8 @@
 
 set -exuo pipefail
 
+bundle install
+
 # Get and build oas-raml-converter
 
 cd raml2markdown
