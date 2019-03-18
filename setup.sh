@@ -8,6 +8,7 @@ cd raml2markdown
 rm -rf ./oas-raml-converter
 git clone https://github.com/mulesoft/oas-raml-converter.git
 cd oas-raml-converter
+npm install
 npm run build
 cd ..
 
