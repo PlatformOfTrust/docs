@@ -6,7 +6,7 @@ set -exuo pipefail
 
 cd raml2markdown
 rm -rf ./oas-raml-converter
-git clone git@github.com:mulesoft/oas-raml-converter.git
+git clone https://github.com/mulesoft/oas-raml-converter.git
 cd oas-raml-converter
 npm run build
 cd ..
