@@ -4,7 +4,7 @@ sys.stdout.write("Python example missing. Why not contribute one for us?")
 ```
 
 ```shell
-cURL example not found. Why not contribute one for us?
+curl https://api-sandbox.oftrust.net/context/v1/contexts
 ```
 
 ```javascript
@@ -22,7 +22,21 @@ System.out.print("Java example missing. Why not contribute one for us?");
 HTTP/1.0 200 OK
 
 {
-  ...
+  "@context": "https://schema.org/",
+  "@type": "collection",
+  "ItemList": [
+    {
+      "type": "Identity",
+      "name": "Apartment",
+      "url": "https://platformoftrust.github.io/standards/contexts/identity-apartment.jsonld"
+    },
+    ...
+    {
+      "type": "Link",
+      "name": "Owner",
+      "url": "https://platformoftrust.github.io/standards/contexts/link-owner.jsonld"
+    }
+  ]
 }
 
 ```
