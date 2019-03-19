@@ -48,7 +48,8 @@ use when requesting data from the translator.
 
 ## ***GET*** 
 
-**Description:** Lists all available products.
+**Description:** Lists all available products. *NOTE*: This is a CORS enabled endpoint.
+
 
 ### HTTP Request 
 `***GET*** /products` 
@@ -62,7 +63,8 @@ use when requesting data from the translator.
 # /PRODUCTS/{PRODUCT_CODE}
 ## ***GET*** 
 
-**Description:** Reads a single product by product code
+**Description:** Reads a single product by product code. *NOTE*: This is a CORS enabled endpoint.
+
 
 ### HTTP Request 
 `***GET*** /products/{product_code}` 

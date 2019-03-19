@@ -45,11 +45,6 @@
           "example": "https://example.com/translator",
           "type": "string"
         },
-        "sharedSecret": {
-          "description": "The shared secret for the product. Used for generating the signature of the payload.",
-          "example": "very_secret123",
-          "type": "string"
-        },
         "organizationPublicKeys": {
           "description": "Organization public keys. Each object in the list MUST have the keys\n`url` and `type`, where `url` is the full URL to the public key used\nfor signing the data, and the `type` defines the type of the signature.\n",
           "example": [
@@ -81,7 +76,6 @@
         "productCode",
         "name",
         "translatorUrl",
-        "sharedSecret",
         "organizationPublicKeys"
       ]
     }
@@ -236,7 +230,7 @@
         ]
       },
       "get": {
-        "description": "Lists all available products.",
+        "description": "Lists all available products. *NOTE*: This is a CORS enabled endpoint.\n",
         "operationId": "GET_products",
         "responses": {
           "200": {
@@ -315,7 +309,7 @@
     },
     "/products/{product_code}": {
       "get": {
-        "description": "Reads a single product by product code",
+        "description": "Reads a single product by product code. *NOTE*: This is a CORS enabled endpoint.\n",
         "operationId": "GET_products-product_code",
         "responses": {
           "200": {

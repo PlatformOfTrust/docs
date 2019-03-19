@@ -929,6 +929,49 @@ A notification about the entry will be sent to these users.</p>
 <h2 id='calendar-toidentity-list'>/calendar/{toidentity}/list</h2><h3 id='get-2'><strong>get</strong></h3>
 <p><strong>Description:</strong> List all calendars belonging to the &quot;to&quot; identity.</p>
 <h4 id='http-request-6'>http request</h4>
+<blockquote>
+<p>Example for: GET /calendar/{toIdentity}/list </p>
+</blockquote>
+<pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">sys</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">"Python example missing. Why not contribute one for us?"</span><span class="p">)</span>
+</code></pre><pre class="highlight shell tab-shell"><code>curl https://api-sandbox.oftrust.net/calendar/v1/calendar/34fe0b13-e031-4ef2-822e-17eabad63259/list <span class="se">\</span>
+-H <span class="s2">"Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzY29w...DVs5aaf"</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">"Javascript example missing. Why not contribute one for us?"</span><span class="p">);</span>
+</code></pre><pre class="highlight java tab-java"><code><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Java example missing. Why not contribute one for us?"</span><span class="o">);</span>
+</code></pre>
+<blockquote>
+<p>The above example should return <code>JSON</code> structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">HTTP/</span><span class="mf">1.0</span><span class="w"> </span><span class="mi">200</span><span class="w"> </span><span class="err">OK</span><span class="w">
+
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"@context"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://schema.org/"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"@type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"collection"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ItemList"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"@context"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://platformoftrust.github.io/standards/contexts/calendar.jsonld"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"@type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Event"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"@id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"67fa7be3-0c7d-4318-a09a-585181d1e6f3"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"toIdentity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"34fe0b13-e031-4ef2-822e-17eabad63259"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Autumn feast"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-08-10T14:00:00+00:00"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-08-10T18:00:00+00:00"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"repeats"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Autumn feast stuff to do"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"location"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Courtyard"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"cc"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"34fe0b13-e031-4ef2-822e-17eabad63259"</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="s2">"34fe0b13-e031-4ef2-822e-17eabad63259"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"updatedBy"</span><span class="p">:</span><span class="w"> </span><span class="s2">"34fe0b13-e031-4ef2-822e-17eabad63259"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-14T14:02:29+00:00"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"updatedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-14T14:02:29+00:00"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+
+</span></code></pre>
 <p><strong>GET</strong> /calendar/{toIdentity}/list </p>
 
 <p><strong>Parameters</strong></p>
@@ -991,7 +1034,7 @@ identity can have.</p>
 </blockquote>
 <pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">sys</span>
 <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">"Python example missing. Why not contribute one for us?"</span><span class="p">)</span>
-</code></pre><pre class="highlight shell tab-shell"><code>cURL example not found. Why not contribute one <span class="k">for </span>us?
+</code></pre><pre class="highlight shell tab-shell"><code>curl https://api-sandbox.oftrust.net/context/v1/contexts
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">"Javascript example missing. Why not contribute one for us?"</span><span class="p">);</span>
 </code></pre><pre class="highlight java tab-java"><code><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Java example missing. Why not contribute one for us?"</span><span class="o">);</span>
 </code></pre>
@@ -1001,7 +1044,21 @@ identity can have.</p>
 <pre class="highlight json tab-json"><code><span class="err">HTTP/</span><span class="mf">1.0</span><span class="w"> </span><span class="mi">200</span><span class="w"> </span><span class="err">OK</span><span class="w">
 
 </span><span class="p">{</span><span class="w">
-  </span><span class="err">...</span><span class="w">
+  </span><span class="s2">"@context"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://schema.org/"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"@type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"collection"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ItemList"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Identity"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Apartment"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://platformoftrust.github.io/standards/contexts/identity-apartment.jsonld"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="err">...</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Link"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Owner"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://platformoftrust.github.io/standards/contexts/link-owner.jsonld"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
 </span></code></pre>
@@ -2221,6 +2278,40 @@ A notification about the message will be sent to these users.</p>
 <h2 id='messages-toidentity-list'>/messages/{toidentity}/list</h2><h3 id='get-9'><strong>get</strong></h3>
 <p><strong>Description:</strong> List all messages belonging to the &quot;to&quot; identity.</p>
 <h4 id='http-request-23'>http request</h4>
+<blockquote>
+<p>Example for: GET /messages/{toIdentity}/list </p>
+</blockquote>
+<pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">sys</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">"Python example missing. Why not contribute one for us?"</span><span class="p">)</span>
+</code></pre><pre class="highlight shell tab-shell"><code>curl https://api-sandbox.oftrust.net/message/v1/message/3a9e31ff-b654-4069-8361-6b446dc04c95 <span class="se">\</span>
+-H <span class="s2">"Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzY29w...DVs5aaf"</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">"Javascript example missing. Why not contribute one for us?"</span><span class="p">);</span>
+</code></pre><pre class="highlight java tab-java"><code><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Java example missing. Why not contribute one for us?"</span><span class="o">);</span>
+</code></pre>
+<blockquote>
+<p>The above example should return <code>JSON</code> structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">HTTP/</span><span class="mf">1.0</span><span class="w"> </span><span class="mi">200</span><span class="w"> </span><span class="err">OK</span><span class="w">
+
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"@context"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://platformoftrust.github.io/standards/contexts/message.jsonld"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"@type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Message"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"@id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3a9e31ff-b654-4069-8361-6b446dc04c95"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"toIdentity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"34fe0b13-e031-4ef2-822e-17eabad63259"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"subject"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Test message nr 1"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"content"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Testing the message api"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"cc"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"34fe0b13-e031-4ef2-822e-17eabad63259"</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"readBy"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+  </span><span class="s2">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="s2">"34fe0b13-e031-4ef2-822e-17eabad63259"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"updatedBy"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-14T13:55:12+00:00"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"updatedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-14T13:55:12+00:00"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+
+</span></code></pre>
 <p><strong>GET</strong> /messages/{toIdentity}/list </p>
 
 <p><strong>Parameters</strong></p>
@@ -2362,7 +2453,7 @@ use when requesting data from the translator.</p>
 </tr>
 </tbody></table>
 <h3 id='get-10'><strong>get</strong></h3>
-<p><strong>Description:</strong> Lists all available products.</p>
+<p><strong>Description:</strong> Lists all available products. <em>NOTE</em>: This is a CORS enabled endpoint.</p>
 <h4 id='http-request-25'>http request</h4>
 <blockquote>
 <p>Example for: GET /products </p>
@@ -2416,7 +2507,7 @@ use when requesting data from the translator.</p>
 </tr>
 </tbody></table>
 <h2 id='products-product_code'>/products/{product_code}</h2><h3 id='get-11'><strong>get</strong></h3>
-<p><strong>Description:</strong> Reads a single product by product code</p>
+<p><strong>Description:</strong> Reads a single product by product code. <em>NOTE</em>: This is a CORS enabled endpoint.</p>
 <h4 id='http-request-26'>http request</h4>
 <blockquote>
 <p>Example for: GET /products/{product_code} </p>

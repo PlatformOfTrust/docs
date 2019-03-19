@@ -558,6 +558,65 @@ HTTP/1.0 204 No Content
 **Description:** List all calendars belonging to the "to" identity.
 
 #### http request 
+
+
+ > Example for: GET /calendar/{toIdentity}/list 
+
+
+```python
+import sys
+sys.stdout.write("Python example missing. Why not contribute one for us?")
+```
+
+```shell
+curl https://api-sandbox.oftrust.net/calendar/v1/calendar/34fe0b13-e031-4ef2-822e-17eabad63259/list \
+-H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzY29w...DVs5aaf"
+```
+
+```javascript
+console.error("Javascript example missing. Why not contribute one for us?");
+```
+
+
+```java
+System.out.print("Java example missing. Why not contribute one for us?");
+```
+
+> The above example should return `JSON` structured like this:
+
+```json
+HTTP/1.0 200 OK
+
+{
+  "@context": "https://schema.org/",
+  "@type": "collection",
+  "ItemList": [
+    {
+      "@context": "https://platformoftrust.github.io/standards/contexts/calendar.jsonld",
+      "@type": "Event",
+      "@id": "67fa7be3-0c7d-4318-a09a-585181d1e6f3",
+      "toIdentity": "34fe0b13-e031-4ef2-822e-17eabad63259",
+      "title": "Autumn feast",
+      "startDate": "2019-08-10T14:00:00+00:00",
+      "endDate": "2019-08-10T18:00:00+00:00",
+      "repeats": null,
+      "content": "Autumn feast stuff to do",
+      "location": "Courtyard",
+      "cc": [
+        "34fe0b13-e031-4ef2-822e-17eabad63259"
+      ],
+      "createdBy": "34fe0b13-e031-4ef2-822e-17eabad63259",
+      "updatedBy": "34fe0b13-e031-4ef2-822e-17eabad63259",
+      "createdAt": "2019-03-14T14:02:29+00:00",
+      "updatedAt": "2019-03-14T14:02:29+00:00"
+    }
+  ]
+}
+
+
+```
+
+
 **GET** /calendar/{toIdentity}/list 
 
 **Parameters**
@@ -604,7 +663,7 @@ sys.stdout.write("Python example missing. Why not contribute one for us?")
 ```
 
 ```shell
-cURL example not found. Why not contribute one for us?
+curl https://api-sandbox.oftrust.net/context/v1/contexts
 ```
 
 ```javascript
@@ -622,7 +681,21 @@ System.out.print("Java example missing. Why not contribute one for us?");
 HTTP/1.0 200 OK
 
 {
-  ...
+  "@context": "https://schema.org/",
+  "@type": "collection",
+  "ItemList": [
+    {
+      "type": "Identity",
+      "name": "Apartment",
+      "url": "https://platformoftrust.github.io/standards/contexts/identity-apartment.jsonld"
+    },
+    ...
+    {
+      "type": "Link",
+      "name": "Owner",
+      "url": "https://platformoftrust.github.io/standards/contexts/link-owner.jsonld"
+    }
+  ]
 }
 
 ```
@@ -1544,6 +1617,56 @@ HTTP/1.0 200 OK
 **Description:** List all messages belonging to the "to" identity.
 
 #### http request 
+
+
+ > Example for: GET /messages/{toIdentity}/list 
+
+
+```python
+import sys
+sys.stdout.write("Python example missing. Why not contribute one for us?")
+```
+
+```shell
+curl https://api-sandbox.oftrust.net/message/v1/message/3a9e31ff-b654-4069-8361-6b446dc04c95 \
+-H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzY29w...DVs5aaf"
+```
+
+```javascript
+console.error("Javascript example missing. Why not contribute one for us?");
+```
+
+
+```java
+System.out.print("Java example missing. Why not contribute one for us?");
+```
+
+> The above example should return `JSON` structured like this:
+
+```json
+HTTP/1.0 200 OK
+
+{
+  "@context": "https://platformoftrust.github.io/standards/contexts/message.jsonld",
+  "@type": "Message",
+  "@id": "3a9e31ff-b654-4069-8361-6b446dc04c95",
+  "toIdentity": "34fe0b13-e031-4ef2-822e-17eabad63259",
+  "subject": "Test message nr 1",
+  "content": "Testing the message api",
+  "cc": [
+    "34fe0b13-e031-4ef2-822e-17eabad63259"
+  ],
+  "readBy": [],
+  "createdBy": "34fe0b13-e031-4ef2-822e-17eabad63259",
+  "updatedBy": null,
+  "createdAt": "2019-03-14T13:55:12+00:00",
+  "updatedAt": "2019-03-14T13:55:12+00:00"
+}
+
+
+```
+
+
 **GET** /messages/{toIdentity}/list 
 
 **Parameters**
@@ -1656,7 +1779,8 @@ HTTP/1.0 201 Created
 
 ### **get** 
 
-**Description:** Lists all available products.
+**Description:** Lists all available products. *NOTE*: This is a CORS enabled endpoint.
+
 
 #### http request 
 
@@ -1722,7 +1846,8 @@ HTTP/1.0 200 OK
 ## /products/{product_code}
 ### **get** 
 
-**Description:** Reads a single product by product code
+**Description:** Reads a single product by product code. *NOTE*: This is a CORS enabled endpoint.
+
 
 #### http request 
 

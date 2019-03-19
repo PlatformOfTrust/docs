@@ -1,0 +1,83 @@
+<h1 id='platform-of-trust-documentation'>Platform of Trust Documentation</h1>
+<p>This could be rather static introduction to Platform of Trust APIs and written in separate file. Then just preprocess the files and merge all, or do it 
+manually. Nope! Includes go all to bottom. </p>
+<h1 id='getting-started'>Getting started</h1><h2 id='auth-practices'>Auth practices</h2>
+<p>We use OAuth xxx flow. Every API call is required to have ..... Read more from <a href="#authentication">Authentication section</a></p>
+<h2 id='standards-used'>Standards used</h2>
+<ul>
+<li>For time and dates we use a subset of ISO-8601 - <a href="https://www.ietf.org/rfc/rfc3339.txt">RFC 3339</a>. Example <code>2008-09-15T15:53:00+05:00</code></li>
+</ul>
+<h2 id='code-examples'>Code Examples</h2>
+<aside class="warning">
+All the documentation code examples use our sandbox environment. When you are done with testing, you should switch to production environment. Easiest way is to store API root url in variable and when needed, change it there. Thus the code examples contain API-root variable as an exmaple. 
+</aside>
+<h1 id='oauth'>OAuth</h1>
+<p>To make API requests, you need to authenticate to Upwork API. Currently, we support OAuth 2.0 authentication. All API requests MUST be signed following the RFC 5849 specification.</p>
+<h2 id='client-credentials'>Client credentials</h2>
+<p>For each application you develop, you need to obtain new client credentials. These include a client identifier and a client shared-secret. You can find these credentials at https://developers.oftrust.net/profile while logged into your Upwork account. You will receive a public and a private key for each client identifier and client shared-secret you request.</p>
+<h2 id='oauth-2-0-workflow'>OAuth 2.0 workflow</h2><h2 id='get-request-token'>Get request token</h2>
+<p><strong>Endpoint</strong></p>
+
+<p>POST /api/auth/v1/oauth/token/request</p>
+
+<p>HTTPS is required. All the names of variables follow OAuth specification (see RFC 5849).</p>
+<pre class="highlight python tab-python"><code>
+<span class="kn">import</span> <span class="nn">upwork</span>
+<span class="n">client</span> <span class="o">=</span> <span class="n">upwork</span><span class="o">.</span><span class="n">Client</span><span class="p">(</span><span class="n">public_key</span><span class="p">,</span> <span class="n">secret_key</span><span class="p">,</span> <span class="o">**</span><span class="n">credentials</span><span class="p">)</span>
+<span class="n">client</span><span class="o">.</span><span class="n">auth</span><span class="o">.</span><span class="n">get_request_token</span><span class="p">()</span>
+
+</code></pre><h1 id='products-api'>Products API</h1>
+<p><strong>Version:</strong> v1 </p>
+
+<p>API Description should come from the code as well...</p>
+<h2 id='health'>/HEALTH</h2>
+<p>Jotain kuvausta.</p>
+<pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
+
+<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
+<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://sandbox.oftrust.net/api/products"</span>
+  -X GET
+  -H <span class="s2">"Authorization: meowmeowmeow"</span>
+</code></pre><h3 id='get'><strong><em>GET</em></strong></h3>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"deleted"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">":("</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p><strong>Description:</strong> Get all products </p>
+<h3 id='http-request'>HTTP Request</h3>
+<p><code>***GET*** /products</code> </p>
+
+<p><strong>Responses</strong></p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id='post'><strong><em>POST</em></strong></h3><pre class="highlight shell tab-shell"><code><span class="c"># Notice the sandbox URL, change to production when needed. </span>
+curl <span class="s2">"http://sandbox.oftrust.net/api/translator/products"</span> <span class="se">\</span>
+  -X POST <span class="se">\</span>
+  -H <span class="s2">"X-PoT-Signature: xxx"</span> <span class="se">\</span>
+  -H <span class="s2">"X-PoT-Token: meowmeowmeow"</span> <span class="se">\</span>
+  -H <span class="s2">"X-PoT-App: xxx"</span> 
+</code></pre>
+<blockquote>
+<p>The above command returns JSON structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"product"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">":("</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre><h1 id='context-api'>Context API</h1>
+<!-- Converted with the swagger-to-slate https://github.com/lavkumarv/swagger-to-slate -->
