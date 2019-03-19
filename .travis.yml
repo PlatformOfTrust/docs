@@ -8,7 +8,7 @@ env:
   - NODE_VERSION="10"
 
 git:
-  - submodules: false
+  submodules: false
 
 before_install:
   - nvm install $NODE_VERSION
