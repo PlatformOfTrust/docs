@@ -29,6 +29,16 @@ You can now see the docs at http://localhost:4567.
 
 The current documentation is fully automated at the moment (except writing the code examples). 
 
+**build needed tools:**
+1. cd raml2markdown
+2. rm -rf ./oas-raml-converter
+3. git clone https://github.com/mulesoft/oas-raml-converter.git
+4. cd oas-raml-converter
+5. npm install
+6. npm run build
+7. npm i -g swagger-to-slate
+
+**build the docs:**
 1.	Just add RAML to specific folder (https://github.com/PlatformOfTrust/docs/tree/master/raml2markdown/src),  
 2.	Add code examples (https://github.com/PlatformOfTrust/docs/tree/master/raml2markdown/examples), 
 3.	then run `build.py` and 
