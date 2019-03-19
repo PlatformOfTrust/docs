@@ -25,6 +25,7 @@ The basic flow of how it goes is:
 
 The above is rather theoretical description of it. Lets have a look at one example. 
 
+
 ## How to get Bearer token?
 
 To get these tokens, you need to set up your application with login capabilities
