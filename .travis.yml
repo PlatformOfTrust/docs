@@ -7,6 +7,9 @@ python:
 env:
   - NODE_VERSION="10"
 
+git:
+  - submodules: false
+
 before_install:
   - nvm install $NODE_VERSION
   - nvm alias default node
