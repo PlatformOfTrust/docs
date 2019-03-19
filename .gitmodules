@@ -1,3 +1,3 @@
 [submodule "oas-raml-converter"]
-	path = ramp2markdown/oas-raml-converter
+	path = raml2markdown/oas-raml-converter
 	url = git@github.com:mulesoft/oas-raml-converter.git
