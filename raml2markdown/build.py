@@ -69,7 +69,7 @@ def concatenate_files():
         example_file_curl_path = Path("./examples/" + example_file + ".curl")
         example_file_python_path = Path("./examples/" + example_file + ".python")
         example_file_json_path = Path("./examples/" + example_file + ".json")
-        example_file_path = Path("./examples/" + example_file + ".example")
+        example_file_path = Path("./examples/" + example_file.lower() + ".example")
         # print(str(example_file_path))
 
         example_method = str(line)
