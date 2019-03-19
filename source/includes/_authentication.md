@@ -24,3 +24,12 @@ The basic flow of how it goes is:
 ## Authentication code example
 
 The above is rather theoretical description of it. Lets have a look at one example. 
+
+## How to get Bearer token?
+
+To get these tokens, you need to set up your application with login capabilities
+
+1. You start developing an application
+2. You realize you need a token for some API calls
+3. You integrate into the PoT Login (see above)
+4. You can now log in to your own application to get your login token and use it for those calls
