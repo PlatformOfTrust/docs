@@ -34,3 +34,39 @@ To get these tokens, you need to set up your application with login capabilities
 2. You realize you need a token for some API calls
 3. You integrate into the PoT Login (see above)
 4. You can now log in to your own application to get your login token and use it for those calls
+
+
+# OAuth
+
+To make API requests, you need to authenticate to Upwork API. Currently, we support OAuth 2.0 authentication. All API requests MUST be signed following the RFC 5849 specification.
+
+
+## Client credentials
+
+For each application you develop, you need to obtain new client credentials. 
+These include a client identifier and a client shared-secret. 
+You can find these credentials at https://developers.oftrust.net/profile 
+while logged into your account. 
+
+You will receive a public and a private key for each client identifier and 
+client shared-secret you API request.
+
+
+## OAuth 2.0 workflow
+
+## Get request token
+
+**Endpoint**
+
+POST /api/auth/v1/oauth/token/request
+
+HTTPS is required. All the names of variables follow OAuth specification (see RFC 5849).
+
+```python
+
+import upwork
+client = upwork.Client(public_key, secret_key, **credentials)
+client.auth.get_request_token()
+
+```
+

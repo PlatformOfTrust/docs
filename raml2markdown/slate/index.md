@@ -28,22 +28,8 @@ search: true
 
 ## What is Platform of Trust?
 
-> Some instructions and tips to make your life easier (and less support requests to us): 
+Communally built Platform of Trust provides a trustworthy and easy-to-use surrounding where you can utilize a vast data pool and develop everyday services for your customers with the help from the developer community and without a need for pricey and time-consuming integrations.  
 
-> - Endpoints related code examples are constructed against **SANDBOX environment `https://api-sandbox.oftrust.net/`**. 
-
-> - In **PRODUCTION** use, change domain in api endpoints to `https://api.oftrust.net/`
-
-> - **How to get needed Bearer Token?** See [Authentication section](#how-to-get-bearer-token)
-
-> If you found a bug or missing information in the documentation, contact us at dev@oftrust.net or create an [issue in Github](https://github.com/PlatformOfTrust/docs/issues/new). 
-
-
-
-
-Communally built Platform of Trust provides a trustworthy and easy-to-use surrounding where you can utilize a vast data pool and develop everyday services for your`
-customers with the help from the developer community and without a need for pricey and time-consuming integrations.  
-``
 Platform of Trust has Finnish origins, but it’s built to expand globally through the network of built environment innovation hubs.
 
 **Developer Portal**
@@ -56,11 +42,23 @@ Market place is the bazaar to find more data products to use in application deve
 
 # Getting started
 
-It's typically a good idea to get familiar with the whole **authentication process**, because even to this day not everyone is familiar with how they work. In a nutshell [this OAuth single page auth flow is what we use](https://www.oauth.com/oauth2-servers/single-page-apps/#authorization). 
+> Some instructions and tips to make your life easier (and less support requests to us): 
 
-* You can read more about the process from [Authentication](#authentication)
+> - Endpoints related code examples are constructed against **SANDBOX environment `https://api-sandbox.oftrust.net/`**. 
 
-* You will also need Bearer token to some of the API calls. Check out the [How to get Bearer token?](#how-to-get-bearer-token) 
+> - In **PRODUCTION** use, change domain in api endpoints to `https://api.oftrust.net/`
+
+> - **How to get needed Bearer Token?** See [Authentication section](#how-to-get-bearer-token)
+
+> If you found a bug or missing information in the documentation, contact us at dev@oftrust.net or create an [issue in Github](https://github.com/PlatformOfTrust/docs/issues/new). 
+
+* You should get familiar with [Authentication](#authentication) process regardless of are you integration data sources or building applications. 
+
+* Related to authentication is the Bearer Token which is needed in some of the API calls. Check out the [How to get Bearer token?](#how-to-get-bearer-token) 
+
+* Some of the API endpoints are CORS enabled and they are marked in the description. 
+
+* Another thing to understand is the ontologies. We recommend that you [get familiar with core ontologies](#ontologies) especially if you are integrating data sources to the Platform of Trust. 
 
 ## Standards used
 
@@ -84,44 +82,9 @@ of role, the generic `link-link.jsonld` can be used
 
 Read more from [Github](https://github.com/PlatformOfTrust/standards/blob/master/README.md)
 
-## Code Examples 
 
 <aside class="warning">
 All the documentation code examples use our sandbox environment. When you are done with testing, you should switch to production environment. Easiest way is to store API root url in variable and when needed, change it there. Thus the code examples contain API-root variable as an exmaple. 
 </aside>
 
-
-# OAuth
-
-To make API requests, you need to authenticate to Upwork API. Currently, we support OAuth 2.0 authentication. All API requests MUST be signed following the RFC 5849 specification.
-
-
-## Client credentials
-
-For each application you develop, you need to obtain new client credentials. 
-These include a client identifier and a client shared-secret. 
-You can find these credentials at https://developers.oftrust.net/profile 
-while logged into your account. 
-
-You will receive a public and a private key for each client identifier and 
-client shared-secret you API request.
-
-
-## OAuth 2.0 workflow
-
-## Get request token
-
-**Endpoint**
-
-POST /api/auth/v1/oauth/token/request
-
-HTTPS is required. All the names of variables follow OAuth specification (see RFC 5849).
-
-```python
-
-import upwork
-client = upwork.Client(public_key, secret_key, **credentials)
-client.auth.get_request_token()
-
-```
 

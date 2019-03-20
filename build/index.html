@@ -233,27 +233,7 @@
             <a href="#getting-started" class="toc-h1 toc-link" data-title="Getting started">Getting started</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#auth-flow" class="toc-h2 toc-link" data-title="Auth Flow">Auth Flow</a>
-                  </li>
-                  <li>
                     <a href="#standards-used" class="toc-h2 toc-link" data-title="Standards used">Standards used</a>
-                  </li>
-                  <li>
-                    <a href="#code-examples" class="toc-h2 toc-link" data-title="Code Examples">Code Examples</a>
-                  </li>
-              </ul>
-          </li>
-          <li>
-            <a href="#oauth" class="toc-h1 toc-link" data-title="OAuth">OAuth</a>
-              <ul class="toc-list-h2">
-                  <li>
-                    <a href="#client-credentials" class="toc-h2 toc-link" data-title="Client credentials">Client credentials</a>
-                  </li>
-                  <li>
-                    <a href="#oauth-2-0-workflow" class="toc-h2 toc-link" data-title="OAuth 2.0 workflow">OAuth 2.0 workflow</a>
-                  </li>
-                  <li>
-                    <a href="#get-request-token" class="toc-h2 toc-link" data-title="Get request token">Get request token</a>
                   </li>
               </ul>
           </li>
@@ -347,6 +327,23 @@
                   <li>
                     <a href="#authentication-code-example" class="toc-h2 toc-link" data-title="Authentication code example">Authentication code example</a>
                   </li>
+                  <li>
+                    <a href="#how-to-get-bearer-token" class="toc-h2 toc-link" data-title="How to get Bearer token?">How to get Bearer token?</a>
+                  </li>
+              </ul>
+          </li>
+          <li>
+            <a href="#oauth" class="toc-h1 toc-link" data-title="OAuth">OAuth</a>
+              <ul class="toc-list-h2">
+                  <li>
+                    <a href="#client-credentials" class="toc-h2 toc-link" data-title="Client credentials">Client credentials</a>
+                  </li>
+                  <li>
+                    <a href="#oauth-2-0-workflow" class="toc-h2 toc-link" data-title="OAuth 2.0 workflow">OAuth 2.0 workflow</a>
+                  </li>
+                  <li>
+                    <a href="#get-request-token" class="toc-h2 toc-link" data-title="Get request token">Get request token</a>
+                  </li>
               </ul>
           </li>
           <li>
@@ -375,21 +372,9 @@
       <div class="dark-box"></div>
       <div class="content">
         <h1 id='platform-of-trust-api-documentation'>Platform of Trust API Documentation</h1><h2 id='what-is-platform-of-trust'>What is Platform of Trust?</h2>
-<blockquote>
-<p>Some instructions and tips to make your life easier (and less support requests to us): </p>
+<p>Communally built Platform of Trust provides a trustworthy and easy-to-use surrounding where you can utilize a vast data pool and develop everyday services for your customers with the help from the developer community and without a need for pricey and time-consuming integrations.  </p>
 
-<ul>
-<li><p>Endpoints related code examples are constructed against <strong>SANDBOX environment <code>https://api-sandbox.oftrust.net/</code></strong>. </p></li>
-<li><p>In <strong>PRODUCTION</strong> use, change domain in api endpoints to <code>https://api.oftrust.net/</code></p></li>
-</ul>
-
-<p>If you found a bug or missing information in the documentation, contact us at dev@oftrust.net or create an <a href="https://github.com/PlatformOfTrust/docs/issues/new">issue in Github</a>. </p>
-</blockquote>
-
-<p>Communally built Platform of Trust provides a trustworthy and easy-to-use surrounding where you can utilize a vast data pool and develop everyday services for your<code>
-customers with the help from the developer community and without a need for pricey and time-consuming integrations.  
-</code>`
-Platform of Trust has Finnish origins, but it’s built to expand globally through the network of built environment innovation hubs.</p>
+<p>Platform of Trust has Finnish origins, but it’s built to expand globally through the network of built environment innovation hubs.</p>
 
 <p><strong>Developer Portal</strong></p>
 
@@ -398,21 +383,24 @@ Platform of Trust has Finnish origins, but it’s built to expand globally throu
 <p><strong>Market place</strong></p>
 
 <p>Market place is the bazaar to find more data products to use in application development. Visa versa, it is also the service where your data products are added during the integration process. </p>
-<h1 id='getting-started'>Getting started</h1><h2 id='auth-flow'>Auth Flow</h2>
-<p>It&#39;s typically a good idea to explain the whole authentication process, because even to this day not everyone is familiar with how they work. In a nutshell <a href="https://www.oauth.com/oauth2-servers/single-page-apps/#authorization">this OAuth single page auth flow is what we use</a></p>
+<h1 id='getting-started'>Getting started</h1>
+<blockquote>
+<p>Some instructions and tips to make your life easier (and less support requests to us): </p>
 
-<p>The basic flow of how it goes is:</p>
+<ul>
+<li><p>Endpoints related code examples are constructed against <strong>SANDBOX environment <code>https://api-sandbox.oftrust.net/</code></strong>. </p></li>
+<li><p>In <strong>PRODUCTION</strong> use, change domain in api endpoints to <code>https://api.oftrust.net/</code></p></li>
+<li><p><strong>How to get needed Bearer Token?</strong> See <a href="#how-to-get-bearer-token">Authentication section</a></p></li>
+</ul>
 
-<ol>
-<li><p>user gets redirected from YOUR frontend to YOUR backend&#39;s <code>/login</code> endpoint or similar</p></li>
-<li><p>the <code>/login</code> endpoint generates a <code>state</code> parameter for it&#39;s own security by e.g. signing the current timestamp with a secret from it&#39;s config</p></li>
-<li><p>the <code>/login</code> endpoint redirects the user to the login portal with parameters that define the application the user is coming from (client_id, redirect_uri) as well as the state and that we&#39;re going to do a code exchange</p></li>
-<li><p>login portal takes care of identifying the user</p></li>
-<li><p>login portal sends user back to YOUR backend&#39;s &quot;return url&quot;, e.g. <code>/login/complete</code> with the new code and the state you provided etc.</p></li>
-<li><p>you validate the state seems valid, isn&#39;t too old, etc.</p></li>
-<li><p>you send this code with your client secret to the authorization backend in a server to server -request and get back the actual login token</p></li>
-<li><p>you set the token in a cookie (preferably with <code>httpOnly; secure; SameSite=strict</code>)</p></li>
-</ol>
+<p>If you found a bug or missing information in the documentation, contact us at dev@oftrust.net or create an <a href="https://github.com/PlatformOfTrust/docs/issues/new">issue in Github</a>. </p>
+</blockquote>
+
+<ul>
+<li><p>You should get familiar with <a href="#authentication">Authentication</a> process regardless of are you integration data sources or building applications. </p></li>
+<li><p>Related to authentication is the needed Bearer Token which is needed in some of the API calls. Check out the <a href="#how-to-get-bearer-token">How to get Bearer token?</a> </p></li>
+<li><p>Another thing to understand is the ontologies. We recommend that you <a href="#ontologies">get familiar with core ontologies</a> especially if you are integrating data sources to the Platform of Trust. </p></li>
+</ul>
 <h2 id='standards-used'>Standards used</h2>
 <p><strong>Dates</strong>: we use a subset of ISO-8601 - <a href="https://www.ietf.org/rfc/rfc3339.txt">RFC 3339</a>. Example <code>2008-09-15T15:53:00+05:00</code></p>
 
@@ -433,32 +421,11 @@ of role, the generic <code>link-link.jsonld</code> can be used
 <a href="https://github.com/PlatformOfTrust/standards/tree/master/contexts/link-link.jsonld">contexts/link-link.jsonld</a>.</p>
 
 <p>Read more from <a href="https://github.com/PlatformOfTrust/standards/blob/master/README.md">Github</a></p>
-<h2 id='code-examples'>Code Examples</h2>
+
 <aside class="warning">
 All the documentation code examples use our sandbox environment. When you are done with testing, you should switch to production environment. Easiest way is to store API root url in variable and when needed, change it there. Thus the code examples contain API-root variable as an exmaple. 
 </aside>
-<h1 id='oauth'>OAuth</h1>
-<p>To make API requests, you need to authenticate to Upwork API. Currently, we support OAuth 2.0 authentication. All API requests MUST be signed following the RFC 5849 specification.</p>
-<h2 id='client-credentials'>Client credentials</h2>
-<p>For each application you develop, you need to obtain new client credentials. 
-These include a client identifier and a client shared-secret. 
-You can find these credentials at https://developers.oftrust.net/profile 
-while logged into your account. </p>
-
-<p>You will receive a public and a private key for each client identifier and 
-client shared-secret you API request.</p>
-<h2 id='oauth-2-0-workflow'>OAuth 2.0 workflow</h2><h2 id='get-request-token'>Get request token</h2>
-<p><strong>Endpoint</strong></p>
-
-<p>POST /api/auth/v1/oauth/token/request</p>
-
-<p>HTTPS is required. All the names of variables follow OAuth specification (see RFC 5849).</p>
-<pre class="highlight python tab-python"><code>
-<span class="kn">import</span> <span class="nn">upwork</span>
-<span class="n">client</span> <span class="o">=</span> <span class="n">upwork</span><span class="o">.</span><span class="n">Client</span><span class="p">(</span><span class="n">public_key</span><span class="p">,</span> <span class="n">secret_key</span><span class="p">,</span> <span class="o">**</span><span class="n">credentials</span><span class="p">)</span>
-<span class="n">client</span><span class="o">.</span><span class="n">auth</span><span class="o">.</span><span class="n">get_request_token</span><span class="p">()</span>
-
-</code></pre><h1 id='broker-api'>Broker API</h1>
+<h1 id='broker-api'>Broker API</h1>
 <p>The Broker API provides means to connect a service to a translator that will
 return desired data from different sources. The data broker does not mangle
 the data in any way, it only functions as a proxy between services and
@@ -486,7 +453,7 @@ translators.</p>
     }
 }'</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">"Javascript example missing. Why not contribute one for us?"</span><span class="p">);</span>
-</code></pre><pre class="highlight java tab-java"><code><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Java example missing. Why not contribute one for us?"</span><span class="o">);</span>
+</code></pre><pre class="highlight java tab-java"><code><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Java example missing. Why not contribute one for us?"</span><span class="o">);</span>
 </code></pre>
 <blockquote>
 <p>The above example should return <code>JSON</code> structured like this:</p>
@@ -602,7 +569,7 @@ A notification about the entry will be sent to these users.</p>
     ]
 }'</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">"Javascript example missing. Why not contribute one for us?"</span><span class="p">);</span>
-</code></pre><pre class="highlight java tab-java"><code><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Java example missing. Why not contribute one for us?"</span><span class="o">);</span>
+</code></pre><pre class="highlight java tab-java"><code><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Java example missing. Why not contribute one for us?"</span><span class="o">);</span>
 </code></pre>
 <blockquote>
 <p>The above example should return <code>JSON</code> structured like this:</p>
@@ -687,7 +654,7 @@ A notification about the entry will be sent to these users.</p>
 </code></pre><pre class="highlight shell tab-shell"><code>curl https://api-sandbox.oftrust.net/calendar/v1/calendar/67fa7be3-0c7d-4318-a09a-585181d1e6f3 <span class="se">\</span>
 -H <span class="s2">"Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzY29w...DVs5aaf"</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">"Javascript example missing. Why not contribute one for us?"</span><span class="p">);</span>
-</code></pre><pre class="highlight java tab-java"><code><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Java example missing. Why not contribute one for us?"</span><span class="o">);</span>
+</code></pre><pre class="highlight java tab-java"><code><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Java example missing. Why not contribute one for us?"</span><span class="o">);</span>
 </code></pre>
 <blockquote>
 <p>The above example should return <code>JSON</code> structured like this:</p>
@@ -777,7 +744,7 @@ A notification about the entry will be sent to these users.</p>
     "title": "Autumn feast 3",
 }'</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">"Javascript example missing. Why not contribute one for us?"</span><span class="p">);</span>
-</code></pre><pre class="highlight java tab-java"><code><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Java example missing. Why not contribute one for us?"</span><span class="o">);</span>
+</code></pre><pre class="highlight java tab-java"><code><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Java example missing. Why not contribute one for us?"</span><span class="o">);</span>
 </code></pre>
 <blockquote>
 <p>The above example should return <code>JSON</code> structured like this:</p>
@@ -873,7 +840,7 @@ A notification about the entry will be sent to these users.</p>
 </code></pre><pre class="highlight shell tab-shell"><code>curl -X DELETE https://api-sandbox.oftrust.net/calendar/v1/calendar/67fa7be3-0c7d-4318-a09a-585181d1e6f3 <span class="se">\</span>
 -H <span class="s2">"Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzY29w...DVs5aaf"</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">"Javascript example missing. Why not contribute one for us?"</span><span class="p">);</span>
-</code></pre><pre class="highlight java tab-java"><code><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Java example missing. Why not contribute one for us?"</span><span class="o">);</span>
+</code></pre><pre class="highlight java tab-java"><code><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Java example missing. Why not contribute one for us?"</span><span class="o">);</span>
 </code></pre>
 <blockquote>
 <p>The above example should return header structured like this:</p>
@@ -937,7 +904,7 @@ A notification about the entry will be sent to these users.</p>
 </code></pre><pre class="highlight shell tab-shell"><code>curl https://api-sandbox.oftrust.net/calendar/v1/calendar/34fe0b13-e031-4ef2-822e-17eabad63259/list <span class="se">\</span>
 -H <span class="s2">"Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzY29w...DVs5aaf"</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">"Javascript example missing. Why not contribute one for us?"</span><span class="p">);</span>
-</code></pre><pre class="highlight java tab-java"><code><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Java example missing. Why not contribute one for us?"</span><span class="o">);</span>
+</code></pre><pre class="highlight java tab-java"><code><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Java example missing. Why not contribute one for us?"</span><span class="o">);</span>
 </code></pre>
 <blockquote>
 <p>The above example should return <code>JSON</code> structured like this:</p>
@@ -1036,7 +1003,7 @@ identity can have.</p>
 <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">"Python example missing. Why not contribute one for us?"</span><span class="p">)</span>
 </code></pre><pre class="highlight shell tab-shell"><code>curl https://api-sandbox.oftrust.net/context/v1/contexts
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">"Javascript example missing. Why not contribute one for us?"</span><span class="p">);</span>
-</code></pre><pre class="highlight java tab-java"><code><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Java example missing. Why not contribute one for us?"</span><span class="o">);</span>
+</code></pre><pre class="highlight java tab-java"><code><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Java example missing. Why not contribute one for us?"</span><span class="o">);</span>
 </code></pre>
 <blockquote>
 <p>The above example should return <code>JSON</code> structured like this:</p>
@@ -1106,7 +1073,7 @@ The links provides the direction and type (sometimes called role) of the link.</
     }
 }'</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">"Javascript example missing. Why not contribute one for us?"</span><span class="p">);</span>
-</code></pre><pre class="highlight java tab-java"><code><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Java example missing. Why not contribute one for us?"</span><span class="o">);</span>
+</code></pre><pre class="highlight java tab-java"><code><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Java example missing. Why not contribute one for us?"</span><span class="o">);</span>
 </code></pre>
 <blockquote>
 <p>The above example should return <code>JSON</code> structured like this:</p>
@@ -1189,7 +1156,7 @@ The links provides the direction and type (sometimes called role) of the link.</
 </code></pre><pre class="highlight shell tab-shell"><code>curl https://api-sandbox.oftrust.net/identity/v1/identity/fbd106c5-c594-4416-a87e-f61e578fe829 <span class="se">\</span>
 -H <span class="s2">"Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzY29w...DVs5aaf"</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">"Javascript example missing. Why not contribute one for us?"</span><span class="p">);</span>
-</code></pre><pre class="highlight java tab-java"><code><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Java example missing. Why not contribute one for us?"</span><span class="o">);</span>
+</code></pre><pre class="highlight java tab-java"><code><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Java example missing. Why not contribute one for us?"</span><span class="o">);</span>
 </code></pre>
 <blockquote>
 <p>The above example should return <code>JSON</code> structured like this:</p>
@@ -1283,7 +1250,7 @@ The links provides the direction and type (sometimes called role) of the link.</
     }
 }'</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">"Javascript example missing. Why not contribute one for us?"</span><span class="p">);</span>
-</code></pre><pre class="highlight java tab-java"><code><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Java example missing. Why not contribute one for us?"</span><span class="o">);</span>
+</code></pre><pre class="highlight java tab-java"><code><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Java example missing. Why not contribute one for us?"</span><span class="o">);</span>
 </code></pre>
 <blockquote>
 <p>The above example should return <code>JSON</code> structured like this:</p>
@@ -1378,7 +1345,7 @@ The links provides the direction and type (sometimes called role) of the link.</
 </code></pre><pre class="highlight shell tab-shell"><code>curl -X DELETE https://api-sandbox.oftrust.net/identity/v1/identity/sdssSsAaASew342SD3as14 <span class="se">\</span>
 -H <span class="s2">"Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzY29w...DVs5aaf"</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">"Javascript example missing. Why not contribute one for us?"</span><span class="p">);</span>
-</code></pre><pre class="highlight java tab-java"><code><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Java example missing. Why not contribute one for us?"</span><span class="o">);</span>
+</code></pre><pre class="highlight java tab-java"><code><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Java example missing. Why not contribute one for us?"</span><span class="o">);</span>
 </code></pre>
 <blockquote>
 <p>The above example should return <code>JSON</code> structured like this:</p>
@@ -1443,7 +1410,7 @@ The links provides the direction and type (sometimes called role) of the link.</
 </code></pre><pre class="highlight shell tab-shell"><code>curl https://api-sandbox.oftrust.net/identity/v1/identities <span class="se">\</span>
 -H <span class="s2">"Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzY29w...DVs5aaf"</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">"Javascript example missing. Why not contribute one for us?"</span><span class="p">);</span>
-</code></pre><pre class="highlight java tab-java"><code><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Java example missing. Why not contribute one for us?"</span><span class="o">);</span>
+</code></pre><pre class="highlight java tab-java"><code><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Java example missing. Why not contribute one for us?"</span><span class="o">);</span>
 </code></pre>
 <blockquote>
 <p>The above example should return <code>JSON</code> structured like this:</p>
@@ -1780,7 +1747,7 @@ The links provides the direction and type (sometimes called role) of the link.</
 </code></pre><pre class="highlight shell tab-shell"><code>curl https://api-sandbox.oftrust.net/identities/35ee9e31-acee-42b4-ac7b-675790cc2721/links/Link <span class="se">\</span>
 -H <span class="s2">"Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzY29w...DVs5aaf"</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">"Javascript example missing. Why not contribute one for us?"</span><span class="p">);</span>
-</code></pre><pre class="highlight java tab-java"><code><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Java example missing. Why not contribute one for us?"</span><span class="o">);</span>
+</code></pre><pre class="highlight java tab-java"><code><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Java example missing. Why not contribute one for us?"</span><span class="o">);</span>
 </code></pre>
 <blockquote>
 <p>The above example should return <code>JSON</code> structured like this:</p>
@@ -1895,7 +1862,7 @@ A notification about the message will be sent to these users.</p>
     ]
 }'</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">"Javascript example missing. Why not contribute one for us?"</span><span class="p">);</span>
-</code></pre><pre class="highlight java tab-java"><code><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Java example missing. Why not contribute one for us?"</span><span class="o">);</span>
+</code></pre><pre class="highlight java tab-java"><code><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Java example missing. Why not contribute one for us?"</span><span class="o">);</span>
 </code></pre>
 <blockquote>
 <p>The above example should return <code>JSON</code> structured like this:</p>
@@ -1977,7 +1944,7 @@ A notification about the message will be sent to these users.</p>
 </code></pre><pre class="highlight shell tab-shell"><code>curl https://api-sandbox.oftrust.net/message/v1/message/3a9e31ff-b654-4069-8361-6b446dc04c95 <span class="se">\</span>
 -H <span class="s2">"Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzY29w...DVs5aaf"</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">"Javascript example missing. Why not contribute one for us?"</span><span class="p">);</span>
-</code></pre><pre class="highlight java tab-java"><code><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Java example missing. Why not contribute one for us?"</span><span class="o">);</span>
+</code></pre><pre class="highlight java tab-java"><code><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Java example missing. Why not contribute one for us?"</span><span class="o">);</span>
 </code></pre>
 <blockquote>
 <p>The above example should return <code>JSON</code> structured like this:</p>
@@ -2064,7 +2031,7 @@ A notification about the message will be sent to these users.</p>
     "content": "Testing the message api"
 }'</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">"Javascript example missing. Why not contribute one for us?"</span><span class="p">);</span>
-</code></pre><pre class="highlight java tab-java"><code><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Java example missing. Why not contribute one for us?"</span><span class="o">);</span>
+</code></pre><pre class="highlight java tab-java"><code><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Java example missing. Why not contribute one for us?"</span><span class="o">);</span>
 </code></pre>
 <blockquote>
 <p>The above example should return <code>JSON</code> structured like this:</p>
@@ -2157,7 +2124,7 @@ A notification about the message will be sent to these users.</p>
 </code></pre><pre class="highlight shell tab-shell"><code>curl -X DELETE https://api-sandbox.oftrust.net/message/v1/message/3a9e31ff-b654-4069-8361-6b446dc04c95 <span class="se">\</span>
 -H <span class="s2">"Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzY29w...DVs5aaf"</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">"Javascript example missing. Why not contribute one for us?"</span><span class="p">);</span>
-</code></pre><pre class="highlight java tab-java"><code><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Java example missing. Why not contribute one for us?"</span><span class="o">);</span>
+</code></pre><pre class="highlight java tab-java"><code><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Java example missing. Why not contribute one for us?"</span><span class="o">);</span>
 </code></pre>
 <blockquote>
 <p>The above example should return header structured like this:</p>
@@ -2222,7 +2189,7 @@ A notification about the message will be sent to these users.</p>
 -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
 -H <span class="s2">"Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzY29w...DVs5aaf"</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">"Javascript example missing. Why not contribute one for us?"</span><span class="p">);</span>
-</code></pre><pre class="highlight java tab-java"><code><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Java example missing. Why not contribute one for us?"</span><span class="o">);</span>
+</code></pre><pre class="highlight java tab-java"><code><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Java example missing. Why not contribute one for us?"</span><span class="o">);</span>
 </code></pre>
 <blockquote>
 <p>The above example should return <code>JSON</code> structured like this:</p>
@@ -2286,7 +2253,7 @@ A notification about the message will be sent to these users.</p>
 </code></pre><pre class="highlight shell tab-shell"><code>curl https://api-sandbox.oftrust.net/message/v1/message/3a9e31ff-b654-4069-8361-6b446dc04c95 <span class="se">\</span>
 -H <span class="s2">"Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzY29w...DVs5aaf"</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">"Javascript example missing. Why not contribute one for us?"</span><span class="p">);</span>
-</code></pre><pre class="highlight java tab-java"><code><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Java example missing. Why not contribute one for us?"</span><span class="o">);</span>
+</code></pre><pre class="highlight java tab-java"><code><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Java example missing. Why not contribute one for us?"</span><span class="o">);</span>
 </code></pre>
 <blockquote>
 <p>The above example should return <code>JSON</code> structured like this:</p>
@@ -2387,7 +2354,7 @@ use when requesting data from the translator.</p>
   "description": "Test translator business information"
 }'</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">"Javascript example missing. Why not contribute one for us?"</span><span class="p">);</span>
-</code></pre><pre class="highlight java tab-java"><code><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Java example missing. Why not contribute one for us?"</span><span class="o">);</span>
+</code></pre><pre class="highlight java tab-java"><code><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Java example missing. Why not contribute one for us?"</span><span class="o">);</span>
 </code></pre>
 <blockquote>
 <p>The above example should return <code>JSON</code> structured like this:</p>
@@ -2462,7 +2429,7 @@ use when requesting data from the translator.</p>
 <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">"Python example missing. Why not contribute one for us?"</span><span class="p">)</span>
 </code></pre><pre class="highlight shell tab-shell"><code>curl https://api-sandbox.oftrust.net/product/v1/products
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">"Javascript example missing. Why not contribute one for us?"</span><span class="p">);</span>
-</code></pre><pre class="highlight java tab-java"><code><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Java example missing. Why not contribute one for us?"</span><span class="o">);</span>
+</code></pre><pre class="highlight java tab-java"><code><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Java example missing. Why not contribute one for us?"</span><span class="o">);</span>
 </code></pre>
 <blockquote>
 <p>The above example should return <code>JSON</code> structured like this:</p>
@@ -2516,7 +2483,7 @@ use when requesting data from the translator.</p>
 <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">"Python example missing. Why not contribute one for us?"</span><span class="p">)</span>
 </code></pre><pre class="highlight shell tab-shell"><code>curl https://api-sandbox.oftrust.net/product/v1/products/business-identity-test
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">"Javascript example missing. Why not contribute one for us?"</span><span class="p">);</span>
-</code></pre><pre class="highlight java tab-java"><code><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Java example missing. Why not contribute one for us?"</span><span class="o">);</span>
+</code></pre><pre class="highlight java tab-java"><code><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Java example missing. Why not contribute one for us?"</span><span class="o">);</span>
 </code></pre>
 <blockquote>
 <p>The above example should return <code>JSON</code> structured like this:</p>
@@ -2607,7 +2574,7 @@ use when requesting data from the translator.</p>
   "imageUrl": "http://example.com/image.png"
 }'</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">"Javascript example missing. Why not contribute one for us?"</span><span class="p">);</span>
-</code></pre><pre class="highlight java tab-java"><code><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Java example missing. Why not contribute one for us?"</span><span class="o">);</span>
+</code></pre><pre class="highlight java tab-java"><code><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Java example missing. Why not contribute one for us?"</span><span class="o">);</span>
 </code></pre>
 <blockquote>
 <p>The above example should return <code>JSON</code> structured like this:</p>
@@ -2695,7 +2662,7 @@ use when requesting data from the translator.</p>
 <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">"Python example missing. Why not contribute one for us?"</span><span class="p">)</span>
 </code></pre><pre class="highlight shell tab-shell"><code>curl -X DELETE https://api-sandbox.oftrust.net/product/v1/products/business-identity-test
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">"Javascript example missing. Why not contribute one for us?"</span><span class="p">);</span>
-</code></pre><pre class="highlight java tab-java"><code><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"Java example missing. Why not contribute one for us?"</span><span class="o">);</span>
+</code></pre><pre class="highlight java tab-java"><code><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Java example missing. Why not contribute one for us?"</span><span class="o">);</span>
 </code></pre>
 <blockquote>
 <p>The above example should return <code>JSON</code> structured like this:</p>
@@ -2760,7 +2727,37 @@ use when requesting data from the translator.</p>
 </ol>
 <h2 id='authentication-code-example'>Authentication code example</h2>
 <p>The above is rather theoretical description of it. Lets have a look at one example. </p>
-<h1 id='ontologies'>Ontologies</h1>
+<h2 id='how-to-get-bearer-token'>How to get Bearer token?</h2>
+<p>To get these tokens, you need to set up your application with login capabilities</p>
+
+<ol>
+<li>You start developing an application</li>
+<li>You realize you need a token for some API calls</li>
+<li>You integrate into the PoT Login (see above)</li>
+<li>You can now log in to your own application to get your login token and use it for those calls</li>
+</ol>
+<h1 id='oauth'>OAuth</h1>
+<p>To make API requests, you need to authenticate to Upwork API. Currently, we support OAuth 2.0 authentication. All API requests MUST be signed following the RFC 5849 specification.</p>
+<h2 id='client-credentials'>Client credentials</h2>
+<p>For each application you develop, you need to obtain new client credentials. 
+These include a client identifier and a client shared-secret. 
+You can find these credentials at https://developers.oftrust.net/profile 
+while logged into your account. </p>
+
+<p>You will receive a public and a private key for each client identifier and 
+client shared-secret you API request.</p>
+<h2 id='oauth-2-0-workflow'>OAuth 2.0 workflow</h2><h2 id='get-request-token'>Get request token</h2>
+<p><strong>Endpoint</strong></p>
+
+<p>POST /api/auth/v1/oauth/token/request</p>
+
+<p>HTTPS is required. All the names of variables follow OAuth specification (see RFC 5849).</p>
+<pre class="highlight python tab-python"><code>
+<span class="kn">import</span> <span class="nn">upwork</span>
+<span class="n">client</span> <span class="o">=</span> <span class="n">upwork</span><span class="o">.</span><span class="n">Client</span><span class="p">(</span><span class="n">public_key</span><span class="p">,</span> <span class="n">secret_key</span><span class="p">,</span> <span class="o">**</span><span class="n">credentials</span><span class="p">)</span>
+<span class="n">client</span><span class="o">.</span><span class="n">auth</span><span class="o">.</span><span class="n">get_request_token</span><span class="p">()</span>
+
+</code></pre><h1 id='ontologies'>Ontologies</h1>
 <p>Text content</p>
 <h2 id='heading-2'>Heading 2</h2>
 <p>Content </p>
