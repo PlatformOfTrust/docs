@@ -54,7 +54,9 @@ Market place is the bazaar to find more data products to use in application deve
 
 * You should get familiar with [Authentication](#authentication) process regardless of are you integration data sources or building applications. 
 
-* Related to authentication is the needed Bearer Token which is needed in some of the API calls. Check out the [How to get Bearer token?](#how-to-get-bearer-token) 
+* Related to authentication is the Bearer Token which is needed in some of the API calls. Check out the [How to get Bearer token?](#how-to-get-bearer-token) 
+
+* Some of the API endpoints are CORS enabled and they are marked in the description. 
 
 * Another thing to understand is the ontologies. We recommend that you [get familiar with core ontologies](#ontologies) especially if you are integrating data sources to the Platform of Trust. 
 
