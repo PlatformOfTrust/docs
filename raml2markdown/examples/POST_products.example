@@ -28,7 +28,7 @@ console.error("Javascript example missing. Why not contribute one for us?");
 
 
 ```java
-System.out.print("Java example missing. Why not contribute one for us?");
+System.out.println("Java example missing. Why not contribute one for us?");
 ```
 
 > The above example should return `JSON` structured like this:
