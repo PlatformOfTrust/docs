@@ -8,7 +8,13 @@ curl https://api-sandbox.oftrust.net/product/v1/products
 ```
 
 ```javascript
-<script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
+<!doctype html>
+<html lang="en">
+<head>
+  <script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
+</head>
+<body>
+
 <script>
 $( document ).ready(function() {
   var potAPI = "https://api-sandbox.oftrust.net/product/v1/products";
@@ -17,6 +23,9 @@ $( document ).ready(function() {
     });
 });
 </script>
+
+</body>
+</html>
 ```
 
 
