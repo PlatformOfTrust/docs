@@ -8,7 +8,22 @@ curl https://api-sandbox.oftrust.net/product/v1/products
 ```
 
 ```javascript
-console.error("Javascript example missing. Why not contribute one for us?");
+<html>
+<head>
+  <script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
+</head>
+<body>
+
+<script>
+$( document ).ready(function() {
+  var potAPI = "https://api-sandbox.oftrust.net/product/v1/products";
+  $.getJSON( potAPI, function( data ) {
+        alert(JSON.stringify(data));
+    });
+});
+</script>
+ 
+</body></html>
 ```
 
 
