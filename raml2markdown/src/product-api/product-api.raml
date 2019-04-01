@@ -2,7 +2,7 @@
 ---
 title: Platform Of Trust Product API
 version: v1
-baseUri: https://api-sandbox.oftrust.net/product/{version}
+baseUri: https://api-sandbox.oftrust.net/products/{version}
 mediaType: application/json
 description: |
   The Product API provides means to manage products provided by PoT core.
@@ -62,7 +62,7 @@ types:
         description: Optional URL to an image for the product.
         type: string
         example: https://example.com/product-image.png
-/products:
+/:
   description: Product resources.
   post:
     description: Create a new product

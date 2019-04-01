@@ -4,7 +4,7 @@ sys.stdout.write("Python example missing. Why not contribute one for us?")
 ```
 
 ```shell
-curl https://api-sandbox.oftrust.net/identities/35ee9e31-acee-42b4-ac7b-675790cc2721/links/Link \
+curl https://api-sandbox.oftrust.net/identities/v1/35ee9e31-acee-42b4-ac7b-675790cc2721/links?type=Link \
 -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzY29w...DVs5aaf"
 ```
 

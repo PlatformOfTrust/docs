@@ -9,7 +9,7 @@ sys.stdout.write("Python example missing. Why not contribute one for us?")
 // the same captured request, you have to update timestamp and thus
 // re-sign at the minimum
 
-curl -X POST https://api-sandbox.oftrust.net/broker/v0.1/fetch-data-product \
+curl -X POST https://api-sandbox.oftrust.net/broker/v1/fetch-data-product \
 -H "Content-Type: application/json" \
 -H "X-Pot-Signature: Ioma1gqOVFUBrXiziWSCLqBG4vFozG3YgzPzillNip0=" \
 -H "X-Pot-App: 379780e4-b511-4fa9-aef8-bda9bd58ab89" \

@@ -2,7 +2,7 @@
 ---
 title: Message
 version: v1
-baseUri: https://api-sandbox.oftrust.net/message/{version}
+baseUri: https://api-sandbox.oftrust.net/messages/{version}
 mediaType: application/json
 description: |
   The message API provides means to create/send messages to identities.
@@ -40,7 +40,7 @@ types:
             "323bde80-4cc2-472e-bb77-e6a3e95a1253",
             "0827e9c3-9664-479f-b0ec-956a35d72e4b"
           ]
-/message:
+/:
   description: |
     Manage messages of identities. A message can be sent to any identity the user
     has access to.
@@ -136,9 +136,6 @@ types:
                     "message": "User not logged in."
                   }
                 }
-
-/messages:
-  description: List messages that are sent to an identity.
   /{toIdentity}:
     uriParameters:
       toIdentity:
@@ -146,6 +143,7 @@ types:
         type: string
         example: 2584bdd7-1cb2-48ed-a106-2a1b817cf909
     /list:
+      description: List all messages belonging to an identity.
       get:
         headers:
           Authorization: !include includes/properties/authorization-headers.yaml

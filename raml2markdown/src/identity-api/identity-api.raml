@@ -2,7 +2,7 @@
 ---
 title: Identity
 version: v1
-baseUri: https://api-sandbox.oftrust.net/identity/{version}
+baseUri: https://api-sandbox.oftrust.net/identities/{version}
 mediaType: application/json
 description: |
   The Identity API provides means to create, update and delete digital twins
@@ -35,10 +35,26 @@ types:
       type:
         description: The type of the link
         type: string
-/identity:
+/:
   description: |
     Manage identities. Create, read, update, delete and list identities from
     your world.
+  uriParameters:
+    type?:
+      description: |
+        If given to `GET /?type=App`, will list only the
+        identities of `@type: "App"`
+      type: string
+      example: ?type=App
+  get:
+    description: List all identities created by currently logged in user
+    headers:
+      Authorization: !include includes/properties/authorization-headers.yaml
+    responses:
+      200:
+        body:
+          properties: !include includes/properties/identities.yaml
+          example: !include includes/examples/identities.json
   post:
     description: Create a new identity
     headers:
@@ -113,16 +129,6 @@ types:
         404:
           body:
             example: !include includes/examples/identity-not-found.json
-/identities:
-  get:
-    description: List all identities created by currently logged in user
-    headers:
-      Authorization: !include includes/properties/authorization-headers.yaml
-    responses:
-      200:
-        body:
-          properties: !include includes/properties/identities.yaml
-          example: !include includes/examples/identities.json
   /{from_identity}/link/{to_identity}:
     uriParameters:
       from_identity:
@@ -266,12 +272,18 @@ types:
                   }
                 }
 
-  /{id}/links:
+  /{id}/links?type={type}:
     uriParameters:
       id:
         description: The ID of the identity
         type: string
         example: a2a161c9-a7ff-47e7-9b70-4bf4a83bcb90
+      type?:
+        description: |
+          If given to `GET /{id}/links?type=Owner`, will list only the
+          links of `@type: "Owner"`
+        type: string
+        example: ?type=Owner
     get:
       description: List all links for a given identity
       headers:
@@ -284,21 +296,3 @@ types:
         404:
           body:
             example: !include includes/examples/identity-not-found.json
-    /{type}:
-      uriParameters:
-        type:
-          description: The link type
-          type: string
-          example: Owner
-      get:
-        description: List all links of type {type} for given identity
-        headers:
-          Authorization: !include includes/properties/authorization-headers.yaml
-        responses:
-          200:
-            body:
-              properties: !include includes/properties/links.yaml
-              example: !include includes/examples/links.json
-          404:
-            body:
-              example: !include includes/examples/identity-not-found.json

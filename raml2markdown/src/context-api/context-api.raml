@@ -2,7 +2,7 @@
 ---
 title: Context
 version: v1
-baseUri: https://api-sandbox.oftrust.net/context/{version}
+baseUri: https://api-sandbox.oftrust.net/contexts/{version}
 mediaType: application/json
 description: |
   The Context API provides means to list available JSON-LD contexts in the
@@ -30,7 +30,7 @@ types:
         description: The URL to the context. This should be saved as the context for the identity or link.
         type: string
         example: https://example.com/contexts/identity-building.jsonld
-/contexts:
+/:
   description: Context handling
   get:
     description: Returns a list of all defined contexts

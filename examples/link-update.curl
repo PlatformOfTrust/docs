@@ -1,4 +1,4 @@
-curl -X PUT https://api-sandbox.oftrust.net/identities/86201e7d-6784-454b-9839-f7a6286f1791/link/35ee9e31-acee-42b4-ac7b-675790cc2721/Link \
+curl -X PUT https://api-sandbox.oftrust.net/identities/v1/86201e7d-6784-454b-9839-f7a6286f1791/link/35ee9e31-acee-42b4-ac7b-675790cc2721/Link \
 -H "Content-Type: application/json" \
 -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzY29w...DVs5aaf" \
 -d '{

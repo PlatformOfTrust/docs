@@ -4,7 +4,7 @@ sys.stdout.write("Python example missing. Why not contribute one for us?")
 ```
 
 ```shell
-curl -X DELETE https://api-sandbox.oftrust.net/product/v1/products/business-identity-test
+curl -X DELETE https://api-sandbox.oftrust.net/products/v1/business-identity-test
 ```
 
 ```javascript
