@@ -28,7 +28,7 @@ System.out.println("Java example missing. Why not contribute one for us?");
 HTTP/1.0 200 OK
 
 {
-  "@context": "https://platformoftrust.github.io/standards/contexts/message.jsonld",
+  "@context": "https://standards.oftrust.net/contexts/message.jsonld",
   "@type": "Message",
   "@id": "3a9e31ff-b654-4069-8361-6b446dc04c95",
   "toIdentity": "34fe0b13-e031-4ef2-822e-17eabad63259",

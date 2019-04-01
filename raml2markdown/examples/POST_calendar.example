@@ -37,7 +37,7 @@ System.out.println("Java example missing. Why not contribute one for us?");
 HTTP/1.0 201 Created
 
 {
-  "@context": "https://platformoftrust.github.io/standards/contexts/calendar.jsonld",
+  "@context": "https://standards.oftrust.net/contexts/calendar.jsonld",
   "@type": "Event",
   "@id": "67fa7be3-0c7d-4318-a09a-585181d1e6f3",
   "toIdentity": "34fe0b13-e031-4ef2-822e-17eabad63259",

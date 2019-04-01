@@ -2,7 +2,7 @@ curl -X PUT https://api-sandbox.oftrust.net/identities/86201e7d-6784-454b-9839-f
 -H "Content-Type: application/json" \
 -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzY29w...DVs5aaf" \
 -d '{
-	"context": "https://platformoftrust.github.io/standards/contexts/link-knows.jsonld",
+	"context": "https://standards.oftrust.net/contexts/link-knows.jsonld",
 	"type": "Knows"
 }'
 
@@ -10,7 +10,7 @@ curl -X PUT https://api-sandbox.oftrust.net/identities/86201e7d-6784-454b-9839-f
 HTTP/1.0 200 OK
 
 {
-  "@context": "https://platformoftrust.github.io/standards/contexts/link-knows.jsonld",
+  "@context": "https://standards.oftrust.net/contexts/link-knows.jsonld",
   "@type": "Knows",
   "@id": "10fab397-db00-424c-8281-8115b1985d23",
   "from": "86201e7d-6784-454b-9839-f7a6286f1791",

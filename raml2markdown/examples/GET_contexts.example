@@ -28,13 +28,13 @@ HTTP/1.0 200 OK
     {
       "type": "Identity",
       "name": "Apartment",
-      "url": "https://platformoftrust.github.io/standards/contexts/identity-apartment.jsonld"
+      "url": "https://standards.oftrust.net/contexts/identity-apartment.jsonld"
     },
     ...
     {
       "type": "Link",
       "name": "Owner",
-      "url": "https://platformoftrust.github.io/standards/contexts/link-owner.jsonld"
+      "url": "https://standards.oftrust.net/contexts/link-owner.jsonld"
     }
   ]
 }

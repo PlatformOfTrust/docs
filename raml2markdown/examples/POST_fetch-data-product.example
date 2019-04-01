@@ -38,9 +38,9 @@ System.out.println("Java example missing. Why not contribute one for us?");
 HTTP/1.0 200 OK
 
 {
-  "@context": "https://platformoftrust.github.io/standards/contexts/prh-data-product.jsonld",
+  "@context": "https://standards.oftrust.net/contexts/prh-data-product.jsonld",
   "data": {
-    "@context": "https://platformoftrust.github.io/standards/contexts/prh-data-product-parameters.jsonld",
+    "@context": "https://standards.oftrust.net/contexts/prh-data-product-parameters.jsonld",
     "@type": "BusinessIdentity",
     "totalResults": 1,
     "offset": 0,

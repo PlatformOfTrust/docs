@@ -27,7 +27,7 @@ HTTP/1.0 200 OK
   "@type": "collection",
   "ItemList": [
     {
-      "@context": "https://platformoftrust.github.io/standards/contexts/link-link.jsonld",
+      "@context": "https://standards.oftrust.net/contexts/link-link.jsonld",
       "@type": "Link",
       "@id": "10fab397-db00-424c-8281-8115b1985d23",
       "from": "86201e7d-6784-454b-9839-f7a6286f1791",

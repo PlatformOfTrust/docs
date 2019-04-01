@@ -27,7 +27,7 @@ HTTP/1.0 200 OK
   "@type": "collection",
   "ItemList": [
     {
-      "@context": "https://platformoftrust.github.io/standards/contexts/calendar.jsonld",
+      "@context": "https://standards.oftrust.net/contexts/calendar.jsonld",
       "@type": "Event",
       "@id": "67fa7be3-0c7d-4318-a09a-585181d1e6f3",
       "toIdentity": "34fe0b13-e031-4ef2-822e-17eabad63259",
