@@ -93,72 +93,75 @@ types:
                 "message": "Could not create calendar."
               }
             }
-  /{id}:
-    uriParameters:
-      id:
-        description: The ID of the calendar
-        type: string
-        example: 2584bdd7-1cb2-48ed-a106-2a1b817cf909
+/{id}:
+  description: Read, update and delete calendars of an identity.
+  uriParameters:
+    id:
+      description: The ID of the calendar
+      type: string
+      example: 2584bdd7-1cb2-48ed-a106-2a1b817cf909
+  get:
+    headers:
+      Authorization: !include includes/properties/authorization-headers.yaml
+    description: Read one calendar by id
+    responses:
+      200:
+        body:
+          properties: !include includes/properties/calendar.yaml
+          example: !include includes/examples/calendar.json
+      404:
+        body:
+          example: !include includes/examples/calendar-not-found.json
+  put:
+    headers:
+      Authorization: !include includes/properties/authorization-headers.yaml
+    description: Update a calendar by id
+    body:
+      type: calendar
+      example: !include includes/examples/calendar-update.json
+    responses:
+      200:
+        body:
+          properties: !include includes/properties/calendar.yaml
+          example: !include includes/examples/calendar.json
+      404:
+        body:
+          example: !include includes/examples/calendar-not-found.json
+      422:
+        body:
+          example: |
+            {
+              "error": {
+                "status": 422,
+                "message": "Could not update calendar."
+              }
+            }
+  delete:
+    headers:
+      Authorization: !include includes/properties/authorization-headers.yaml
+    description: Delete a calendar by id
+    responses:
+      204:
+        body:
+          example: {}
+      404:
+        body:
+          example: !include includes/examples/calendar-not-found.json
+/{toIdentity}:
+  description: Manage calendars created for the "to"-identity.
+  uriParameters:
+    toIdentity:
+      description: The identity to which the calendar belongs to.
+      type: string
+      example: 2584bdd7-1cb2-48ed-a106-2a1b817cf909
+  /:
+    description: List all calendars belonging to an identity.
     get:
       headers:
         Authorization: !include includes/properties/authorization-headers.yaml
-      description: Read one calendar by id
+      description: List calendars created for "to"-identity.
       responses:
         200:
           body:
-            properties: !include includes/properties/calendar.yaml
-            example: !include includes/examples/calendar.json
-        404:
-          body:
-            example: !include includes/examples/calendar-not-found.json
-    put:
-      headers:
-        Authorization: !include includes/properties/authorization-headers.yaml
-      description: Update a calendar by id
-      body:
-        type: calendar
-        example: !include includes/examples/calendar-update.json
-      responses:
-        200:
-          body:
-            properties: !include includes/properties/calendar.yaml
-            example: !include includes/examples/calendar.json
-        404:
-          body:
-            example: !include includes/examples/calendar-not-found.json
-        422:
-          body:
-            example: |
-              {
-                "error": {
-                  "status": 422,
-                  "message": "Could not update calendar."
-                }
-              }
-    delete:
-      headers:
-        Authorization: !include includes/properties/authorization-headers.yaml
-      description: Delete a calendar by id
-      responses:
-        204:
-          body:
-            example: {}
-        404:
-          body:
-            example: !include includes/examples/calendar-not-found.json
-  /{toIdentity}:
-    uriParameters:
-      toIdentity:
-        description: The identity to which the calendar belongs to.
-        type: string
-        example: 2584bdd7-1cb2-48ed-a106-2a1b817cf909
-    /list:
-      get:
-        headers:
-          Authorization: !include includes/properties/authorization-headers.yaml
-        description: List all calendars belonging to the "to" identity.
-        responses:
-          200:
-            body:
-              properties: !include includes/properties/calendars.yaml
-              example: !include includes/examples/calendars.json
+            properties: !include includes/properties/calendars.yaml
+            example: !include includes/examples/calendars.json
