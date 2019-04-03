@@ -24,7 +24,7 @@ the data in any way, it only functions as a proxy between services and
 translators.
  
 
-**Version:** v0.1 
+**Version:** v1 
 
 # /FETCH-DATA-PRODUCT
 ## ***POST*** 

@@ -67,8 +67,7 @@ def concatenate_files():
         example_file = re.sub('[/]', '_', example_file)
         example_file = re.sub('I', 'i', example_file)
         example_file = example_file.rstrip(os.linesep)
-        example_file_path = Path("./examples/" + example_file + ".md")
-        # print(str(example_file_path))
+        example_file_path = Path("./examples/" +api.lower() +"_"+ example_file + ".md")
 
         example_method = str(line)
         example_method = re.sub('[`#*]', '', example_method)

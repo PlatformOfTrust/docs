@@ -33,13 +33,13 @@ A notification about the message will be sent to these users.
 
 **Version:** v1 
 
-# /MESSAGE
+# /
 ## ***POST*** 
 
 **Description:** Create a new message
 
 ### HTTP Request 
-`***POST*** /message` 
+`***POST*** /` 
 
 **Parameters**
 
@@ -55,13 +55,13 @@ A notification about the message will be sent to these users.
 | 201 |  |
 | 422 |  |
 
-# /MESSAGE/{ID}
+# /{ID}
 ## ***GET*** 
 
 **Description:** Read one message by id
 
 ### HTTP Request 
-`***GET*** /message/{id}` 
+`***GET*** /{id}` 
 
 **Parameters**
 
@@ -82,7 +82,7 @@ A notification about the message will be sent to these users.
 **Description:** Update a message by id
 
 ### HTTP Request 
-`***PUT*** /message/{id}` 
+`***PUT*** /{id}` 
 
 **Parameters**
 
@@ -105,7 +105,7 @@ A notification about the message will be sent to these users.
 **Description:** Delete a message by id
 
 ### HTTP Request 
-`***DELETE*** /message/{id}` 
+`***DELETE*** /{id}` 
 
 **Parameters**
 
@@ -121,13 +121,13 @@ A notification about the message will be sent to these users.
 | 204 |  |
 | 404 |  |
 
-# /MESSAGE/{ID}/READ
+# /{ID}/READ
 ## ***POST*** 
 
 **Description:** Marks a message read by the currently logged in user.
 
 ### HTTP Request 
-`***POST*** /message/{id}/read` 
+`***POST*** /{id}/read` 
 
 **Parameters**
 
@@ -143,13 +143,13 @@ A notification about the message will be sent to these users.
 | 200 |  |
 | 403 |  |
 
-# /MESSAGES/{TOIDENTITY}/LIST
+# /{TOIDENTITY}/
 ## ***GET*** 
 
-**Description:** List all messages belonging to the "to" identity.
+**Description:** List messages sent to "to"-identity.
 
 ### HTTP Request 
-`***GET*** /messages/{toIdentity}/list` 
+`***GET*** /{toIdentity}/` 
 
 **Parameters**
 
