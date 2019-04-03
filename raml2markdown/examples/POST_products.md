@@ -4,7 +4,7 @@ sys.stdout.write("Python example missing. Why not contribute one for us?")
 ```
 
 ```shell
-curl -X POST https://api-sandbox.oftrust.net/product/v1/products \
+curl -X POST https://api-sandbox.oftrust.net/products/v1/ \
 -H "Content-Type: application/json" \
 -d '{
   "dataContext": "https://platformoftrust.github.io/standards/contexts/product-data.jsonld",

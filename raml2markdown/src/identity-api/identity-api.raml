@@ -2,7 +2,7 @@
 ---
 title: Identity
 version: v1
-baseUri: https://api-sandbox.oftrust.net/identity/{version}
+baseUri: https://api-sandbox.oftrust.net/identities/{version}
 mediaType: application/json
 description: |
   The Identity API provides means to create, update and delete digital twins
@@ -35,10 +35,26 @@ types:
       type:
         description: The type of the link
         type: string
-/identity:
+/:
   description: |
-    Manage identities. Create, read, update, delete and list identities from
-    your world.
+    Create a new or list identities. If optional `type` GET-parameter is given,
+    lists only identities of the defined type.
+  get:
+    queryParameters:
+      type?:
+        description: |
+          If given to `GET /?type=App`, will list only the
+          identities of `@type: "App"`
+        type: string
+        example: ?type=App
+    description: List all identities created by currently logged in user
+    headers:
+      Authorization: !include includes/properties/authorization-headers.yaml
+    responses:
+      200:
+        body:
+          properties: !include includes/properties/identities.yaml
+          example: !include includes/examples/identities.json
   post:
     description: Create a new identity
     headers:
@@ -60,86 +76,126 @@ types:
                 "message": "Could not create identity."
               }
             }
-  /{id}:
-    uriParameters:
-      id:
-        description: The ID of the Identity
-        type: string
-        example: 2584bdd7-1cb2-48ed-a106-2a1b817cf909
-    get:
-      description: Read one identity by id
-      headers:
-        Authorization: !include includes/properties/authorization-headers.yaml
-      responses:
-        200:
-          body:
-            properties: !include includes/properties/identity.yaml
-            example: !include includes/examples/identity.json
-        404:
-          body:
-            example: !include includes/examples/identity-not-found.json
-    put:
-      description: Update an identity by id
-      headers:
-        Authorization: !include includes/properties/authorization-headers.yaml
-      body:
-        type: identity
-        example: !include includes/examples/identity-update.json
-      responses:
-        200:
-          body:
-            properties: !include includes/properties/identity.yaml
-            example: !include includes/examples/identity.json
-        404:
-          body:
-            example: !include includes/examples/identity-not-found.json
-        422:
-          body:
-            example: |
-              {
-                "error": {
-                  "status": 422,
-                  "message": "Could not update identity."
-                }
-              }
-    delete:
-      description: Delete an identity by id
-      headers:
-        Authorization: !include includes/properties/authorization-headers.yaml
-      responses:
-        204:
-          body:
-            example: {}
-        404:
-          body:
-            example: !include includes/examples/identity-not-found.json
-/identities:
+/{id}:
+  description: Read, update and delete identities.
+  uriParameters:
+    id:
+      description: The ID of the Identity
+      type: string
+      example: 2584bdd7-1cb2-48ed-a106-2a1b817cf909
   get:
-    description: List all identities created by currently logged in user
+    description: Read one identity by id
     headers:
       Authorization: !include includes/properties/authorization-headers.yaml
     responses:
       200:
         body:
-          properties: !include includes/properties/identities.yaml
-          example: !include includes/examples/identities.json
-  /{from_identity}/link/{to_identity}:
+          properties: !include includes/properties/identity.yaml
+          example: !include includes/examples/identity.json
+      404:
+        body:
+          example: !include includes/examples/identity-not-found.json
+  put:
+    description: Update an identity by id
+    headers:
+      Authorization: !include includes/properties/authorization-headers.yaml
+    body:
+      type: identity
+      example: !include includes/examples/identity-update.json
+    responses:
+      200:
+        body:
+          properties: !include includes/properties/identity.yaml
+          example: !include includes/examples/identity.json
+      404:
+        body:
+          example: !include includes/examples/identity-not-found.json
+      422:
+        body:
+          example: |
+            {
+              "error": {
+                "status": 422,
+                "message": "Could not update identity."
+              }
+            }
+  delete:
+    description: Delete an identity by id
+    headers:
+      Authorization: !include includes/properties/authorization-headers.yaml
+    responses:
+      204:
+        body:
+          example: {}
+      404:
+        body:
+          example: !include includes/examples/identity-not-found.json
+/{from_identity}/link/{to_identity}:
+  description: Manage links between "from"- and "to"-identities.
+  uriParameters:
+    from_identity:
+      description: The starting identity ID of the link
+      type: string
+      example: 8d8b1ea6-52b7-4bbc-89b0-f7604422dffd
+    to_identity:
+      description: The ending identity ID of the link
+      type: string
+      example: a2a161c9-a7ff-47e7-9b70-4bf4a83bcb90
+  post:
+    description: Creates a new link between two identities
+    headers:
+      Authorization: !include includes/properties/authorization-headers.yaml
+    body:
+      type: link
+      example: !include includes/examples/link-create.json
+    responses:
+      201:
+        body:
+          properties: !include includes/properties/link.yaml
+          example: !include includes/examples/link.json
+      404:
+        body:
+          examples:
+            'From identity not found': |
+              {
+                "error": {
+                  "status": 404,
+                  "message": "From identity not found."
+                }
+              }
+            'To identity not found': |
+              {
+                "error": {
+                  "status": 404,
+                  "message": "To identity not found."
+                }
+              }
+      422:
+        body:
+          example: |
+            {
+              "error": {
+                "status": 422,
+                "message": "Could not create link."
+              }
+            }
+  /{type}:
+    description: |
+      Update and delete a link between the "from"- and "to"-identities by type.
     uriParameters:
-      from_identity:
-        description: The starting identity ID of the link
+      type:
+        description: The link type
         type: string
-        example: 8d8b1ea6-52b7-4bbc-89b0-f7604422dffd
-      to_identity:
-        description: The ending identity ID of the link
-        type: string
-        example: a2a161c9-a7ff-47e7-9b70-4bf4a83bcb90
-    post:
-      description: Creates a new link between two identities
+        example: Owner
+    put:
+      description: Update a link
       headers:
         Authorization: !include includes/properties/authorization-headers.yaml
       body:
-        type: link
-        example: !include includes/examples/link-create.json
+        example: |
+          {
+            "context": "<context URL>"
+          }
       responses:
         201:
           body:
@@ -162,143 +218,89 @@ types:
                     "message": "To identity not found."
                   }
                 }
+              'Link not found': |
+                {
+                  "error": {
+                    "status": 404,
+                    "message": "Link of type <type> not found."
+                  }
+                }
         422:
           body:
             example: |
               {
                 "error": {
                   "status": 422,
-                  "message": "Could not create link."
+                  "message": "Could not update link."
                 }
               }
-    /{type}:
-      uriParameters:
-        type:
-          description: The link type
-          type: string
-          example: Owner
-      put:
-        description: Update a link
-        headers:
-          Authorization: !include includes/properties/authorization-headers.yaml
-        body:
-          example: |
-            {
-              "context": "<context URL>"
-            }
-        responses:
-          201:
-            body:
-              properties: !include includes/properties/link.yaml
-              example: !include includes/examples/link.json
-          404:
-            body:
-              examples:
-                'From identity not found': |
-                  {
-                    "error": {
-                      "status": 404,
-                      "message": "From identity not found."
-                    }
-                  }
-                'To identity not found': |
-                  {
-                    "error": {
-                      "status": 404,
-                      "message": "To identity not found."
-                    }
-                  }
-                'Link not found': |
-                  {
-                    "error": {
-                      "status": 404,
-                      "message": "Link of type <type> not found."
-                    }
-                  }
-          422:
-            body:
-              example: |
-                {
-                  "error": {
-                    "status": 422,
-                    "message": "Could not update link."
-                  }
-                }
-      delete:
-        description: Delete a link by type
-        headers:
-          Authorization: !include includes/properties/authorization-headers.yaml
-        responses:
-          204:
-            body:
-              example: {}
-          404:
-            body:
-              examples:
-                'From identity not found': |
-                  {
-                    "error": {
-                      "status": 404,
-                      "message": "From identity not found."
-                    }
-                  }
-                'To identity not found': |
-                  {
-                    "error": {
-                      "status": 404,
-                      "message": "To identity not found."
-                    }
-                  }
-                'Link not found': |
-                  {
-                    "error": {
-                      "status": 404,
-                      "message": "Link of type <type> not found."
-                    }
-                  }
-          422:
-            body:
-              example: |
-                {
-                  "error": {
-                    "status": 422,
-                    "message": "Could not delete link."
-                  }
-                }
-
-  /{id}/links:
-    uriParameters:
-      id:
-        description: The ID of the identity
-        type: string
-        example: a2a161c9-a7ff-47e7-9b70-4bf4a83bcb90
-    get:
-      description: List all links for a given identity
+    delete:
+      description: Delete a link by type
       headers:
         Authorization: !include includes/properties/authorization-headers.yaml
       responses:
-        200:
+        204:
           body:
-            properties: !include includes/properties/links.yaml
-            example: !include includes/examples/links.json
+            example: {}
         404:
           body:
-            example: !include includes/examples/identity-not-found.json
-    /{type}:
-      uriParameters:
-        type:
-          description: The link type
-          type: string
-          example: Owner
-      get:
-        description: List all links of type {type} for given identity
-        headers:
-          Authorization: !include includes/properties/authorization-headers.yaml
-        responses:
-          200:
-            body:
-              properties: !include includes/properties/links.yaml
-              example: !include includes/examples/links.json
-          404:
-            body:
-              example: !include includes/examples/identity-not-found.json
+            examples:
+              'From identity not found': |
+                {
+                  "error": {
+                    "status": 404,
+                    "message": "From identity not found."
+                  }
+                }
+              'To identity not found': |
+                {
+                  "error": {
+                    "status": 404,
+                    "message": "To identity not found."
+                  }
+                }
+              'Link not found': |
+                {
+                  "error": {
+                    "status": 404,
+                    "message": "Link of type <type> not found."
+                  }
+                }
+        422:
+          body:
+            example: |
+              {
+                "error": {
+                  "status": 422,
+                  "message": "Could not delete link."
+                }
+              }
+
+/{id}/links:
+  description: |
+    List links. If the optional `type` GET-parameter is given, only list
+    links by that type.
+  uriParameters:
+    id:
+      description: The ID of the identity
+      type: string
+      example: a2a161c9-a7ff-47e7-9b70-4bf4a83bcb90
+  get:
+    queryParameters:
+      type?:
+        description: |
+          If given to `GET /{id}/links?type=Owner`, will list only the
+          links of `@type: "Owner"`
+        type: string
+        example: ?type=Owner
+    description: List all links for a given identity
+    headers:
+      Authorization: !include includes/properties/authorization-headers.yaml
+    responses:
+      200:
+        body:
+          properties: !include includes/properties/links.yaml
+          example: !include includes/examples/links.json
+      404:
+        body:
+          example: !include includes/examples/identity-not-found.json

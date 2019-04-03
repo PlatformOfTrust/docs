@@ -4,7 +4,7 @@ sys.stdout.write("Python example missing. Why not contribute one for us?")
 ```
 
 ```shell
-curl https://api-sandbox.oftrust.net/context/v1/contexts
+curl https://api-sandbox.oftrust.net/contexts/v1/
 ```
 
 ```javascript
