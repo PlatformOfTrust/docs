@@ -115,6 +115,11 @@ sys.stdout.write("Python example missing. Why not contribute one for us?")
 ```
 
 ```shell
+
+// **timestamp** is security requirement. Intention is that you cannot just resend
+// the same captured request, you have to update timestamp and thus
+// re-sign at the minimum
+
 curl -X POST https://api-sandbox.oftrust.net/broker/v0.1/fetch-data-product \
 -H "Content-Type: application/json" \
 -H "X-Pot-Signature: Ioma1gqOVFUBrXiziWSCLqBG4vFozG3YgzPzillNip0=" \
@@ -1747,7 +1752,24 @@ curl https://api-sandbox.oftrust.net/product/v1/products
 ```
 
 ```javascript
-console.error("Javascript example missing. Why not contribute one for us?");
+<!doctype html>
+<html lang="en">
+<head>
+  <script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
+</head>
+<body>
+
+<script>
+$( document ).ready(function() {
+  var potAPI = "https://api-sandbox.oftrust.net/product/v1/products";
+  $.getJSON( potAPI, function( data ) {
+        alert(JSON.stringify(data));
+    });
+});
+</script>
+
+</body>
+</html>
 ```
 
 

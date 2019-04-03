@@ -67,10 +67,7 @@ def concatenate_files():
         example_file = re.sub('[/]', '_', example_file)
         example_file = re.sub('I', 'i', example_file)
         example_file = example_file.rstrip(os.linesep)
-        example_file_curl_path = Path("./examples/" + example_file + ".curl")
-        example_file_python_path = Path("./examples/" + example_file + ".python")
-        example_file_json_path = Path("./examples/" + example_file + ".json")
-        example_file_path = Path("./examples/" + example_file + ".example")
+        example_file_path = Path("./examples/" + example_file + ".md")
         # print(str(example_file_path))
 
         example_method = str(line)
