@@ -6,7 +6,7 @@
     "version": "v1"
   },
   "host": "api-sandbox.oftrust.net",
-  "x-basePath": "/calendar/{version}",
+  "x-basePath": "/calendars/{version}",
   "schemes": [
     "https"
   ],
@@ -81,10 +81,10 @@
     }
   },
   "paths": {
-    "/calendar": {
+    "/": {
       "post": {
         "description": "Create a new calendar entry",
-        "operationId": "POST_calendar",
+        "operationId": "POST_root",
         "responses": {
           "201": {
             "description": "",
@@ -243,10 +243,10 @@
         ]
       }
     },
-    "/calendar/{id}": {
+    "/{id}": {
       "get": {
         "description": "Read one calendar by id",
-        "operationId": "GET_calendar-id",
+        "operationId": "GET_id",
         "responses": {
           "200": {
             "description": "",
@@ -386,7 +386,7 @@
       },
       "put": {
         "description": "Update a calendar by id",
-        "operationId": "PUT_calendar-id",
+        "operationId": "PUT_id",
         "responses": {
           "200": {
             "description": "",
@@ -554,7 +554,7 @@
       },
       "delete": {
         "description": "Delete a calendar by id",
-        "operationId": "DELETE_calendar-id",
+        "operationId": "DELETE_id",
         "responses": {
           "204": {
             "description": "",
@@ -594,10 +594,10 @@
         }
       ]
     },
-    "/calendar/{toIdentity}/list": {
+    "/{toIdentity}/": {
       "get": {
-        "description": "List all calendars belonging to the \"to\" identity.",
-        "operationId": "GET_calendar-toIdentity-list",
+        "description": "List calendars created for \"to\"-identity.",
+        "operationId": "GET_toIdentity",
         "responses": {
           "200": {
             "description": "",
