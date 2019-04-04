@@ -1,62 +1,93 @@
-# Authentication
+# Authentication is OAuth2 based
 
 It's typically a good idea to explain the whole authentication process, because even to this day not everyone is familiar with how they work. In a nutshell [this is what we use](https://www.oauth.com/oauth2-servers/single-page-apps/#authorization)
 
-The basic flow of how it goes is:
+> Example how Bearer is expected to be used in headers. 
 
-1. user gets redirected from YOUR frontend to YOUR backend's `/login` endpoint or similar
+```python
+import sys
+sys.stdout.write("Python example missing. Why not contribute one for us?")
+```
 
-2. the `/login` endpoint generates a `state` parameter for it's own security by e.g. signing the current timestamp with a secret from it's config
+```shell
+curl https://api-sandbox.oftrust.net/messages/v1/3a9e31ff-b654-4069-8361-6b446dc04c95 \
+-H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzY29w...DVs5aaf"
+```
 
-3. the `/login` endpoint redirects the user to the login portal with parameters that define the application the user is coming from (client_id, redirect_uri) as well as the state and that we're going to do a code exchange
+```javascript
+console.error("Javascript example missing. Why not contribute one for us?");
+```
 
-4. login portal takes care of identifying the user
 
-5. login portal sends user back to YOUR backend's "return url", e.g. `/login/complete` with the new code and the state you provided etc.
+```java
+System.out.println("Java example missing. Why not contribute one for us?");
+```
 
-6. you validate the state seems valid, isn't too old, etc.
+You can read practical authentication example from Developer Portal [App development guide](https://developers.oftrust.net/guides/build-apps) 
 
-7. you send this code with your client secret to the authorization backend in a server to server -request and get back the actual login token
 
-8. you set the token in a cookie (preferably with `httpOnly; secure; SameSite=strict`)
+### Use Bearer token
 
-You can read practical authentication example from  
+Most of the APIs require bearer token in header ("Authorization: Bearer"). See example on the right. 
 
+Exceptions to the rule are CORS enabled endpoints and Broker API. 
+
+### Exception 1: CORS enabled APIs
+
+APIs with CORS enabled endpoints which do not require any tokens: 
+
+* GET /products/v1/
+* GET /products/v1/{product_code}
+
+> Example how Broker API headers are expected to be given. 
+
+```python
+import sys
+sys.stdout.write("Python example missing. Why not contribute one for us?")
+```
+
+```shell
+curl -X POST https://api-sandbox.oftrust.net/broker/v1/fetch-data-product \
+-H "Content-Type: application/json" \
+-H "X-Pot-Signature: Ioma1gqOVFUBrXiziWSCLqBG4vFozG3YgzPzillNip0=" \
+-H "X-Pot-App: 379780e4-b511-4fa9-aef8-bda9bd58ab89" \
+-H "X-Pot-Token: eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzY29w...DVs5aaf" \
+```
+
+```javascript
+console.error("Javascript example missing. Why not contribute one for us?");
+```
+
+
+```java
+System.out.println("Java example missing. Why not contribute one for us?");
+```
+### Exception 2: Broker API   
+
+Second exception is the Broker API is a bit more complex and requires:
+
+* X-Pot-Signature, 
+* X-Pot-App and 
+* X-Pot-Token as well. 
+
+## Get client credentials
+
+Before jumping into development you might want to get the client credentials. Getting those now let's you jump into code level testing right away without detours.  
+For each application you develop, you need to obtain new client credentials. These include a client identifier and a client shared-secret. 
+
+Recommended next step is to register new app:
+
+1. Login to World app and initiate new application registration. 
+2. Fill in the required information and submit. 
+3. Upon successful application registration, you will be shown client credentials. 
 
 ## Authentication code example
 
-We have React based sample app which contains authencation implementations. Take a look at the source code to see complete example. 
+Now you have client credentials and you can start fiddling code and run you app in our [sandbox](https://developers.oftrust.net/guides/sandbox) environment. 
+Code speaks for it self! Thus we have open source (MIT license) React sample app which contains authentication implementation among other things. You can clone the sample app from Github. 
 
 ## How to get Bearer token?
 
-To get these tokens, you need to set up your application with login capabilities
+To get Bearer token, you need to set up your application with login capabilities. Sample app contains information about the Bearer token as well. 
 
-1. You start developing an application
-2. You realize you need a token for some API calls
-3. You integrate into the PoT Login (see above)
-4. You can now log in to your own application to get your login token and use it for those calls
-
-## Client credentials
-
-For each application you develop, you need to obtain new client credentials. 
-These include a client identifier and a client shared-secret. 
-
-
-## OAuth 2.0 workflow
-
-## Get request token
-
-**Endpoint**
-
-POST /api/auth/v1/oauth/token/request
-
-HTTPS is required. All the names of variables follow OAuth specification (see RFC 5849).
-
-```python
-
-import upwork
-client = upwork.Client(public_key, secret_key, **credentials)
-client.auth.get_request_token()
-
-```
-
+But in brief, after you have setup login capabilities to your app, you can get your Bearer token and use it for those API calls which require it - most of them do.
