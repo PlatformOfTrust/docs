@@ -61,8 +61,9 @@ def concatenate_files():
 
         # Now match the lines after which the code examples are injected.
         # example of one line: `***PUT*** /products/{product_code}`
-        # That should match PUT_products_product_code.curl in examples folder
+        # That should match product-api_PUT_product_code.curl in examples folder
         example_file= str(line)
+        copyline = str(line)
         example_file= re.sub('[`#* {}]', '', example_file)
         example_file = re.sub('[/]', '_', example_file)
         example_file = re.sub('I', 'i', example_file)
@@ -76,7 +77,7 @@ def concatenate_files():
 
         if example_file_path.exists():
           with open(example_file_path) as sfile:
-            print("Found example file: " + str(example_file_path))
+            print("Found example file: " + str(example_file_path) +" derived from line:" + copyline)
             ofile.write(example_desc)
             ofile.write(sfile.read()+"\n\n")
 
