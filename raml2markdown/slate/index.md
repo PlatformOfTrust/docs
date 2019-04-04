@@ -13,7 +13,6 @@ toc_footers:
 
 includes: 
    - authentication
-   - ontologies
    - errors 
    - feedback
    
