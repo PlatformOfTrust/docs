@@ -37,13 +37,13 @@ A notification about the entry will be sent to these users.
 
 **Version:** v1 
 
-# /CALENDAR
+# /
 ## ***POST*** 
 
 **Description:** Create a new calendar entry
 
 ### HTTP Request 
-`***POST*** /calendar` 
+`***POST*** /` 
 
 **Parameters**
 
@@ -59,13 +59,13 @@ A notification about the entry will be sent to these users.
 | 201 |  |
 | 422 |  |
 
-# /CALENDAR/{ID}
+# /{ID}
 ## ***GET*** 
 
 **Description:** Read one calendar by id
 
 ### HTTP Request 
-`***GET*** /calendar/{id}` 
+`***GET*** /{id}` 
 
 **Parameters**
 
@@ -86,7 +86,7 @@ A notification about the entry will be sent to these users.
 **Description:** Update a calendar by id
 
 ### HTTP Request 
-`***PUT*** /calendar/{id}` 
+`***PUT*** /{id}` 
 
 **Parameters**
 
@@ -109,7 +109,7 @@ A notification about the entry will be sent to these users.
 **Description:** Delete a calendar by id
 
 ### HTTP Request 
-`***DELETE*** /calendar/{id}` 
+`***DELETE*** /{id}` 
 
 **Parameters**
 
@@ -125,13 +125,13 @@ A notification about the entry will be sent to these users.
 | 204 |  |
 | 404 |  |
 
-# /CALENDAR/{TOIDENTITY}/LIST
+# /{TOIDENTITY}/
 ## ***GET*** 
 
-**Description:** List all calendars belonging to the "to" identity.
+**Description:** List calendars created for "to"-identity.
 
 ### HTTP Request 
-`***GET*** /calendar/{toIdentity}/list` 
+`***GET*** /{toIdentity}/` 
 
 **Parameters**
 

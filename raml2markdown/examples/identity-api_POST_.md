@@ -4,7 +4,7 @@ sys.stdout.write("Python example missing. Why not contribute one for us?")
 ```
 
 ```shell
-curl -X PUT https://api-sandbox.oftrust.net/identity/v1/identity/fbd106c5-c594-4416-a87e-f61e578fe829 \
+curl -X POST https://api-sandbox.oftrust.net/identities/v1/ \
 -H "Content-Type: application/json" \
 -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzY29w...DVs5aaf" \
 -d '{
@@ -13,8 +13,7 @@ curl -X PUT https://api-sandbox.oftrust.net/identity/v1/identity/fbd106c5-c594-4
 	"name": "John Doe",
 	"data": {
 		"firstName": "John",
-		"lastName": "Doe",
-		"gender": "Male"
+		"lastName": "Doe"
 	}
 }'
 ```
@@ -31,7 +30,7 @@ System.out.println("Java example missing. Why not contribute one for us?");
 > The above example should return `JSON` structured like this:
 
 ```json
-HTTP/1.0 200 OK
+HTTP/1.0 201 Created
 
 {
   "@context": "http://platformoftrust.github.io/standards/contexts/identity-person.jsonld",
@@ -40,13 +39,12 @@ HTTP/1.0 200 OK
   "name": "John Doe",
   "data": {
     "firstName": "John",
-    "lastName": "Doe",
-    "gender": "Male"
+    "lastName": "Doe"
   },
   "createdBy": "4c276e02-719c-4415-abba-a7afc4edc0c0",
-  "updatedBy": "4c276e02-719c-4415-abba-a7afc4edc0c0",
+  "updatedBy": null,
   "createdAt": "2019-03-14T10:50:51+00:00",
-  "updatedAt": "2019-03-14T11:17:35+00:00",
+  "updatedAt": "2019-03-14T10:50:51+00:00",
   "status": 0,
   "inLinks": [],
   "outLinks": []

@@ -4,7 +4,7 @@ sys.stdout.write("Python example missing. Why not contribute one for us?")
 ```
 
 ```shell
-curl -X PUT https://api-sandbox.oftrust.net/message/v1/message/3a9e...04c95 \
+curl -X PUT https://api-sandbox.oftrust.net/messages/v1/3a9e...04c95 \
 -H "Content-Type: application/json" \
 -H "Authorization: Bearer eyJ0eXAiOiJKV1QiLC29w...DVs5aaf" \
 -d '{

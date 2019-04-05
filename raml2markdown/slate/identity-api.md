@@ -25,13 +25,33 @@ The links provides the direction and type (sometimes called role) of the link.
 
 **Version:** v1 
 
-# /IDENTITY
+# /
+## ***GET*** 
+
+**Description:** List all identities created by currently logged in user
+
+### HTTP Request 
+`***GET*** /` 
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+| Authorization | header | The Authorization header, MUST be `Bearer {{access_token}}` | Yes | string |
+| type | query | If given to `GET /?type=App`, will list only the identities of `@type: "App"`  | No | string |
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 200 |  |
+
 ## ***POST*** 
 
 **Description:** Create a new identity
 
 ### HTTP Request 
-`***POST*** /identity` 
+`***POST*** /` 
 
 **Parameters**
 
@@ -47,13 +67,13 @@ The links provides the direction and type (sometimes called role) of the link.
 | 201 |  |
 | 422 |  |
 
-# /IDENTITY/{ID}
+# /{ID}
 ## ***GET*** 
 
 **Description:** Read one identity by id
 
 ### HTTP Request 
-`***GET*** /identity/{id}` 
+`***GET*** /{id}` 
 
 **Parameters**
 
@@ -74,7 +94,7 @@ The links provides the direction and type (sometimes called role) of the link.
 **Description:** Update an identity by id
 
 ### HTTP Request 
-`***PUT*** /identity/{id}` 
+`***PUT*** /{id}` 
 
 **Parameters**
 
@@ -97,7 +117,7 @@ The links provides the direction and type (sometimes called role) of the link.
 **Description:** Delete an identity by id
 
 ### HTTP Request 
-`***DELETE*** /identity/{id}` 
+`***DELETE*** /{id}` 
 
 **Parameters**
 
@@ -113,33 +133,13 @@ The links provides the direction and type (sometimes called role) of the link.
 | 204 |  |
 | 404 |  |
 
-# /IDENTITIES
-## ***GET*** 
-
-**Description:** List all identities created by currently logged in user
-
-### HTTP Request 
-`***GET*** /identities` 
-
-**Parameters**
-
-| Name | Located in | Description | Required | Type |
-| ---- | ---------- | ----------- | -------- | ---- |
-| Authorization | header | The Authorization header, MUST be `Bearer {{access_token}}` | Yes | string |
-
-**Responses**
-
-| Code | Description |
-| ---- | ----------- |
-| 200 |  |
-
-# /IDENTITIES/{FROM_IDENTITY}/LINK/{TO_IDENTITY}
+# /{FROM_IDENTITY}/LINK/{TO_IDENTITY}
 ## ***POST*** 
 
 **Description:** Creates a new link between two identities
 
 ### HTTP Request 
-`***POST*** /identities/{from_identity}/link/{to_identity}` 
+`***POST*** /{from_identity}/link/{to_identity}` 
 
 **Parameters**
 
@@ -158,13 +158,13 @@ The links provides the direction and type (sometimes called role) of the link.
 | 404 |  |
 | 422 |  |
 
-# /IDENTITIES/{FROM_IDENTITY}/LINK/{TO_IDENTITY}/{TYPE}
+# /{FROM_IDENTITY}/LINK/{TO_IDENTITY}/{TYPE}
 ## ***PUT*** 
 
 **Description:** Update a link
 
 ### HTTP Request 
-`***PUT*** /identities/{from_identity}/link/{to_identity}/{type}` 
+`***PUT*** /{from_identity}/link/{to_identity}/{type}` 
 
 **Parameters**
 
@@ -189,7 +189,7 @@ The links provides the direction and type (sometimes called role) of the link.
 **Description:** Delete a link by type
 
 ### HTTP Request 
-`***DELETE*** /identities/{from_identity}/link/{to_identity}/{type}` 
+`***DELETE*** /{from_identity}/link/{to_identity}/{type}` 
 
 **Parameters**
 
@@ -208,13 +208,13 @@ The links provides the direction and type (sometimes called role) of the link.
 | 404 |  |
 | 422 |  |
 
-# /IDENTITIES/{ID}/LINKS
+# /{ID}/LINKS
 ## ***GET*** 
 
 **Description:** List all links for a given identity
 
 ### HTTP Request 
-`***GET*** /identities/{id}/links` 
+`***GET*** /{id}/links` 
 
 **Parameters**
 
@@ -222,29 +222,7 @@ The links provides the direction and type (sometimes called role) of the link.
 | ---- | ---------- | ----------- | -------- | ---- |
 | id | path | The ID of the identity | Yes | string |
 | Authorization | header | The Authorization header, MUST be `Bearer {{access_token}}` | Yes | string |
-
-**Responses**
-
-| Code | Description |
-| ---- | ----------- |
-| 200 |  |
-| 404 |  |
-
-# /IDENTITIES/{ID}/LINKS/{TYPE}
-## ***GET*** 
-
-**Description:** List all links of type {type} for given identity
-
-### HTTP Request 
-`***GET*** /identities/{id}/links/{type}` 
-
-**Parameters**
-
-| Name | Located in | Description | Required | Type |
-| ---- | ---------- | ----------- | -------- | ---- |
-| type | path | The link type | Yes | string |
-| id | path | The ID of the identity | Yes | string |
-| Authorization | header | The Authorization header, MUST be `Bearer {{access_token}}` | Yes | string |
+| type | query | If given to `GET /{id}/links?type=Owner`, will list only the links of `@type: "Owner"`  | No | string |
 
 **Responses**
 

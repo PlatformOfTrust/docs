@@ -4,7 +4,7 @@ sys.stdout.write("Python example missing. Why not contribute one for us?")
 ```
 
 ```shell
-curl https://api-sandbox.oftrust.net/product/v1/products
+curl https://api-sandbox.oftrust.net/products/v1/
 ```
 
 ```javascript

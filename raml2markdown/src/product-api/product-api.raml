@@ -2,7 +2,7 @@
 ---
 title: Platform Of Trust Product API
 version: v1
-baseUri: https://api-sandbox.oftrust.net/product/{version}
+baseUri: https://api-sandbox.oftrust.net/products/{version}
 mediaType: application/json
 description: |
   The Product API provides means to manage products provided by PoT core.
@@ -62,10 +62,12 @@ types:
         description: Optional URL to an image for the product.
         type: string
         example: https://example.com/product-image.png
-/products:
-  description: Product resources.
+/:
+  description: Manage product resources. Create and read products.
   post:
     description: Create a new product
+    headers:
+      Authorization: !include includes/properties/authorization-headers.yaml
     body:
       type: product
       example: !include includes/examples/product-create.json
@@ -85,46 +87,52 @@ types:
         body:
           properties: !include includes/properties/products.yaml
           example: !include includes/examples/products.json
-  /{product_code}:
-    uriParameters:
-      product_code:
-        description: The product code of the product.
-        type: string
-        example: product-1
-    get:
-      description: |
-        Reads a single product by product code. *NOTE*: This is a CORS enabled endpoint.
-      responses:
-        200:
-          body:
-            properties: !include includes/properties/product.yaml
-            example: !include includes/examples/product.json
-        404:
-          body:
-            example: !include includes/examples/not-found.json
-    put:
-      description: Update a product by product code
-      body:
-        type: product
-        example: !include includes/examples/product-update.json
-      responses:
-        200:
-          body:
-            type: product
-            properties: !include includes/properties/product.yaml
-            example: !include includes/examples/product.json
-        404:
-          body:
-            example: !include includes/examples/not-found.json
-        422:
-          body:
-            example: !include includes/examples/missing-mandatory-parameter.json
-    delete:
-      description: Delete a product by product code
-      responses:
-        204:
-          body:
-            example: {}
-        404:
-          body:
-            example: !include includes/examples/not-found.json
+
+/{product_code}:
+  description: Read, update and delete a product by it's product code.
+  uriParameters:
+    product_code:
+      description: The product code of the product.
+      type: string
+      example: product-1
+  get:
+    description: |
+      Reads a single product by product code. *NOTE*: This is a CORS enabled endpoint.
+    responses:
+      200:
+        body:
+          properties: !include includes/properties/product.yaml
+          example: !include includes/examples/product.json
+      404:
+        body:
+          example: !include includes/examples/not-found.json
+  put:
+    description: Update a product by product code
+    headers:
+      Authorization: !include includes/properties/authorization-headers.yaml
+    body:
+      type: product
+      example: !include includes/examples/product-update.json
+    responses:
+      200:
+        body:
+          type: product
+          properties: !include includes/properties/product.yaml
+          example: !include includes/examples/product.json
+      404:
+        body:
+          example: !include includes/examples/not-found.json
+      422:
+        body:
+          example: !include includes/examples/missing-mandatory-parameter.json
+  delete:
+    description: Delete a product by product code
+    headers:
+      Authorization: !include includes/properties/authorization-headers.yaml
+    responses:
+      204:
+        body:
+          example: {}
+      404:
+        body:
+          example: !include includes/examples/not-found.json

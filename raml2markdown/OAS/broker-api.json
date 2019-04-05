@@ -3,7 +3,7 @@
   "info": {
     "title": "Platform Of Trust Data Broker",
     "description": "The Broker API provides means to connect a service to a translator that will\nreturn desired data from different sources. The data broker does not mangle\nthe data in any way, it only functions as a proxy between services and\ntranslators.\n",
-    "version": "v0.1"
+    "version": "v1"
   },
   "host": "api-sandbox.oftrust.net",
   "x-basePath": "/broker/{version}",

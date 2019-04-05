@@ -6,7 +6,7 @@
     "version": "v1"
   },
   "host": "api-sandbox.oftrust.net",
-  "x-basePath": "/context/{version}",
+  "x-basePath": "/contexts/{version}",
   "schemes": [
     "https"
   ],
@@ -44,15 +44,30 @@
     }
   },
   "paths": {
-    "/contexts": {
+    "/": {
       "get": {
         "description": "Returns a list of all defined contexts",
-        "operationId": "GET_contexts",
+        "operationId": "GET_root",
         "responses": {
           "200": {
             "description": "",
             "schema": {
-              "example": "{\n  \"@context\": \"https://schema.org/\",\n  \"@type\": \"collection\",\n  \"ItemList\": [\n    {\n      \"type\": \"Identity\",\n      \"name\": \"Building\",\n      \"url\": \"https://example.com/contexts/identity-building.jsonld\"\n    },\n    {\n      \"type\": \"Link\",\n      \"name\": \"Owner\",\n      \"url\": \"https://example.com/contexts/link-owner.jsonld\"\n    },\n  ]\n}\n",
+              "example": {
+                "@context": "https://schema.org/",
+                "@type": "collection",
+                "ItemList": [
+                  {
+                    "type": "Identity",
+                    "name": "Building",
+                    "url": "https://example.com/contexts/identity-building.jsonld"
+                  },
+                  {
+                    "type": "Link",
+                    "name": "Owner",
+                    "url": "https://example.com/contexts/link-owner.jsonld"
+                  }
+                ]
+              },
               "properties": {
                 "@context": {
                   "description": "The context URL",

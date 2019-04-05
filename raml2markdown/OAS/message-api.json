@@ -6,7 +6,7 @@
     "version": "v1"
   },
   "host": "api-sandbox.oftrust.net",
-  "x-basePath": "/message/{version}",
+  "x-basePath": "/messages/{version}",
   "schemes": [
     "https"
   ],
@@ -52,10 +52,10 @@
     }
   },
   "paths": {
-    "/message": {
+    "/": {
       "post": {
         "description": "Create a new message",
-        "operationId": "POST_message",
+        "operationId": "POST_root",
         "responses": {
           "201": {
             "description": "",
@@ -176,10 +176,10 @@
         ]
       }
     },
-    "/message/{id}": {
+    "/{id}": {
       "get": {
         "description": "Read one message by id",
-        "operationId": "GET_message-id",
+        "operationId": "GET_id",
         "responses": {
           "200": {
             "description": "",
@@ -285,7 +285,7 @@
       },
       "put": {
         "description": "Update a message by id",
-        "operationId": "PUT_message-id",
+        "operationId": "PUT_id",
         "responses": {
           "200": {
             "description": "",
@@ -414,7 +414,7 @@
       },
       "delete": {
         "description": "Delete a message by id",
-        "operationId": "DELETE_message-id",
+        "operationId": "DELETE_id",
         "responses": {
           "204": {
             "description": "",
@@ -454,10 +454,10 @@
         }
       ]
     },
-    "/message/{id}/read": {
+    "/{id}/read": {
       "post": {
         "description": "Marks a message read by the currently logged in user.",
-        "operationId": "POST_message-id-read",
+        "operationId": "POST_id-read",
         "responses": {
           "200": {
             "description": "",
@@ -497,10 +497,10 @@
         }
       ]
     },
-    "/messages/{toIdentity}/list": {
+    "/{toIdentity}/": {
       "get": {
-        "description": "List all messages belonging to the \"to\" identity.",
-        "operationId": "GET_messages-toIdentity-list",
+        "description": "List messages sent to \"to\"-identity.",
+        "operationId": "GET_toIdentity",
         "responses": {
           "200": {
             "description": "",

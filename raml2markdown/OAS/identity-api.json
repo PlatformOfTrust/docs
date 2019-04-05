@@ -6,7 +6,7 @@
     "version": "v1"
   },
   "host": "api-sandbox.oftrust.net",
-  "x-basePath": "/identity/{version}",
+  "x-basePath": "/identities/{version}",
   "schemes": [
     "https"
   ],
@@ -66,10 +66,148 @@
     }
   },
   "paths": {
-    "/identity": {
+    "/": {
+      "get": {
+        "description": "List all identities created by currently logged in user",
+        "operationId": "GET_root",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "example": {
+                "@context": "https://schema.org/",
+                "@type": "collection",
+                "ItemList": [
+                  {
+                    "@context": "<Context URL>",
+                    "@type": "<Identity type>",
+                    "@id": "<Identity ID>",
+                    "name": "<Identity name>",
+                    "data": {
+                      "key-1": "Value 1",
+                      "key-2": "Value 2"
+                    },
+                    "createdBy": "<User ID>",
+                    "updatedBy": "<User ID>",
+                    "createdAt": "2018-02-28T16:41:41.090Z",
+                    "updatedAt": "2018-02-28T16:41:41.090Z",
+                    "status": 0,
+                    "inLinks": [
+                      {
+                        "@context": "<Context URL>",
+                        "@type": "<Link type>",
+                        "@id": "<Link ID>",
+                        "from": "<From identity ID>",
+                        "to": "<To identity ID>",
+                        "createdBy": "<User ID>",
+                        "updatedBy": "<User ID>",
+                        "createdAt": "2018-02-28T16:41:41.090Z",
+                        "updatedAt": "2018-02-28T16:41:41.090Z"
+                      }
+                    ],
+                    "outLinks": [
+                      {
+                        "@context": "<Context URL>",
+                        "@type": "<Link type>",
+                        "@id": "<Link ID>",
+                        "from": "<From identity ID>",
+                        "to": "<To identity ID>",
+                        "createdBy": "<User ID>",
+                        "updatedBy": "<User ID>",
+                        "createdAt": "2018-02-28T16:41:41.090Z",
+                        "updatedAt": "2018-02-28T16:41:41.090Z"
+                      }
+                    ]
+                  },
+                  {
+                    "@context": "<Context URL>",
+                    "@type": "<Identity type>",
+                    "@id": "<Identity ID>",
+                    "name": "<Identity name>",
+                    "data": {
+                      "key-1": "Value 1",
+                      "key-2": "Value 2"
+                    },
+                    "createdBy": "<User ID>",
+                    "updatedBy": "<User ID>",
+                    "createdAt": "2018-02-28T16:41:41.090Z",
+                    "updatedAt": "2018-02-28T16:41:41.090Z",
+                    "status": 0,
+                    "inLinks": [
+                      {
+                        "@context": "<Context URL>",
+                        "@type": "<Link type>",
+                        "@id": "<Link ID>",
+                        "from": "<From identity ID>",
+                        "to": "<To identity ID>",
+                        "createdBy": "<User ID>",
+                        "updatedBy": "<User ID>",
+                        "createdAt": "2018-02-28T16:41:41.090Z",
+                        "updatedAt": "2018-02-28T16:41:41.090Z"
+                      }
+                    ],
+                    "outLinks": [
+                      {
+                        "@context": "<Context URL>",
+                        "@type": "<Link type>",
+                        "@id": "<Link ID>",
+                        "from": "<From identity ID>",
+                        "to": "<To identity ID>",
+                        "createdBy": "<User ID>",
+                        "updatedBy": "<User ID>",
+                        "createdAt": "2018-02-28T16:41:41.090Z",
+                        "updatedAt": "2018-02-28T16:41:41.090Z"
+                      }
+                    ]
+                  }
+                ]
+              },
+              "properties": {
+                "@context": {
+                  "description": "The context URL",
+                  "example": "https://schema.org/",
+                  "type": "string"
+                },
+                "@type": {
+                  "description": "The type of the list",
+                  "example": "collection",
+                  "type": "string"
+                },
+                "ItemList": {
+                  "description": "The list of identities",
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/identity"
+                  }
+                }
+              },
+              "required": [
+                "@context",
+                "@type",
+                "ItemList"
+              ]
+            }
+          }
+        },
+        "parameters": [
+          {
+            "description": "The Authorization header, MUST be `Bearer {{access_token}}`",
+            "type": "string",
+            "in": "header",
+            "name": "Authorization",
+            "required": true
+          },
+          {
+            "description": "If given to `GET /?type=App`, will list only the\nidentities of `@type: \"App\"`\n",
+            "type": "string",
+            "in": "query",
+            "name": "type"
+          }
+        ]
+      },
       "post": {
         "description": "Create a new identity",
-        "operationId": "POST_identity",
+        "operationId": "POST_root",
         "responses": {
           "201": {
             "description": "",
@@ -210,10 +348,10 @@
         ]
       }
     },
-    "/identity/{id}": {
+    "/{id}": {
       "get": {
         "description": "Read one identity by id",
-        "operationId": "GET_identity-id",
+        "operationId": "GET_id",
         "responses": {
           "200": {
             "description": "",
@@ -361,7 +499,7 @@
       },
       "put": {
         "description": "Update an identity by id",
-        "operationId": "PUT_identity-id",
+        "operationId": "PUT_id",
         "responses": {
           "200": {
             "description": "",
@@ -537,7 +675,7 @@
       },
       "delete": {
         "description": "Delete an identity by id",
-        "operationId": "DELETE_identity-id",
+        "operationId": "DELETE_id",
         "responses": {
           "204": {
             "description": "",
@@ -577,144 +715,10 @@
         }
       ]
     },
-    "/identities": {
-      "get": {
-        "description": "List all identities created by currently logged in user",
-        "operationId": "GET_identities",
-        "responses": {
-          "200": {
-            "description": "",
-            "schema": {
-              "example": {
-                "@context": "https://schema.org/",
-                "@type": "collection",
-                "ItemList": [
-                  {
-                    "@context": "<Context URL>",
-                    "@type": "<Identity type>",
-                    "@id": "<Identity ID>",
-                    "name": "<Identity name>",
-                    "data": {
-                      "key-1": "Value 1",
-                      "key-2": "Value 2"
-                    },
-                    "createdBy": "<User ID>",
-                    "updatedBy": "<User ID>",
-                    "createdAt": "2018-02-28T16:41:41.090Z",
-                    "updatedAt": "2018-02-28T16:41:41.090Z",
-                    "status": 0,
-                    "inLinks": [
-                      {
-                        "@context": "<Context URL>",
-                        "@type": "<Link type>",
-                        "@id": "<Link ID>",
-                        "from": "<From identity ID>",
-                        "to": "<To identity ID>",
-                        "createdBy": "<User ID>",
-                        "updatedBy": "<User ID>",
-                        "createdAt": "2018-02-28T16:41:41.090Z",
-                        "updatedAt": "2018-02-28T16:41:41.090Z"
-                      }
-                    ],
-                    "outLinks": [
-                      {
-                        "@context": "<Context URL>",
-                        "@type": "<Link type>",
-                        "@id": "<Link ID>",
-                        "from": "<From identity ID>",
-                        "to": "<To identity ID>",
-                        "createdBy": "<User ID>",
-                        "updatedBy": "<User ID>",
-                        "createdAt": "2018-02-28T16:41:41.090Z",
-                        "updatedAt": "2018-02-28T16:41:41.090Z"
-                      }
-                    ]
-                  },
-                  {
-                    "@context": "<Context URL>",
-                    "@type": "<Identity type>",
-                    "@id": "<Identity ID>",
-                    "name": "<Identity name>",
-                    "data": {
-                      "key-1": "Value 1",
-                      "key-2": "Value 2"
-                    },
-                    "createdBy": "<User ID>",
-                    "updatedBy": "<User ID>",
-                    "createdAt": "2018-02-28T16:41:41.090Z",
-                    "updatedAt": "2018-02-28T16:41:41.090Z",
-                    "status": 0,
-                    "inLinks": [
-                      {
-                        "@context": "<Context URL>",
-                        "@type": "<Link type>",
-                        "@id": "<Link ID>",
-                        "from": "<From identity ID>",
-                        "to": "<To identity ID>",
-                        "createdBy": "<User ID>",
-                        "updatedBy": "<User ID>",
-                        "createdAt": "2018-02-28T16:41:41.090Z",
-                        "updatedAt": "2018-02-28T16:41:41.090Z"
-                      }
-                    ],
-                    "outLinks": [
-                      {
-                        "@context": "<Context URL>",
-                        "@type": "<Link type>",
-                        "@id": "<Link ID>",
-                        "from": "<From identity ID>",
-                        "to": "<To identity ID>",
-                        "createdBy": "<User ID>",
-                        "updatedBy": "<User ID>",
-                        "createdAt": "2018-02-28T16:41:41.090Z",
-                        "updatedAt": "2018-02-28T16:41:41.090Z"
-                      }
-                    ]
-                  }
-                ]
-              },
-              "properties": {
-                "@context": {
-                  "description": "The context URL",
-                  "example": "https://schema.org/",
-                  "type": "string"
-                },
-                "@type": {
-                  "description": "The type of the list",
-                  "example": "collection",
-                  "type": "string"
-                },
-                "ItemList": {
-                  "description": "The list of identities",
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/definitions/identity"
-                  }
-                }
-              },
-              "required": [
-                "@context",
-                "@type",
-                "ItemList"
-              ]
-            }
-          }
-        },
-        "parameters": [
-          {
-            "description": "The Authorization header, MUST be `Bearer {{access_token}}`",
-            "type": "string",
-            "in": "header",
-            "name": "Authorization",
-            "required": true
-          }
-        ]
-      }
-    },
-    "/identities/{from_identity}/link/{to_identity}": {
+    "/{from_identity}/link/{to_identity}": {
       "post": {
         "description": "Creates a new link between two identities",
-        "operationId": "POST_identities-from_identity-link-to_identity",
+        "operationId": "POST_from_identity-link-to_identity",
         "responses": {
           "201": {
             "description": "",
@@ -852,10 +856,10 @@
         }
       ]
     },
-    "/identities/{from_identity}/link/{to_identity}/{type}": {
+    "/{from_identity}/link/{to_identity}/{type}": {
       "put": {
         "description": "Update a link",
-        "operationId": "PUT_identities-from_identity-link-to_identity-type",
+        "operationId": "PUT_from_identity-link-to_identity-type",
         "responses": {
           "201": {
             "description": "",
@@ -983,7 +987,7 @@
       },
       "delete": {
         "description": "Delete a link by type",
-        "operationId": "DELETE_identities-from_identity-link-to_identity-type",
+        "operationId": "DELETE_from_identity-link-to_identity-type",
         "responses": {
           "204": {
             "description": "",
@@ -1062,10 +1066,10 @@
         }
       ]
     },
-    "/identities/{id}/links": {
+    "/{id}/links": {
       "get": {
         "description": "List all links for a given identity",
-        "operationId": "GET_identities-id-links",
+        "operationId": "GET_id-links",
         "responses": {
           "200": {
             "description": "",
@@ -1143,111 +1147,16 @@
             "in": "header",
             "name": "Authorization",
             "required": true
-          }
-        ]
-      },
-      "parameters": [
-        {
-          "description": "The ID of the identity",
-          "type": "string",
-          "in": "path",
-          "name": "id",
-          "required": true
-        }
-      ]
-    },
-    "/identities/{id}/links/{type}": {
-      "get": {
-        "description": "List all links of type {type} for given identity",
-        "operationId": "GET_identities-id-links-type",
-        "responses": {
-          "200": {
-            "description": "",
-            "schema": {
-              "example": {
-                "@context": "https://schema.org/",
-                "@type": "collection",
-                "ItemList": [
-                  {
-                    "@context": "<Context URL>",
-                    "@type": "<Link type>",
-                    "@id": "<Link ID>",
-                    "from": "<From identity ID>",
-                    "to": "<To identity ID>",
-                    "createdBy": "<User ID>",
-                    "updatedBy": "<User ID>",
-                    "createdAt": "2018-02-28T16:41:41.090Z",
-                    "updatedAt": "2018-02-28T16:41:41.090Z"
-                  },
-                  {
-                    "@context": "<Context URL>",
-                    "@type": "<Link type>",
-                    "@id": "<Link ID>",
-                    "from": "<From identity ID>",
-                    "to": "<To identity ID>",
-                    "createdBy": "<User ID>",
-                    "updatedBy": "<User ID>",
-                    "createdAt": "2018-02-28T16:41:41.090Z",
-                    "updatedAt": "2018-02-28T16:41:41.090Z"
-                  }
-                ]
-              },
-              "properties": {
-                "@context": {
-                  "description": "The context URL",
-                  "example": "https://schema.org/",
-                  "type": "string"
-                },
-                "@type": {
-                  "description": "The type of the list",
-                  "example": "collection",
-                  "type": "string"
-                },
-                "ItemList": {
-                  "description": "The list of identities",
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/definitions/link"
-                  }
-                }
-              },
-              "required": [
-                "@context",
-                "@type",
-                "ItemList"
-              ]
-            }
           },
-          "404": {
-            "description": "",
-            "schema": {
-              "example": {
-                "error": {
-                  "status": 404,
-                  "message": "Identity not found."
-                }
-              }
-            }
-          }
-        },
-        "parameters": [
           {
-            "description": "The Authorization header, MUST be `Bearer {{access_token}}`",
+            "description": "If given to `GET /{id}/links?type=Owner`, will list only the\nlinks of `@type: \"Owner\"`\n",
             "type": "string",
-            "in": "header",
-            "name": "Authorization",
-            "required": true
+            "in": "query",
+            "name": "type"
           }
         ]
       },
       "parameters": [
-        {
-          "description": "The link type",
-          "type": "string",
-          "in": "path",
-          "name": "type",
-          "required": true
-        },
         {
           "description": "The ID of the identity",
           "type": "string",

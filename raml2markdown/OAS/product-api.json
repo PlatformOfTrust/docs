@@ -6,7 +6,7 @@
     "version": "v1"
   },
   "host": "api-sandbox.oftrust.net",
-  "x-basePath": "/product/{version}",
+  "x-basePath": "/products/{version}",
   "schemes": [
     "https"
   ],
@@ -81,10 +81,10 @@
     }
   },
   "paths": {
-    "/products": {
+    "/": {
       "post": {
         "description": "Create a new product",
-        "operationId": "POST_products",
+        "operationId": "POST_root",
         "responses": {
           "201": {
             "description": "",
@@ -204,6 +204,12 @@
         },
         "parameters": [
           {
+            "type": "string",
+            "in": "header",
+            "name": "Authorization",
+            "required": true
+          },
+          {
             "schema": {
               "example": {
                 "dataContext": "<data context URL>",
@@ -231,7 +237,7 @@
       },
       "get": {
         "description": "Lists all available products. *NOTE*: This is a CORS enabled endpoint.\n",
-        "operationId": "GET_products",
+        "operationId": "GET_root",
         "responses": {
           "200": {
             "description": "",
@@ -307,10 +313,10 @@
         }
       }
     },
-    "/products/{product_code}": {
+    "/{product_code}": {
       "get": {
         "description": "Reads a single product by product code. *NOTE*: This is a CORS enabled endpoint.\n",
-        "operationId": "GET_products-product_code",
+        "operationId": "GET_product_code",
         "responses": {
           "200": {
             "description": "",
@@ -427,7 +433,7 @@
       },
       "put": {
         "description": "Update a product by product code",
-        "operationId": "PUT_products-product_code",
+        "operationId": "PUT_product_code",
         "responses": {
           "200": {
             "description": "",
@@ -566,6 +572,12 @@
         },
         "parameters": [
           {
+            "type": "string",
+            "in": "header",
+            "name": "Authorization",
+            "required": true
+          },
+          {
             "schema": {
               "example": {
                 "dataContext": "<data context URL>",
@@ -593,7 +605,7 @@
       },
       "delete": {
         "description": "Delete a product by product code",
-        "operationId": "DELETE_products-product_code",
+        "operationId": "DELETE_product_code",
         "responses": {
           "204": {
             "description": "",
@@ -612,7 +624,15 @@
               }
             }
           }
-        }
+        },
+        "parameters": [
+          {
+            "type": "string",
+            "in": "header",
+            "name": "Authorization",
+            "required": true
+          }
+        ]
       },
       "parameters": [
         {

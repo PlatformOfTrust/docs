@@ -4,18 +4,8 @@ sys.stdout.write("Python example missing. Why not contribute one for us?")
 ```
 
 ```shell
-curl -X POST https://api-sandbox.oftrust.net/identity/v1/identity \
--H "Content-Type: application/json" \
--H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzY29w...DVs5aaf" \
--d '{
-	"context": "http://platformoftrust.github.io/standards/contexts/identity-person.jsonld",
-	"type": "Person",
-	"name": "John Doe",
-	"data": {
-		"firstName": "John",
-		"lastName": "Doe"
-	}
-}'
+curl https://api-sandbox.oftrust.net/identities/v1/fbd106c5-c594-4416-a87e-f61e578fe829 \
+-H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzY29w...DVs5aaf"
 ```
 
 ```javascript
@@ -30,7 +20,7 @@ System.out.println("Java example missing. Why not contribute one for us?");
 > The above example should return `JSON` structured like this:
 
 ```json
-HTTP/1.0 201 Created
+HTTP/1.0 200 OK
 
 {
   "@context": "http://platformoftrust.github.io/standards/contexts/identity-person.jsonld",
