@@ -6,7 +6,6 @@
     "version": "v1"
   },
   "host": "api-sandbox.oftrust.net",
-  "x-basePath": "/messages/{version}",
   "schemes": [
     "https"
   ],
@@ -52,10 +51,10 @@
     }
   },
   "paths": {
-    "/": {
+    "/messages/{version}/": {
       "post": {
         "description": "Create a new message",
-        "operationId": "POST_root",
+        "operationId": "POST_messages-version",
         "responses": {
           "201": {
             "description": "",
@@ -174,12 +173,20 @@
             "required": true
           }
         ]
-      }
+      },
+      "parameters": [
+        {
+          "type": "string",
+          "in": "path",
+          "name": "version",
+          "required": true
+        }
+      ]
     },
-    "/{id}": {
+    "/messages/{version}//{id}": {
       "get": {
         "description": "Read one message by id",
-        "operationId": "GET_id",
+        "operationId": "GET_messages-version--id",
         "responses": {
           "200": {
             "description": "",
@@ -285,7 +292,7 @@
       },
       "put": {
         "description": "Update a message by id",
-        "operationId": "PUT_id",
+        "operationId": "PUT_messages-version--id",
         "responses": {
           "200": {
             "description": "",
@@ -414,7 +421,7 @@
       },
       "delete": {
         "description": "Delete a message by id",
-        "operationId": "DELETE_id",
+        "operationId": "DELETE_messages-version--id",
         "responses": {
           "204": {
             "description": "",
@@ -454,10 +461,10 @@
         }
       ]
     },
-    "/{id}/read": {
+    "/messages/{version}//{id}/read": {
       "post": {
         "description": "Marks a message read by the currently logged in user.",
-        "operationId": "POST_id-read",
+        "operationId": "POST_messages-version--id-read",
         "responses": {
           "200": {
             "description": "",
@@ -497,10 +504,10 @@
         }
       ]
     },
-    "/{toIdentity}/": {
+    "/messages/{version}//{toIdentity}/": {
       "get": {
         "description": "List messages sent to \"to\"-identity.",
-        "operationId": "GET_toIdentity",
+        "operationId": "GET_messages-version--toIdentity",
         "responses": {
           "200": {
             "description": "",

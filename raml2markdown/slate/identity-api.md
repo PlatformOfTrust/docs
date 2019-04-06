@@ -25,18 +25,19 @@ The links provides the direction and type (sometimes called role) of the link.
 
 **Version:** v1 
 
-# /
+# /IDENTITIES/{VERSION}/
 ## ***GET*** 
 
 **Description:** List all identities created by currently logged in user
 
 ### HTTP Request 
-`***GET*** /` 
+`***GET*** /identities/{version}/` 
 
 **Parameters**
 
 | Name | Located in | Description | Required | Type |
 | ---- | ---------- | ----------- | -------- | ---- |
+| version | path |  | Yes | string |
 | Authorization | header | The Authorization header, MUST be `Bearer {{access_token}}` | Yes | string |
 | type | query | If given to `GET /?type=App`, will list only the identities of `@type: "App"`  | No | string |
 
@@ -51,12 +52,13 @@ The links provides the direction and type (sometimes called role) of the link.
 **Description:** Create a new identity
 
 ### HTTP Request 
-`***POST*** /` 
+`***POST*** /identities/{version}/` 
 
 **Parameters**
 
 | Name | Located in | Description | Required | Type |
 | ---- | ---------- | ----------- | -------- | ---- |
+| version | path |  | Yes | string |
 | Authorization | header | The Authorization header, MUST be `Bearer {{access_token}}` | Yes | string |
 | body | body |  | Yes |  |
 
@@ -67,13 +69,13 @@ The links provides the direction and type (sometimes called role) of the link.
 | 201 |  |
 | 422 |  |
 
-# /{ID}
+# /IDENTITIES/{VERSION}//{ID}
 ## ***GET*** 
 
 **Description:** Read one identity by id
 
 ### HTTP Request 
-`***GET*** /{id}` 
+`***GET*** /identities/{version}//{id}` 
 
 **Parameters**
 
@@ -94,7 +96,7 @@ The links provides the direction and type (sometimes called role) of the link.
 **Description:** Update an identity by id
 
 ### HTTP Request 
-`***PUT*** /{id}` 
+`***PUT*** /identities/{version}//{id}` 
 
 **Parameters**
 
@@ -117,7 +119,7 @@ The links provides the direction and type (sometimes called role) of the link.
 **Description:** Delete an identity by id
 
 ### HTTP Request 
-`***DELETE*** /{id}` 
+`***DELETE*** /identities/{version}//{id}` 
 
 **Parameters**
 
@@ -133,13 +135,13 @@ The links provides the direction and type (sometimes called role) of the link.
 | 204 |  |
 | 404 |  |
 
-# /{FROM_IDENTITY}/LINK/{TO_IDENTITY}
+# /IDENTITIES/{VERSION}//{FROM_IDENTITY}/LINK/{TO_IDENTITY}
 ## ***POST*** 
 
 **Description:** Creates a new link between two identities
 
 ### HTTP Request 
-`***POST*** /{from_identity}/link/{to_identity}` 
+`***POST*** /identities/{version}//{from_identity}/link/{to_identity}` 
 
 **Parameters**
 
@@ -158,13 +160,13 @@ The links provides the direction and type (sometimes called role) of the link.
 | 404 |  |
 | 422 |  |
 
-# /{FROM_IDENTITY}/LINK/{TO_IDENTITY}/{TYPE}
+# /IDENTITIES/{VERSION}//{FROM_IDENTITY}/LINK/{TO_IDENTITY}/{TYPE}
 ## ***PUT*** 
 
 **Description:** Update a link
 
 ### HTTP Request 
-`***PUT*** /{from_identity}/link/{to_identity}/{type}` 
+`***PUT*** /identities/{version}//{from_identity}/link/{to_identity}/{type}` 
 
 **Parameters**
 
@@ -189,7 +191,7 @@ The links provides the direction and type (sometimes called role) of the link.
 **Description:** Delete a link by type
 
 ### HTTP Request 
-`***DELETE*** /{from_identity}/link/{to_identity}/{type}` 
+`***DELETE*** /identities/{version}//{from_identity}/link/{to_identity}/{type}` 
 
 **Parameters**
 
@@ -208,13 +210,13 @@ The links provides the direction and type (sometimes called role) of the link.
 | 404 |  |
 | 422 |  |
 
-# /{ID}/LINKS
+# /IDENTITIES/{VERSION}//{ID}/LINKS
 ## ***GET*** 
 
 **Description:** List all links for a given identity
 
 ### HTTP Request 
-`***GET*** /{id}/links` 
+`***GET*** /identities/{version}//{id}/links` 
 
 **Parameters**
 

@@ -6,7 +6,6 @@
     "version": "v1"
   },
   "host": "api-sandbox.oftrust.net",
-  "x-basePath": "/contexts/{version}",
   "schemes": [
     "https"
   ],
@@ -44,10 +43,10 @@
     }
   },
   "paths": {
-    "/": {
+    "/contexts/{version}/": {
       "get": {
         "description": "Returns a list of all defined contexts",
-        "operationId": "GET_root",
+        "operationId": "GET_contexts-version",
         "responses": {
           "200": {
             "description": "",
@@ -95,7 +94,15 @@
             }
           }
         }
-      }
+      },
+      "parameters": [
+        {
+          "type": "string",
+          "in": "path",
+          "name": "version",
+          "required": true
+        }
+      ]
     }
   }
 }
