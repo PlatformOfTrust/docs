@@ -323,27 +323,25 @@
               </ul>
           </li>
           <li>
-            <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
+            <a href="#authentication-is-oauth2-based" class="toc-h1 toc-link" data-title="Authentication is OAuth2 based">Authentication is OAuth2 based</a>
               <ul class="toc-list-h2">
+                  <li>
+                    <a href="#use-bearer-token" class="toc-h2 toc-link" data-title="Use Bearer token">Use Bearer token</a>
+                  </li>
+                  <li>
+                    <a href="#exception-1-cors-enabled-apis" class="toc-h2 toc-link" data-title="Exception 1: CORS enabled APIs">Exception 1: CORS enabled APIs</a>
+                  </li>
+                  <li>
+                    <a href="#exception-2-broker-api" class="toc-h2 toc-link" data-title="Exception 2: Broker API">Exception 2: Broker API</a>
+                  </li>
+                  <li>
+                    <a href="#get-client-credentials" class="toc-h2 toc-link" data-title="Get client credentials">Get client credentials</a>
+                  </li>
                   <li>
                     <a href="#authentication-code-example" class="toc-h2 toc-link" data-title="Authentication code example">Authentication code example</a>
                   </li>
                   <li>
                     <a href="#how-to-get-bearer-token" class="toc-h2 toc-link" data-title="How to get Bearer token?">How to get Bearer token?</a>
-                  </li>
-              </ul>
-          </li>
-          <li>
-            <a href="#oauth" class="toc-h1 toc-link" data-title="OAuth">OAuth</a>
-              <ul class="toc-list-h2">
-                  <li>
-                    <a href="#client-credentials" class="toc-h2 toc-link" data-title="Client credentials">Client credentials</a>
-                  </li>
-                  <li>
-                    <a href="#oauth-2-0-workflow" class="toc-h2 toc-link" data-title="OAuth 2.0 workflow">OAuth 2.0 workflow</a>
-                  </li>
-                  <li>
-                    <a href="#get-request-token" class="toc-h2 toc-link" data-title="Get request token">Get request token</a>
                   </li>
               </ul>
           </li>
@@ -432,9 +430,15 @@ translators.</p>
 <pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">sys</span>
 <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">"Python example missing. Why not contribute one for us?"</span><span class="p">)</span>
 </code></pre><pre class="highlight shell tab-shell"><code>
-// <span class="k">**</span>timestamp<span class="k">**</span> is security requirement. Intention is that you cannot just resend
-// the same captured request, you have to update timestamp and thus
-// re-sign at the minimum
+X-Pot-App and X-Pot-Token is given upon application registration.
+
+X-Pot-Signature is....TBD
+
+Timestamp is security requirement. Intention is that you cannot just resend
+the same captured request, you have to update timestamp and thus
+re-sign at the minimum
+
+
 
 curl -X POST https://api-sandbox.oftrust.net/broker/v1/fetch-data-product <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
@@ -2702,54 +2706,71 @@ use when requesting data from the translator.</p>
 </tbody></table>
 
 <!-- Converted with the swagger-to-slate https://github.com/lavkumarv/swagger-to-slate -->
-<h1 id='authentication'>Authentication</h1>
+<h1 id='authentication-is-oauth2-based'>Authentication is OAuth2 based</h1>
 <p>It&#39;s typically a good idea to explain the whole authentication process, because even to this day not everyone is familiar with how they work. In a nutshell <a href="https://www.oauth.com/oauth2-servers/single-page-apps/#authorization">this is what we use</a></p>
 
-<p>The basic flow of how it goes is:</p>
+<blockquote>
+<p>Example how Bearer is expected to be used in headers. </p>
+</blockquote>
+<pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">sys</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">"Python example missing. Why not contribute one for us?"</span><span class="p">)</span>
+</code></pre><pre class="highlight shell tab-shell"><code>curl https://api-sandbox.oftrust.net/messages/v1/3a9e31ff-b654-4069-8361-6b446dc04c95 <span class="se">\</span>
+-H <span class="s2">"Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzY29w...DVs5aaf"</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">"Javascript example missing. Why not contribute one for us?"</span><span class="p">);</span>
+</code></pre><pre class="highlight java tab-java"><code><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Java example missing. Why not contribute one for us?"</span><span class="o">);</span>
+</code></pre>
+<p>You can read practical authentication example from Developer Portal <a href="https://developers.oftrust.net/guides/build-apps">App development guide</a> </p>
+<h3 id='use-bearer-token'>Use Bearer token</h3>
+<p>Most of the APIs require bearer token in header (&quot;Authorization: Bearer&quot;). See example on the right. </p>
+
+<p>Exceptions to the rule are CORS enabled endpoints and Broker API. </p>
+<h3 id='exception-1-cors-enabled-apis'>Exception 1: CORS enabled APIs</h3>
+<p>APIs with CORS enabled endpoints which do not require any tokens: </p>
+
+<ul>
+<li>GET /products/v1/</li>
+<li>GET /products/v1/{product_code}</li>
+</ul>
+
+<blockquote>
+<p>Example how Broker API headers are expected to be given. </p>
+</blockquote>
+<pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">sys</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">"Python example missing. Why not contribute one for us?"</span><span class="p">)</span>
+</code></pre><pre class="highlight shell tab-shell"><code>curl -X POST https://api-sandbox.oftrust.net/broker/v1/fetch-data-product <span class="se">\</span>
+-H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+-H <span class="s2">"X-Pot-Signature: Ioma1gqOVFUBrXiziWSCLqBG4vFozG3YgzPzillNip0="</span> <span class="se">\</span>
+-H <span class="s2">"X-Pot-App: 379780e4-b511-4fa9-aef8-bda9bd58ab89"</span> <span class="se">\</span>
+-H <span class="s2">"X-Pot-Token: eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzY29w...DVs5aaf"</span> <span class="se">\</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">"Javascript example missing. Why not contribute one for us?"</span><span class="p">);</span>
+</code></pre><pre class="highlight java tab-java"><code><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Java example missing. Why not contribute one for us?"</span><span class="o">);</span>
+</code></pre><h3 id='exception-2-broker-api'>Exception 2: Broker API</h3>
+<p>Second exception is the Broker API is a bit more complex and requires:</p>
+
+<ul>
+<li>X-Pot-Signature, </li>
+<li>X-Pot-App and </li>
+<li>X-Pot-Token as well. </li>
+</ul>
+<h2 id='get-client-credentials'>Get client credentials</h2>
+<p>Before jumping into development you might want to get the client credentials. Getting those now let&#39;s you jump into code level testing right away without detours.<br>
+For each application you develop, you need to obtain new client credentials. These include a client identifier and a client shared-secret. </p>
+
+<p>Recommended next step is to register new app:</p>
 
 <ol>
-<li><p>user gets redirected from YOUR frontend to YOUR backend&#39;s <code>/login</code> endpoint or similar</p></li>
-<li><p>the <code>/login</code> endpoint generates a <code>state</code> parameter for it&#39;s own security by e.g. signing the current timestamp with a secret from it&#39;s config</p></li>
-<li><p>the <code>/login</code> endpoint redirects the user to the login portal with parameters that define the application the user is coming from (client_id, redirect_uri) as well as the state and that we&#39;re going to do a code exchange</p></li>
-<li><p>login portal takes care of identifying the user</p></li>
-<li><p>login portal sends user back to YOUR backend&#39;s &quot;return url&quot;, e.g. <code>/login/complete</code> with the new code and the state you provided etc.</p></li>
-<li><p>you validate the state seems valid, isn&#39;t too old, etc.</p></li>
-<li><p>you send this code with your client secret to the authorization backend in a server to server -request and get back the actual login token</p></li>
-<li><p>you set the token in a cookie (preferably with <code>httpOnly; secure; SameSite=strict</code>)</p></li>
+<li>Login to World app and initiate new application registration. </li>
+<li>Fill in the required information and submit. </li>
+<li>Upon successful application registration, you will be shown client credentials. </li>
 </ol>
 <h2 id='authentication-code-example'>Authentication code example</h2>
-<p>The above is rather theoretical description of it. Lets have a look at one example. </p>
+<p>Now you have client credentials and you can start fiddling code and run you app in our <a href="https://developers.oftrust.net/guides/sandbox">sandbox</a> environment. 
+Code speaks for it self! Thus we have open source (MIT license) React sample app which contains authentication implementation among other things. You can clone the sample app from Github. </p>
 <h2 id='how-to-get-bearer-token'>How to get Bearer token?</h2>
-<p>To get these tokens, you need to set up your application with login capabilities</p>
+<p>To get Bearer token, you need to set up your application with login capabilities. Sample app contains information about the Bearer token as well. </p>
 
-<ol>
-<li>You start developing an application</li>
-<li>You realize you need a token for some API calls</li>
-<li>You integrate into the PoT Login (see above)</li>
-<li>You can now log in to your own application to get your login token and use it for those calls</li>
-</ol>
-<h1 id='oauth'>OAuth</h1>
-<p>To make API requests, you need to authenticate to Upwork API. Currently, we support OAuth 2.0 authentication. All API requests MUST be signed following the RFC 5849 specification.</p>
-<h2 id='client-credentials'>Client credentials</h2>
-<p>For each application you develop, you need to obtain new client credentials. 
-These include a client identifier and a client shared-secret. 
-You can find these credentials at https://developers.oftrust.net/profile 
-while logged into your account. </p>
-
-<p>You will receive a public and a private key for each client identifier and 
-client shared-secret you API request.</p>
-<h2 id='oauth-2-0-workflow'>OAuth 2.0 workflow</h2><h2 id='get-request-token'>Get request token</h2>
-<p><strong>Endpoint</strong></p>
-
-<p>POST /api/auth/v1/oauth/token/request</p>
-
-<p>HTTPS is required. All the names of variables follow OAuth specification (see RFC 5849).</p>
-<pre class="highlight python tab-python"><code>
-<span class="kn">import</span> <span class="nn">upwork</span>
-<span class="n">client</span> <span class="o">=</span> <span class="n">upwork</span><span class="o">.</span><span class="n">Client</span><span class="p">(</span><span class="n">public_key</span><span class="p">,</span> <span class="n">secret_key</span><span class="p">,</span> <span class="o">**</span><span class="n">credentials</span><span class="p">)</span>
-<span class="n">client</span><span class="o">.</span><span class="n">auth</span><span class="o">.</span><span class="n">get_request_token</span><span class="p">()</span>
-
-</code></pre><h1 id='errors'>Errors</h1>
+<p>But in brief, after you have setup login capabilities to your app, you can get your Bearer token and use it for those API calls which require it - most of them do.</p>
+<h1 id='errors'>Errors</h1>
 <p>The Platform of Trust APIs all use the following error codes:</p>
 
 <table><thead>
