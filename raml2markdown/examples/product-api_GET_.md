@@ -17,7 +17,7 @@ curl https://api-sandbox.oftrust.net/products/v1/
 
 <script>
 $( document ).ready(function() {
-  var potAPI = "https://api-sandbox.oftrust.net/product/v1/products";
+  var potAPI = "https://api-sandbox.oftrust.net/products/v1/";
   $.getJSON( potAPI, function( data ) {
         alert(JSON.stringify(data));
     });
