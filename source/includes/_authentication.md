@@ -4,6 +4,8 @@ Platform of Trust authentication is OAuth2 based. It's typically a good idea to 
 
 You can read **practical authentication example** from Developer Portal [App development guide](https://developers.oftrust.net/guides/build-apps) 
 
+You also take a look at sample app from Github if you prefer code driven learning. 
+
 > Example how Bearer is expected to be used in headers. 
 
 ```python
