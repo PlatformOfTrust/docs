@@ -148,9 +148,9 @@ System.out.println("Java example missing. Why not contribute one for us?");
 HTTP/1.0 200 OK
 
 {
-  "@context": "https://platformoftrust.github.io/standards/contexts/prh-data-product.jsonld",
+  "@context": "https://standards.oftrust.net/contexts/prh-data-product.jsonld",
   "data": {
-    "@context": "https://platformoftrust.github.io/standards/contexts/prh-data-product-parameters.jsonld",
+    "@context": "https://standards.oftrust.net/contexts/prh-data-product-parameters.jsonld",
     "@type": "BusinessIdentity",
     "totalResults": 1,
     "offset": 0,
@@ -256,7 +256,7 @@ System.out.println("Java example missing. Why not contribute one for us?");
 HTTP/1.0 201 Created
 
 {
-  "@context": "https://platformoftrust.github.io/standards/contexts/calendar.jsonld",
+  "@context": "https://standards.oftrust.net/contexts/calendar.jsonld",
   "@type": "Event",
   "@id": "67fa7be3-0c7d-4318-a09a-585181d1e6f3",
   "toIdentity": "34fe0b13-e031-4ef2-822e-17eabad63259",
@@ -335,7 +335,7 @@ System.out.println("Java example missing. Why not contribute one for us?");
 HTTP/1.0 200 OK
 
 {
-  "@context": "https://platformoftrust.github.io/standards/contexts/calendar.jsonld",
+  "@context": "https://standards.oftrust.net/contexts/calendar.jsonld",
   "@type": "Event",
   "@id": "67fa7be3-0c7d-4318-a09a-585181d1e6f3",
   "toIdentity": "34fe0b13-e031-4ef2-822e-17eabad63259",
@@ -413,7 +413,7 @@ System.out.println("Java example missing. Why not contribute one for us?");
 HTTP/1.0 201 Created
 
 {
-  "@context": "https://platformoftrust.github.io/standards/contexts/calendar.jsonld",
+  "@context": "https://standards.oftrust.net/contexts/calendar.jsonld",
   "@type": "Event",
   "@id": "67fa7be3-0c7d-4318-a09a-585181d1e6f3",
   "toIdentity": "34fe0b13-e031-4ef2-822e-17eabad63259",
@@ -545,7 +545,7 @@ HTTP/1.0 200 OK
   "@type": "collection",
   "ItemList": [
     {
-      "@context": "https://platformoftrust.github.io/standards/contexts/calendar.jsonld",
+      "@context": "https://standards.oftrust.net/contexts/calendar.jsonld",
       "@type": "Event",
       "@id": "67fa7be3-0c7d-4318-a09a-585181d1e6f3",
       "toIdentity": "34fe0b13-e031-4ef2-822e-17eabad63259",
@@ -640,13 +640,13 @@ HTTP/1.0 200 OK
     {
       "type": "Identity",
       "name": "Apartment",
-      "url": "https://platformoftrust.github.io/standards/contexts/identity-apartment.jsonld"
+      "url": "https://standards.oftrust.net/contexts/identity-apartment.jsonld"
     },
     ...
     {
       "type": "Link",
       "name": "Owner",
-      "url": "https://platformoftrust.github.io/standards/contexts/link-owner.jsonld"
+      "url": "https://standards.oftrust.net/contexts/link-owner.jsonld"
     }
   ]
 }
@@ -1157,7 +1157,7 @@ HTTP/1.0 200 OK
   "@type": "collection",
   "ItemList": [
     {
-      "@context": "https://platformoftrust.github.io/standards/contexts/link-link.jsonld",
+      "@context": "https://standards.oftrust.net/contexts/link-link.jsonld",
       "@type": "Link",
       "@id": "10fab397-db00-424c-8281-8115b1985d23",
       "from": "86201e7d-6784-454b-9839-f7a6286f1791",
@@ -1253,7 +1253,7 @@ System.out.println("Java example missing. Why not contribute one for us?");
 HTTP/1.0 201 Created
 
 {
-  "@context": "https://platformoftrust.github.io/standards/contexts/message.jsonld",
+  "@context": "https://standards.oftrust.net/contexts/message.jsonld",
   "@type": "Message",
   "@id": "3a9e31ff-b654-4069-8361-6b446dc04c95",
   "toIdentity": "34fe0b13-e031-4ef2-822e-17eabad63259",
@@ -1324,7 +1324,7 @@ System.out.println("Java example missing. Why not contribute one for us?");
 HTTP/1.0 200 OK
 
 {
-  "@context": "https://platformoftrust.github.io/standards/contexts/message.jsonld",
+  "@context": "https://standards.oftrust.net/contexts/message.jsonld",
   "@type": "Message",
   "@id": "3a9e31ff-b654-4069-8361-6b446dc04c95",
   "toIdentity": "34fe0b13-e031-4ef2-822e-17eabad63259",
@@ -1399,7 +1399,7 @@ System.out.println("Java example missing. Why not contribute one for us?");
 HTTP/1.0 200 OK
 
 {
-  "@context": "https://platformoftrust.github.io/standards/contexts/message.jsonld",
+  "@context": "https://standards.oftrust.net/contexts/message.jsonld",
   "@type": "Message",
   "@id": "3a9e31ff-b654-4069-8361-6b446dc04c95",
   "toIdentity": "34fe0b13-e031-4ef2-822e-17eabad63259",
@@ -1578,7 +1578,7 @@ System.out.println("Java example missing. Why not contribute one for us?");
 HTTP/1.0 200 OK
 
 {
-  "@context": "https://platformoftrust.github.io/standards/contexts/message.jsonld",
+  "@context": "https://standards.oftrust.net/contexts/message.jsonld",
   "@type": "Message",
   "@id": "3a9e31ff-b654-4069-8361-6b446dc04c95",
   "toIdentity": "34fe0b13-e031-4ef2-822e-17eabad63259",
@@ -1643,8 +1643,8 @@ sys.stdout.write("Python example missing. Why not contribute one for us?")
 curl -X POST https://api-sandbox.oftrust.net/products/v1/ \
 -H "Content-Type: application/json" \
 -d '{
-  "dataContext": "https://platformoftrust.github.io/standards/contexts/product-data.jsonld",
-  "parameterContext": "https://platformoftrust.github.io/standards/contexts/product-parameters.jsonld",
+  "dataContext": "https://standards.oftrust.net/contexts/product-data.jsonld",
+  "parameterContext": "https://standards.oftrust.net/contexts/product-parameters.jsonld",
   "productCode": "business-identity-test",
   "name": "Business identity",
   "translatorUrl": "http://translator-test-backend-app/business-identity",
@@ -1672,12 +1672,12 @@ System.out.println("Java example missing. Why not contribute one for us?");
 ```json
 HTTP/1.0 201 Created
 {
-  "@context": "https://platformoftrust.github.io/standards/contexts/product.jsonld",
+  "@context": "https://standards.oftrust.net/contexts/product.jsonld",
   "@type": "Product",
   "@id": "https://api-sandbox.oftrust.net/product/v1/products/business-identity-test",
   "productCode": "business-identity-test",
-  "dataContext": "https://platformoftrust.github.io/standards/contexts/product-data.jsonld",
-  "parameterContext": "https://platformoftrust.github.io/standards/contexts/product-parameters.jsonld",
+  "dataContext": "https://standards.oftrust.net/contexts/product-data.jsonld",
+  "parameterContext": "https://standards.oftrust.net/contexts/product-parameters.jsonld",
   "translatorUrl": "http://translator-test-backend-app/business-identity",
   "name": "Business identity",
   "organizationPublicKeys": [
@@ -1765,12 +1765,12 @@ HTTP/1.0 200 OK
   "@type": "collection",
   "ItemList": [
     {
-      "@context": "https://platformoftrust.github.io/standards/contexts/product.jsonld",
+      "@context": "https://standards.oftrust.net/contexts/product.jsonld",
       "@type": "Product",
       "@id": "https://api-sandbox.oftrust.net/product/v1/products/prh-business-identity-data-product",
       "productCode": "prh-business-identity-data-product",
       "dataContext": null,
-      "parameterContext": "https://platformoftrust.github.io/standards/contexts/product-parameters.jsonld",
+      "parameterContext": "https://standards.oftrust.net/contexts/product-parameters.jsonld",
       "translatorUrl": "http://translator-test-backend-app/business-identity",
       "name": "PRH Business Identity",
       "organizationPublicKeys": null,
@@ -1828,12 +1828,12 @@ System.out.println("Java example missing. Why not contribute one for us?");
 HTTP/1.0 200 OK
 
 {
-  "@context": "https://platformoftrust.github.io/standards/contexts/product.jsonld",
+  "@context": "https://standards.oftrust.net/contexts/product.jsonld",
   "@type": "Product",
   "@id": "https://api-sandbox.oftrust.net/product/v1/products/business-identity-test",
   "productCode": "business-identity-test",
-  "dataContext": "https://platformoftrust.github.io/standards/contexts/product-data.jsonld",
-  "parameterContext": "https://platformoftrust.github.io/standards/contexts/product-parameters.jsonld",
+  "dataContext": "https://standards.oftrust.net/contexts/product-data.jsonld",
+  "parameterContext": "https://standards.oftrust.net/contexts/product-parameters.jsonld",
   "translatorUrl": "http://translator-test-backend-app/business-identity",
   "name": "Business identity",
   "organizationPublicKeys": [
@@ -1883,8 +1883,8 @@ sys.stdout.write("Python example missing. Why not contribute one for us?")
 curl -X PUT https://api-sandbox.oftrust.net/products/v1/business-identity-test \
 -H "Content-Type: application/json" \
 -d '{
-	"dataContext": "https://platformoftrust.github.io/standards/contexts/product-data.jsonld",
-	"parameterContext": "https://platformoftrust.github.io/standards/contexts/product-parameters.jsonld",
+	"dataContext": "https://standards.oftrust.net/contexts/product-data.jsonld",
+	"parameterContext": "https://standards.oftrust.net/contexts/product-parameters.jsonld",
 	"name": "Testing business identity",
 	"translatorUrl": "http://translator-test-backend-app/business-identity",
 	"organizationPublicKeys": [
@@ -1913,12 +1913,12 @@ System.out.println("Java example missing. Why not contribute one for us?");
 HTTP/1.0 200 OK
 
 {
-  "@context": "https://platformoftrust.github.io/standards/contexts/product.jsonld",
+  "@context": "https://standards.oftrust.net/contexts/product.jsonld",
   "@type": "Product",
   "@id": "https://api-sandbox.oftrust.net/product/v1/products/business-identity-test",
   "productCode": "business-identity-test",
-  "dataContext": "https://platformoftrust.github.io/standards/contexts/product-data.jsonld",
-  "parameterContext": "https://platformoftrust.github.io/standards/contexts/product-parameters.jsonld",
+  "dataContext": "https://standards.oftrust.net/contexts/product-data.jsonld",
+  "parameterContext": "https://standards.oftrust.net/contexts/product-parameters.jsonld",
   "translatorUrl": "http://translator-test-backend-app/business-identity",
   "name": "Testing business identity",
   "organizationPublicKeys": [

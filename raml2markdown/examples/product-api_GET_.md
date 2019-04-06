@@ -43,12 +43,12 @@ HTTP/1.0 200 OK
   "@type": "collection",
   "ItemList": [
     {
-      "@context": "https://platformoftrust.github.io/standards/contexts/product.jsonld",
+      "@context": "https://standards.oftrust.net/contexts/product.jsonld",
       "@type": "Product",
       "@id": "https://api-sandbox.oftrust.net/product/v1/products/prh-business-identity-data-product",
       "productCode": "prh-business-identity-data-product",
       "dataContext": null,
-      "parameterContext": "https://platformoftrust.github.io/standards/contexts/product-parameters.jsonld",
+      "parameterContext": "https://standards.oftrust.net/contexts/product-parameters.jsonld",
       "translatorUrl": "http://translator-test-backend-app/business-identity",
       "name": "PRH Business Identity",
       "organizationPublicKeys": null,
