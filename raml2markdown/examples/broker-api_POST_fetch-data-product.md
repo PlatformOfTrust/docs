@@ -3,17 +3,15 @@ import sys
 sys.stdout.write("Python example missing. Why not contribute one for us?")
 ```
 
-```shell
+```bash
 
-X-Pot-App and X-Pot-Token is given upon application registration.
-
-X-Pot-Signature is....TBD
-
-Timestamp is security requirement. Intention is that you cannot just resend
+/* README
+"X-Pot-App" and "X-Pot-Token" are given upon application registration.
+"X-Pot-Signature" is....TBD
+"timestamp" is security requirement. Intention is that you cannot just resend
 the same captured request, you have to update timestamp and thus
 re-sign at the minimum
-
-
+------ */
 
 curl -X POST https://api-sandbox.oftrust.net/broker/v1/fetch-data-product \
 -H "Content-Type: application/json" \
