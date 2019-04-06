@@ -2,7 +2,7 @@
 ---
 title: Message
 version: v1
-baseUri: https://api-sandbox.oftrust.net/messages/{version}
+baseUri: https://api-sandbox.oftrust.net
 mediaType: application/json
 description: |
   The message API provides means to create/send messages to identities.
@@ -40,7 +40,7 @@ types:
             "323bde80-4cc2-472e-bb77-e6a3e95a1253",
             "0827e9c3-9664-479f-b0ec-956a35d72e4b"
           ]
-/:
+/messages/{version}/:
   description: |
     Manage messages of identities. A message can be sent to any identity the user
     has access to.
@@ -65,87 +65,85 @@ types:
                 "message": "Could not create message."
               }
             }
-/{id}:
-  description: Read, update and delete messages of an identity.
-  uriParameters:
-    id:
-      description: The ID of the message
-      type: string
-      example: 2584bdd7-1cb2-48ed-a106-2a1b817cf909
-  get:
-    headers:
-      Authorization: !include includes/properties/authorization-headers.yaml
-    description: Read one message by id
-    responses:
-      200:
-        body:
-          properties: !include includes/properties/message.yaml
-          example: !include includes/examples/message.json
-      404:
-        body:
-          example: !include includes/examples/message-not-found.json
-  put:
-    headers:
-      Authorization: !include includes/properties/authorization-headers.yaml
-    description: Update a message by id
-    body:
-      type: message
-      example: !include includes/examples/message-update.json
-    responses:
-      200:
-        body:
-          properties: !include includes/properties/message.yaml
-          example: !include includes/examples/message.json
-      404:
-        body:
-          example: !include includes/examples/message-not-found.json
-      422:
-        body:
-          example: |
-            {
-              "error": {
-                "status": 422,
-                "message": "Could not update message."
-              }
-            }
-  delete:
-    headers:
-      Authorization: !include includes/properties/authorization-headers.yaml
-    description: Delete a message by id
-    responses:
-      204:
-        body:
-          example: {}
-      404:
-        body:
-          example: !include includes/examples/message-not-found.json
-  /read:
-    post:
+  /{id}:
+    description: Read, update and delete messages of an identity.
+    uriParameters:
+      id:
+        description: The ID of the message
+        type: string
+        example: 2584bdd7-1cb2-48ed-a106-2a1b817cf909
+    get:
       headers:
         Authorization: !include includes/properties/authorization-headers.yaml
-      description: Marks a message read by the currently logged in user.
+      description: Read one message by id
       responses:
         200:
           body:
-            example: {}
-        403:
+            properties: !include includes/properties/message.yaml
+            example: !include includes/examples/message.json
+        404:
+          body:
+            example: !include includes/examples/message-not-found.json
+    put:
+      headers:
+        Authorization: !include includes/properties/authorization-headers.yaml
+      description: Update a message by id
+      body:
+        type: message
+        example: !include includes/examples/message-update.json
+      responses:
+        200:
+          body:
+            properties: !include includes/properties/message.yaml
+            example: !include includes/examples/message.json
+        404:
+          body:
+            example: !include includes/examples/message-not-found.json
+        422:
           body:
             example: |
               {
                 "error": {
-                  "status": 403,
-                  "message": "User not logged in."
+                  "status": 422,
+                  "message": "Could not update message."
                 }
               }
-/{toIdentity}:
-  description: Manage messages sent to the "to"-identity.
-  uriParameters:
-    toIdentity:
-      description: The identity to which the message belongs to.
-      type: string
-      example: 2584bdd7-1cb2-48ed-a106-2a1b817cf909
-  /:
+    delete:
+      headers:
+        Authorization: !include includes/properties/authorization-headers.yaml
+      description: Delete a message by id
+      responses:
+        204:
+          body:
+            example: {}
+        404:
+          body:
+            example: !include includes/examples/message-not-found.json
+    /read:
+      post:
+        headers:
+          Authorization: !include includes/properties/authorization-headers.yaml
+        description: Marks a message read by the currently logged in user.
+        responses:
+          200:
+            body:
+              example: {}
+          403:
+            body:
+              example: |
+                {
+                  "error": {
+                    "status": 403,
+                    "message": "User not logged in."
+                  }
+                }
+  /{toIdentity}/:
     description: List all messages belonging to an identity.
+    uriParameters:
+      toIdentity:
+        description: The identity to which the message belongs to.
+        type: string
+        example: 2584bdd7-1cb2-48ed-a106-2a1b817cf909
     get:
       headers:
         Authorization: !include includes/properties/authorization-headers.yaml
