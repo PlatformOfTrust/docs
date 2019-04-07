@@ -6,7 +6,6 @@
     "version": "v1"
   },
   "host": "api-sandbox.oftrust.net",
-  "x-basePath": "/identities/{version}",
   "schemes": [
     "https"
   ],
@@ -66,10 +65,10 @@
     }
   },
   "paths": {
-    "/": {
+    "/identities/{version}/": {
       "get": {
         "description": "List all identities created by currently logged in user",
-        "operationId": "GET_root",
+        "operationId": "GET_identities-version",
         "responses": {
           "200": {
             "description": "",
@@ -207,7 +206,7 @@
       },
       "post": {
         "description": "Create a new identity",
-        "operationId": "POST_root",
+        "operationId": "POST_identities-version",
         "responses": {
           "201": {
             "description": "",
@@ -346,12 +345,20 @@
             "required": true
           }
         ]
-      }
+      },
+      "parameters": [
+        {
+          "type": "string",
+          "in": "path",
+          "name": "version",
+          "required": true
+        }
+      ]
     },
-    "/{id}": {
+    "/identities/{version}//{id}": {
       "get": {
         "description": "Read one identity by id",
-        "operationId": "GET_id",
+        "operationId": "GET_identities-version--id",
         "responses": {
           "200": {
             "description": "",
@@ -499,7 +506,7 @@
       },
       "put": {
         "description": "Update an identity by id",
-        "operationId": "PUT_id",
+        "operationId": "PUT_identities-version--id",
         "responses": {
           "200": {
             "description": "",
@@ -675,7 +682,7 @@
       },
       "delete": {
         "description": "Delete an identity by id",
-        "operationId": "DELETE_id",
+        "operationId": "DELETE_identities-version--id",
         "responses": {
           "204": {
             "description": "",
@@ -715,10 +722,10 @@
         }
       ]
     },
-    "/{from_identity}/link/{to_identity}": {
+    "/identities/{version}//{from_identity}/link/{to_identity}": {
       "post": {
         "description": "Creates a new link between two identities",
-        "operationId": "POST_from_identity-link-to_identity",
+        "operationId": "POST_identities-version--from_identity-link-to_identity",
         "responses": {
           "201": {
             "description": "",
@@ -856,10 +863,10 @@
         }
       ]
     },
-    "/{from_identity}/link/{to_identity}/{type}": {
+    "/identities/{version}//{from_identity}/link/{to_identity}/{type}": {
       "put": {
         "description": "Update a link",
-        "operationId": "PUT_from_identity-link-to_identity-type",
+        "operationId": "PUT_identities-version--from_identity-link-to_identity-type",
         "responses": {
           "201": {
             "description": "",
@@ -987,7 +994,7 @@
       },
       "delete": {
         "description": "Delete a link by type",
-        "operationId": "DELETE_from_identity-link-to_identity-type",
+        "operationId": "DELETE_identities-version--from_identity-link-to_identity-type",
         "responses": {
           "204": {
             "description": "",
@@ -1066,10 +1073,10 @@
         }
       ]
     },
-    "/{id}/links": {
+    "/identities/{version}//{id}/links": {
       "get": {
         "description": "List all links for a given identity",
-        "operationId": "GET_id-links",
+        "operationId": "GET_identities-version--id-links",
         "responses": {
           "200": {
             "description": "",

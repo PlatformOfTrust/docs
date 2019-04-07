@@ -37,18 +37,19 @@ A notification about the entry will be sent to these users.
 
 **Version:** v1 
 
-# /
+# /CALENDARS/{VERSION}/
 ## ***POST*** 
 
 **Description:** Create a new calendar entry
 
 ### HTTP Request 
-`***POST*** /` 
+`***POST*** /calendars/{version}/` 
 
 **Parameters**
 
 | Name | Located in | Description | Required | Type |
 | ---- | ---------- | ----------- | -------- | ---- |
+| version | path |  | Yes | string |
 | Authorization | header | The Authorization header, MUST be `Bearer {{access_token}}` | Yes | string |
 | body | body |  | Yes |  |
 
@@ -59,13 +60,13 @@ A notification about the entry will be sent to these users.
 | 201 |  |
 | 422 |  |
 
-# /{ID}
+# /CALENDARS/{VERSION}//{ID}
 ## ***GET*** 
 
 **Description:** Read one calendar by id
 
 ### HTTP Request 
-`***GET*** /{id}` 
+`***GET*** /calendars/{version}//{id}` 
 
 **Parameters**
 
@@ -86,7 +87,7 @@ A notification about the entry will be sent to these users.
 **Description:** Update a calendar by id
 
 ### HTTP Request 
-`***PUT*** /{id}` 
+`***PUT*** /calendars/{version}//{id}` 
 
 **Parameters**
 
@@ -109,7 +110,7 @@ A notification about the entry will be sent to these users.
 **Description:** Delete a calendar by id
 
 ### HTTP Request 
-`***DELETE*** /{id}` 
+`***DELETE*** /calendars/{version}//{id}` 
 
 **Parameters**
 
@@ -125,25 +126,5 @@ A notification about the entry will be sent to these users.
 | 204 |  |
 | 404 |  |
 
-# /{TOIDENTITY}/
-## ***GET*** 
-
-**Description:** List calendars created for "to"-identity.
-
-### HTTP Request 
-`***GET*** /{toIdentity}/` 
-
-**Parameters**
-
-| Name | Located in | Description | Required | Type |
-| ---- | ---------- | ----------- | -------- | ---- |
-| toIdentity | path | The identity to which the calendar belongs to. | Yes | string |
-| Authorization | header | The Authorization header, MUST be `Bearer {{access_token}}` | Yes | string |
-
-**Responses**
-
-| Code | Description |
-| ---- | ----------- |
-| 200 |  |
-
+# /CALENDARS/{VERSION}//{TOIDENTITY}/
 <!-- Converted with the swagger-to-slate https://github.com/lavkumarv/swagger-to-slate -->

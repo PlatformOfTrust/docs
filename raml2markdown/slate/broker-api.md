@@ -29,7 +29,8 @@ translators.
 # /FETCH-DATA-PRODUCT
 ## ***POST*** 
 
-**Description:** Fetch data product
+**Description:** Fetch data product.
+
 
 ### HTTP Request 
 `***POST*** /fetch-data-product` 

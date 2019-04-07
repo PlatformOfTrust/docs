@@ -6,7 +6,6 @@
     "version": "v1"
   },
   "host": "api-sandbox.oftrust.net",
-  "x-basePath": "/products/{version}",
   "schemes": [
     "https"
   ],
@@ -81,10 +80,10 @@
     }
   },
   "paths": {
-    "/": {
+    "/products/{version}/": {
       "post": {
         "description": "Create a new product",
-        "operationId": "POST_root",
+        "operationId": "POST_products-version",
         "responses": {
           "201": {
             "description": "",
@@ -237,7 +236,7 @@
       },
       "get": {
         "description": "Lists all available products. *NOTE*: This is a CORS enabled endpoint.\n",
-        "operationId": "GET_root",
+        "operationId": "GET_products-version",
         "responses": {
           "200": {
             "description": "",
@@ -311,12 +310,20 @@
             }
           }
         }
-      }
+      },
+      "parameters": [
+        {
+          "type": "string",
+          "in": "path",
+          "name": "version",
+          "required": true
+        }
+      ]
     },
-    "/{product_code}": {
+    "/products/{version}//{product_code}": {
       "get": {
         "description": "Reads a single product by product code. *NOTE*: This is a CORS enabled endpoint.\n",
-        "operationId": "GET_product_code",
+        "operationId": "GET_products-version--product_code",
         "responses": {
           "200": {
             "description": "",
@@ -433,7 +440,7 @@
       },
       "put": {
         "description": "Update a product by product code",
-        "operationId": "PUT_product_code",
+        "operationId": "PUT_products-version--product_code",
         "responses": {
           "200": {
             "description": "",
@@ -605,7 +612,7 @@
       },
       "delete": {
         "description": "Delete a product by product code",
-        "operationId": "DELETE_product_code",
+        "operationId": "DELETE_products-version--product_code",
         "responses": {
           "204": {
             "description": "",

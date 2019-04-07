@@ -3,17 +3,7 @@ import sys
 sys.stdout.write("Python example missing. Why not contribute one for us?")
 ```
 
-```shell
-
-X-Pot-App and X-Pot-Token is given upon application registration.
-
-X-Pot-Signature is....TBD
-
-Timestamp is security requirement. Intention is that you cannot just resend
-the same captured request, you have to update timestamp and thus
-re-sign at the minimum
-
-
+```bash
 
 curl -X POST https://api-sandbox.oftrust.net/broker/v1/fetch-data-product \
 -H "Content-Type: application/json" \
@@ -44,9 +34,9 @@ System.out.println("Java example missing. Why not contribute one for us?");
 HTTP/1.0 200 OK
 
 {
-  "@context": "https://platformoftrust.github.io/standards/contexts/prh-data-product.jsonld",
+  "@context": "https://standards.oftrust.net/contexts/prh-data-product.jsonld",
   "data": {
-    "@context": "https://platformoftrust.github.io/standards/contexts/prh-data-product-parameters.jsonld",
+    "@context": "https://standards.oftrust.net/contexts/prh-data-product-parameters.jsonld",
     "@type": "BusinessIdentity",
     "totalResults": 1,
     "offset": 0,

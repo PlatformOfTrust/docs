@@ -25,18 +25,19 @@ use when requesting data from the translator.
 
 **Version:** v1 
 
-# /
+# /PRODUCTS/{VERSION}/
 ## ***POST*** 
 
 **Description:** Create a new product
 
 ### HTTP Request 
-`***POST*** /` 
+`***POST*** /products/{version}/` 
 
 **Parameters**
 
 | Name | Located in | Description | Required | Type |
 | ---- | ---------- | ----------- | -------- | ---- |
+| version | path |  | Yes | string |
 | Authorization | header |  | Yes | string |
 | body | body |  | Yes |  |
 
@@ -53,7 +54,13 @@ use when requesting data from the translator.
 
 
 ### HTTP Request 
-`***GET*** /` 
+`***GET*** /products/{version}/` 
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+| version | path |  | Yes | string |
 
 **Responses**
 
@@ -61,14 +68,14 @@ use when requesting data from the translator.
 | ---- | ----------- |
 | 200 |  |
 
-# /{PRODUCT_CODE}
+# /PRODUCTS/{VERSION}//{PRODUCT_CODE}
 ## ***GET*** 
 
 **Description:** Reads a single product by product code. *NOTE*: This is a CORS enabled endpoint.
 
 
 ### HTTP Request 
-`***GET*** /{product_code}` 
+`***GET*** /products/{version}//{product_code}` 
 
 **Parameters**
 
@@ -88,7 +95,7 @@ use when requesting data from the translator.
 **Description:** Update a product by product code
 
 ### HTTP Request 
-`***PUT*** /{product_code}` 
+`***PUT*** /products/{version}//{product_code}` 
 
 **Parameters**
 
@@ -111,7 +118,7 @@ use when requesting data from the translator.
 **Description:** Delete a product by product code
 
 ### HTTP Request 
-`***DELETE*** /{product_code}` 
+`***DELETE*** /products/{version}//{product_code}` 
 
 **Parameters**
 

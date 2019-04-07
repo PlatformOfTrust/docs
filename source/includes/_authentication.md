@@ -1,6 +1,10 @@
-# Authentication is OAuth2 based
+# Authentication
 
-It's typically a good idea to explain the whole authentication process, because even to this day not everyone is familiar with how they work. In a nutshell [this is what we use](https://www.oauth.com/oauth2-servers/single-page-apps/#authorization)
+Platform of Trust authentication is OAuth2 based. It's typically a good idea to explain the whole authentication process, because even to this day not everyone is familiar with how they work. In a nutshell [this is what we use](https://www.oauth.com/oauth2-servers/single-page-apps/#authorization)
+
+* You can read **practical authentication example** from Developer Portal [App development guide](https://developers.oftrust.net/guides/build-apps) 
+
+* You also take a look at sample app from Github if you prefer code driven learning. 
 
 > Example how Bearer is expected to be used in headers. 
 
@@ -18,19 +22,13 @@ curl https://api-sandbox.oftrust.net/messages/v1/3a9e31ff-b654-4069-8361-6b446dc
 console.error("Javascript example missing. Why not contribute one for us?");
 ```
 
-
 ```java
 System.out.println("Java example missing. Why not contribute one for us?");
 ```
 
-You can read practical authentication example from Developer Portal [App development guide](https://developers.oftrust.net/guides/build-apps) 
-
-
 ### Use Bearer token
 
-Most of the APIs require bearer token in header ("Authorization: Bearer"). See example on the right. 
-
-Exceptions to the rule are CORS enabled endpoints and Broker API. 
+Most of the APIs require bearer token in header ("Authorization: Bearer"). Exceptions to the rule are CORS enabled endpoints and Broker API. 
 
 ### Exception 1: CORS enabled APIs
 
@@ -73,7 +71,7 @@ Second exception is the Broker API is a bit more complex and requires:
 ## Get client credentials
 
 Before jumping into development you might want to get the client credentials. Getting those now let's you jump into code level testing right away without detours.  
-For each application you develop, you need to obtain new client credentials. These include a client identifier and a client shared-secret. 
+**For each application you develop, you need to obtain new client credentials.** These include a client identifier and a client shared-secret. 
 
 Recommended next step is to register new app:
 
