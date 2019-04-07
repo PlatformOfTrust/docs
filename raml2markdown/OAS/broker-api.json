@@ -49,7 +49,7 @@
   "paths": {
     "/fetch-data-product": {
       "post": {
-        "description": "Fetch data product",
+        "description": "Fetch data product.\n",
         "operationId": "POST_fetch-data-product",
         "responses": {
           "200": {

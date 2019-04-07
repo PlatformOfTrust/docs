@@ -2,9 +2,9 @@
 
 Platform of Trust authentication is OAuth2 based. It's typically a good idea to explain the whole authentication process, because even to this day not everyone is familiar with how they work. In a nutshell [this is what we use](https://www.oauth.com/oauth2-servers/single-page-apps/#authorization)
 
-You can read **practical authentication example** from Developer Portal [App development guide](https://developers.oftrust.net/guides/build-apps) 
+* You can read **practical authentication example** from Developer Portal [App development guide](https://developers.oftrust.net/guides/build-apps) 
 
-You also take a look at sample app from Github if you prefer code driven learning. 
+* You also take a look at sample app from Github if you prefer code driven learning. 
 
 > Example how Bearer is expected to be used in headers. 
 
