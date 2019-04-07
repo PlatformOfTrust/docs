@@ -25,19 +25,27 @@ search: true
 # Platform of Trust API Documentation
 
 
-## What is Platform of Trust?
+### What is Platform of Trust?
 
 Communally built Platform of Trust provides a trustworthy and easy-to-use surrounding where you can utilize a vast data pool and develop everyday services for your customers with the help from the developer community and without a need for pricey and time-consuming integrations.  
 
 Platform of Trust has Finnish origins, but it’s built to expand globally through the network of built environment innovation hubs.
 
-**Developer Portal**
+### Developer Portal
 
-Our [Developer Portal](https://developers.oftrust.net) is your one-stop-shop. From there you'll find getting started guides, use case descriptions and 
+Our [Developer Portal](https://developers.oftrust.net) is your one-stop-shop. From there you'll find getting started guides, API descriptions, use case descriptions and link to API documentation. 
 
-**Market place**
+
+### End-to-end developer experience
+
+APIs play crucial role in our end-end-end developer experience from integrating data to creating valuable applications. 
+
+![End-to-end developer experience in Platform of Trust](images/dx.png)
+
+### Market place
 
 Market place is the bazaar to find more data products to use in application development. Visa versa, it is also the service where your data products are added during the integration process. 
+You can list data products in the market place with [Product API](#product-api). 
 
 # Getting started
 
