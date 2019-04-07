@@ -332,7 +332,7 @@
               </ul>
           </li>
           <li>
-            <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
+            <a href="#authentication-is-oauth2-based" class="toc-h1 toc-link" data-title="Authentication is OAuth2 based">Authentication is OAuth2 based</a>
               <ul class="toc-list-h2">
                   <li>
                     <a href="#use-bearer-token" class="toc-h2 toc-link" data-title="Use Bearer token">Use Bearer token</a>
@@ -439,7 +439,17 @@ translators.</p>
 </blockquote>
 <pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">sys</span>
 <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">"Python example missing. Why not contribute one for us?"</span><span class="p">)</span>
-</code></pre><pre class="highlight shell"><code>
+</code></pre><pre class="highlight shell tab-shell"><code>
+X-Pot-App and X-Pot-Token is given upon application registration.
+
+X-Pot-Signature is....TBD
+
+Timestamp is security requirement. Intention is that you cannot just resend
+the same captured request, you have to update timestamp and thus
+re-sign at the minimum
+
+
+
 curl -X POST https://api-sandbox.oftrust.net/broker/v1/fetch-data-product <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
 -H <span class="s2">"X-Pot-Signature: Ioma1gqOVFUBrXiziWSCLqBG4vFozG3YgzPzillNip0="</span> <span class="se">\</span>
