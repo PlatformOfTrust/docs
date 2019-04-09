@@ -952,6 +952,64 @@ A notification about the message will be sent to these users.
 **Description:** Create a new message
 
 #### http request 
+
+
+ > Example for: POST /messages/{version}/ 
+
+
+```python
+import sys
+sys.stdout.write("Python example missing. Why not contribute one for us?")
+```
+
+```shell
+curl -X POST https://api-sandbox.oftrust.net/messages/v1/ \
+-H "Content-Type: application/json" \
+-H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzY29w...DVs5aaf" \
+-d '{
+	"toIdentity": "34fe0b13-e031-4ef2-822e-17eabad63259",
+	"subject": "Test message nr 1",
+	"content": "Testing the message api",
+	"cc": [
+		"34fe0b13-e031-4ef2-822e-17eabad63259"
+	]
+}'
+```
+
+```javascript
+console.error("Javascript example missing. Why not contribute one for us?");
+```
+
+
+```java
+System.out.println("Java example missing. Why not contribute one for us?");
+```
+
+> The above example should return `JSON` structured like this:
+
+```json
+HTTP/1.0 201 Created
+
+{
+  "@context": "https://standards.oftrust.net/contexts/message.jsonld",
+  "@type": "Message",
+  "@id": "3a9e31ff-b654-4069-8361-6b446dc04c95",
+  "toIdentity": "34fe0b13-e031-4ef2-822e-17eabad63259",
+  "subject": "Test message nr 1",
+  "content": "Testing the message api",
+  "cc": [
+    "34fe0b13-e031-4ef2-822e-17eabad63259"
+  ],
+  "readBy": [],
+  "createdBy": "34fe0b13-e031-4ef2-822e-17eabad63259",
+  "updatedBy": null,
+  "createdAt": "2019-03-14T13:55:12+00:00",
+  "updatedAt": "2019-03-14T13:55:12+00:00"
+}
+
+```
+
+
 **POST** /messages/{version}/ 
 
 **Parameters**
@@ -975,6 +1033,55 @@ A notification about the message will be sent to these users.
 **Description:** Read one message by id
 
 #### http request 
+
+
+ > Example for: GET /messages/{version}//{id} 
+
+
+```python
+import sys
+sys.stdout.write("Python example missing. Why not contribute one for us?")
+```
+
+```shell
+curl https://api-sandbox.oftrust.net/messages/v1/3a9e31ff-b654-4069-8361-6b446dc04c95 \
+-H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzY29w...DVs5aaf"
+```
+
+```javascript
+console.error("Javascript example missing. Why not contribute one for us?");
+```
+
+
+```java
+System.out.println("Java example missing. Why not contribute one for us?");
+```
+
+> The above example should return `JSON` structured like this:
+
+```json
+HTTP/1.0 200 OK
+
+{
+  "@context": "https://standards.oftrust.net/contexts/message.jsonld",
+  "@type": "Message",
+  "@id": "3a9e31ff-b654-4069-8361-6b446dc04c95",
+  "toIdentity": "34fe0b13-e031-4ef2-822e-17eabad63259",
+  "subject": "Test message nr 1",
+  "content": "Testing the message api",
+  "cc": [
+    "34fe0b13-e031-4ef2-822e-17eabad63259"
+  ],
+  "readBy": [],
+  "createdBy": "34fe0b13-e031-4ef2-822e-17eabad63259",
+  "updatedBy": null,
+  "createdAt": "2019-03-14T13:55:12+00:00",
+  "updatedAt": "2019-03-14T13:55:12+00:00"
+}
+
+```
+
+
 **GET** /messages/{version}//{id} 
 
 **Parameters**
@@ -996,6 +1103,60 @@ A notification about the message will be sent to these users.
 **Description:** Update a message by id
 
 #### http request 
+
+
+ > Example for: PUT /messages/{version}//{id} 
+
+
+```python
+import sys
+sys.stdout.write("Python example missing. Why not contribute one for us?")
+```
+
+```shell
+curl -X PUT https://api-sandbox.oftrust.net/messages/v1/3a9e...04c95 \
+-H "Content-Type: application/json" \
+-H "Authorization: Bearer eyJ0eXAiOiJKV1QiLC29w...DVs5aaf" \
+-d '{
+	"subject": "Updated Test message",
+	"content": "Testing the message api"
+}'
+```
+
+```javascript
+console.error("Javascript example missing. Why not contribute one for us?");
+```
+
+
+```java
+System.out.println("Java example missing. Why not contribute one for us?");
+```
+
+> The above example should return `JSON` structured like this:
+
+```json
+HTTP/1.0 200 OK
+
+{
+  "@context": "https://standards.oftrust.net/contexts/message.jsonld",
+  "@type": "Message",
+  "@id": "3a9e31ff-b654-4069-8361-6b446dc04c95",
+  "toIdentity": "34fe0b13-e031-4ef2-822e-17eabad63259",
+  "subject": "Updated Test message",
+  "content": "Testing the message api",
+  "cc": [
+    "34fe0b13-e031-4ef2-822e-17eabad63259"
+  ],
+  "readBy": [],
+  "createdBy": "34fe0b13-e031-4ef2-822e-17eabad63259",
+  "updatedBy": "34fe0b13-e031-4ef2-822e-17eabad63259",
+  "createdAt": "2019-03-14T13:55:12+00:00",
+  "updatedAt": "2019-03-14T13:58:13+00:00"
+}
+
+```
+
+
 **PUT** /messages/{version}//{id} 
 
 **Parameters**
@@ -1019,6 +1180,37 @@ A notification about the message will be sent to these users.
 **Description:** Delete a message by id
 
 #### http request 
+
+
+ > Example for: DELETE /messages/{version}//{id} 
+
+
+```python
+import sys
+sys.stdout.write("Python example missing. Why not contribute one for us?")
+```
+
+```shell
+curl -X DELETE https://api-sandbox.oftrust.net/messages/v1/3a9e31ff-b654-4069-8361-6b446dc04c95 \
+-H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzY29w...DVs5aaf"
+```
+
+```javascript
+console.error("Javascript example missing. Why not contribute one for us?");
+```
+
+
+```java
+System.out.println("Java example missing. Why not contribute one for us?");
+```
+
+> The above example should return header structured like this:
+
+```json
+HTTP/1.0 204 No Content
+```
+
+
 **DELETE** /messages/{version}//{id} 
 
 **Parameters**
@@ -1041,6 +1233,38 @@ A notification about the message will be sent to these users.
 **Description:** Marks a message read by the currently logged in user.
 
 #### http request 
+
+
+ > Example for: POST /messages/{version}//{id}/read 
+
+
+```python
+import sys
+sys.stdout.write("Python example missing. Why not contribute one for us?")
+```
+
+```shell
+curl -X POST https://api-sandbox.oftrust.net/messages/v1/3a9e31ff-b654-4069-8361-6b446dc04c95/read
+-H "Content-Type: application/json" \
+-H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzY29w...DVs5aaf"
+```
+
+```javascript
+console.error("Javascript example missing. Why not contribute one for us?");
+```
+
+
+```java
+System.out.println("Java example missing. Why not contribute one for us?");
+```
+
+> The above example should return `JSON` structured like this:
+
+```json
+HTTP/1.0 200 OK
+```
+
+
 **POST** /messages/{version}//{id}/read 
 
 **Parameters**
@@ -1063,6 +1287,56 @@ A notification about the message will be sent to these users.
 **Description:** List messages sent to "to"-identity.
 
 #### http request 
+
+
+ > Example for: GET /messages/{version}//{toIdentity}/ 
+
+
+```python
+import sys
+sys.stdout.write("Python example missing. Why not contribute one for us?")
+```
+
+```shell
+curl https://api-sandbox.oftrust.net/messages/v1/3a9e31ff-b654-4069-8361-6b446dc04c95 \
+-H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzY29w...DVs5aaf"
+```
+
+```javascript
+console.error("Javascript example missing. Why not contribute one for us?");
+```
+
+
+```java
+System.out.println("Java example missing. Why not contribute one for us?");
+```
+
+> The above example should return `JSON` structured like this:
+
+```json
+HTTP/1.0 200 OK
+
+{
+  "@context": "https://standards.oftrust.net/contexts/message.jsonld",
+  "@type": "Message",
+  "@id": "3a9e31ff-b654-4069-8361-6b446dc04c95",
+  "toIdentity": "34fe0b13-e031-4ef2-822e-17eabad63259",
+  "subject": "Test message nr 1",
+  "content": "Testing the message api",
+  "cc": [
+    "34fe0b13-e031-4ef2-822e-17eabad63259"
+  ],
+  "readBy": [],
+  "createdBy": "34fe0b13-e031-4ef2-822e-17eabad63259",
+  "updatedBy": null,
+  "createdAt": "2019-03-14T13:55:12+00:00",
+  "updatedAt": "2019-03-14T13:55:12+00:00"
+}
+
+
+```
+
+
 **GET** /messages/{version}//{toIdentity}/ 
 
 **Parameters**
