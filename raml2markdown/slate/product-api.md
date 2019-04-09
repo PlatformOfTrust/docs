@@ -25,13 +25,13 @@ use when requesting data from the translator.
 
 **Version:** v1 
 
-# /PRODUCTS/{VERSION}/
+# /PRODUCTS/{VERSION}
 ## ***POST*** 
 
 **Description:** Create a new product
 
 ### HTTP Request 
-`***POST*** /products/{version}/` 
+`***POST*** /products/{version}` 
 
 **Parameters**
 
@@ -51,16 +51,19 @@ use when requesting data from the translator.
 ## ***GET*** 
 
 **Description:** Lists all available products. *NOTE*: This is a CORS enabled endpoint.
+Supports pagination.
 
 
 ### HTTP Request 
-`***GET*** /products/{version}/` 
+`***GET*** /products/{version}` 
 
 **Parameters**
 
 | Name | Located in | Description | Required | Type |
 | ---- | ---------- | ----------- | -------- | ---- |
 | version | path |  | Yes | string |
+| offset | query | Offset of a query | No | integer |
+| limit | query | Limit the result of a query | No | integer |
 
 **Responses**
 
@@ -68,20 +71,21 @@ use when requesting data from the translator.
 | ---- | ----------- |
 | 200 |  |
 
-# /PRODUCTS/{VERSION}//{PRODUCT_CODE}
+# /PRODUCTS/{VERSION}/{PRODUCT_CODE}
 ## ***GET*** 
 
 **Description:** Reads a single product by product code. *NOTE*: This is a CORS enabled endpoint.
 
 
 ### HTTP Request 
-`***GET*** /products/{version}//{product_code}` 
+`***GET*** /products/{version}/{product_code}` 
 
 **Parameters**
 
 | Name | Located in | Description | Required | Type |
 | ---- | ---------- | ----------- | -------- | ---- |
 | product_code | path | The product code of the product. | Yes | string |
+| version | path |  | Yes | string |
 
 **Responses**
 
@@ -95,13 +99,14 @@ use when requesting data from the translator.
 **Description:** Update a product by product code
 
 ### HTTP Request 
-`***PUT*** /products/{version}//{product_code}` 
+`***PUT*** /products/{version}/{product_code}` 
 
 **Parameters**
 
 | Name | Located in | Description | Required | Type |
 | ---- | ---------- | ----------- | -------- | ---- |
 | product_code | path | The product code of the product. | Yes | string |
+| version | path |  | Yes | string |
 | Authorization | header |  | Yes | string |
 | body | body |  | Yes |  |
 
@@ -118,13 +123,14 @@ use when requesting data from the translator.
 **Description:** Delete a product by product code
 
 ### HTTP Request 
-`***DELETE*** /products/{version}//{product_code}` 
+`***DELETE*** /products/{version}/{product_code}` 
 
 **Parameters**
 
 | Name | Located in | Description | Required | Type |
 | ---- | ---------- | ----------- | -------- | ---- |
 | product_code | path | The product code of the product. | Yes | string |
+| version | path |  | Yes | string |
 | Authorization | header |  | Yes | string |
 
 **Responses**

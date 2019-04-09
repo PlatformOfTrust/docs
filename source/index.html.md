@@ -105,16 +105,21 @@ translators.
 
 **Version:** v1 
 
-## /fetch-data-product
+## /broker/{version}/fetch-data-product
 ### **post** 
 
-**Description:** Fetch data product.
+**Description:** Request data from an external service defined by the data product, and
+ product code. The data broker will validate the signature of the
+ payload and when verified, relay the request to the translator
+ connected to the data product. The translator will translate the
+ information fetched from an external source into a standardized format
+ that will be returned to the requester.
 
 
 #### http request 
 
 
- > Example for: POST /fetch-data-product 
+ > Example for: POST /broker/{version}/fetch-data-product 
 
 
 ```python
@@ -179,12 +184,16 @@ HTTP/1.0 200 OK
 ```
 
 
-**POST** /fetch-data-product 
+**POST** /broker/{version}/fetch-data-product 
 
 **Parameters**
 
 | Name | Located in | Description | Required | Type |
 | ---- | ---------- | ----------- | -------- | ---- |
+| version | path |  | Yes | string |
+| X-Pot-Signature | header | A HMAC-SHA256 signature in base64 encoded format. The signature is created by taking the request payload, e.g. a Python dict, and converting it to a string. Python example:  ```python  body_string = json.dumps(   body,   sort_keys=True,   indent=None,   separators=(',', ': ') ).strip() ``` The keys MUST be sorted, without indentation and separators comma (,) and colon (:) specified.  Get the digest by passing the app access token (generated when creating a new app) and the body string to `hmac`: ```python digest = hmac.new(app_access_token.encode('utf-8'),                      body_string.encode('utf-8'),                      hashlib.sha256).digest() ``` Return the digest in base64 encoded format: ```python X-Pot-Signature = base64.b64encode(digest).decode() ```  | Yes | string |
+| X-Pot-App | header | The requesting application's client ID. | Yes | string |
+| X-Pot-Token | header | The currently logged in user's OAuth access token.  | No | string |
 | body | body |  | Yes |  |
 
 **Responses**
@@ -216,13 +225,13 @@ A notification about the entry will be sent to these users.
 
 **Version:** v1 
 
-## /calendars/{version}/
+## /calendars/{version}
 ### **post** 
 
 **Description:** Create a new calendar entry
 
 #### http request 
-**POST** /calendars/{version}/ 
+**POST** /calendars/{version} 
 
 **Parameters**
 
@@ -239,7 +248,7 @@ A notification about the entry will be sent to these users.
 | 201 |  |
 | 422 |  |
 
-## /calendars/{version}//{id}
+## /calendars/{version}/{id}
 ### **get** 
 
 **Description:** Read one calendar by id
@@ -247,7 +256,7 @@ A notification about the entry will be sent to these users.
 #### http request 
 
 
- > Example for: GET /calendars/{version}//{id} 
+ > Example for: GET /calendars/{version}/{id} 
 
 
 ```python
@@ -297,13 +306,14 @@ HTTP/1.0 200 OK
 ```
 
 
-**GET** /calendars/{version}//{id} 
+**GET** /calendars/{version}/{id} 
 
 **Parameters**
 
 | Name | Located in | Description | Required | Type |
 | ---- | ---------- | ----------- | -------- | ---- |
 | id | path | The ID of the calendar | Yes | string |
+| version | path |  | Yes | string |
 | Authorization | header | The Authorization header, MUST be `Bearer {{access_token}}` | Yes | string |
 
 **Responses**
@@ -320,7 +330,7 @@ HTTP/1.0 200 OK
 #### http request 
 
 
- > Example for: PUT /calendars/{version}//{id} 
+ > Example for: PUT /calendars/{version}/{id} 
 
 
 ```python
@@ -375,13 +385,14 @@ HTTP/1.0 201 Created
 ```
 
 
-**PUT** /calendars/{version}//{id} 
+**PUT** /calendars/{version}/{id} 
 
 **Parameters**
 
 | Name | Located in | Description | Required | Type |
 | ---- | ---------- | ----------- | -------- | ---- |
 | id | path | The ID of the calendar | Yes | string |
+| version | path |  | Yes | string |
 | Authorization | header | The Authorization header, MUST be `Bearer {{access_token}}` | Yes | string |
 | body | body |  | Yes |  |
 
@@ -400,7 +411,7 @@ HTTP/1.0 201 Created
 #### http request 
 
 
- > Example for: DELETE /calendars/{version}//{id} 
+ > Example for: DELETE /calendars/{version}/{id} 
 
 
 ```python
@@ -429,13 +440,14 @@ HTTP/1.0 204 No Content
 ```
 
 
-**DELETE** /calendars/{version}//{id} 
+**DELETE** /calendars/{version}/{id} 
 
 **Parameters**
 
 | Name | Located in | Description | Required | Type |
 | ---- | ---------- | ----------- | -------- | ---- |
 | id | path | The ID of the calendar | Yes | string |
+| version | path |  | Yes | string |
 | Authorization | header | The Authorization header, MUST be `Bearer {{access_token}}` | Yes | string |
 
 **Responses**
@@ -445,7 +457,28 @@ HTTP/1.0 204 No Content
 | 204 |  |
 | 404 |  |
 
-## /calendars/{version}//{toidentity}/
+## /calendars/{version}/{toidentity}/list
+### **get** 
+
+**Description:** List calendars created for "to"-identity.
+
+#### http request 
+**GET** /calendars/{version}/{toIdentity}/list 
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+| toIdentity | path | The identity to which the calendar belongs to. | Yes | string |
+| version | path |  | Yes | string |
+| Authorization | header | The Authorization header, MUST be `Bearer {{access_token}}` | Yes | string |
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 200 |  |
+
 <!-- Converted with the swagger-to-slate https://github.com/lavkumarv/swagger-to-slate -->
 # Context API
 
@@ -460,13 +493,62 @@ identity can have.
 
 **Version:** v1 
 
-## /contexts/{version}/
+## /contexts/{version}
 ### **get** 
 
 **Description:** Returns a list of all defined contexts
 
 #### http request 
-**GET** /contexts/{version}/ 
+
+
+ > Example for: GET /contexts/{version} 
+
+
+```python
+import sys
+sys.stdout.write("Python example missing. Why not contribute one for us?")
+```
+
+```shell
+curl https://api-sandbox.oftrust.net/contexts/v1/
+```
+
+```javascript
+console.error("Javascript example missing. Why not contribute one for us?");
+```
+
+
+```java
+System.out.println("Java example missing. Why not contribute one for us?");
+```
+
+> The above example should return `JSON` structured like this:
+
+```json
+HTTP/1.0 200 OK
+
+{
+  "@context": "https://schema.org/",
+  "@type": "collection",
+  "ItemList": [
+    {
+      "type": "Identity",
+      "name": "Apartment",
+      "url": "https://standards.oftrust.net/contexts/identity-apartment.jsonld"
+    },
+    ...
+    {
+      "type": "Link",
+      "name": "Owner",
+      "url": "https://standards.oftrust.net/contexts/link-owner.jsonld"
+    }
+  ]
+}
+
+```
+
+
+**GET** /contexts/{version} 
 
 **Parameters**
 
@@ -490,71 +572,13 @@ The links provides the direction and type (sometimes called role) of the link.
 
 **Version:** v1 
 
-## /identities/{version}/
+## /identities/{version}
 ### **get** 
 
 **Description:** List all identities created by currently logged in user
 
 #### http request 
-
-
- > Example for: GET /identities/{version}/ 
-
-
-```python
-import sys
-sys.stdout.write("Python example missing. Why not contribute one for us?")
-```
-
-```shell
-curl https://api-sandbox.oftrust.net/identities/v1/ \
--H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzY29w...DVs5aaf"
-```
-
-```javascript
-console.error("Javascript example missing. Why not contribute one for us?");
-```
-
-
-```java
-System.out.println("Java example missing. Why not contribute one for us?");
-```
-
-> The above example should return `JSON` structured like this:
-
-```json
-HTTP/1.0 200 OK
-
-{
-  "@context": "https://schema.org/",
-  "@type": "collection",
-  "ItemList": [
-    {
-      "@context": "http://platformoftrust.github.io/standards/contexts/identity-person.jsonld",
-      "@type": "Person",
-      "@id": "fbd106c5-c594-4416-a87e-f61e578fe829",
-      "name": "John Doe",
-      "data": {
-        "firstName": "John",
-        "lastName": "Doe",
-        "gender": "Male"
-      },
-      "createdBy": "34fe0b13-e031-4ef2-822e-17eabad63259",
-      "updatedBy": "34fe0b13-e031-4ef2-822e-17eabad63259",
-      "createdAt": "2019-03-14T10:50:51+00:00",
-      "updatedAt": "2019-03-14T11:17:35+00:00",
-      "status": 0,
-      "inLinks": [],
-      "outLinks": []
-    },
-    ...
-  ]
-}}
-
-```
-
-
-**GET** /identities/{version}/ 
+**GET** /identities/{version} 
 
 **Parameters**
 
@@ -562,7 +586,7 @@ HTTP/1.0 200 OK
 | ---- | ---------- | ----------- | -------- | ---- |
 | version | path |  | Yes | string |
 | Authorization | header | The Authorization header, MUST be `Bearer {{access_token}}` | Yes | string |
-| type | query | If given to `GET /?type=App`, will list only the identities of `@type: "App"`  | No | string |
+| type | query | If given to `GET /identities/{version}?type=App`, will list only the identities of `@type: "App"`  | No | string |
 
 **Responses**
 
@@ -575,67 +599,7 @@ HTTP/1.0 200 OK
 **Description:** Create a new identity
 
 #### http request 
-
-
- > Example for: POST /identities/{version}/ 
-
-
-```python
-import sys
-sys.stdout.write("Python example missing. Why not contribute one for us?")
-```
-
-```shell
-curl -X POST https://api-sandbox.oftrust.net/identities/v1/ \
--H "Content-Type: application/json" \
--H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzY29w...DVs5aaf" \
--d '{
-	"context": "http://platformoftrust.github.io/standards/contexts/identity-person.jsonld",
-	"type": "Person",
-	"name": "John Doe",
-	"data": {
-		"firstName": "John",
-		"lastName": "Doe"
-	}
-}'
-```
-
-```javascript
-console.error("Javascript example missing. Why not contribute one for us?");
-```
-
-
-```java
-System.out.println("Java example missing. Why not contribute one for us?");
-```
-
-> The above example should return `JSON` structured like this:
-
-```json
-HTTP/1.0 201 Created
-
-{
-  "@context": "http://platformoftrust.github.io/standards/contexts/identity-person.jsonld",
-  "@type": "Person",
-  "@id": "fbd106c5-c594-4416-a87e-f61e578fe829",
-  "name": "John Doe",
-  "data": {
-    "firstName": "John",
-    "lastName": "Doe"
-  },
-  "createdBy": "4c276e02-719c-4415-abba-a7afc4edc0c0",
-  "updatedBy": null,
-  "createdAt": "2019-03-14T10:50:51+00:00",
-  "updatedAt": "2019-03-14T10:50:51+00:00",
-  "status": 0,
-  "inLinks": [],
-  "outLinks": []
-}
-
-```
-
-
-**POST** /identities/{version}/ 
+**POST** /identities/{version} 
 
 **Parameters**
 
@@ -652,7 +616,7 @@ HTTP/1.0 201 Created
 | 201 |  |
 | 422 |  |
 
-## /identities/{version}//{id}
+## /identities/{version}/{id}
 ### **get** 
 
 **Description:** Read one identity by id
@@ -660,7 +624,7 @@ HTTP/1.0 201 Created
 #### http request 
 
 
- > Example for: GET /identities/{version}//{id} 
+ > Example for: GET /identities/{version}/{id} 
 
 
 ```python
@@ -708,13 +672,14 @@ HTTP/1.0 200 OK
 ```
 
 
-**GET** /identities/{version}//{id} 
+**GET** /identities/{version}/{id} 
 
 **Parameters**
 
 | Name | Located in | Description | Required | Type |
 | ---- | ---------- | ----------- | -------- | ---- |
 | id | path | The ID of the Identity | Yes | string |
+| version | path |  | Yes | string |
 | Authorization | header | The Authorization header, MUST be `Bearer {{access_token}}` | Yes | string |
 
 **Responses**
@@ -731,7 +696,7 @@ HTTP/1.0 200 OK
 #### http request 
 
 
- > Example for: PUT /identities/{version}//{id} 
+ > Example for: PUT /identities/{version}/{id} 
 
 
 ```python
@@ -791,13 +756,14 @@ HTTP/1.0 200 OK
 ```
 
 
-**PUT** /identities/{version}//{id} 
+**PUT** /identities/{version}/{id} 
 
 **Parameters**
 
 | Name | Located in | Description | Required | Type |
 | ---- | ---------- | ----------- | -------- | ---- |
 | id | path | The ID of the Identity | Yes | string |
+| version | path |  | Yes | string |
 | Authorization | header | The Authorization header, MUST be `Bearer {{access_token}}` | Yes | string |
 | body | body |  | Yes |  |
 
@@ -816,7 +782,7 @@ HTTP/1.0 200 OK
 #### http request 
 
 
- > Example for: DELETE /identities/{version}//{id} 
+ > Example for: DELETE /identities/{version}/{id} 
 
 
 ```python
@@ -846,13 +812,14 @@ HTTP/1.0 204 No Content
 ```
 
 
-**DELETE** /identities/{version}//{id} 
+**DELETE** /identities/{version}/{id} 
 
 **Parameters**
 
 | Name | Located in | Description | Required | Type |
 | ---- | ---------- | ----------- | -------- | ---- |
 | id | path | The ID of the Identity | Yes | string |
+| version | path |  | Yes | string |
 | Authorization | header | The Authorization header, MUST be `Bearer {{access_token}}` | Yes | string |
 
 **Responses**
@@ -862,13 +829,13 @@ HTTP/1.0 204 No Content
 | 204 |  |
 | 404 |  |
 
-## /identities/{version}//{from_identity}/link/{to_identity}
+## /identities/{version}/{from_identity}/link/{to_identity}
 ### **post** 
 
 **Description:** Creates a new link between two identities
 
 #### http request 
-**POST** /identities/{version}//{from_identity}/link/{to_identity} 
+**POST** /identities/{version}/{from_identity}/link/{to_identity} 
 
 **Parameters**
 
@@ -876,6 +843,7 @@ HTTP/1.0 204 No Content
 | ---- | ---------- | ----------- | -------- | ---- |
 | from_identity | path | The starting identity ID of the link | Yes | string |
 | to_identity | path | The ending identity ID of the link | Yes | string |
+| version | path |  | Yes | string |
 | Authorization | header | The Authorization header, MUST be `Bearer {{access_token}}` | Yes | string |
 | body | body |  | Yes |  |
 
@@ -887,13 +855,13 @@ HTTP/1.0 204 No Content
 | 404 |  |
 | 422 |  |
 
-## /identities/{version}//{from_identity}/link/{to_identity}/{type}
+## /identities/{version}/{from_identity}/link/{to_identity}/{type}
 ### **put** 
 
 **Description:** Update a link
 
 #### http request 
-**PUT** /identities/{version}//{from_identity}/link/{to_identity}/{type} 
+**PUT** /identities/{version}/{from_identity}/link/{to_identity}/{type} 
 
 **Parameters**
 
@@ -902,6 +870,7 @@ HTTP/1.0 204 No Content
 | type | path | The link type | Yes | string |
 | from_identity | path | The starting identity ID of the link | Yes | string |
 | to_identity | path | The ending identity ID of the link | Yes | string |
+| version | path |  | Yes | string |
 | Authorization | header | The Authorization header, MUST be `Bearer {{access_token}}` | Yes | string |
 | body | body |  | Yes |  |
 
@@ -918,7 +887,7 @@ HTTP/1.0 204 No Content
 **Description:** Delete a link by type
 
 #### http request 
-**DELETE** /identities/{version}//{from_identity}/link/{to_identity}/{type} 
+**DELETE** /identities/{version}/{from_identity}/link/{to_identity}/{type} 
 
 **Parameters**
 
@@ -927,6 +896,7 @@ HTTP/1.0 204 No Content
 | type | path | The link type | Yes | string |
 | from_identity | path | The starting identity ID of the link | Yes | string |
 | to_identity | path | The ending identity ID of the link | Yes | string |
+| version | path |  | Yes | string |
 | Authorization | header | The Authorization header, MUST be `Bearer {{access_token}}` | Yes | string |
 
 **Responses**
@@ -937,7 +907,7 @@ HTTP/1.0 204 No Content
 | 404 |  |
 | 422 |  |
 
-## /identities/{version}//{id}/links
+## /identities/{version}/{id}/links
 ### **get** 
 
 **Description:** List all links for a given identity
@@ -945,7 +915,7 @@ HTTP/1.0 204 No Content
 #### http request 
 
 
- > Example for: GET /identities/{version}//{id}/links 
+ > Example for: GET /identities/{version}/{id}/links 
 
 
 ```python
@@ -993,15 +963,16 @@ HTTP/1.0 200 OK
 ```
 
 
-**GET** /identities/{version}//{id}/links 
+**GET** /identities/{version}/{id}/links 
 
 **Parameters**
 
 | Name | Located in | Description | Required | Type |
 | ---- | ---------- | ----------- | -------- | ---- |
 | id | path | The ID of the identity | Yes | string |
+| version | path |  | Yes | string |
 | Authorization | header | The Authorization header, MUST be `Bearer {{access_token}}` | Yes | string |
-| type | query | If given to `GET /{id}/links?type=Owner`, will list only the links of `@type: "Owner"`  | No | string |
+| type | query | If given to `GET /identities/{version}/{id}/links?type=Owner`, will list only the links of `@type: "Owner"`  | No | string |
 
 **Responses**
 
@@ -1028,71 +999,13 @@ A notification about the message will be sent to these users.
 
 **Version:** v1 
 
-## /messages/{version}/
+## /messages/{version}
 ### **post** 
 
 **Description:** Create a new message
 
 #### http request 
-
-
- > Example for: POST /messages/{version}/ 
-
-
-```python
-import sys
-sys.stdout.write("Python example missing. Why not contribute one for us?")
-```
-
-```shell
-curl -X POST https://api-sandbox.oftrust.net/messages/v1/ \
--H "Content-Type: application/json" \
--H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzY29w...DVs5aaf" \
--d '{
-	"toIdentity": "34fe0b13-e031-4ef2-822e-17eabad63259",
-	"subject": "Test message nr 1",
-	"content": "Testing the message api",
-	"cc": [
-		"34fe0b13-e031-4ef2-822e-17eabad63259"
-	]
-}'
-```
-
-```javascript
-console.error("Javascript example missing. Why not contribute one for us?");
-```
-
-
-```java
-System.out.println("Java example missing. Why not contribute one for us?");
-```
-
-> The above example should return `JSON` structured like this:
-
-```json
-HTTP/1.0 201 Created
-
-{
-  "@context": "https://standards.oftrust.net/contexts/message.jsonld",
-  "@type": "Message",
-  "@id": "3a9e31ff-b654-4069-8361-6b446dc04c95",
-  "toIdentity": "34fe0b13-e031-4ef2-822e-17eabad63259",
-  "subject": "Test message nr 1",
-  "content": "Testing the message api",
-  "cc": [
-    "34fe0b13-e031-4ef2-822e-17eabad63259"
-  ],
-  "readBy": [],
-  "createdBy": "34fe0b13-e031-4ef2-822e-17eabad63259",
-  "updatedBy": null,
-  "createdAt": "2019-03-14T13:55:12+00:00",
-  "updatedAt": "2019-03-14T13:55:12+00:00"
-}
-
-```
-
-
-**POST** /messages/{version}/ 
+**POST** /messages/{version} 
 
 **Parameters**
 
@@ -1109,7 +1022,7 @@ HTTP/1.0 201 Created
 | 201 |  |
 | 422 |  |
 
-## /messages/{version}//{id}
+## /messages/{version}/{id}
 ### **get** 
 
 **Description:** Read one message by id
@@ -1117,7 +1030,7 @@ HTTP/1.0 201 Created
 #### http request 
 
 
- > Example for: GET /messages/{version}//{id} 
+ > Example for: GET /messages/{version}/{id} 
 
 
 ```python
@@ -1164,13 +1077,14 @@ HTTP/1.0 200 OK
 ```
 
 
-**GET** /messages/{version}//{id} 
+**GET** /messages/{version}/{id} 
 
 **Parameters**
 
 | Name | Located in | Description | Required | Type |
 | ---- | ---------- | ----------- | -------- | ---- |
 | id | path | The ID of the message | Yes | string |
+| version | path |  | Yes | string |
 | Authorization | header | The Authorization header, MUST be `Bearer {{access_token}}` | Yes | string |
 
 **Responses**
@@ -1187,7 +1101,7 @@ HTTP/1.0 200 OK
 #### http request 
 
 
- > Example for: PUT /messages/{version}//{id} 
+ > Example for: PUT /messages/{version}/{id} 
 
 
 ```python
@@ -1239,13 +1153,14 @@ HTTP/1.0 200 OK
 ```
 
 
-**PUT** /messages/{version}//{id} 
+**PUT** /messages/{version}/{id} 
 
 **Parameters**
 
 | Name | Located in | Description | Required | Type |
 | ---- | ---------- | ----------- | -------- | ---- |
 | id | path | The ID of the message | Yes | string |
+| version | path |  | Yes | string |
 | Authorization | header | The Authorization header, MUST be `Bearer {{access_token}}` | Yes | string |
 | body | body |  | Yes |  |
 
@@ -1264,7 +1179,7 @@ HTTP/1.0 200 OK
 #### http request 
 
 
- > Example for: DELETE /messages/{version}//{id} 
+ > Example for: DELETE /messages/{version}/{id} 
 
 
 ```python
@@ -1293,13 +1208,14 @@ HTTP/1.0 204 No Content
 ```
 
 
-**DELETE** /messages/{version}//{id} 
+**DELETE** /messages/{version}/{id} 
 
 **Parameters**
 
 | Name | Located in | Description | Required | Type |
 | ---- | ---------- | ----------- | -------- | ---- |
 | id | path | The ID of the message | Yes | string |
+| version | path |  | Yes | string |
 | Authorization | header | The Authorization header, MUST be `Bearer {{access_token}}` | Yes | string |
 
 **Responses**
@@ -1309,7 +1225,7 @@ HTTP/1.0 204 No Content
 | 204 |  |
 | 404 |  |
 
-## /messages/{version}//{id}/read
+## /messages/{version}/{id}/read
 ### **post** 
 
 **Description:** Marks a message read by the currently logged in user.
@@ -1317,7 +1233,7 @@ HTTP/1.0 204 No Content
 #### http request 
 
 
- > Example for: POST /messages/{version}//{id}/read 
+ > Example for: POST /messages/{version}/{id}/read 
 
 
 ```python
@@ -1347,13 +1263,14 @@ HTTP/1.0 200 OK
 ```
 
 
-**POST** /messages/{version}//{id}/read 
+**POST** /messages/{version}/{id}/read 
 
 **Parameters**
 
 | Name | Located in | Description | Required | Type |
 | ---- | ---------- | ----------- | -------- | ---- |
 | id | path | The ID of the message | Yes | string |
+| version | path |  | Yes | string |
 | Authorization | header | The Authorization header, MUST be `Bearer {{access_token}}` | Yes | string |
 
 **Responses**
@@ -1363,69 +1280,20 @@ HTTP/1.0 200 OK
 | 200 |  |
 | 403 |  |
 
-## /messages/{version}//{toidentity}/
+## /messages/{version}/{toidentity}/list
 ### **get** 
 
 **Description:** List messages sent to "to"-identity.
 
 #### http request 
-
-
- > Example for: GET /messages/{version}//{toIdentity}/ 
-
-
-```python
-import sys
-sys.stdout.write("Python example missing. Why not contribute one for us?")
-```
-
-```shell
-curl https://api-sandbox.oftrust.net/messages/v1/3a9e31ff-b654-4069-8361-6b446dc04c95 \
--H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzY29w...DVs5aaf"
-```
-
-```javascript
-console.error("Javascript example missing. Why not contribute one for us?");
-```
-
-
-```java
-System.out.println("Java example missing. Why not contribute one for us?");
-```
-
-> The above example should return `JSON` structured like this:
-
-```json
-HTTP/1.0 200 OK
-
-{
-  "@context": "https://standards.oftrust.net/contexts/message.jsonld",
-  "@type": "Message",
-  "@id": "3a9e31ff-b654-4069-8361-6b446dc04c95",
-  "toIdentity": "34fe0b13-e031-4ef2-822e-17eabad63259",
-  "subject": "Test message nr 1",
-  "content": "Testing the message api",
-  "cc": [
-    "34fe0b13-e031-4ef2-822e-17eabad63259"
-  ],
-  "readBy": [],
-  "createdBy": "34fe0b13-e031-4ef2-822e-17eabad63259",
-  "updatedBy": null,
-  "createdAt": "2019-03-14T13:55:12+00:00",
-  "updatedAt": "2019-03-14T13:55:12+00:00"
-}
-
-
-```
-
-
-**GET** /messages/{version}//{toIdentity}/ 
+**GET** /messages/{version}/{toIdentity}/list 
 
 **Parameters**
 
 | Name | Located in | Description | Required | Type |
 | ---- | ---------- | ----------- | -------- | ---- |
 | toIdentity | path | The identity to which the message belongs to. | Yes | string |
+| version | path |  | Yes | string |
 | Authorization | header | The Authorization header, MUST be `Bearer {{access_token}}` | Yes | string |
 
 **Responses**
@@ -1444,77 +1312,13 @@ use when requesting data from the translator.
 
 **Version:** v1 
 
-## /products/{version}/
+## /products/{version}
 ### **post** 
 
 **Description:** Create a new product
 
 #### http request 
-
-
- > Example for: POST /products/{version}/ 
-
-
-```python
-import sys
-sys.stdout.write("Python example missing. Why not contribute one for us?")
-```
-
-```shell
-curl -X POST https://api-sandbox.oftrust.net/products/v1/ \
--H "Content-Type: application/json" \
--d '{
-  "dataContext": "https://standards.oftrust.net/contexts/product-data.jsonld",
-  "parameterContext": "https://standards.oftrust.net/contexts/product-parameters.jsonld",
-  "productCode": "business-identity-test",
-  "name": "Business identity",
-  "translatorUrl": "http://translator-test-backend-app/business-identity",
-  "organizationPublicKeys": [
-    {
-      "url": "https://example.com/example.pub",
-      "type": "RsaSignature2018"
-    }
-  ],
-  "description": "Test translator business information"
-}'
-```
-
-```javascript
-console.error("Javascript example missing. Why not contribute one for us?");
-```
-
-
-```java
-System.out.println("Java example missing. Why not contribute one for us?");
-```
-
-> The above example should return `JSON` structured like this:
-
-```json
-HTTP/1.0 201 Created
-{
-  "@context": "https://standards.oftrust.net/contexts/product.jsonld",
-  "@type": "Product",
-  "@id": "https://api-sandbox.oftrust.net/product/v1/products/business-identity-test",
-  "productCode": "business-identity-test",
-  "dataContext": "https://standards.oftrust.net/contexts/product-data.jsonld",
-  "parameterContext": "https://standards.oftrust.net/contexts/product-parameters.jsonld",
-  "translatorUrl": "http://translator-test-backend-app/business-identity",
-  "name": "Business identity",
-  "organizationPublicKeys": [
-    {
-      "url": "https://example.com/example.pub",
-      "type": "RsaSignature2018"
-    }
-  ],
-  "description": "Test translator business information",
-  "imageUrl": null
-}
-
-```
-
-
-**POST** /products/{version}/ 
+**POST** /products/{version} 
 
 **Parameters**
 
@@ -1534,85 +1338,19 @@ HTTP/1.0 201 Created
 ### **get** 
 
 **Description:** Lists all available products. *NOTE*: This is a CORS enabled endpoint.
+Supports pagination.
 
 
 #### http request 
-
-
- > Example for: GET /products/{version}/ 
-
-
-```python
-import sys
-sys.stdout.write("Python example missing. Why not contribute one for us?")
-```
-
-```shell
-curl https://api-sandbox.oftrust.net/products/v1/
-```
-
-```javascript
-<!doctype html>
-<html lang="en">
-<head>
-  <script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
-</head>
-<body>
-
-<script>
-$( document ).ready(function() {
-  var potAPI = "https://api-sandbox.oftrust.net/products/v1/";
-  $.getJSON( potAPI, function( data ) {
-        alert(JSON.stringify(data));
-    });
-});
-</script>
-
-</body>
-</html>
-```
-
-
-```java
-System.out.println("Java example missing. Why not contribute one for us?");
-```
-
-> The above example should return `JSON` structured like this:
-
-```json
-HTTP/1.0 200 OK
-
-{
-  "@context": "https://schema.org/",
-  "@type": "collection",
-  "ItemList": [
-    {
-      "@context": "https://standards.oftrust.net/contexts/product.jsonld",
-      "@type": "Product",
-      "@id": "https://api-sandbox.oftrust.net/product/v1/products/prh-business-identity-data-product",
-      "productCode": "prh-business-identity-data-product",
-      "dataContext": null,
-      "parameterContext": "https://standards.oftrust.net/contexts/product-parameters.jsonld",
-      "translatorUrl": "http://translator-test-backend-app/business-identity",
-      "name": "PRH Business Identity",
-      "organizationPublicKeys": null,
-      "description": "Returns business information from the PRH Open Data API",
-      "imageUrl": null
-    },
-    ...
-  ]
-}
-
-```
-
-
-**GET** /products/{version}/ 
+**GET** /products/{version} 
 
 **Parameters**
 
 | Name | Located in | Description | Required | Type |
 | ---- | ---------- | ----------- | -------- | ---- |
 | version | path |  | Yes | string |
+| offset | query | Offset of a query | No | integer |
+| limit | query | Limit the result of a query | No | integer |
 
 **Responses**
 
@@ -1620,7 +1358,7 @@ HTTP/1.0 200 OK
 | ---- | ----------- |
 | 200 |  |
 
-## /products/{version}//{product_code}
+## /products/{version}/{product_code}
 ### **get** 
 
 **Description:** Reads a single product by product code. *NOTE*: This is a CORS enabled endpoint.
@@ -1629,7 +1367,7 @@ HTTP/1.0 200 OK
 #### http request 
 
 
- > Example for: GET /products/{version}//{product_code} 
+ > Example for: GET /products/{version}/{product_code} 
 
 
 ```python
@@ -1677,13 +1415,14 @@ HTTP/1.0 200 OK
 ```
 
 
-**GET** /products/{version}//{product_code} 
+**GET** /products/{version}/{product_code} 
 
 **Parameters**
 
 | Name | Located in | Description | Required | Type |
 | ---- | ---------- | ----------- | -------- | ---- |
 | product_code | path | The product code of the product. | Yes | string |
+| version | path |  | Yes | string |
 
 **Responses**
 
@@ -1699,7 +1438,7 @@ HTTP/1.0 200 OK
 #### http request 
 
 
- > Example for: PUT /products/{version}//{product_code} 
+ > Example for: PUT /products/{version}/{product_code} 
 
 
 ```python
@@ -1763,13 +1502,14 @@ HTTP/1.0 200 OK
 ```
 
 
-**PUT** /products/{version}//{product_code} 
+**PUT** /products/{version}/{product_code} 
 
 **Parameters**
 
 | Name | Located in | Description | Required | Type |
 | ---- | ---------- | ----------- | -------- | ---- |
 | product_code | path | The product code of the product. | Yes | string |
+| version | path |  | Yes | string |
 | Authorization | header |  | Yes | string |
 | body | body |  | Yes |  |
 
@@ -1788,7 +1528,7 @@ HTTP/1.0 200 OK
 #### http request 
 
 
- > Example for: DELETE /products/{version}//{product_code} 
+ > Example for: DELETE /products/{version}/{product_code} 
 
 
 ```python
@@ -1816,13 +1556,14 @@ HTTP/1.0 204 No Content
 ```
 
 
-**DELETE** /products/{version}//{product_code} 
+**DELETE** /products/{version}/{product_code} 
 
 **Parameters**
 
 | Name | Located in | Description | Required | Type |
 | ---- | ---------- | ----------- | -------- | ---- |
 | product_code | path | The product code of the product. | Yes | string |
+| version | path |  | Yes | string |
 | Authorization | header |  | Yes | string |
 
 **Responses**
