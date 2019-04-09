@@ -147,19 +147,20 @@ types:
         404:
           body:
             example: !include includes/examples/calendar-not-found.json
-  /{toIdentity}/list:
-   description: List all calendars belonging to an identity.
-   uriParameters:
+  /{toIdentity}:
+    uriParameters:
       toIdentity:
         description: The identity to which the calendar belongs to.
         type: string
         example: 2584bdd7-1cb2-48ed-a106-2a1b817cf909
-    get:
-      headers:
-        Authorization: !include includes/properties/authorization-headers.yaml
-      description: List calendars created for "to"-identity.
-      responses:
-        200:
-          body:
-            properties: !include includes/properties/calendars.yaml
-            example: !include includes/examples/calendars.json
+    /list:
+      description: List all calendars belonging to an identity.
+      get:
+        headers:
+          Authorization: !include includes/properties/authorization-headers.yaml
+        description: List calendars created for "to"-identity.
+        responses:
+          200:
+            body:
+              properties: !include includes/properties/calendars.yaml
+              example: !include includes/examples/calendars.json
