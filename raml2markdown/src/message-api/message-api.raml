@@ -40,7 +40,7 @@ types:
             "323bde80-4cc2-472e-bb77-e6a3e95a1253",
             "0827e9c3-9664-479f-b0ec-956a35d72e4b"
           ]
-/messages/{version}/:
+/messages/{version}:
   description: |
     Manage messages of identities. A message can be sent to any identity the user
     has access to.
@@ -137,19 +137,20 @@ types:
                     "message": "User not logged in."
                   }
                 }
-  /{toIdentity}/:
-    description: List all messages belonging to an identity.
+  /{toIdentity}:
     uriParameters:
       toIdentity:
         description: The identity to which the message belongs to.
         type: string
         example: 2584bdd7-1cb2-48ed-a106-2a1b817cf909
-    get:
-      headers:
-        Authorization: !include includes/properties/authorization-headers.yaml
-      description: List messages sent to "to"-identity.
-      responses:
-        200:
-          body:
-            properties: !include includes/properties/messages.yaml
-            example: !include includes/examples/messages.json
+    /list:
+      description: List all messages belonging to an identity.
+      get:
+        headers:
+          Authorization: !include includes/properties/authorization-headers.yaml
+        description: List messages sent to "to"-identity.
+        responses:
+          200:
+            body:
+              properties: !include includes/properties/messages.yaml
+              example: !include includes/examples/messages.json
