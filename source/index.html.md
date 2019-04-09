@@ -217,72 +217,6 @@ A notification about the entry will be sent to these users.
 **Version:** v1 
 
 ## /calendars/{version}/
-
-
- > Example for:  POST 
-
-
-```python
-import sys
-sys.stdout.write("Python example missing. Why not contribute one for us?")
-```
-
-```shell
-curl -X POST https://api-sandbox.oftrust.net/calendars/v1/ \
--H "Content-Type: application/json" \
--H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzY29w...DVs5aaf" \
--d '{
-	"toIdentity": "34fe0b13-e031-4ef2-822e-17eabad63259",
-  "type": "Event",
-	"title": "Autumn feast 2",
-	"startDate": "2019-08-10T17:00:00+02:00",
-	"endDate": "2019-08-10T20:00:00+02:00",
-	"repeats": null,
-	"content": "Autumn feast",
-	"location": "Courtyard",
-	"cc": [
-		"34fe0b13-e031-4ef2-822e-17eabad63259"
-	]
-}'
-```
-
-```javascript
-console.error("Javascript example missing. Why not contribute one for us?");
-```
-
-
-```java
-System.out.println("Java example missing. Why not contribute one for us?");
-```
-
-> The above example should return `JSON` structured like this:
-
-```json
-HTTP/1.0 201 Created
-
-{
-  "@context": "https://standards.oftrust.net/contexts/calendar.jsonld",
-  "@type": "Event",
-  "@id": "67fa7be3-0c7d-4318-a09a-585181d1e6f3",
-  "toIdentity": "34fe0b13-e031-4ef2-822e-17eabad63259",
-  "title": "Autumn feast 2",
-  "startDate": "2019-08-10T15:00:00+00:00",
-  "endDate": "2019-08-10T18:00:00+00:00",
-  "repeats": null,
-  "content": "Autumn feast",
-  "location": "Courtyard",
-  "cc": [
-    "34fe0b13-e031-4ef2-822e-17eabad63259"
-  ],
-  "createdBy": "34fe0b13-e031-4ef2-822e-17eabad63259",
-  "updatedBy": null,
-  "createdAt": "2019-03-14T14:02:29+00:00",
-  "updatedAt": "2019-03-14T14:02:29+00:00"
-}
-
-```
-
-
 ### **post** 
 
 **Description:** Create a new calendar entry
@@ -901,7 +835,7 @@ curl https://api-sandbox.oftrust.net/products/v1/
 
 <script>
 $( document ).ready(function() {
-  var potAPI = "https://api-sandbox.oftrust.net/product/v1/products";
+  var potAPI = "https://api-sandbox.oftrust.net/products/v1/";
   $.getJSON( potAPI, function( data ) {
         alert(JSON.stringify(data));
     });
@@ -967,56 +901,6 @@ HTTP/1.0 200 OK
 
 
 #### http request 
-
-
- > Example for: GET /products/{version}//{product_code} 
-
-
-```python
-import sys
-sys.stdout.write("Python example missing. Why not contribute one for us?")
-```
-
-```shell
-curl https://api-sandbox.oftrust.net/products/v1/business-identity-test
-```
-
-```javascript
-console.error("Javascript example missing. Why not contribute one for us?");
-```
-
-
-```java
-System.out.println("Java example missing. Why not contribute one for us?");
-```
-
-> The above example should return `JSON` structured like this:
-
-```json
-HTTP/1.0 200 OK
-
-{
-  "@context": "https://standards.oftrust.net/contexts/product.jsonld",
-  "@type": "Product",
-  "@id": "https://api-sandbox.oftrust.net/product/v1/products/business-identity-test",
-  "productCode": "business-identity-test",
-  "dataContext": "https://standards.oftrust.net/contexts/product-data.jsonld",
-  "parameterContext": "https://standards.oftrust.net/contexts/product-parameters.jsonld",
-  "translatorUrl": "http://translator-test-backend-app/business-identity",
-  "name": "Business identity",
-  "organizationPublicKeys": [
-    {
-      "url": "https://example.com/example.pub",
-      "type": "RsaSignature2018"
-    }
-  ],
-  "description": "Test translator business information",
-  "imageUrl": null
-}
-
-```
-
-
 **GET** /products/{version}//{product_code} 
 
 **Parameters**
