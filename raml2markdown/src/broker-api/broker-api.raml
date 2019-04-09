@@ -30,10 +30,17 @@ types:
             "param-2": "param-2 value"
           }
 /broker/{version}/fetch-data-product:
-  description: Data products
+  description: |
+    Use a data product. E.g. request data from the external data source
+    connected to the data product.
   post:
     description: |
-      Fetch data product.
+      Request data from an external service defined by the data product, and
+       product code. The data broker will validate the signature of the
+       payload and when verified, relay the request to the translator
+       connected to the data product. The translator will translate the
+       information fetched from an external source into a standardized format
+       that will be returned to the requester.
     headers:
       X-Pot-Signature:
         description: |
