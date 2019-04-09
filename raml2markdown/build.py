@@ -76,12 +76,12 @@ def concatenate_files():
         example_method = re.sub('[`#*]', '', example_method)
 
         example_desc = "\n\n > Example for: "+example_method+"\n\n"
-
-        if example_file_path.exists():
-          with open(example_file_path) as sfile:
-            print("Found example file: " + str(example_file_path) +" derived from line:" + copyline)
-            ofile.write(example_desc)
-            ofile.write(sfile.read()+"\n\n")
+        if len(str(example_file_path)) < 200:
+          if example_file_path.exists():
+            with open(example_file_path) as sfile:
+              print("Found example file: " + str(example_file_path) +" derived from line:" + copyline)
+              ofile.write(example_desc)
+              ofile.write(sfile.read()+"\n\n")
 
 
         # Ugly way of getting rid of some markup in the beginning of each file. Get everything after line 18 and
