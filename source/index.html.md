@@ -658,6 +658,56 @@ HTTP/1.0 201 Created
 **Description:** Read one identity by id
 
 #### http request 
+
+
+ > Example for: GET /identities/{version}//{id} 
+
+
+```python
+import sys
+sys.stdout.write("Python example missing. Why not contribute one for us?")
+```
+
+```shell
+curl https://api-sandbox.oftrust.net/identities/v1/fbd106c5-c594-4416-a87e-f61e578fe829 \
+-H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzY29w...DVs5aaf"
+```
+
+```javascript
+console.error("Javascript example missing. Why not contribute one for us?");
+```
+
+
+```java
+System.out.println("Java example missing. Why not contribute one for us?");
+```
+
+> The above example should return `JSON` structured like this:
+
+```json
+HTTP/1.0 200 OK
+
+{
+  "@context": "http://platformoftrust.github.io/standards/contexts/identity-person.jsonld",
+  "@type": "Person",
+  "@id": "fbd106c5-c594-4416-a87e-f61e578fe829",
+  "name": "John Doe",
+  "data": {
+    "firstName": "John",
+    "lastName": "Doe"
+  },
+  "createdBy": "4c276e02-719c-4415-abba-a7afc4edc0c0",
+  "updatedBy": null,
+  "createdAt": "2019-03-14T10:50:51+00:00",
+  "updatedAt": "2019-03-14T10:50:51+00:00",
+  "status": 0,
+  "inLinks": [],
+  "outLinks": []
+}
+
+```
+
+
 **GET** /identities/{version}//{id} 
 
 **Parameters**
@@ -764,6 +814,38 @@ HTTP/1.0 200 OK
 **Description:** Delete an identity by id
 
 #### http request 
+
+
+ > Example for: DELETE /identities/{version}//{id} 
+
+
+```python
+import sys
+sys.stdout.write("Python example missing. Why not contribute one for us?")
+```
+
+```shell
+curl -X DELETE https://api-sandbox.oftrust.net/identities/v1/fbd106c5-c594-4416-a87e-f61e578fe829 \
+-H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzY29w...DVs5aaf"
+```
+
+```javascript
+console.error("Javascript example missing. Why not contribute one for us?");
+```
+
+
+```java
+System.out.println("Java example missing. Why not contribute one for us?");
+```
+
+> The above example should return `JSON` structured like this:
+
+```json
+HTTP/1.0 204 No Content
+
+```
+
+
 **DELETE** /identities/{version}//{id} 
 
 **Parameters**
@@ -1615,6 +1697,72 @@ HTTP/1.0 200 OK
 **Description:** Update a product by product code
 
 #### http request 
+
+
+ > Example for: PUT /products/{version}//{product_code} 
+
+
+```python
+import sys
+sys.stdout.write("Python example missing. Why not contribute one for us?")
+```
+
+```shell
+curl -X PUT https://api-sandbox.oftrust.net/products/v1/business-identity-test \
+-H "Content-Type: application/json" \
+-d '{
+	"dataContext": "https://standards.oftrust.net/contexts/product-data.jsonld",
+	"parameterContext": "https://standards.oftrust.net/contexts/product-parameters.jsonld",
+	"name": "Testing business identity",
+	"translatorUrl": "http://translator-test-backend-app/business-identity",
+	"organizationPublicKeys": [
+    {
+      "url": "https://example.com/example.pub",
+      "type": "RsaSignature2018"
+    }
+  ],
+  "description": "Test translator business information",
+  "imageUrl": "http://example.com/image.png"
+}'
+```
+
+```javascript
+console.error("Javascript example missing. Why not contribute one for us?");
+```
+
+
+```java
+System.out.println("Java example missing. Why not contribute one for us?");
+```
+
+> The above example should return `JSON` structured like this:
+
+```json
+HTTP/1.0 200 OK
+
+{
+  "@context": "https://standards.oftrust.net/contexts/product.jsonld",
+  "@type": "Product",
+  "@id": "https://api-sandbox.oftrust.net/product/v1/products/business-identity-test",
+  "productCode": "business-identity-test",
+  "dataContext": "https://standards.oftrust.net/contexts/product-data.jsonld",
+  "parameterContext": "https://standards.oftrust.net/contexts/product-parameters.jsonld",
+  "translatorUrl": "http://translator-test-backend-app/business-identity",
+  "name": "Testing business identity",
+  "organizationPublicKeys": [
+    {
+      "url": "https://example.com/example.pub",
+      "type": "RsaSignature2018"
+    }
+  ],
+  "description": "Test translator business information",
+  "imageUrl": "http://example.com/image.png"
+}
+
+
+```
+
+
 **PUT** /products/{version}//{product_code} 
 
 **Parameters**
@@ -1638,6 +1786,36 @@ HTTP/1.0 200 OK
 **Description:** Delete a product by product code
 
 #### http request 
+
+
+ > Example for: DELETE /products/{version}//{product_code} 
+
+
+```python
+import sys
+sys.stdout.write("Python example missing. Why not contribute one for us?")
+```
+
+```shell
+curl -X DELETE https://api-sandbox.oftrust.net/products/v1/business-identity-test
+```
+
+```javascript
+console.error("Javascript example missing. Why not contribute one for us?");
+```
+
+
+```java
+System.out.println("Java example missing. Why not contribute one for us?");
+```
+
+> The above example should return `JSON` structured like this:
+
+```json
+HTTP/1.0 204 No Content
+```
+
+
 **DELETE** /products/{version}//{product_code} 
 
 **Parameters**
