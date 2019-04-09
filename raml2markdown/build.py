@@ -64,12 +64,12 @@ def concatenate_files():
         # That should match product-api_PUT_product_code.curl in examples folder
         example_file= str(line)
         copyline = str(line)
-        example_file= re.sub('[`#* {}]', '', example_file)
-        example_file.rstrip("/")
+        example_file = example_file.rstrip(os.linesep)
+        example_file = re.sub('[`#* {}]', '', example_file)
         example_file = re.sub('//', '_', example_file)
         example_file = re.sub('[/]', '_', example_file)
         example_file = re.sub('I', 'i', example_file)
-        example_file = example_file.rstrip(os.linesep)
+
         example_file_path = Path("./examples/" +api.lower() +"_"+ example_file + ".md")
 
         example_method = str(line)
