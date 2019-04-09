@@ -40,7 +40,7 @@ types:
             "323bde80-4cc2-472e-bb77-e6a3e95a1253",
             "0827e9c3-9664-479f-b0ec-956a35d72e4b"
           ]
-/messages/{version}/:
+/messages/{version}:
   description: |
     Manage messages of identities. A message can be sent to any identity the user
     has access to.
@@ -137,7 +137,7 @@ types:
                     "message": "User not logged in."
                   }
                 }
-  /{toIdentity}/:
+  /{toIdentity}/list:
     description: List all messages belonging to an identity.
     uriParameters:
       toIdentity:

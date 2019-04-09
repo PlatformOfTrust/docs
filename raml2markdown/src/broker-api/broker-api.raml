@@ -2,7 +2,7 @@
 ---
 title: Platform Of Trust Data Broker
 version: v1
-baseUri: https://api-sandbox.oftrust.net/broker/{version}
+baseUri: https://api-sandbox.oftrust.net
 mediaType: application/json
 description: |
   The Broker API provides means to connect a service to a translator that will
@@ -29,7 +29,7 @@ types:
             "param-1": "param-1 value",
             "param-2": "param-2 value"
           }
-/fetch-data-product:
+/broker/{version}/fetch-data-product:
   description: Data products
   post:
     description: |
