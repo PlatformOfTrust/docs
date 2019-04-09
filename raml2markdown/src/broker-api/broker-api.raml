@@ -34,6 +34,46 @@ types:
   post:
     description: |
       Fetch data product.
+    headers:
+      X-Pot-Signature:
+        description: |
+          A HMAC-SHA256 signature in base64 encoded format.
+          The signature is created by taking the request payload, e.g. a
+          Python dict, and converting it to a string.
+          Python example:
+           ```python
+           body_string = json.dumps(
+            body,
+            sort_keys=True,
+            indent=None,
+            separators=(',', ': ')
+          ).strip()
+          ```
+          The keys MUST be sorted, without indentation and separators comma
+          (,) and colon (:) specified.
+
+          Get the digest by passing the app access token (generated when
+          creating a new app) and the body string to `hmac`:
+          ```python
+          digest = hmac.new(app_access_token.encode('utf-8'),
+                               body_string.encode('utf-8'),
+                               hashlib.sha256).digest()
+          ```
+          Return the digest in base64 encoded format:
+          ```python
+          X-Pot-Signature = base64.b64encode(digest).decode()
+          ```
+        type: string
+        example: Ioma1gqOVFUBrXiziWS....CLqBG4vFozG3YgzPzillNip0=
+      X-Pot-App:
+        description: The requesting application's client ID.
+        type: string
+        example: 379780e4-b511-4fa9-aef8-bda9bd58ab89
+      X-Pot-Token?:
+        description: |
+          The currently logged in user's OAuth access token.
+        type: string
+        example: eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzY29w...DVs5aaf
     body:
       type: data-product-request
       example: |
