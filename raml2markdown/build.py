@@ -65,6 +65,7 @@ def concatenate_files():
         example_file= str(line)
         copyline = str(line)
         example_file= re.sub('[`#* {}]', '', example_file)
+        example_file = re.sub('//', '_', example_file)
         example_file = re.sub('[/]', '_', example_file)
         example_file = re.sub('I', 'i', example_file)
         example_file = example_file.rstrip(os.linesep)
