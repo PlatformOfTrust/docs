@@ -34,8 +34,8 @@ Most of the APIs require bearer token in header ("Authorization: Bearer"). Excep
 
 APIs with CORS enabled endpoints which do not require any tokens: 
 
-* GET /products/v1/
-* GET /products/v1/{product_code}
+* GET [/products/v1/](#products-version)
+* GET [/products/v1/{product_code}](#products-version-product_code)
 
 > Example how Broker API headers are expected to be given. 
 
@@ -62,11 +62,13 @@ System.out.println("Java example missing. Why not contribute one for us?");
 ```
 ### Exception 2: Broker API   
 
-Second exception is the Broker API is a bit more complex and requires:
+Second exception is the [Broker API](#broker-api) is a bit more complex and requires header parameters:
 
-* X-Pot-Signature, 
-* X-Pot-App and 
-* X-Pot-Token as well. 
+* X-Pot-Signature (HMAC-SHA256 signature in base64 encoded format), 
+* X-Pot-App and (The requesting application's client ID)
+* X-Pot-Token (The currently logged in user's OAuth access token) as well. 
+
+Read more from [Broker API](#broker-version-fetch-data-product). 
 
 ## Get client credentials
 
