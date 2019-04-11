@@ -22,7 +22,6 @@ script:
   - ./build.py
   - cd ..
   - echo 'docs.oftrust.net' > build/CNAME
-  - cd ..
   - cp -R keys ./build/
 
 # Deploy to GitHub pages
