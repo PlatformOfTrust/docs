@@ -105,6 +105,7 @@ def make_html():
   else:
     print("\n\nHTML generated successfully.")
 
+
 # ----------------------------
 # MAIN - lets build it
 
