@@ -19,3 +19,5 @@ cd ..
 
 # Install swagger-to-slate node app
 npm i -g swagger-to-slate
+
+cp -R keys ./build/
