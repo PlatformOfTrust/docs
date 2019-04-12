@@ -1,6 +1,15 @@
 ```python
-import sys
-sys.stdout.write("Python example missing. Why not contribute one for us?")
+import http.client
+
+try:
+    conn = http.client.HTTPSConnection('api-sandbox.oftrust.net')
+    conn.request("GET", "/products/v1/business-identity-test")
+    response = conn.getresponse()
+    data = response.read()
+    print(data)
+    conn.close()
+except Exception as e:
+    print("[Errno {0}] {1}".format(e.errno, e.strerror))
 ```
 
 ```shell
