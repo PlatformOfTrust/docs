@@ -6,6 +6,7 @@ sys.stdout.write("Python example missing. Why not contribute one for us?")
 ```shell
 curl -X PUT https://api-sandbox.oftrust.net/products/v1/business-identity-test \
 -H "Content-Type: application/json" \
+-H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzY29w...DVs5aaf" \
 -d '{
 	"dataContext": "https://standards.oftrust.net/contexts/product-data.jsonld",
 	"parameterContext": "https://standards.oftrust.net/contexts/product-parameters.jsonld",
