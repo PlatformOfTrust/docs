@@ -75,7 +75,7 @@ def concatenate_files():
         example_method = str(line)
         example_method = re.sub('[`#*]', '', example_method)
 
-        example_desc = "\n\n > Example for: "+example_method+"\n\n"
+        example_desc = "\n\n > <b>Example for: "+example_method+"</b>\n\n"
         if len(str(example_file_path)) < 200:
           if example_file_path.exists():
             with open(example_file_path) as sfile:

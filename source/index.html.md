@@ -119,8 +119,8 @@ translators.
 #### http request 
 
 
- > Example for: POST /broker/{version}/fetch-data-product 
-
+ > <b>Example for: POST /broker/{version}/fetch-data-product 
+</b>
 
 ```python
 import sys
@@ -233,8 +233,8 @@ A notification about the entry will be sent to these users.
 #### http request 
 
 
- > Example for: POST /calendars/{version} 
-
+ > <b>Example for: POST /calendars/{version} 
+</b>
 
 ```python
 import sys
@@ -322,8 +322,8 @@ HTTP/1.0 201 Created
 #### http request 
 
 
- > Example for: GET /calendars/{version}/{id} 
-
+ > <b>Example for: GET /calendars/{version}/{id} 
+</b>
 
 ```python
 import sys
@@ -396,8 +396,8 @@ HTTP/1.0 200 OK
 #### http request 
 
 
- > Example for: PUT /calendars/{version}/{id} 
-
+ > <b>Example for: PUT /calendars/{version}/{id} 
+</b>
 
 ```python
 import sys
@@ -477,8 +477,8 @@ HTTP/1.0 201 Created
 #### http request 
 
 
- > Example for: DELETE /calendars/{version}/{id} 
-
+ > <b>Example for: DELETE /calendars/{version}/{id} 
+</b>
 
 ```python
 import sys
@@ -531,8 +531,8 @@ HTTP/1.0 204 No Content
 #### http request 
 
 
- > Example for: GET /calendars/{version}/{toIdentity}/list 
-
+ > <b>Example for: GET /calendars/{version}/{toIdentity}/list 
+</b>
 
 ```python
 import sys
@@ -626,8 +626,8 @@ identity can have.
 #### http request 
 
 
- > Example for: GET /contexts/{version} 
-
+ > <b>Example for: GET /contexts/{version} 
+</b>
 
 ```python
 import sys
@@ -749,8 +749,8 @@ The links provides the direction and type (sometimes called role) of the link.
 #### http request 
 
 
- > Example for: GET /identities/{version}/{id} 
-
+ > <b>Example for: GET /identities/{version}/{id} 
+</b>
 
 ```python
 import sys
@@ -821,8 +821,8 @@ HTTP/1.0 200 OK
 #### http request 
 
 
- > Example for: PUT /identities/{version}/{id} 
-
+ > <b>Example for: PUT /identities/{version}/{id} 
+</b>
 
 ```python
 import sys
@@ -907,8 +907,8 @@ HTTP/1.0 200 OK
 #### http request 
 
 
- > Example for: DELETE /identities/{version}/{id} 
-
+ > <b>Example for: DELETE /identities/{version}/{id} 
+</b>
 
 ```python
 import sys
@@ -1040,8 +1040,8 @@ HTTP/1.0 204 No Content
 #### http request 
 
 
- > Example for: GET /identities/{version}/{id}/links 
-
+ > <b>Example for: GET /identities/{version}/{id}/links 
+</b>
 
 ```python
 import sys
@@ -1130,6 +1130,64 @@ A notification about the message will be sent to these users.
 **Description:** Create a new message
 
 #### http request 
+
+
+ > <b>Example for: POST /messages/{version} 
+</b>
+
+```python
+import sys
+sys.stdout.write("Python example missing. Why not contribute one for us?")
+```
+
+```shell
+curl -X POST https://api-sandbox.oftrust.net/messages/v1/ \
+-H "Content-Type: application/json" \
+-H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzY29w...DVs5aaf" \
+-d '{
+	"toIdentity": "34fe0b13-e031-4ef2-822e-17eabad63259",
+	"subject": "Test message nr 1",
+	"content": "Testing the message api",
+	"cc": [
+		"34fe0b13-e031-4ef2-822e-17eabad63259"
+	]
+}'
+```
+
+```javascript
+console.error("Javascript example missing. Why not contribute one for us?");
+```
+
+
+```java
+System.out.println("Java example missing. Why not contribute one for us?");
+```
+
+> The above example should return `JSON` structured like this:
+
+```json
+HTTP/1.0 201 Created
+
+{
+  "@context": "https://standards.oftrust.net/contexts/message.jsonld",
+  "@type": "Message",
+  "@id": "3a9e31ff-b654-4069-8361-6b446dc04c95",
+  "toIdentity": "34fe0b13-e031-4ef2-822e-17eabad63259",
+  "subject": "Test message nr 1",
+  "content": "Testing the message api",
+  "cc": [
+    "34fe0b13-e031-4ef2-822e-17eabad63259"
+  ],
+  "readBy": [],
+  "createdBy": "34fe0b13-e031-4ef2-822e-17eabad63259",
+  "updatedBy": null,
+  "createdAt": "2019-03-14T13:55:12+00:00",
+  "updatedAt": "2019-03-14T13:55:12+00:00"
+}
+
+```
+
+
 **POST** /messages/{version} 
 
 **Parameters**
@@ -1155,8 +1213,8 @@ A notification about the message will be sent to these users.
 #### http request 
 
 
- > Example for: GET /messages/{version}/{id} 
-
+ > <b>Example for: GET /messages/{version}/{id} 
+</b>
 
 ```python
 import sys
@@ -1226,8 +1284,8 @@ HTTP/1.0 200 OK
 #### http request 
 
 
- > Example for: PUT /messages/{version}/{id} 
-
+ > <b>Example for: PUT /messages/{version}/{id} 
+</b>
 
 ```python
 import sys
@@ -1304,8 +1362,8 @@ HTTP/1.0 200 OK
 #### http request 
 
 
- > Example for: DELETE /messages/{version}/{id} 
-
+ > <b>Example for: DELETE /messages/{version}/{id} 
+</b>
 
 ```python
 import sys
@@ -1358,8 +1416,8 @@ HTTP/1.0 204 No Content
 #### http request 
 
 
- > Example for: POST /messages/{version}/{id}/read 
-
+ > <b>Example for: POST /messages/{version}/{id}/read 
+</b>
 
 ```python
 import sys
@@ -1443,6 +1501,70 @@ use when requesting data from the translator.
 **Description:** Create a new product
 
 #### http request 
+
+
+ > <b>Example for: POST /products/{version} 
+</b>
+
+```python
+import sys
+sys.stdout.write("Python example missing. Why not contribute one for us?")
+```
+
+```shell
+curl -X POST https://api-sandbox.oftrust.net/products/v1/ \
+-H "Content-Type: application/json" \
+-d '{
+  "dataContext": "https://standards.oftrust.net/contexts/product-data.jsonld",
+  "parameterContext": "https://standards.oftrust.net/contexts/product-parameters.jsonld",
+  "productCode": "business-identity-test",
+  "name": "Business identity",
+  "translatorUrl": "http://translator-test-backend-app/business-identity",
+  "organizationPublicKeys": [
+    {
+      "url": "https://example.com/example.pub",
+      "type": "RsaSignature2018"
+    }
+  ],
+  "description": "Test translator business information"
+}'
+```
+
+```javascript
+console.error("Javascript example missing. Why not contribute one for us?");
+```
+
+
+```java
+System.out.println("Java example missing. Why not contribute one for us?");
+```
+
+> The above example should return `JSON` structured like this:
+
+```json
+HTTP/1.0 201 Created
+{
+  "@context": "https://standards.oftrust.net/contexts/product.jsonld",
+  "@type": "Product",
+  "@id": "https://api-sandbox.oftrust.net/product/v1/products/business-identity-test",
+  "productCode": "business-identity-test",
+  "dataContext": "https://standards.oftrust.net/contexts/product-data.jsonld",
+  "parameterContext": "https://standards.oftrust.net/contexts/product-parameters.jsonld",
+  "translatorUrl": "http://translator-test-backend-app/business-identity",
+  "name": "Business identity",
+  "organizationPublicKeys": [
+    {
+      "url": "https://example.com/example.pub",
+      "type": "RsaSignature2018"
+    }
+  ],
+  "description": "Test translator business information",
+  "imageUrl": null
+}
+
+```
+
+
 **POST** /products/{version} 
 
 **Parameters**
@@ -1467,6 +1589,86 @@ Supports pagination.
 
 
 #### http request 
+
+
+ > <b>Example for: GET /products/{version} 
+</b>
+
+```python
+import http.client
+
+try:
+    conn = http.client.HTTPSConnection('api-sandbox.oftrust.net')
+    conn.request("GET", "/products/v1/")
+    response = conn.getresponse()
+    data = response.read()
+    print(data)
+    conn.close()
+except Exception as e:
+    print("[Errno {0}] {1}".format(e.errno, e.strerror))
+
+
+```
+
+```shell
+curl https://api-sandbox.oftrust.net/products/v1/
+```
+
+```javascript
+<!doctype html>
+<html lang="en">
+<head>
+  <script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
+</head>
+<body>
+
+<script>
+$( document ).ready(function() {
+  var potAPI = "https://api-sandbox.oftrust.net/products/v1/";
+  $.getJSON( potAPI, function( data ) {
+        alert(JSON.stringify(data));
+    });
+});
+</script>
+
+</body>
+</html>
+```
+
+
+```java
+System.out.println("Java example missing. Why not contribute one for us?");
+```
+
+> The above example should return `JSON` structured like this:
+
+```json
+HTTP/1.0 200 OK
+
+{
+  "@context": "https://schema.org/",
+  "@type": "collection",
+  "ItemList": [
+    {
+      "@context": "https://standards.oftrust.net/contexts/product.jsonld",
+      "@type": "Product",
+      "@id": "https://api-sandbox.oftrust.net/product/v1/products/prh-business-identity-data-product",
+      "productCode": "prh-business-identity-data-product",
+      "dataContext": null,
+      "parameterContext": "https://standards.oftrust.net/contexts/product-parameters.jsonld",
+      "translatorUrl": "http://translator-test-backend-app/business-identity",
+      "name": "PRH Business Identity",
+      "organizationPublicKeys": null,
+      "description": "Returns business information from the PRH Open Data API",
+      "imageUrl": null
+    },
+    ...
+  ]
+}
+
+```
+
+
 **GET** /products/{version} 
 
 **Parameters**
@@ -1492,12 +1694,21 @@ Supports pagination.
 #### http request 
 
 
- > Example for: GET /products/{version}/{product_code} 
-
+ > <b>Example for: GET /products/{version}/{product_code} 
+</b>
 
 ```python
-import sys
-sys.stdout.write("Python example missing. Why not contribute one for us?")
+import http.client
+
+try:
+    conn = http.client.HTTPSConnection('api-sandbox.oftrust.net')
+    conn.request("GET", "/products/v1/business-identity-test")
+    response = conn.getresponse()
+    data = response.read()
+    print(data)
+    conn.close()
+except Exception as e:
+    print("[Errno {0}] {1}".format(e.errno, e.strerror))
 ```
 
 ```shell
@@ -1563,8 +1774,8 @@ HTTP/1.0 200 OK
 #### http request 
 
 
- > Example for: PUT /products/{version}/{product_code} 
-
+ > <b>Example for: PUT /products/{version}/{product_code} 
+</b>
 
 ```python
 import sys
@@ -1574,6 +1785,7 @@ sys.stdout.write("Python example missing. Why not contribute one for us?")
 ```shell
 curl -X PUT https://api-sandbox.oftrust.net/products/v1/business-identity-test \
 -H "Content-Type: application/json" \
+-H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzY29w...DVs5aaf" \
 -d '{
 	"dataContext": "https://standards.oftrust.net/contexts/product-data.jsonld",
 	"parameterContext": "https://standards.oftrust.net/contexts/product-parameters.jsonld",
@@ -1653,8 +1865,8 @@ HTTP/1.0 200 OK
 #### http request 
 
 
- > Example for: DELETE /products/{version}/{product_code} 
-
+ > <b>Example for: DELETE /products/{version}/{product_code} 
+</b>
 
 ```python
 import sys
