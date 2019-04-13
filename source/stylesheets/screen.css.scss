@@ -645,6 +645,11 @@ html, body {
   color: #909090;
 }
 
+.highlight .err, .highlight .mf, .highlight .mi {
+  color:#fff;
+}
+
 .highlight, .highlight .w {
   background-color: $code-bg;
 }
+

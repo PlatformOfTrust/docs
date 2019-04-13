@@ -90,8 +90,3 @@ of role, the generic `link-link.jsonld` can be used
 Read more from [Github](https://github.com/PlatformOfTrust/standards/blob/master/README.md)
 
 
-<aside class="warning">
-All the documentation code examples use our sandbox environment. When you are done with testing, you should switch to production environment. Easiest way is to store API root url in variable and when needed, change it there. Thus the code examples contain API-root variable as an exmaple. 
-</aside>
-
-
