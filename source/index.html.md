@@ -186,7 +186,7 @@ HTTP/1.0 200 OK
 | Name | Located in | Description | Required | Type |
 | ---- | ---------- | ----------- | -------- | ---- |
 | version | path |  | Yes | string |
-| X-Pot-Signature | header | A HMAC-SHA256 signature in base64 encoded format. The signature is created by taking the request payload, e.g. a Python dict, and converting it to a string. <br/><br/>  Python example: <br/><br/> <code>  body_string = json.dumps( <br/>   body, <br/>   sort_keys=True, <br/>   indent=None, <br/>   separators=(',', ': ') <br/> ).strip() <br/><br/> </code> The keys MUST be sorted, without indentation and separators comma (,) and colon (:) specified. <br/><br/>  Get the digest by passing the app access token (generated when creating a new app) and the body string to `hmac`:<br/><br/> <code> digest = <br/> hmac.new(app_access_token.encode('utf-8'), <br/> body_string.encode('utf-8'),<br/> hashlib.sha256).digest()<br/><br/> </code> Return the digest in base64 encoded format:<br/> <code> X-Pot-Signature = base64.b64encode(digest).decode()<br/> </code>  | Yes | string |
+| X-Pot-Signature | header | A HMAC-SHA256 signature in base64 encoded format. The signature is created by taking the request payload, e.g. a Python dict, and converting it to a string. <br/><br/>  Python example: <br/><br/> <code>  body_string = json.dumps( <br/>   body, <br/>   sort_keys=True, <br/>   indent=None, <br/>   separators=(',', ': ') <br/> ).strip() <br/><br/> </code> The keys MUST be sorted, without indentation and separators comma (,) and colon (:) specified. <br/><br/>  Get the digest by passing the app access token (generated when creating a new app) and the body string to `hmac`:<br/><br/> <code> digest = <br/> hmac.new(app_access_token.encode('utf-8'), <br/> body_string.encode('utf-8'),<br/> hashlib.sha256).digest()<br/><br/> </code><br/> Return the digest in base64 encoded format:<br/> <code> X-Pot-Signature = base64.b64encode(digest).decode()<br/> </code>  | Yes | string |
 | X-Pot-App | header | The requesting application's client ID. | Yes | string |
 | X-Pot-Token | header | The currently logged in user's OAuth access token.  | No | string |
 | body | body |  | Yes |  |
@@ -203,17 +203,19 @@ HTTP/1.0 200 OK
 
 The calendar API provides means to create calendar entries to identities.
 You can e.g. create an event for a housing company identity, a reservation
-to a room identity, or just a regular calendar entry to any identity you want.
+to a room identity, or just a regular calendar entry to any identity you want.<br/>
 
 The calendar entry requires a `"to"`-identity, the ID of the identity to which
 the calendar entry applies to. Specify a type for the entry, e.g.
 `Event`, `Reservation`, `CalendarEntry`. Give the calendar entry a title, e.g.
 "Housewarming party", a start date, when the entry starts, and an end date
 when the entry ends. The dates are in RFC3339 format, and will be saved in UTC
-time.
+time. <br/>
+
 You can specify if an entry repeats, as defined in ISO 8601 repeating
 intervals. A location can be added as well, if needed, as a string, e.g.
-"Living room".
+"Living room".<br/>
+
 The `cc` is a list of user IDs to whom the calendar entry can be CC'd to.
 A notification about the entry will be sent to these users.
  
