@@ -65,7 +65,7 @@ You can list data products in the market place with [Product API](#product-api).
 
 * Some of the API endpoints are CORS enabled and they are marked in the description. 
 
-* Another thing to understand is the ontologies. We recommend that you [get familiar with core ontologies](#ontologies) especially if you are integrating data sources to the Platform of Trust. 
+* Another thing to understand is the ontologies. We recommend that you [get familiar with core ontologies](https://github.com/PlatformOfTrust/standards/blob/master/README.md) especially if you are integrating data sources to the Platform of Trust. 
 
 ## Standards used
 
@@ -186,7 +186,7 @@ HTTP/1.0 200 OK
 | Name | Located in | Description | Required | Type |
 | ---- | ---------- | ----------- | -------- | ---- |
 | version | path |  | Yes | string |
-| X-Pot-Signature | header | A HMAC-SHA256 signature in base64 encoded format. The signature is created by taking the request payload, e.g. a Python dict, and converting it to a string. Python example:  ```python  body_string = json.dumps(   body,   sort_keys=True,   indent=None,   separators=(',', ': ') ).strip() ``` The keys MUST be sorted, without indentation and separators comma (,) and colon (:) specified.  Get the digest by passing the app access token (generated when creating a new app) and the body string to `hmac`: ```python digest = hmac.new(app_access_token.encode('utf-8'),                      body_string.encode('utf-8'),                      hashlib.sha256).digest() ``` Return the digest in base64 encoded format: ```python X-Pot-Signature = base64.b64encode(digest).decode() ```  | Yes | string |
+| X-Pot-Signature | header | A HMAC-SHA256 signature in base64 encoded format. The signature is created by taking the request payload, e.g. a Python dict, and converting it to a string. <br/><br/>  Python example: <br/><br/> <code>  body_string = json.dumps( <br/>   body, <br/>   sort_keys=True, <br/>   indent=None, <br/>   separators=(',', ': ') <br/> ).strip() <br/><br/> </code> The keys MUST be sorted, without indentation and separators comma (,) and colon (:) specified. <br/><br/>  Get the digest by passing the app access token (generated when creating a new app) and the body string to `hmac`:<br/><br/> <code> digest = <br/> hmac.new(app_access_token.encode('utf-8'), <br/> body_string.encode('utf-8'),<br/> hashlib.sha256).digest()<br/><br/> </code> Return the digest in base64 encoded format:<br/> <code> X-Pot-Signature = base64.b64encode(digest).decode()<br/> </code>  | Yes | string |
 | X-Pot-App | header | The requesting application's client ID. | Yes | string |
 | X-Pot-Token | header | The currently logged in user's OAuth access token.  | No | string |
 | body | body |  | Yes |  |

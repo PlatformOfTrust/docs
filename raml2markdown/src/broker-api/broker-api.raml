@@ -46,30 +46,33 @@ types:
         description: |
           A HMAC-SHA256 signature in base64 encoded format.
           The signature is created by taking the request payload, e.g. a
-          Python dict, and converting it to a string.
-          Python example:
-           ```python
-           body_string = json.dumps(
-            body,
-            sort_keys=True,
-            indent=None,
-            separators=(',', ': ')
-          ).strip()
-          ```
+          Python dict, and converting it to a string. <br/><br/>
+
+          Python example: <br/><br/>
+          <code>
+           body_string = json.dumps( <br/>
+            body, <br/>
+            sort_keys=True, <br/>
+            indent=None, <br/>
+            separators=(',', ': ') <br/>
+          ).strip() <br/><br/>
+          </code>
           The keys MUST be sorted, without indentation and separators comma
-          (,) and colon (:) specified.
+          (,) and colon (:) specified. <br/><br/>
 
           Get the digest by passing the app access token (generated when
-          creating a new app) and the body string to `hmac`:
-          ```python
-          digest = hmac.new(app_access_token.encode('utf-8'),
-                               body_string.encode('utf-8'),
-                               hashlib.sha256).digest()
-          ```
-          Return the digest in base64 encoded format:
-          ```python
-          X-Pot-Signature = base64.b64encode(digest).decode()
-          ```
+          creating a new app) and the body string to `hmac`:<br/><br/>
+          <code>
+          digest = <br/>
+          hmac.new(app_access_token.encode('utf-8'), <br/>
+          body_string.encode('utf-8'),<br/>
+          hashlib.sha256).digest()<br/><br/>
+          </code><br/>
+          Return the digest in base64 encoded format:<br/>
+          <code>
+          X-Pot-Signature = base64.b64encode(digest).decode()<br/>
+          </code>
+
         type: string
         example: Ioma1gqOVFUBrXiziWS....CLqBG4vFozG3YgzPzillNip0=
       X-Pot-App:
