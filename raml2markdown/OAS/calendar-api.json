@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "title": "Calendar",
-    "description": "The calendar API provides means to create calendar entries to identities.\nYou can e.g. create an event for a housing company identity, a reservation\nto a room identity, or just a regular calendar entry to any identity you want.\n\nThe calendar entry requires a `\"to\"`-identity, the ID of the identity to which\nthe calendar entry applies to. Specify a type for the entry, e.g.\n`Event`, `Reservation`, `CalendarEntry`. Give the calendar entry a title, e.g.\n\"Housewarming party\", a start date, when the entry starts, and an end date\nwhen the entry ends. The dates are in RFC3339 format, and will be saved in UTC\ntime.\nYou can specify if an entry repeats, as defined in ISO 8601 repeating\nintervals. A location can be added as well, if needed, as a string, e.g.\n\"Living room\".\nThe `cc` is a list of user IDs to whom the calendar entry can be CC'd to.\nA notification about the entry will be sent to these users.\n",
+    "description": "The calendar API provides means to create calendar entries to identities.\nYou can e.g. create an event for a housing company identity, a reservation\nto a room identity, or just a regular calendar entry to any identity you want.<br/>\n\nThe calendar entry requires a `\"to\"`-identity, the ID of the identity to which\nthe calendar entry applies to. Specify a type for the entry, e.g.\n`Event`, `Reservation`, `CalendarEntry`. Give the calendar entry a title, e.g.\n\"Housewarming party\", a start date, when the entry starts, and an end date\nwhen the entry ends. The dates are in RFC3339 format, and will be saved in UTC\ntime. <br/>\n\nYou can specify if an entry repeats, as defined in ISO 8601 repeating\nintervals. A location can be added as well, if needed, as a string, e.g.\n\"Living room\".<br/>\n\nThe `cc` is a list of user IDs to whom the calendar entry can be CC'd to.\nA notification about the entry will be sent to these users.\n",
     "version": "v1"
   },
   "host": "api-sandbox.oftrust.net",
@@ -80,7 +80,7 @@
     }
   },
   "paths": {
-    "/calendars/{version}/": {
+    "/calendars/{version}": {
       "post": {
         "description": "Create a new calendar entry",
         "operationId": "POST_calendars-version",
@@ -250,10 +250,10 @@
         }
       ]
     },
-    "/calendars/{version}//{id}": {
+    "/calendars/{version}/{id}": {
       "get": {
         "description": "Read one calendar by id",
-        "operationId": "GET_calendars-version--id",
+        "operationId": "GET_calendars-version-id",
         "responses": {
           "200": {
             "description": "",
@@ -393,7 +393,7 @@
       },
       "put": {
         "description": "Update a calendar by id",
-        "operationId": "PUT_calendars-version--id",
+        "operationId": "PUT_calendars-version-id",
         "responses": {
           "200": {
             "description": "",
@@ -561,7 +561,7 @@
       },
       "delete": {
         "description": "Delete a calendar by id",
-        "operationId": "DELETE_calendars-version--id",
+        "operationId": "DELETE_calendars-version-id",
         "responses": {
           "204": {
             "description": "",
@@ -598,16 +598,114 @@
           "in": "path",
           "name": "id",
           "required": true
+        },
+        {
+          "type": "string",
+          "in": "path",
+          "name": "version",
+          "required": true
         }
       ]
     },
-    "/calendars/{version}//{toIdentity}/": {
+    "/calendars/{version}/{toIdentity}/list": {
+      "get": {
+        "description": "List calendars created for \"to\"-identity.",
+        "operationId": "GET_calendars-version-toIdentity-list",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "example": {
+                "@context": "https://schema.org/",
+                "@type": "collection",
+                "ItemList": [
+                  {
+                    "@context": "<URL to calendar context>",
+                    "@type": "<calendar type>",
+                    "@id": "<calendar id>",
+                    "toIdentity": "<to identity ID>",
+                    "title": "<calendar title>",
+                    "startDate": "2019-04-01T12:00:00+02:00",
+                    "endDate": "2019-04-01T16:00:00+02:00",
+                    "repeats": "<repeats>",
+                    "content": "<calendar content>",
+                    "location": "<location>",
+                    "cc": [
+                      "<list of identity IDs>"
+                    ],
+                    "createdAt": "2019-01-10T12:00:00Z",
+                    "updatedAt": "2019-01-10T12:00:00Z",
+                    "createdBy": "<user ID who created the message>"
+                  },
+                  {
+                    "@context": "<URL to calendar context>",
+                    "@type": "<calendar type>",
+                    "@id": "<calendar id>",
+                    "toIdentity": "<to identity ID>",
+                    "title": "<calendar title>",
+                    "startDate": "2019-04-01T12:00:00+02:00",
+                    "endDate": "2019-04-01T16:00:00+02:00",
+                    "repeats": "<repeats>",
+                    "content": "<calendar content>",
+                    "location": "<location>",
+                    "cc": [
+                      "<list of identity IDs>"
+                    ],
+                    "createdAt": "2019-01-10T12:00:00Z",
+                    "updatedAt": "2019-01-10T12:00:00Z",
+                    "createdBy": "<user ID who created the message>"
+                  }
+                ]
+              },
+              "properties": {
+                "@context": {
+                  "description": "The context URL",
+                  "example": "https://schema.org/",
+                  "type": "string"
+                },
+                "@type": {
+                  "description": "The type of the list",
+                  "example": "collection",
+                  "type": "string"
+                },
+                "ItemList": {
+                  "description": "The list of calendar entries",
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/calendar"
+                  }
+                }
+              },
+              "required": [
+                "@context",
+                "@type",
+                "ItemList"
+              ]
+            }
+          }
+        },
+        "parameters": [
+          {
+            "description": "The Authorization header, MUST be `Bearer {{access_token}}`",
+            "type": "string",
+            "in": "header",
+            "name": "Authorization",
+            "required": true
+          }
+        ]
+      },
       "parameters": [
         {
           "description": "The identity to which the calendar belongs to.",
           "type": "string",
           "in": "path",
           "name": "toIdentity",
+          "required": true
+        },
+        {
+          "type": "string",
+          "in": "path",
+          "name": "version",
           "required": true
         }
       ]

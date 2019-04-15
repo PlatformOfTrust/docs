@@ -43,7 +43,7 @@
     }
   },
   "paths": {
-    "/contexts/{version}/": {
+    "/contexts/{version}": {
       "get": {
         "description": "Returns a list of all defined contexts",
         "operationId": "GET_contexts-version",

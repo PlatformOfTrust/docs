@@ -6,7 +6,6 @@
     "version": "v1"
   },
   "host": "api-sandbox.oftrust.net",
-  "x-basePath": "/broker/{version}",
   "schemes": [
     "https"
   ],
@@ -47,10 +46,10 @@
     }
   },
   "paths": {
-    "/fetch-data-product": {
+    "/broker/{version}/fetch-data-product": {
       "post": {
-        "description": "Fetch data product.\n",
-        "operationId": "POST_fetch-data-product",
+        "description": "Request data from an external service defined by the data product, and\n product code. The data broker will validate the signature of the\n payload and when verified, relay the request to the translator\n connected to the data product. The translator will translate the\n information fetched from an external source into a standardized format\n that will be returned to the requester.\n",
+        "operationId": "POST_broker-version-fetch-data-product",
         "responses": {
           "200": {
             "description": "",
@@ -76,6 +75,26 @@
         },
         "parameters": [
           {
+            "description": "A HMAC-SHA256 signature in base64 encoded format.\nThe signature is created by taking the request payload, e.g. a\nPython dict, and converting it to a string. <br/><br/>\n\nPython example: <br/><br/>\n<code>\n body_string = json.dumps( <br/>\n  body, <br/>\n  sort_keys=True, <br/>\n  indent=None, <br/>\n  separators=(',', ': ') <br/>\n).strip() <br/><br/>\n</code>\nThe keys MUST be sorted, without indentation and separators comma\n(,) and colon (:) specified. <br/><br/>\n\nGet the digest by passing the app access token (generated when\ncreating a new app) and the body string to `hmac`:<br/><br/>\n<code>\ndigest = <br/>\nhmac.new(app_access_token.encode('utf-8'), <br/>\nbody_string.encode('utf-8'),<br/>\nhashlib.sha256).digest()<br/><br/>\n</code><br/>\nReturn the digest in base64 encoded format:<br/>\n<code>\nX-Pot-Signature = base64.b64encode(digest).decode()<br/>\n</code>\n",
+            "type": "string",
+            "in": "header",
+            "name": "X-Pot-Signature",
+            "required": true
+          },
+          {
+            "description": "The requesting application's client ID.",
+            "type": "string",
+            "in": "header",
+            "name": "X-Pot-App",
+            "required": true
+          },
+          {
+            "description": "The currently logged in user's OAuth access token.\n",
+            "type": "string",
+            "in": "header",
+            "name": "X-Pot-Token"
+          },
+          {
             "schema": {
               "example": {
                 "timestamp": "2018-11-01T12:00:00+00:00",
@@ -92,7 +111,15 @@
             "required": true
           }
         ]
-      }
+      },
+      "parameters": [
+        {
+          "type": "string",
+          "in": "path",
+          "name": "version",
+          "required": true
+        }
+      ]
     }
   }
 }

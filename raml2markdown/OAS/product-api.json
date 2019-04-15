@@ -77,10 +77,29 @@
         "translatorUrl",
         "organizationPublicKeys"
       ]
+    },
+    "paginationURL": {
+      "type": "object",
+      "properties": {
+        "href": {
+          "description": "URL with pagination parameters",
+          "example": "/products/{version}?offset=0&limit=10",
+          "type": "string"
+        },
+        "rel": {
+          "description": "Type of the page. One of: \"next\", \"self\", \"first\", \"last\".\nNote that the next page is presented only if it exists.\nUse hasMore indicator to check it.\n",
+          "example": "first",
+          "type": "string"
+        }
+      },
+      "required": [
+        "href",
+        "rel"
+      ]
     }
   },
   "paths": {
-    "/products/{version}/": {
+    "/products/{version}": {
       "post": {
         "description": "Create a new product",
         "operationId": "POST_products-version",
@@ -235,7 +254,7 @@
         ]
       },
       "get": {
-        "description": "Lists all available products. *NOTE*: This is a CORS enabled endpoint.\n",
+        "description": "Lists all available products. *NOTE*: This is a CORS enabled endpoint.\nSupports pagination.\n",
         "operationId": "GET_products-version",
         "responses": {
           "200": {
@@ -309,7 +328,21 @@
               ]
             }
           }
-        }
+        },
+        "parameters": [
+          {
+            "description": "Offset of a query",
+            "type": "integer",
+            "in": "query",
+            "name": "offset"
+          },
+          {
+            "description": "Limit the result of a query",
+            "type": "integer",
+            "in": "query",
+            "name": "limit"
+          }
+        ]
       },
       "parameters": [
         {
@@ -320,10 +353,10 @@
         }
       ]
     },
-    "/products/{version}//{product_code}": {
+    "/products/{version}/{product_code}": {
       "get": {
         "description": "Reads a single product by product code. *NOTE*: This is a CORS enabled endpoint.\n",
-        "operationId": "GET_products-version--product_code",
+        "operationId": "GET_products-version-product_code",
         "responses": {
           "200": {
             "description": "",
@@ -440,7 +473,7 @@
       },
       "put": {
         "description": "Update a product by product code",
-        "operationId": "PUT_products-version--product_code",
+        "operationId": "PUT_products-version-product_code",
         "responses": {
           "200": {
             "description": "",
@@ -612,7 +645,7 @@
       },
       "delete": {
         "description": "Delete a product by product code",
-        "operationId": "DELETE_products-version--product_code",
+        "operationId": "DELETE_products-version-product_code",
         "responses": {
           "204": {
             "description": "",
@@ -647,6 +680,12 @@
           "type": "string",
           "in": "path",
           "name": "product_code",
+          "required": true
+        },
+        {
+          "type": "string",
+          "in": "path",
+          "name": "version",
           "required": true
         }
       ]
