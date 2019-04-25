@@ -75,7 +75,7 @@ def concatenate_files():
         example_method = str(line)
         example_method = re.sub('[`#*]', '', example_method)
 
-        example_desc = "\n\n > <b>Example for: "+example_method+"</b>\n\n"
+        example_desc = "\n\n > <b>Example for: "+example_method.replace("{version}","v1")+"</b>\n\n"
         if len(str(example_file_path)) < 200:
           if example_file_path.exists():
             with open(example_file_path) as sfile:
@@ -89,11 +89,11 @@ def concatenate_files():
         if index > 18:
           # Some markdown cleanup since the converters mess things up
           if line.startswith("#"):
-            ofile.write("#"+line.lower().replace("***", "**"))
+            ofile.write("#"+line.lower().replace("***", "**").replace("{version}","v1"))
           elif line.startswith("`***"):
-            ofile.write(line.replace("***", "**").replace("`", ""))
+            ofile.write(line.replace("***", "**").replace("`", "").replace("{version}","v1"))
           else:
-            ofile.write(line.replace("***", "**"))
+            ofile.write(line.replace("***", "**").replace("{version}","v1"))
   print("\n\nSlate file: "+str(outfile)+" created.")
 
 
