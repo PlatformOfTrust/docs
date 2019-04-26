@@ -26,9 +26,26 @@ console.error("Javascript example missing. Why not contribute one for us?");
 System.out.println("Java example missing. Why not contribute one for us?");
 ```
 
-### Use Bearer token
+### Use Bearer token and how to get it? 
+
+You have two options how to obtain Bearer token depending of your needs. 
+
+To learn and get familiar with APIS:
+
+- Login to Sandbox environment World application (https://world-sandbox.oftrust.net)
+- Get the `Authorization` cookie value from your browser. Cookie contains your `Bearer` token. Cookie is valid for several hours, enough for testing.
+
+Here's an example from Chrome Browser DevTools
+
+![](images/chrome-cookie.png)
+
+For production:
+
+- To get Bearer token, you need to set up your application with OAuth logic. 
+-  Sample app contains information about the Bearer token as well. 
 
 Most of the APIs require bearer token in header ("Authorization: Bearer"). Exceptions to the rule are CORS enabled endpoints and Broker API. 
+
 
 ### Exception 1: CORS enabled APIs
 
@@ -86,8 +103,3 @@ Recommended next step is to register new app:
 Now you have client credentials and you can start fiddling code and run you app in our [sandbox](https://developers.oftrust.net/guides/sandbox) environment. 
 Code speaks for it self! Thus we have open source (MIT license) React sample app which contains authentication implementation among other things. You can clone the sample app from Github. 
 
-## How to get Bearer token?
-
-To get Bearer token, you need to set up your application with login capabilities. Sample app contains information about the Bearer token as well. 
-
-But in brief, after you have setup login capabilities to your app, you can get your Bearer token and use it for those API calls which require it - most of them do.
