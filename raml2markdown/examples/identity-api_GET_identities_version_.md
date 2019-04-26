@@ -5,7 +5,7 @@ sys.stdout.write("Python example missing. Why not contribute one for us?")
 
 ```shell
 curl https://api-sandbox.oftrust.net/identities/v1/ \
--H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzY29w...DVs5aaf"
+-H "Authorization: Bearer REPLACE_WITH_YOUR_TOKEN"
 ```
 
 ```javascript

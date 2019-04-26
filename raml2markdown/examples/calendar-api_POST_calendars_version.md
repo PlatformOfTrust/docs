@@ -6,7 +6,7 @@ sys.stdout.write("Python example missing. Why not contribute one for us?")
 ```shell
 curl -X POST https://api-sandbox.oftrust.net/calendars/v1/ \
 -H "Content-Type: application/json" \
--H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzY29w...DVs5aaf" \
+-H "Authorization: Bearer REPLACE_WITH_YOUR_TOKEN" \
 -d '{
 	"toIdentity": "34fe0b13-e031-4ef2-822e-17eabad63259",
   "type": "Event",
