@@ -4,7 +4,8 @@ sys.stdout.write("Python example missing. Why not contribute one for us?")
 ```
 
 ```shell
-curl -X DELETE https://api-sandbox.oftrust.net/products/v1/business-identity-test
+curl -X DELETE https://api-sandbox.oftrust.net/products/v1/business-identity-test \
+-H "Authorization: Bearer REPLACE_WITH_YOUR_TOKEN"
 ```
 
 ```javascript

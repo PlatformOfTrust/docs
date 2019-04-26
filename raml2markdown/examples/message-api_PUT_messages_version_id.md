@@ -6,7 +6,7 @@ sys.stdout.write("Python example missing. Why not contribute one for us?")
 ```shell
 curl -X PUT https://api-sandbox.oftrust.net/messages/v1/3a9e...04c95 \
 -H "Content-Type: application/json" \
--H "Authorization: Bearer eyJ0eXAiOiJKV1QiLC29w...DVs5aaf" \
+-H "Authorization: Bearer REPLACE_WITH_YOUR_TOKEN" \
 -d '{
 	"subject": "Updated Test message",
 	"content": "Testing the message api"

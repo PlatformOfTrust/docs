@@ -6,7 +6,7 @@ sys.stdout.write("Python example missing. Why not contribute one for us?")
 ```shell
 curl -X PUT https://api-sandbox.oftrust.net/identities/v1/fbd106c5-c594-4416-a87e-f61e578fe829 \
 -H "Content-Type: application/json" \
--H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzY29w...DVs5aaf" \
+-H "Authorization: Bearer REPLACE_WITH_YOUR_TOKEN" \
 -d '{
 	"context": "http://platformoftrust.github.io/standards/contexts/identity-person.jsonld",
 	"type": "Person",

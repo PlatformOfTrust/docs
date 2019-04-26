@@ -6,7 +6,7 @@ sys.stdout.write("Python example missing. Why not contribute one for us?")
 ```shell
 curl -X POST https://api-sandbox.oftrust.net/messages/v1/3a9e31ff-b654-4069-8361-6b446dc04c95/read
 -H "Content-Type: application/json" \
--H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzY29w...DVs5aaf"
+-H "Authorization: Bearer REPLACE_WITH_YOUR_TOKEN"
 ```
 
 ```javascript
