@@ -241,7 +241,7 @@ sys.stdout.write("Python example missing. Why not contribute one for us?")
 ```shell
 curl -X POST https://api-sandbox.oftrust.net/calendars/v1/ \
 -H "Content-Type: application/json" \
--H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzY29w...DVs5aaf" \
+-H "Authorization: Bearer REPLACE_WITH_YOUR_TOKEN" \
 -d '{
 	"toIdentity": "34fe0b13-e031-4ef2-822e-17eabad63259",
   "type": "Event",
@@ -329,7 +329,7 @@ sys.stdout.write("Python example missing. Why not contribute one for us?")
 
 ```shell
 curl https://api-sandbox.oftrust.net/calendars/v1/67fa7be3-0c7d-4318-a09a-585181d1e6f3 \
--H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzY29w...DVs5aaf"
+-H "Authorization: Bearer REPLACE_WITH_YOUR_TOKEN"
 ```
 
 ```javascript
@@ -404,7 +404,7 @@ sys.stdout.write("Python example missing. Why not contribute one for us?")
 ```shell
 curl -X PUT https://api-sandbox.oftrust.net/calendars/v1/67fa7be3-0c7d-4318-a09a-585181d1e6f3 \
 -H "Content-Type: application/json" \
--H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzY29w...DVs5aaf" \
+-H "Authorization: Bearer REPLACE_WITH_YOUR_TOKEN" \
 -d '{
 	"toIdentity": "34fe0b13-e031-4ef2-822e-17eabad63259",
 	"title": "Autumn feast 3",
@@ -484,7 +484,7 @@ sys.stdout.write("Python example missing. Why not contribute one for us?")
 
 ```shell
 curl -X DELETE https://api-sandbox.oftrust.net/calendars/v1/67fa7be3-0c7d-4318-a09a-585181d1e6f3 \
--H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzY29w...DVs5aaf"
+-H "Authorization: Bearer REPLACE_WITH_YOUR_TOKEN"
 ```
 
 ```javascript
@@ -538,7 +538,7 @@ sys.stdout.write("Python example missing. Why not contribute one for us?")
 
 ```shell
 curl https://api-sandbox.oftrust.net/calendars/v1/34fe0b13-e031-4ef2-822e-17eabad63259/list \
--H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzY29w...DVs5aaf"
+-H "Authorization: Bearer REPLACE_WITH_YOUR_TOKEN"
 ```
 
 ```javascript
@@ -756,7 +756,7 @@ sys.stdout.write("Python example missing. Why not contribute one for us?")
 
 ```shell
 curl https://api-sandbox.oftrust.net/identities/v1/fbd106c5-c594-4416-a87e-f61e578fe829 \
--H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzY29w...DVs5aaf"
+-H "Authorization: Bearer REPLACE_WITH_YOUR_TOKENf"
 ```
 
 ```javascript
@@ -829,7 +829,7 @@ sys.stdout.write("Python example missing. Why not contribute one for us?")
 ```shell
 curl -X PUT https://api-sandbox.oftrust.net/identities/v1/fbd106c5-c594-4416-a87e-f61e578fe829 \
 -H "Content-Type: application/json" \
--H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzY29w...DVs5aaf" \
+-H "Authorization: Bearer REPLACE_WITH_YOUR_TOKEN" \
 -d '{
 	"context": "http://platformoftrust.github.io/standards/contexts/identity-person.jsonld",
 	"type": "Person",
@@ -914,7 +914,7 @@ sys.stdout.write("Python example missing. Why not contribute one for us?")
 
 ```shell
 curl -X DELETE https://api-sandbox.oftrust.net/identities/v1/fbd106c5-c594-4416-a87e-f61e578fe829 \
--H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzY29w...DVs5aaf"
+-H "Authorization: Bearer REPLACE_WITH_YOUR_TOKEN"
 ```
 
 ```javascript
@@ -1047,7 +1047,7 @@ sys.stdout.write("Python example missing. Why not contribute one for us?")
 
 ```shell
 curl https://api-sandbox.oftrust.net/identities/v1/35ee9e31-acee-42b4-ac7b-675790cc2721/links?type=Link \
--H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzY29w...DVs5aaf"
+-H "Authorization: Bearer REPLACE_WITH_YOUR_TOKEN"
 ```
 
 ```javascript
@@ -1140,7 +1140,7 @@ sys.stdout.write("Python example missing. Why not contribute one for us?")
 ```shell
 curl -X POST https://api-sandbox.oftrust.net/messages/v1/ \
 -H "Content-Type: application/json" \
--H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzY29w...DVs5aaf" \
+-H "Authorization: Bearer REPLACE_WITH_YOUR_TOKEN" \
 -d '{
 	"toIdentity": "34fe0b13-e031-4ef2-822e-17eabad63259",
 	"subject": "Test message nr 1",
@@ -1220,7 +1220,7 @@ sys.stdout.write("Python example missing. Why not contribute one for us?")
 
 ```shell
 curl https://api-sandbox.oftrust.net/messages/v1/3a9e31ff-b654-4069-8361-6b446dc04c95 \
--H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzY29w...DVs5aaf"
+-H "Authorization: Bearer REPLACE_WITH_YOUR_TOKEN"
 ```
 
 ```javascript
@@ -1292,7 +1292,7 @@ sys.stdout.write("Python example missing. Why not contribute one for us?")
 ```shell
 curl -X PUT https://api-sandbox.oftrust.net/messages/v1/3a9e...04c95 \
 -H "Content-Type: application/json" \
--H "Authorization: Bearer eyJ0eXAiOiJKV1QiLC29w...DVs5aaf" \
+-H "Authorization: Bearer REPLACE_WITH_YOUR_TOKEN" \
 -d '{
 	"subject": "Updated Test message",
 	"content": "Testing the message api"
@@ -1369,7 +1369,7 @@ sys.stdout.write("Python example missing. Why not contribute one for us?")
 
 ```shell
 curl -X DELETE https://api-sandbox.oftrust.net/messages/v1/3a9e31ff-b654-4069-8361-6b446dc04c95 \
--H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzY29w...DVs5aaf"
+-H "Authorization: Bearer REPLACE_WITH_YOUR_TOKEN"
 ```
 
 ```javascript
@@ -1424,7 +1424,7 @@ sys.stdout.write("Python example missing. Why not contribute one for us?")
 ```shell
 curl -X POST https://api-sandbox.oftrust.net/messages/v1/3a9e31ff-b654-4069-8361-6b446dc04c95/read
 -H "Content-Type: application/json" \
--H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzY29w...DVs5aaf"
+-H "Authorization: Bearer REPLACE_WITH_YOUR_TOKEN"
 ```
 
 ```javascript
@@ -1782,7 +1782,7 @@ sys.stdout.write("Python example missing. Why not contribute one for us?")
 ```shell
 curl -X PUT https://api-sandbox.oftrust.net/products/v1/business-identity-test \
 -H "Content-Type: application/json" \
--H "Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzY29w...DVs5aaf" \
+-H "Authorization: Bearer REPLACE_WITH_YOUR_TOKEN" \
 -d '{
 	"dataContext": "https://standards.oftrust.net/contexts/product-data.jsonld",
 	"parameterContext": "https://standards.oftrust.net/contexts/product-parameters.jsonld",
@@ -1871,7 +1871,8 @@ sys.stdout.write("Python example missing. Why not contribute one for us?")
 ```
 
 ```shell
-curl -X DELETE https://api-sandbox.oftrust.net/products/v1/business-identity-test
+curl -X DELETE https://api-sandbox.oftrust.net/products/v1/business-identity-test \
+-H "Authorization: Bearer REPLACE_WITH_YOUR_TOKEN"
 ```
 
 ```javascript

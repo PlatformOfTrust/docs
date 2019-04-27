@@ -1,6 +1,19 @@
 ```python
+import requests
+import json
 import sys
-sys.stdout.write("Python example missing. Why not contribute one for us?")
+
+endpoint = 'https://api-sandbox.oftrust.net/identities/v1/'
+api_token= 'REPLACE_WITH_YOUR_TOKEN'
+headers = {'Content-Type': 'application/json',
+           'Authorization': 'Bearer {0}'.format(api_token)}
+
+# Get the indentities
+try:
+        json_response = (requests.get(endpoint, headers=headers).json())
+        print(json.dumps(json_response, indent=4, sort_keys=True))
+except:
+        print("Oops!",sys.exc_info()[0],"occured.")
 ```
 
 ```shell
