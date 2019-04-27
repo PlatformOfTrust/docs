@@ -100,7 +100,7 @@ translators.
 
 **Version:** v1 
 
-## /broker/{version}/fetch-data-product
+## /broker/v1/fetch-data-product
 ### **post** 
 
 **Description:** Request data from an external service defined by the data product, and
@@ -114,7 +114,7 @@ translators.
 #### http request 
 
 
- > <b>Example for: POST /broker/{version}/fetch-data-product 
+ > <b>Example for: POST /broker/v1/fetch-data-product 
 </b>
 
 ```python
@@ -179,7 +179,7 @@ HTTP/1.0 200 OK
 ```
 
 
-**POST** /broker/{version}/fetch-data-product 
+**POST** /broker/v1/fetch-data-product 
 
 **Parameters**
 
@@ -222,7 +222,7 @@ A notification about the entry will be sent to these users.
 
 **Version:** v1 
 
-## /calendars/{version}
+## /calendars/v1
 ### **post** 
 
 **Description:** Create a new calendar entry
@@ -230,7 +230,7 @@ A notification about the entry will be sent to these users.
 #### http request 
 
 
- > <b>Example for: POST /calendars/{version} 
+ > <b>Example for: POST /calendars/v1 
 </b>
 
 ```python
@@ -294,7 +294,7 @@ HTTP/1.0 201 Created
 ```
 
 
-**POST** /calendars/{version} 
+**POST** /calendars/v1 
 
 **Parameters**
 
@@ -311,7 +311,7 @@ HTTP/1.0 201 Created
 | 201 |  |
 | 422 |  |
 
-## /calendars/{version}/{id}
+## /calendars/v1/{id}
 ### **get** 
 
 **Description:** Read one calendar by id
@@ -319,7 +319,7 @@ HTTP/1.0 201 Created
 #### http request 
 
 
- > <b>Example for: GET /calendars/{version}/{id} 
+ > <b>Example for: GET /calendars/v1/{id} 
 </b>
 
 ```python
@@ -369,7 +369,7 @@ HTTP/1.0 200 OK
 ```
 
 
-**GET** /calendars/{version}/{id} 
+**GET** /calendars/v1/{id} 
 
 **Parameters**
 
@@ -393,7 +393,7 @@ HTTP/1.0 200 OK
 #### http request 
 
 
- > <b>Example for: PUT /calendars/{version}/{id} 
+ > <b>Example for: PUT /calendars/v1/{id} 
 </b>
 
 ```python
@@ -448,7 +448,7 @@ HTTP/1.0 201 Created
 ```
 
 
-**PUT** /calendars/{version}/{id} 
+**PUT** /calendars/v1/{id} 
 
 **Parameters**
 
@@ -474,7 +474,7 @@ HTTP/1.0 201 Created
 #### http request 
 
 
- > <b>Example for: DELETE /calendars/{version}/{id} 
+ > <b>Example for: DELETE /calendars/v1/{id} 
 </b>
 
 ```python
@@ -503,7 +503,7 @@ HTTP/1.0 204 No Content
 ```
 
 
-**DELETE** /calendars/{version}/{id} 
+**DELETE** /calendars/v1/{id} 
 
 **Parameters**
 
@@ -520,7 +520,7 @@ HTTP/1.0 204 No Content
 | 204 |  |
 | 404 |  |
 
-## /calendars/{version}/{toidentity}/list
+## /calendars/v1/{toidentity}/list
 ### **get** 
 
 **Description:** List calendars created for "to"-identity.
@@ -528,7 +528,7 @@ HTTP/1.0 204 No Content
 #### http request 
 
 
- > <b>Example for: GET /calendars/{version}/{toIdentity}/list 
+ > <b>Example for: GET /calendars/v1/{toIdentity}/list 
 </b>
 
 ```python
@@ -585,7 +585,7 @@ HTTP/1.0 200 OK
 ```
 
 
-**GET** /calendars/{version}/{toIdentity}/list 
+**GET** /calendars/v1/{toIdentity}/list 
 
 **Parameters**
 
@@ -615,7 +615,7 @@ identity can have.
 
 **Version:** v1 
 
-## /contexts/{version}
+## /contexts/v1
 ### **get** 
 
 **Description:** Returns a list of all defined contexts
@@ -623,7 +623,7 @@ identity can have.
 #### http request 
 
 
- > <b>Example for: GET /contexts/{version} 
+ > <b>Example for: GET /contexts/v1 
 </b>
 
 ```python
@@ -670,7 +670,7 @@ HTTP/1.0 200 OK
 ```
 
 
-**GET** /contexts/{version} 
+**GET** /contexts/v1 
 
 **Parameters**
 
@@ -694,13 +694,13 @@ The links provides the direction and type (sometimes called role) of the link.
 
 **Version:** v1 
 
-## /identities/{version}
+## /identities/v1
 ### **get** 
 
 **Description:** List all identities created by currently logged in user
 
 #### http request 
-**GET** /identities/{version} 
+**GET** /identities/v1 
 
 **Parameters**
 
@@ -708,7 +708,7 @@ The links provides the direction and type (sometimes called role) of the link.
 | ---- | ---------- | ----------- | -------- | ---- |
 | version | path |  | Yes | string |
 | Authorization | header | The Authorization header, MUST be `Bearer {{access_token}}` | Yes | string |
-| type | query | If given to `GET /identities/{version}?type=App`, will list only the identities of `@type: "App"`  | No | string |
+| type | query | If given to `GET /identities/v1?type=App`, will list only the identities of `@type: "App"`  | No | string |
 
 **Responses**
 
@@ -721,7 +721,7 @@ The links provides the direction and type (sometimes called role) of the link.
 **Description:** Create a new identity
 
 #### http request 
-**POST** /identities/{version} 
+**POST** /identities/v1 
 
 **Parameters**
 
@@ -738,7 +738,7 @@ The links provides the direction and type (sometimes called role) of the link.
 | 201 |  |
 | 422 |  |
 
-## /identities/{version}/{id}
+## /identities/v1/{id}
 ### **get** 
 
 **Description:** Read one identity by id
@@ -746,7 +746,7 @@ The links provides the direction and type (sometimes called role) of the link.
 #### http request 
 
 
- > <b>Example for: GET /identities/{version}/{id} 
+ > <b>Example for: GET /identities/v1/{id} 
 </b>
 
 ```python
@@ -794,7 +794,7 @@ HTTP/1.0 200 OK
 ```
 
 
-**GET** /identities/{version}/{id} 
+**GET** /identities/v1/{id} 
 
 **Parameters**
 
@@ -818,7 +818,7 @@ HTTP/1.0 200 OK
 #### http request 
 
 
- > <b>Example for: PUT /identities/{version}/{id} 
+ > <b>Example for: PUT /identities/v1/{id} 
 </b>
 
 ```python
@@ -878,7 +878,7 @@ HTTP/1.0 200 OK
 ```
 
 
-**PUT** /identities/{version}/{id} 
+**PUT** /identities/v1/{id} 
 
 **Parameters**
 
@@ -904,7 +904,7 @@ HTTP/1.0 200 OK
 #### http request 
 
 
- > <b>Example for: DELETE /identities/{version}/{id} 
+ > <b>Example for: DELETE /identities/v1/{id} 
 </b>
 
 ```python
@@ -934,7 +934,7 @@ HTTP/1.0 204 No Content
 ```
 
 
-**DELETE** /identities/{version}/{id} 
+**DELETE** /identities/v1/{id} 
 
 **Parameters**
 
@@ -951,13 +951,13 @@ HTTP/1.0 204 No Content
 | 204 |  |
 | 404 |  |
 
-## /identities/{version}/{from_identity}/link/{to_identity}
+## /identities/v1/{from_identity}/link/{to_identity}
 ### **post** 
 
 **Description:** Creates a new link between two identities
 
 #### http request 
-**POST** /identities/{version}/{from_identity}/link/{to_identity} 
+**POST** /identities/v1/{from_identity}/link/{to_identity} 
 
 **Parameters**
 
@@ -977,13 +977,13 @@ HTTP/1.0 204 No Content
 | 404 |  |
 | 422 |  |
 
-## /identities/{version}/{from_identity}/link/{to_identity}/{type}
+## /identities/v1/{from_identity}/link/{to_identity}/{type}
 ### **put** 
 
 **Description:** Update a link
 
 #### http request 
-**PUT** /identities/{version}/{from_identity}/link/{to_identity}/{type} 
+**PUT** /identities/v1/{from_identity}/link/{to_identity}/{type} 
 
 **Parameters**
 
@@ -1009,7 +1009,7 @@ HTTP/1.0 204 No Content
 **Description:** Delete a link by type
 
 #### http request 
-**DELETE** /identities/{version}/{from_identity}/link/{to_identity}/{type} 
+**DELETE** /identities/v1/{from_identity}/link/{to_identity}/{type} 
 
 **Parameters**
 
@@ -1029,7 +1029,7 @@ HTTP/1.0 204 No Content
 | 404 |  |
 | 422 |  |
 
-## /identities/{version}/{id}/links
+## /identities/v1/{id}/links
 ### **get** 
 
 **Description:** List all links for a given identity
@@ -1037,7 +1037,7 @@ HTTP/1.0 204 No Content
 #### http request 
 
 
- > <b>Example for: GET /identities/{version}/{id}/links 
+ > <b>Example for: GET /identities/v1/{id}/links 
 </b>
 
 ```python
@@ -1085,7 +1085,7 @@ HTTP/1.0 200 OK
 ```
 
 
-**GET** /identities/{version}/{id}/links 
+**GET** /identities/v1/{id}/links 
 
 **Parameters**
 
@@ -1094,7 +1094,7 @@ HTTP/1.0 200 OK
 | id | path | The ID of the identity | Yes | string |
 | version | path |  | Yes | string |
 | Authorization | header | The Authorization header, MUST be `Bearer {{access_token}}` | Yes | string |
-| type | query | If given to `GET /identities/{version}/{id}/links?type=Owner`, will list only the links of `@type: "Owner"`  | No | string |
+| type | query | If given to `GET /identities/v1/{id}/links?type=Owner`, will list only the links of `@type: "Owner"`  | No | string |
 
 **Responses**
 
@@ -1121,7 +1121,7 @@ A notification about the message will be sent to these users.
 
 **Version:** v1 
 
-## /messages/{version}
+## /messages/v1
 ### **post** 
 
 **Description:** Create a new message
@@ -1129,7 +1129,7 @@ A notification about the message will be sent to these users.
 #### http request 
 
 
- > <b>Example for: POST /messages/{version} 
+ > <b>Example for: POST /messages/v1 
 </b>
 
 ```python
@@ -1185,7 +1185,7 @@ HTTP/1.0 201 Created
 ```
 
 
-**POST** /messages/{version} 
+**POST** /messages/v1 
 
 **Parameters**
 
@@ -1202,7 +1202,7 @@ HTTP/1.0 201 Created
 | 201 |  |
 | 422 |  |
 
-## /messages/{version}/{id}
+## /messages/v1/{id}
 ### **get** 
 
 **Description:** Read one message by id
@@ -1210,7 +1210,7 @@ HTTP/1.0 201 Created
 #### http request 
 
 
- > <b>Example for: GET /messages/{version}/{id} 
+ > <b>Example for: GET /messages/v1/{id} 
 </b>
 
 ```python
@@ -1257,7 +1257,7 @@ HTTP/1.0 200 OK
 ```
 
 
-**GET** /messages/{version}/{id} 
+**GET** /messages/v1/{id} 
 
 **Parameters**
 
@@ -1281,7 +1281,7 @@ HTTP/1.0 200 OK
 #### http request 
 
 
- > <b>Example for: PUT /messages/{version}/{id} 
+ > <b>Example for: PUT /messages/v1/{id} 
 </b>
 
 ```python
@@ -1333,7 +1333,7 @@ HTTP/1.0 200 OK
 ```
 
 
-**PUT** /messages/{version}/{id} 
+**PUT** /messages/v1/{id} 
 
 **Parameters**
 
@@ -1359,7 +1359,7 @@ HTTP/1.0 200 OK
 #### http request 
 
 
- > <b>Example for: DELETE /messages/{version}/{id} 
+ > <b>Example for: DELETE /messages/v1/{id} 
 </b>
 
 ```python
@@ -1388,7 +1388,7 @@ HTTP/1.0 204 No Content
 ```
 
 
-**DELETE** /messages/{version}/{id} 
+**DELETE** /messages/v1/{id} 
 
 **Parameters**
 
@@ -1405,7 +1405,7 @@ HTTP/1.0 204 No Content
 | 204 |  |
 | 404 |  |
 
-## /messages/{version}/{id}/read
+## /messages/v1/{id}/read
 ### **post** 
 
 **Description:** Marks a message read by the currently logged in user.
@@ -1413,7 +1413,7 @@ HTTP/1.0 204 No Content
 #### http request 
 
 
- > <b>Example for: POST /messages/{version}/{id}/read 
+ > <b>Example for: POST /messages/v1/{id}/read 
 </b>
 
 ```python
@@ -1443,7 +1443,7 @@ HTTP/1.0 200 OK
 ```
 
 
-**POST** /messages/{version}/{id}/read 
+**POST** /messages/v1/{id}/read 
 
 **Parameters**
 
@@ -1460,13 +1460,13 @@ HTTP/1.0 200 OK
 | 200 |  |
 | 403 |  |
 
-## /messages/{version}/{toidentity}/list
+## /messages/v1/{toidentity}/list
 ### **get** 
 
 **Description:** List messages sent to "to"-identity.
 
 #### http request 
-**GET** /messages/{version}/{toIdentity}/list 
+**GET** /messages/v1/{toIdentity}/list 
 
 **Parameters**
 
@@ -1492,7 +1492,7 @@ use when requesting data from the translator.
 
 **Version:** v1 
 
-## /products/{version}
+## /products/v1
 ### **post** 
 
 **Description:** Create a new product
@@ -1500,7 +1500,7 @@ use when requesting data from the translator.
 #### http request 
 
 
- > <b>Example for: POST /products/{version} 
+ > <b>Example for: POST /products/v1 
 </b>
 
 ```python
@@ -1562,7 +1562,7 @@ HTTP/1.0 201 Created
 ```
 
 
-**POST** /products/{version} 
+**POST** /products/v1 
 
 **Parameters**
 
@@ -1588,7 +1588,7 @@ Supports pagination.
 #### http request 
 
 
- > <b>Example for: GET /products/{version} 
+ > <b>Example for: GET /products/v1 
 </b>
 
 ```python
@@ -1666,7 +1666,7 @@ HTTP/1.0 200 OK
 ```
 
 
-**GET** /products/{version} 
+**GET** /products/v1 
 
 **Parameters**
 
@@ -1682,7 +1682,7 @@ HTTP/1.0 200 OK
 | ---- | ----------- |
 | 200 |  |
 
-## /products/{version}/{product_code}
+## /products/v1/{product_code}
 ### **get** 
 
 **Description:** Reads a single product by product code. *NOTE*: This is a CORS enabled endpoint.
@@ -1691,7 +1691,7 @@ HTTP/1.0 200 OK
 #### http request 
 
 
- > <b>Example for: GET /products/{version}/{product_code} 
+ > <b>Example for: GET /products/v1/{product_code} 
 </b>
 
 ```python
@@ -1748,7 +1748,7 @@ HTTP/1.0 200 OK
 ```
 
 
-**GET** /products/{version}/{product_code} 
+**GET** /products/v1/{product_code} 
 
 **Parameters**
 
@@ -1771,7 +1771,7 @@ HTTP/1.0 200 OK
 #### http request 
 
 
- > <b>Example for: PUT /products/{version}/{product_code} 
+ > <b>Example for: PUT /products/v1/{product_code} 
 </b>
 
 ```python
@@ -1836,7 +1836,7 @@ HTTP/1.0 200 OK
 ```
 
 
-**PUT** /products/{version}/{product_code} 
+**PUT** /products/v1/{product_code} 
 
 **Parameters**
 
@@ -1862,7 +1862,7 @@ HTTP/1.0 200 OK
 #### http request 
 
 
- > <b>Example for: DELETE /products/{version}/{product_code} 
+ > <b>Example for: DELETE /products/v1/{product_code} 
 </b>
 
 ```python
@@ -1890,7 +1890,7 @@ HTTP/1.0 204 No Content
 ```
 
 
-**DELETE** /products/{version}/{product_code} 
+**DELETE** /products/v1/{product_code} 
 
 **Parameters**
 
