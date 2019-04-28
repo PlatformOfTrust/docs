@@ -222,6 +222,7 @@
         },
         "parameters": [
           {
+            "description": "The Authorization header, MUST be `Bearer {{access_token}}`",
             "type": "string",
             "in": "header",
             "name": "Authorization",
@@ -612,6 +613,7 @@
         },
         "parameters": [
           {
+            "description": "The Authorization header, MUST be `Bearer {{access_token}}`",
             "type": "string",
             "in": "header",
             "name": "Authorization",
@@ -667,6 +669,7 @@
         },
         "parameters": [
           {
+            "description": "The Authorization header, MUST be `Bearer {{access_token}}`",
             "type": "string",
             "in": "header",
             "name": "Authorization",

@@ -700,6 +700,77 @@ The links provides the direction and type (sometimes called role) of the link.
 **Description:** List all identities created by currently logged in user
 
 #### http request 
+
+
+ > <b>Example for: GET /identities/v1 
+</b>
+
+```python
+import requests
+import json
+import sys
+
+endpoint = 'https://api-sandbox.oftrust.net/identities/v1/'
+api_token= 'REPLACE_WITH_YOUR_TOKEN'
+headers = {'Content-Type': 'application/json',
+           'Authorization': 'Bearer {0}'.format(api_token)}
+
+# Get the indentities
+try:
+        json_response = (requests.get(endpoint, headers=headers).json())
+        print(json.dumps(json_response, indent=4, sort_keys=True))
+except:
+        print("Oops!",sys.exc_info()[0],"occured.")
+```
+
+```shell
+curl https://api-sandbox.oftrust.net/identities/v1/ \
+-H "Authorization: Bearer REPLACE_WITH_YOUR_TOKEN"
+```
+
+```javascript
+console.error("Javascript example missing. Why not contribute one for us?");
+```
+
+
+```java
+System.out.println("Java example missing. Why not contribute one for us?");
+```
+
+> The above example should return `JSON` structured like this:
+
+```json
+HTTP/1.0 200 OK
+
+{
+  "@context": "https://schema.org/",
+  "@type": "collection",
+  "ItemList": [
+    {
+      "@context": "http://platformoftrust.github.io/standards/contexts/identity-person.jsonld",
+      "@type": "Person",
+      "@id": "fbd106c5-c594-4416-a87e-f61e578fe829",
+      "name": "John Doe",
+      "data": {
+        "firstName": "John",
+        "lastName": "Doe",
+        "gender": "Male"
+      },
+      "createdBy": "34fe0b13-e031-4ef2-822e-17eabad63259",
+      "updatedBy": "34fe0b13-e031-4ef2-822e-17eabad63259",
+      "createdAt": "2019-03-14T10:50:51+00:00",
+      "updatedAt": "2019-03-14T11:17:35+00:00",
+      "status": 0,
+      "inLinks": [],
+      "outLinks": []
+    },
+    ...
+  ]
+}}
+
+```
+
+
 **GET** /identities/v1 
 
 **Parameters**
@@ -721,6 +792,66 @@ The links provides the direction and type (sometimes called role) of the link.
 **Description:** Create a new identity
 
 #### http request 
+
+
+ > <b>Example for: POST /identities/v1 
+</b>
+
+```python
+import sys
+sys.stdout.write("Python example missing. Why not contribute one for us?")
+```
+
+```shell
+curl -X POST https://api-sandbox.oftrust.net/identities/v1/ \
+-H "Content-Type: application/json" \
+-H "Authorization: Bearer REPLACE_WITH_YOUR_TOKEN" \
+-d '{
+	"context": "http://platformoftrust.github.io/standards/contexts/identity-person.jsonld",
+	"type": "Person",
+	"name": "John Doe",
+	"data": {
+		"firstName": "John",
+		"lastName": "Doe"
+	}
+}'
+```
+
+```javascript
+console.error("Javascript example missing. Why not contribute one for us?");
+```
+
+
+```java
+System.out.println("Java example missing. Why not contribute one for us?");
+```
+
+> The above example should return `JSON` structured like this:
+
+```json
+HTTP/1.0 201 Created
+
+{
+  "@context": "http://platformoftrust.github.io/standards/contexts/identity-person.jsonld",
+  "@type": "Person",
+  "@id": "fbd106c5-c594-4416-a87e-f61e578fe829",
+  "name": "John Doe",
+  "data": {
+    "firstName": "John",
+    "lastName": "Doe"
+  },
+  "createdBy": "4c276e02-719c-4415-abba-a7afc4edc0c0",
+  "updatedBy": null,
+  "createdAt": "2019-03-14T10:50:51+00:00",
+  "updatedAt": "2019-03-14T10:50:51+00:00",
+  "status": 0,
+  "inLinks": [],
+  "outLinks": []
+}
+
+```
+
+
 **POST** /identities/v1 
 
 **Parameters**
@@ -756,7 +887,7 @@ sys.stdout.write("Python example missing. Why not contribute one for us?")
 
 ```shell
 curl https://api-sandbox.oftrust.net/identities/v1/fbd106c5-c594-4416-a87e-f61e578fe829 \
--H "Authorization: Bearer REPLACE_WITH_YOUR_TOKENf"
+-H "Authorization: Bearer REPLACE_WITH_YOUR_TOKEN"
 ```
 
 ```javascript
@@ -957,6 +1088,40 @@ HTTP/1.0 204 No Content
 **Description:** Creates a new link between two identities
 
 #### http request 
+
+
+ > <b>Example for: POST /identities/v1/{from_identity}/link/{to_identity} 
+</b>
+
+```python
+import sys
+sys.stdout.write("Python example missing. Why not contribute one for us?")
+```
+
+```shell
+
+Missing...
+
+```
+
+```javascript
+console.error("Javascript example missing. Why not contribute one for us?");
+```
+
+
+```java
+System.out.println("Java example missing. Why not contribute one for us?");
+```
+
+> The above example should return `JSON` structured like this:
+
+```json
+HTTP/1.0 201 OK
+
+
+```
+
+
 **POST** /identities/v1/{from_identity}/link/{to_identity} 
 
 **Parameters**
@@ -983,6 +1148,57 @@ HTTP/1.0 204 No Content
 **Description:** Update a link
 
 #### http request 
+
+
+ > <b>Example for: PUT /identities/v1/{from_identity}/link/{to_identity}/{type} 
+</b>
+
+```python
+import sys
+sys.stdout.write("Python example missing. Why not contribute one for us?")
+```
+
+```shell
+
+Missing...
+
+```
+
+```javascript
+console.error("Javascript example missing. Why not contribute one for us?");
+```
+
+
+```java
+System.out.println("Java example missing. Why not contribute one for us?");
+```
+
+> The above example should return `JSON` structured like this:
+
+```json
+HTTP/1.0 200 OK
+
+{
+  "@context": "https://schema.org/",
+  "@type": "collection",
+  "ItemList": [
+    {
+      "@context": "https://standards.oftrust.net/contexts/link-link.jsonld",
+      "@type": "Link",
+      "@id": "10fab397-db00-424c-8281-8115b1985d23",
+      "from": "86201e7d-6784-454b-9839-f7a6286f1791",
+      "to": "35ee9e31-acee-42b4-ac7b-675790cc2721",
+      "createdBy": "34fe0b13-e031-4ef2-822e-17eabad63259",
+      "updatedBy": null,
+      "createdAt": "2019-03-14T13:46:15+00:00",
+      "updatedAt": "2019-03-14T13:46:15+00:00"
+    }
+  ]
+}
+
+```
+
+
 **PUT** /identities/v1/{from_identity}/link/{to_identity}/{type} 
 
 **Parameters**
@@ -1009,6 +1225,57 @@ HTTP/1.0 204 No Content
 **Description:** Delete a link by type
 
 #### http request 
+
+
+ > <b>Example for: DELETE /identities/v1/{from_identity}/link/{to_identity}/{type} 
+</b>
+
+```python
+import sys
+sys.stdout.write("Python example missing. Why not contribute one for us?")
+```
+
+```shell
+
+Missing...
+
+```
+
+```javascript
+console.error("Javascript example missing. Why not contribute one for us?");
+```
+
+
+```java
+System.out.println("Java example missing. Why not contribute one for us?");
+```
+
+> The above example should return `JSON` structured like this:
+
+```json
+HTTP/1.0 200 OK
+
+{
+  "@context": "https://schema.org/",
+  "@type": "collection",
+  "ItemList": [
+    {
+      "@context": "https://standards.oftrust.net/contexts/link-link.jsonld",
+      "@type": "Link",
+      "@id": "10fab397-db00-424c-8281-8115b1985d23",
+      "from": "86201e7d-6784-454b-9839-f7a6286f1791",
+      "to": "35ee9e31-acee-42b4-ac7b-675790cc2721",
+      "createdBy": "34fe0b13-e031-4ef2-822e-17eabad63259",
+      "updatedBy": null,
+      "createdAt": "2019-03-14T13:46:15+00:00",
+      "updatedAt": "2019-03-14T13:46:15+00:00"
+    }
+  ]
+}
+
+```
+
+
 **DELETE** /identities/v1/{from_identity}/link/{to_identity}/{type} 
 
 **Parameters**
@@ -1569,7 +1836,7 @@ HTTP/1.0 201 Created
 | Name | Located in | Description | Required | Type |
 | ---- | ---------- | ----------- | -------- | ---- |
 | version | path |  | Yes | string |
-| Authorization | header |  | Yes | string |
+| Authorization | header | The Authorization header, MUST be `Bearer {{access_token}}` | Yes | string |
 | body | body |  | Yes |  |
 
 **Responses**
@@ -1844,7 +2111,7 @@ HTTP/1.0 200 OK
 | ---- | ---------- | ----------- | -------- | ---- |
 | product_code | path | The product code of the product. | Yes | string |
 | version | path |  | Yes | string |
-| Authorization | header |  | Yes | string |
+| Authorization | header | The Authorization header, MUST be `Bearer {{access_token}}` | Yes | string |
 | body | body |  | Yes |  |
 
 **Responses**
@@ -1899,7 +2166,7 @@ HTTP/1.0 204 No Content
 | ---- | ---------- | ----------- | -------- | ---- |
 | product_code | path | The product code of the product. | Yes | string |
 | version | path |  | Yes | string |
-| Authorization | header |  | Yes | string |
+| Authorization | header | The Authorization header, MUST be `Bearer {{access_token}}` | Yes | string |
 
 **Responses**
 
