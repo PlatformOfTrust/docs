@@ -38,7 +38,7 @@ use when requesting data from the translator.
 | Name | Located in | Description | Required | Type |
 | ---- | ---------- | ----------- | -------- | ---- |
 | version | path |  | Yes | string |
-| Authorization | header |  | Yes | string |
+| Authorization | header | The Authorization header, MUST be `Bearer {{access_token}}` | Yes | string |
 | body | body |  | Yes |  |
 
 **Responses**
@@ -107,7 +107,7 @@ Supports pagination.
 | ---- | ---------- | ----------- | -------- | ---- |
 | product_code | path | The product code of the product. | Yes | string |
 | version | path |  | Yes | string |
-| Authorization | header |  | Yes | string |
+| Authorization | header | The Authorization header, MUST be `Bearer {{access_token}}` | Yes | string |
 | body | body |  | Yes |  |
 
 **Responses**
@@ -131,7 +131,7 @@ Supports pagination.
 | ---- | ---------- | ----------- | -------- | ---- |
 | product_code | path | The product code of the product. | Yes | string |
 | version | path |  | Yes | string |
-| Authorization | header |  | Yes | string |
+| Authorization | header | The Authorization header, MUST be `Bearer {{access_token}}` | Yes | string |
 
 **Responses**
 

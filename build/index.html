@@ -1150,6 +1150,62 @@ The links provides the direction and type (sometimes called role) of the link.</
 <h2 id='identities-v1'>/identities/v1</h2><h3 id='get-4'><strong>get</strong></h3>
 <p><strong>Description:</strong> List all identities created by currently logged in user</p>
 <h4 id='http-request-8'>http request</h4>
+<blockquote>
+<p><b>Example for: GET /identities/v1 
+</b></p>
+</blockquote>
+<pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+
+<span class="n">endpoint</span> <span class="o">=</span> <span class="s">'https://api-sandbox.oftrust.net/identities/v1/'</span>
+<span class="n">api_token</span><span class="o">=</span> <span class="s">'REPLACE_WITH_YOUR_TOKEN'</span>
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s">'Content-Type'</span><span class="p">:</span> <span class="s">'application/json'</span><span class="p">,</span>
+           <span class="s">'Authorization'</span><span class="p">:</span> <span class="s">'Bearer {0}'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">api_token</span><span class="p">)}</span>
+
+<span class="c"># Get the indentities</span>
+<span class="k">try</span><span class="p">:</span>
+        <span class="n">json_response</span> <span class="o">=</span> <span class="p">(</span><span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">endpoint</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">())</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">json_response</span><span class="p">,</span> <span class="n">indent</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">sort_keys</span><span class="o">=</span><span class="bp">True</span><span class="p">))</span>
+<span class="k">except</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="s">"Oops!"</span><span class="p">,</span><span class="n">sys</span><span class="o">.</span><span class="n">exc_info</span><span class="p">()[</span><span class="mi">0</span><span class="p">],</span><span class="s">"occured."</span><span class="p">)</span>
+</code></pre><pre class="highlight shell tab-shell"><code>curl https://api-sandbox.oftrust.net/identities/v1/ <span class="se">\</span>
+-H <span class="s2">"Authorization: Bearer REPLACE_WITH_YOUR_TOKEN"</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">"Javascript example missing. Why not contribute one for us?"</span><span class="p">);</span>
+</code></pre><pre class="highlight java tab-java"><code><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Java example missing. Why not contribute one for us?"</span><span class="o">);</span>
+</code></pre>
+<blockquote>
+<p>The above example should return <code>JSON</code> structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">HTTP/</span><span class="mf">1.0</span><span class="w"> </span><span class="mi">200</span><span class="w"> </span><span class="err">OK</span><span class="w">
+
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"@context"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://schema.org/"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"@type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"collection"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ItemList"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"@context"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://platformoftrust.github.io/standards/contexts/identity-person.jsonld"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"@type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Person"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"@id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fbd106c5-c594-4416-a87e-f61e578fe829"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John Doe"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"firstName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"lastName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Doe"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"gender"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Male"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="s2">"34fe0b13-e031-4ef2-822e-17eabad63259"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"updatedBy"</span><span class="p">:</span><span class="w"> </span><span class="s2">"34fe0b13-e031-4ef2-822e-17eabad63259"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-14T10:50:51+00:00"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"updatedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-14T11:17:35+00:00"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"inLinks"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+      </span><span class="s2">"outLinks"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="err">...</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}}</span><span class="w">
+
+</span></code></pre>
 <p><strong>GET</strong> /identities/v1 </p>
 
 <p><strong>Parameters</strong></p>
@@ -1202,6 +1258,51 @@ The links provides the direction and type (sometimes called role) of the link.</
 <h3 id='post-3'><strong>post</strong></h3>
 <p><strong>Description:</strong> Create a new identity</p>
 <h4 id='http-request-9'>http request</h4>
+<blockquote>
+<p><b>Example for: POST /identities/v1 
+</b></p>
+</blockquote>
+<pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">sys</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">"Python example missing. Why not contribute one for us?"</span><span class="p">)</span>
+</code></pre><pre class="highlight shell tab-shell"><code>curl -X POST https://api-sandbox.oftrust.net/identities/v1/ <span class="se">\</span>
+-H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+-H <span class="s2">"Authorization: Bearer REPLACE_WITH_YOUR_TOKEN"</span> <span class="se">\</span>
+-d <span class="s1">'{
+    "context": "http://platformoftrust.github.io/standards/contexts/identity-person.jsonld",
+    "type": "Person",
+    "name": "John Doe",
+    "data": {
+        "firstName": "John",
+        "lastName": "Doe"
+    }
+}'</span>
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">"Javascript example missing. Why not contribute one for us?"</span><span class="p">);</span>
+</code></pre><pre class="highlight java tab-java"><code><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Java example missing. Why not contribute one for us?"</span><span class="o">);</span>
+</code></pre>
+<blockquote>
+<p>The above example should return <code>JSON</code> structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">HTTP/</span><span class="mf">1.0</span><span class="w"> </span><span class="mi">201</span><span class="w"> </span><span class="err">Created</span><span class="w">
+
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"@context"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://platformoftrust.github.io/standards/contexts/identity-person.jsonld"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"@type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Person"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"@id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fbd106c5-c594-4416-a87e-f61e578fe829"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John Doe"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"firstName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"John"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"lastName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Doe"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="s2">"4c276e02-719c-4415-abba-a7afc4edc0c0"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"updatedBy"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-14T10:50:51+00:00"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"updatedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-14T10:50:51+00:00"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"inLinks"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+  </span><span class="s2">"outLinks"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
 <p><strong>POST</strong> /identities/v1 </p>
 
 <p><strong>Parameters</strong></p>
@@ -1265,7 +1366,7 @@ The links provides the direction and type (sometimes called role) of the link.</
 <pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">sys</span>
 <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">"Python example missing. Why not contribute one for us?"</span><span class="p">)</span>
 </code></pre><pre class="highlight shell tab-shell"><code>curl https://api-sandbox.oftrust.net/identities/v1/fbd106c5-c594-4416-a87e-f61e578fe829 <span class="se">\</span>
--H <span class="s2">"Authorization: Bearer REPLACE_WITH_YOUR_TOKENf"</span>
+-H <span class="s2">"Authorization: Bearer REPLACE_WITH_YOUR_TOKEN"</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">"Javascript example missing. Why not contribute one for us?"</span><span class="p">);</span>
 </code></pre><pre class="highlight java tab-java"><code><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Java example missing. Why not contribute one for us?"</span><span class="o">);</span>
 </code></pre>
@@ -1536,6 +1637,25 @@ The links provides the direction and type (sometimes called role) of the link.</
 <h2 id='identities-v1-from_identity-link-to_identity'>/identities/v1/{from_identity}/link/{to_identity}</h2><h3 id='post-4'><strong>post</strong></h3>
 <p><strong>Description:</strong> Creates a new link between two identities</p>
 <h4 id='http-request-13'>http request</h4>
+<blockquote>
+<p><b>Example for: POST /identities/v1/{from_identity}/link/{to_identity} 
+</b></p>
+</blockquote>
+<pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">sys</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">"Python example missing. Why not contribute one for us?"</span><span class="p">)</span>
+</code></pre><pre class="highlight shell tab-shell"><code>
+Missing...
+
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">"Javascript example missing. Why not contribute one for us?"</span><span class="p">);</span>
+</code></pre><pre class="highlight java tab-java"><code><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Java example missing. Why not contribute one for us?"</span><span class="o">);</span>
+</code></pre>
+<blockquote>
+<p>The above example should return <code>JSON</code> structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">HTTP/</span><span class="mf">1.0</span><span class="w"> </span><span class="mi">201</span><span class="w"> </span><span class="err">OK</span><span class="w">
+
+
+</span></code></pre>
 <p><strong>POST</strong> /identities/v1/{from_identity}/link/{to_identity} </p>
 
 <p><strong>Parameters</strong></p>
@@ -1610,6 +1730,42 @@ The links provides the direction and type (sometimes called role) of the link.</
 <h2 id='identities-v1-from_identity-link-to_identity-type'>/identities/v1/{from_identity}/link/{to_identity}/{type}</h2><h3 id='put-3'><strong>put</strong></h3>
 <p><strong>Description:</strong> Update a link</p>
 <h4 id='http-request-14'>http request</h4>
+<blockquote>
+<p><b>Example for: PUT /identities/v1/{from_identity}/link/{to_identity}/{type} 
+</b></p>
+</blockquote>
+<pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">sys</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">"Python example missing. Why not contribute one for us?"</span><span class="p">)</span>
+</code></pre><pre class="highlight shell tab-shell"><code>
+Missing...
+
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">"Javascript example missing. Why not contribute one for us?"</span><span class="p">);</span>
+</code></pre><pre class="highlight java tab-java"><code><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Java example missing. Why not contribute one for us?"</span><span class="o">);</span>
+</code></pre>
+<blockquote>
+<p>The above example should return <code>JSON</code> structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">HTTP/</span><span class="mf">1.0</span><span class="w"> </span><span class="mi">200</span><span class="w"> </span><span class="err">OK</span><span class="w">
+
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"@context"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://schema.org/"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"@type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"collection"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ItemList"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"@context"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://standards.oftrust.net/contexts/link-link.jsonld"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"@type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Link"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"@id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10fab397-db00-424c-8281-8115b1985d23"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"from"</span><span class="p">:</span><span class="w"> </span><span class="s2">"86201e7d-6784-454b-9839-f7a6286f1791"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"to"</span><span class="p">:</span><span class="w"> </span><span class="s2">"35ee9e31-acee-42b4-ac7b-675790cc2721"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="s2">"34fe0b13-e031-4ef2-822e-17eabad63259"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"updatedBy"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-14T13:46:15+00:00"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"updatedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-14T13:46:15+00:00"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
 <p><strong>PUT</strong> /identities/v1/{from_identity}/link/{to_identity}/{type} </p>
 
 <p><strong>Parameters</strong></p>
@@ -1691,6 +1847,42 @@ The links provides the direction and type (sometimes called role) of the link.</
 <h3 id='delete-3'><strong>delete</strong></h3>
 <p><strong>Description:</strong> Delete a link by type</p>
 <h4 id='http-request-15'>http request</h4>
+<blockquote>
+<p><b>Example for: DELETE /identities/v1/{from_identity}/link/{to_identity}/{type} 
+</b></p>
+</blockquote>
+<pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">sys</span>
+<span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">"Python example missing. Why not contribute one for us?"</span><span class="p">)</span>
+</code></pre><pre class="highlight shell tab-shell"><code>
+Missing...
+
+</code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">"Javascript example missing. Why not contribute one for us?"</span><span class="p">);</span>
+</code></pre><pre class="highlight java tab-java"><code><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Java example missing. Why not contribute one for us?"</span><span class="o">);</span>
+</code></pre>
+<blockquote>
+<p>The above example should return <code>JSON</code> structured like this:</p>
+</blockquote>
+<pre class="highlight json tab-json"><code><span class="err">HTTP/</span><span class="mf">1.0</span><span class="w"> </span><span class="mi">200</span><span class="w"> </span><span class="err">OK</span><span class="w">
+
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"@context"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://schema.org/"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"@type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"collection"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"ItemList"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"@context"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://standards.oftrust.net/contexts/link-link.jsonld"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"@type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Link"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"@id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10fab397-db00-424c-8281-8115b1985d23"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"from"</span><span class="p">:</span><span class="w"> </span><span class="s2">"86201e7d-6784-454b-9839-f7a6286f1791"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"to"</span><span class="p">:</span><span class="w"> </span><span class="s2">"35ee9e31-acee-42b4-ac7b-675790cc2721"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="s2">"34fe0b13-e031-4ef2-822e-17eabad63259"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"updatedBy"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-14T13:46:15+00:00"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"updatedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-14T13:46:15+00:00"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
 <p><strong>DELETE</strong> /identities/v1/{from_identity}/link/{to_identity}/{type} </p>
 
 <p><strong>Parameters</strong></p>
@@ -2451,7 +2643,7 @@ use when requesting data from the translator.</p>
 <tr>
 <td>Authorization</td>
 <td>header</td>
-<td></td>
+<td>The Authorization header, MUST be <code>Bearer {{access_token}}</code></td>
 <td>Yes</td>
 <td>string</td>
 </tr>
@@ -2777,7 +2969,7 @@ Supports pagination.</p>
 <tr>
 <td>Authorization</td>
 <td>header</td>
-<td></td>
+<td>The Authorization header, MUST be <code>Bearer {{access_token}}</code></td>
 <td>Yes</td>
 <td>string</td>
 </tr>
@@ -2860,7 +3052,7 @@ Supports pagination.</p>
 <tr>
 <td>Authorization</td>
 <td>header</td>
-<td></td>
+<td>The Authorization header, MUST be <code>Bearer {{access_token}}</code></td>
 <td>Yes</td>
 <td>string</td>
 </tr>
