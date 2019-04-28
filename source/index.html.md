@@ -1777,6 +1777,7 @@ sys.stdout.write("Python example missing. Why not contribute one for us?")
 
 ```shell
 curl -X POST https://api-sandbox.oftrust.net/products/v1/ \
+-H "Authorization: Bearer REPLACE_WITH_YOUR_TOKEN" \
 -H "Content-Type: application/json" \
 -d '{
   "dataContext": "https://standards.oftrust.net/contexts/product-data.jsonld",

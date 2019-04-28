@@ -2578,6 +2578,7 @@ use when requesting data from the translator.</p>
 <pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">sys</span>
 <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">"Python example missing. Why not contribute one for us?"</span><span class="p">)</span>
 </code></pre><pre class="highlight shell tab-shell"><code>curl -X POST https://api-sandbox.oftrust.net/products/v1/ <span class="se">\</span>
+-H <span class="s2">"Authorization: Bearer REPLACE_WITH_YOUR_TOKEN"</span> <span class="se">\</span>
 -H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
 -d <span class="s1">'{
   "dataContext": "https://standards.oftrust.net/contexts/product-data.jsonld",
