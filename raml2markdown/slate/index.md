@@ -51,21 +51,25 @@ You can list data products in the market place with [Product API](#product-api).
 
 > Some instructions and tips to make your life easier (and less support requests to us): 
 
+> - **Create an account in sandbox** environment from https://world-sandbox.oftrust.net/
+
 > - Endpoints related code examples are constructed against **SANDBOX environment `https://api-sandbox.oftrust.net/`**. 
 
 > - In **PRODUCTION** use, change domain in api endpoints to `https://api.oftrust.net/`
 
-> - **How to get needed Bearer Token?** See [Authentication section](#how-to-get-bearer-token)
+> - To test APIs you need **to get needed Bearer Token** See [Authentication section](#use-bearer-token-and-how-to-get-it)
 
 > If you found a bug or missing information in the documentation, contact us at dev@oftrust.net or create an [issue in Github](https://github.com/PlatformOfTrust/docs/issues/new). 
 
-* You should get familiar with [Authentication](#authentication) process regardless of are you integration data sources or building applications. 
+* First **create an account in sandbox** version of World app. If you have an account in production environment, that does not work in the sandbox environment.  
 
-* Related to authentication is the Bearer Token which is needed in some of the API calls. Check out the [How to get Bearer token?](#how-to-get-bearer-token) 
+* You should **get familiar with [Authentication](#authentication) process** regardless of are you integration data sources or building applications. 
+
+* Related to authentication is the **Bearer Token** which is needed in some of the API calls. Check out the [How to get Bearer token?](#use-bearer-token-and-how-to-get-it) 
 
 * Some of the API endpoints are CORS enabled and they are marked in the description. 
 
-* Another thing to understand is the ontologies. We recommend that you [get familiar with core ontologies](https://github.com/PlatformOfTrust/standards/blob/master/README.md) especially if you are integrating data sources to the Platform of Trust. 
+* Another thing to understand is the harmonised data models. We recommend that you **[get familiar with core ontologies](https://github.com/PlatformOfTrust/standards/blob/master/README.md)** especially if you are integrating data sources to the Platform of Trust. 
 
 ## Standards used
 
