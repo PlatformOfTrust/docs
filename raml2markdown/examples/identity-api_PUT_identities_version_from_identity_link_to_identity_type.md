@@ -4,9 +4,13 @@ sys.stdout.write("Python example missing. Why not contribute one for us?")
 ```
 
 ```shell
-
-Missing...
-
+curl -X PUT https://api-sandbox.oftrust.net/identities/v1/fbd106c5-c594-4416-a87e-f61e578fe829/link/86201e7d-6784-454b-9839-f7a6286f1791/Link \
+-H "Content-Type: application/json" \
+-H "Authorization: Bearer REPLACE_WITH_YOUR_TOKEN" \
+-d '{
+	"context": "https://standards.oftrust.net/contexts/link-owner.jsonld",
+	"type": "Owner",
+}'
 ```
 
 ```javascript
@@ -24,21 +28,15 @@ System.out.println("Java example missing. Why not contribute one for us?");
 HTTP/1.0 200 OK
 
 {
-  "@context": "https://schema.org/",
-  "@type": "collection",
-  "ItemList": [
-    {
-      "@context": "https://standards.oftrust.net/contexts/link-link.jsonld",
-      "@type": "Link",
-      "@id": "10fab397-db00-424c-8281-8115b1985d23",
-      "from": "86201e7d-6784-454b-9839-f7a6286f1791",
-      "to": "35ee9e31-acee-42b4-ac7b-675790cc2721",
-      "createdBy": "34fe0b13-e031-4ef2-822e-17eabad63259",
-      "updatedBy": null,
-      "createdAt": "2019-03-14T13:46:15+00:00",
-      "updatedAt": "2019-03-14T13:46:15+00:00"
-    }
-  ]
+  "@context": "https://standards.oftrust.net/contexts/link-owner.jsonld",
+  "@type": "Owner",
+  "@id": "6ca1e7fb-48a7-4e2c-bb4f-98e2b934aa80",
+  "from": "fbd106c5-c594-4416-a87e-f61e578fe829",
+  "to": "86201e7d-6784-454b-9839-f7a6286f1791",
+  "createdBy": "93767688-4017-4952-b2d9-89286adca0c5",
+  "updatedBy": "93767688-4017-4952-b2d9-89286adca0c5",
+  "createdAt": "2019-04-10T08:27:00+00:00",
+  "updatedAt": "2019-05-10T08:27:00+00:00"
 }
 
 ```
