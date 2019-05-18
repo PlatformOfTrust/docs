@@ -57,7 +57,14 @@ def concatenate_files():
     for api in APIs:
       slatefile = Path("./slate/" + api.lower() + ".md")
 
-      ofile.write("# "+api.replace("-", " ").replace("api","API")+"\n")
+      ofile.write("# " + api.replace("-", " ").replace("api", "API") + "\n")
+
+      ofile.write("\n> **Download API specification:**\n\n")
+      ofile.write("> - <div class='oas-spec-file'><a href='./specs/oas/"+api.lower()+".json'>Open API Spec (JSON)</a>\n\n")
+      ofile.write("\n\n")
+      # ofile.write(" > <div class='raml-spec-file'><a href='./specs/raml/"+api.lower()+".zip'>RAML Spec (zip)</a></div>")
+
+
 
       infile = open(slatefile, 'r').readlines()
       for index, line in enumerate(infile):
