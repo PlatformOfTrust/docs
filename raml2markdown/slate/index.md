@@ -38,7 +38,7 @@ Our [Developer Portal](https://developers.oftrust.net) is your one-stop-shop. Fr
 
 ### End-to-end developer experience
 
-APIs play crucial role in our end-end-end developer experience from integrating data to creating valuable applications. 
+APIs play crucial role in our end-end-end developer experience from integrating data to creating valuable applications. API -first experience and consistent APIs are important to us and thus we have created (work in progress) [API Design Guide](https://platformoftrust.gitbook.io/api-design-guide/) to offer guidance for our distributes API development teams. 
 
 ![End-to-end developer experience in Platform of Trust](images/dx.png)
 
