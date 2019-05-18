@@ -3,6 +3,8 @@
 import os
 import re
 from pathlib import Path
+import shutil
+
 import subprocess
 
 # Array of APIs. Call API_Raml_to_Slate(apiname) for each. Expected: API RAML file in folder which is the api name.
@@ -35,6 +37,7 @@ def api_raml_to_slate(apiname):
   if failure:
     print("RAML -> OpenAPISpec failed. Trying next in array.")
   else:
+
   # Convert from OpenAPISpec to Slate md
     slatecmd= "swagger-to-slate -i ./OAS/" +apiname+ ".json -o ./slate/" +apiname+ ".md"
     failure = os.system(slatecmd)
@@ -106,6 +109,23 @@ def make_html():
     print("\n\nHTML generated successfully.")
 
 
+def copy_specs_to_build():
+  #make directory
+  # define the name of the directory to be created
+  path = "../build/specs/oas"
+
+  try:
+    os.makedirs(path)
+  except OSError:
+    print("Creation of the directory %s failed" % path)
+  else:
+    print("Successfully created the directory %s" % path)
+    # Copy oas spec file to build release as well
+    for api in APIs:
+      apiname = api.lower()
+      src_path = "./OAS/" + apiname + ".json"
+      shutil.copy2(src_path, '../build/specs/oas')  # target filename  preserved
+
 # ----------------------------
 # MAIN - lets build it
 
@@ -119,3 +139,5 @@ concatenate_files()
 # Build deployable content as html
 make_html()
 
+# copy the RAMLs and OAS spec files to build
+copy_specs_to_build()
