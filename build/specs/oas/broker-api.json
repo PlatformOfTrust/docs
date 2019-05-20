@@ -1,0 +1,125 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Platform Of Trust Data Broker",
+    "description": "The Broker API provides means to connect a service to a translator that will\nreturn desired data from different sources. The data broker does not mangle\nthe data in any way, it only functions as a proxy between services and\ntranslators.\n",
+    "version": "v1"
+  },
+  "host": "api-sandbox.oftrust.net",
+  "schemes": [
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "definitions": {
+    "data-product-request": {
+      "type": "object",
+      "properties": {
+        "timestamp": {
+          "description": "A timestamp in RFC3339 format",
+          "example": "2018-11-01T12:00:00+00:00",
+          "type": "string"
+        },
+        "productCode": {
+          "description": "The data product's product code",
+          "example": "product-1",
+          "type": "string"
+        },
+        "parameters": {
+          "description": "Additional parameters to be sent to the translator",
+          "example": {
+            "param-1": "param-1 value",
+            "param-2": "param-2 value"
+          },
+          "type": "object"
+        }
+      },
+      "required": [
+        "timestamp",
+        "productCode",
+        "parameters"
+      ]
+    }
+  },
+  "paths": {
+    "/broker/{version}/fetch-data-product": {
+      "post": {
+        "description": "Request data from an external service defined by the data product, and\n product code. The data broker will validate the signature of the\n payload and when verified, relay the request to the translator\n connected to the data product. The translator will translate the\n information fetched from an external source into a standardized format\n that will be returned to the requester.\n",
+        "operationId": "POST_broker-version-fetch-data-product",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "example": "{\n  \"@context\": \"<context url>\",\n  \"data\": {\n    <response from translator>\n  },\n  \"signature\": {\n    \"type\": \"<signature type>\",\n    \"created\": \"<RFC3339>\",\n    \"creator\": \"<public key URL>\",\n    \"signatureValue\": \"...\"\n  }\n}\n"
+            }
+          },
+          "422": {
+            "description": "",
+            "schema": {
+              "example": {
+                "error": {
+                  "status": 422,
+                  "message": {
+                    "mandatoryParameter": [
+                      "Missing data for required field."
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "description": "A HMAC-SHA256 signature in base64 encoded format.\nThe signature is created by taking the request payload, e.g. a\nPython dict, and converting it to a string. <br/><br/>\n\nPython example: <br/><br/>\n<code>\n body_string = json.dumps( <br/>\n  body, <br/>\n  sort_keys=True, <br/>\n  indent=None, <br/>\n  separators=(',', ': ') <br/>\n).strip() <br/><br/>\n</code>\nThe keys MUST be sorted, without indentation and separators comma\n(,) and colon (:) specified. <br/><br/>\n\nGet the digest by passing the app access token (generated when\ncreating a new app) and the body string to `hmac`:<br/><br/>\n<code>\ndigest = <br/>\nhmac.new(app_access_token.encode('utf-8'), <br/>\nbody_string.encode('utf-8'),<br/>\nhashlib.sha256).digest()<br/><br/>\n</code><br/>\nReturn the digest in base64 encoded format:<br/>\n<code>\nX-Pot-Signature = base64.b64encode(digest).decode()<br/>\n</code>\n",
+            "type": "string",
+            "in": "header",
+            "name": "X-Pot-Signature",
+            "required": true
+          },
+          {
+            "description": "The requesting application's client ID.",
+            "type": "string",
+            "in": "header",
+            "name": "X-Pot-App",
+            "required": true
+          },
+          {
+            "description": "The currently logged in user's OAuth access token.\n",
+            "type": "string",
+            "in": "header",
+            "name": "X-Pot-Token"
+          },
+          {
+            "schema": {
+              "example": {
+                "timestamp": "2018-11-01T12:00:00+00:00",
+                "productCode": "product-1",
+                "parameters": {
+                  "param-1": "Value",
+                  "param-2": "Value"
+                }
+              },
+              "$ref": "#/definitions/data-product-request"
+            },
+            "in": "body",
+            "name": "body",
+            "required": true
+          }
+        ]
+      },
+      "parameters": [
+        {
+          "type": "string",
+          "in": "path",
+          "name": "version",
+          "required": true
+        }
+      ]
+    }
+  }
+}

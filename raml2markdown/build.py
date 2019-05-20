@@ -3,6 +3,8 @@
 import os
 import re
 from pathlib import Path
+import shutil
+
 import subprocess
 
 # Array of APIs. Call API_Raml_to_Slate(apiname) for each. Expected: API RAML file in folder which is the api name.
@@ -35,6 +37,7 @@ def api_raml_to_slate(apiname):
   if failure:
     print("RAML -> OpenAPISpec failed. Trying next in array.")
   else:
+
   # Convert from OpenAPISpec to Slate md
     slatecmd= "swagger-to-slate -i ./OAS/" +apiname+ ".json -o ./slate/" +apiname+ ".md"
     failure = os.system(slatecmd)
@@ -54,7 +57,17 @@ def concatenate_files():
     for api in APIs:
       slatefile = Path("./slate/" + api.lower() + ".md")
 
-      ofile.write("# "+api.replace("-", " ").replace("api","API")+"\n")
+      ofile.write("# " + api.replace("-", " ").replace("api", "API") + "\n")
+      pretty_api_name = api.replace("-", " ").replace("api", "API")
+
+      ofile.write("\n> **Download "+pretty_api_name+ " related resources:**\n\n")
+      ofile.write("> - <div class='oas-spec-file'><a href='./specs/oas/"+api.lower()+".json'>Open API Specification (JSON)</a>\n\n")
+      ofile.write("\n")
+      ofile.write("> - <div class='raml-spec-file'><a href='./specs/raml/" + api.lower() + ".zip'>RAML Specification (zip)</a>\n\n")
+      ofile.write("\n\n")
+      # ofile.write(" > <div class='raml-spec-file'><a href='./specs/raml/"+api.lower()+".zip'>RAML Spec (zip)</a></div>")
+
+
 
       infile = open(slatefile, 'r').readlines()
       for index, line in enumerate(infile):
@@ -106,6 +119,37 @@ def make_html():
     print("\n\nHTML generated successfully.")
 
 
+def copy_specs_to_build():
+  #make directory
+  # define the name of the directory to be created
+  path = "../build/specs/oas"
+
+
+  try:
+    os.makedirs(path)
+  except OSError:
+    print("Creation of the directory %s failed" % path)
+  else:
+    print("Successfully created the directory %s" % path)
+    # Copy oas spec file to build release as well
+    for api in APIs:
+      apiname = api.lower()
+      src_path = "./OAS/" + apiname + ".json"
+      shutil.copy2(src_path, '../build/specs/oas')  # target filename  preserved
+
+  # Make zips for RAML in the build folder /build/specs/raml.
+  ramlpath = "../build/specs/raml"
+  try:
+    os.makedirs(ramlpath)
+  except OSError:
+    print("Creation of the directory %s failed" % path)
+  else:
+    print("Successfully created the directory %s" % path)
+    for api in APIs:
+      apiname = api.lower()
+      src_path = "./src/" + apiname
+      shutil.make_archive(ramlpath+"/"+apiname, 'zip', src_path)
+
 # ----------------------------
 # MAIN - lets build it
 
@@ -119,3 +163,5 @@ concatenate_files()
 # Build deployable content as html
 make_html()
 
+# copy the RAMLs and OAS spec files to build
+copy_specs_to_build()
