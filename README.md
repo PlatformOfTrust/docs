@@ -20,7 +20,7 @@ You're going to need:
 1. Clone repository to your hard drive with `git clone git@github.com:PlatformOfTrust/docs.git`
     - in macOS, You may need to add a pair of **public public/private ssh keys** to your **SSH agent**, if you get the following message in the terminal:
     ```
-    Warning: Permanently added the RSA host key for IP address '192.30.253.113' to the list of known hosts.
+    Warning: Permanently added the RSA host key for IP address '<YOUR IP ADDRESS>' to the list of known hosts.
     Permission denied (publickey).
     fatal: Could not read from remote repository.
     ```
