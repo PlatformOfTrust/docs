@@ -24,11 +24,11 @@ You're going to need:
     Permission denied (publickey).
     fatal: Could not read from remote repository.
     ```
-    
     Follow [these instructions](https://help.github.com/en/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent#adding-your-ssh-key-to-the-ssh-agent) to generate the SSH key pairs. Follow [these instructions](https://help.github.com/en/articles/adding-a-new-ssh-key-to-your-github-account) to add them in your GitHub user account
 
-Please make sure you have the correct access rights
-and the repository exists.
+    Please make sure you have the correct access rights
+    and the repository exists.
+
 2. `cd docs`
 3. Initialize and start Platform of Trust API Docs: 
 
