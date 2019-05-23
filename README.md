@@ -9,6 +9,8 @@ You're going to need:
 
  - **Linux or macOS** — Windows may work, but is unsupported.
  - **Ruby, version 2.3.1 or newer**
+    - (for macOS) You can use [Homebrew](https://brew.sh/) as the 1st step to install Ruby
+    - After Homebrew is installed, install Ruby in the terminal with commans `brew install ruby`
  - **Bundler** — If Ruby is already installed, but the `bundle` command doesn't work, just run `gem install bundler` in a terminal.
 
 ### Getting Set Up
