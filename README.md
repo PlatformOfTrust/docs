@@ -11,7 +11,9 @@ You're going to need:
  - **Ruby, version 2.3.1 or newer**
     - (for macOS) You can use [Homebrew](https://brew.sh/) as the 1st step to install Ruby
     - After Homebrew is installed, install Ruby in the terminal with commans `brew install ruby`
+    - Close the current terminal and reopen a new one to proceed with installing bundler.
  - **Bundler** — If Ruby is already installed, but the `bundle` command doesn't work, just run `gem install bundler` in a terminal.
+ 
 
 ### Getting Set Up
 
