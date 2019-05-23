@@ -18,6 +18,17 @@ You're going to need:
 ### Getting Set Up
 
 1. Clone repository to your hard drive with `git clone git@github.com:PlatformOfTrust/docs.git`
+    - in macOS, You may need to add a pair of **public public/private ssh keys** to your **SSH agent**, if you get the following message in the terminal:
+    ```
+    Warning: Permanently added the RSA host key for IP address '192.30.253.113' to the list of known hosts.
+    Permission denied (publickey).
+    fatal: Could not read from remote repository.
+    ```
+    
+    Follow [these instructions](https://help.github.com/en/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent#adding-your-ssh-key-to-the-ssh-agent) to generate the SSH key pairs. Follow [these instructions](https://help.github.com/en/articles/adding-a-new-ssh-key-to-your-github-account) to add them in your GitHub user account
+
+Please make sure you have the correct access rights
+and the repository exists.
 2. `cd docs`
 3. Initialize and start Platform of Trust API Docs: 
 
