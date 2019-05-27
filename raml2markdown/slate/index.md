@@ -63,7 +63,6 @@ You can list data products in the market place with [Product API](#product-api).
 
 * First **create an account in sandbox** version of World app. If you have an account in production environment, that does not work in the sandbox environment.  
 
-<input type="button" value="Click Me"></input>
 
 * You should **get familiar with [Authentication](#authentication) process** regardless of are you integration data sources or building applications. 
 
