@@ -38,7 +38,7 @@ Our [Developer Portal](https://developers.oftrust.net) is your one-stop-shop. Fr
 
 ### End-to-end developer experience
 
-APIs play crucial role in our end-end-end developer experience from integrating data to creating valuable applications. 
+APIs play crucial role in our end-end-end developer experience from integrating data to creating valuable applications. API -first experience and consistent APIs are important to us and thus we have created (work in progress) [API Design Guide](https://platformoftrust.gitbook.io/api-design-guide/) to offer guidance for our distributes API development teams. 
 
 ![End-to-end developer experience in Platform of Trust](images/dx.png)
 
@@ -51,21 +51,27 @@ You can list data products in the market place with [Product API](#product-api).
 
 > Some instructions and tips to make your life easier (and less support requests to us): 
 
+> - **Create an account in sandbox** environment from https://world-sandbox.oftrust.net/
+
 > - Endpoints related code examples are constructed against **SANDBOX environment `https://api-sandbox.oftrust.net/`**. 
 
 > - In **PRODUCTION** use, change domain in api endpoints to `https://api.oftrust.net/`
 
-> - **How to get needed Bearer Token?** See [Authentication section](#how-to-get-bearer-token)
+> - To test APIs you need **to get needed Bearer Token** See [Authentication section](#use-bearer-token-and-how-to-get-it)
 
 > If you found a bug or missing information in the documentation, contact us at dev@oftrust.net or create an [issue in Github](https://github.com/PlatformOfTrust/docs/issues/new). 
 
-* You should get familiar with [Authentication](#authentication) process regardless of are you integration data sources or building applications. 
+* First **create an account in sandbox** version of World app. If you have an account in production environment, that does not work in the sandbox environment.  
 
-* Related to authentication is the Bearer Token which is needed in some of the API calls. Check out the [How to get Bearer token?](#how-to-get-bearer-token) 
+<input type="button" value="Click Me"></input>
+
+* You should **get familiar with [Authentication](#authentication) process** regardless of are you integration data sources or building applications. 
+
+* Related to authentication is the **Bearer Token** which is needed in some of the API calls. Check out the [How to get Bearer token?](#use-bearer-token-and-how-to-get-it) 
 
 * Some of the API endpoints are CORS enabled and they are marked in the description. 
 
-* Another thing to understand is the ontologies. We recommend that you [get familiar with core ontologies](https://github.com/PlatformOfTrust/standards/blob/master/README.md) especially if you are integrating data sources to the Platform of Trust. 
+* Another thing to understand is the harmonised data models. We recommend that you **[get familiar with core ontologies](https://github.com/PlatformOfTrust/standards/blob/master/README.md)** especially if you are integrating data sources to the Platform of Trust. 
 
 ## Standards used
 
@@ -91,6 +97,12 @@ Read more from [Github](https://github.com/PlatformOfTrust/standards/blob/master
 
 
 # Broker API
+
+> **Download Broker API related resources:**
+
+> <div class='hexagon'><div class='hexagon-inside'><div class='hexagon-inside2'><a href='./specs/oas/broker-api.json' title='Get OpenAPI Specification Resources'><img src='images/oas.png' class='openApiSpec-lg'></a></div></div></div>
+> <div class='hexagon'><div class='hexagon-inside'><div class='hexagon-inside2'><a href='./specs/raml/broker-api.zip' title='Get RAML Specification Resources'><img src='images/raml.png' class='ramlSpec-lg'></a></div></div></div>
+
 
 The Broker API provides means to connect a service to a translator that will
 return desired data from different sources. The data broker does not mangle
@@ -200,6 +212,12 @@ HTTP/1.0 200 OK
 
 <!-- Converted with the swagger-to-slate https://github.com/lavkumarv/swagger-to-slate -->
 # Calendar API
+
+> **Download Calendar API related resources:**
+
+> <div class='hexagon'><div class='hexagon-inside'><div class='hexagon-inside2'><a href='./specs/oas/calendar-api.json' title='Get OpenAPI Specification Resources'><img src='images/oas.png' class='openApiSpec-lg'></a></div></div></div>
+> <div class='hexagon'><div class='hexagon-inside'><div class='hexagon-inside2'><a href='./specs/raml/calendar-api.zip' title='Get RAML Specification Resources'><img src='images/raml.png' class='ramlSpec-lg'></a></div></div></div>
+
 
 The calendar API provides means to create calendar entries to identities.
 You can e.g. create an event for a housing company identity, a reservation
@@ -604,6 +622,12 @@ HTTP/1.0 200 OK
 <!-- Converted with the swagger-to-slate https://github.com/lavkumarv/swagger-to-slate -->
 # Context API
 
+> **Download Context API related resources:**
+
+> <div class='hexagon'><div class='hexagon-inside'><div class='hexagon-inside2'><a href='./specs/oas/context-api.json' title='Get OpenAPI Specification Resources'><img src='images/oas.png' class='openApiSpec-lg'></a></div></div></div>
+> <div class='hexagon'><div class='hexagon-inside'><div class='hexagon-inside2'><a href='./specs/raml/context-api.zip' title='Get RAML Specification Resources'><img src='images/raml.png' class='ramlSpec-lg'></a></div></div></div>
+
+
 The Context API provides means to list available JSON-LD contexts in the
 PlatformOfTrust/standards repository in GitHub.
 
@@ -686,6 +710,12 @@ HTTP/1.0 200 OK
 
 <!-- Converted with the swagger-to-slate https://github.com/lavkumarv/swagger-to-slate -->
 # Identity API
+
+> **Download Identity API related resources:**
+
+> <div class='hexagon'><div class='hexagon-inside'><div class='hexagon-inside2'><a href='./specs/oas/identity-api.json' title='Get OpenAPI Specification Resources'><img src='images/oas.png' class='openApiSpec-lg'></a></div></div></div>
+> <div class='hexagon'><div class='hexagon-inside'><div class='hexagon-inside2'><a href='./specs/raml/identity-api.zip' title='Get RAML Specification Resources'><img src='images/raml.png' class='ramlSpec-lg'></a></div></div></div>
+
 
 The Identity API provides means to create, update and delete digital twins
 (identities) and manage links between them.
@@ -1099,9 +1129,13 @@ sys.stdout.write("Python example missing. Why not contribute one for us?")
 ```
 
 ```shell
-
-Missing...
-
+curl -X POST https://api-sandbox.oftrust.net/identities/v1/fbd106c5-c594-4416-a87e-f61e578fe829/link/86201e7d-6784-454b-9839-f7a6286f1791 \
+-H "Content-Type: application/json" \
+-H "Authorization: Bearer REPLACE_WITH_YOUR_TOKEN" \
+-d '{
+	"context": "https://standards.oftrust.net/contexts/link-link.jsonld",
+	"type": "Link",
+}'
 ```
 
 ```javascript
@@ -1116,8 +1150,19 @@ System.out.println("Java example missing. Why not contribute one for us?");
 > The above example should return `JSON` structured like this:
 
 ```json
-HTTP/1.0 201 OK
+HTTP/1.0 201 Created
 
+{
+  "@context": "https://standards.oftrust.net/contexts/link-link.jsonld",
+  "@type": "Link",
+  "@id": "6ca1e7fb-48a7-4e2c-bb4f-98e2b934aa80",
+  "from": "fbd106c5-c594-4416-a87e-f61e578fe829",
+  "to": "86201e7d-6784-454b-9839-f7a6286f1791",
+  "createdBy": "93767688-4017-4952-b2d9-89286adca0c5",
+  "updatedBy": "93767688-4017-4952-b2d9-89286adca0c5",
+  "createdAt": "2019-04-10T08:27:00+00:00",
+  "updatedAt": "2019-04-10T08:27:00+00:00"
+}
 
 ```
 
@@ -1159,9 +1204,13 @@ sys.stdout.write("Python example missing. Why not contribute one for us?")
 ```
 
 ```shell
-
-Missing...
-
+curl -X PUT https://api-sandbox.oftrust.net/identities/v1/fbd106c5-c594-4416-a87e-f61e578fe829/link/86201e7d-6784-454b-9839-f7a6286f1791/Link \
+-H "Content-Type: application/json" \
+-H "Authorization: Bearer REPLACE_WITH_YOUR_TOKEN" \
+-d '{
+	"context": "https://standards.oftrust.net/contexts/link-owner.jsonld",
+	"type": "Owner",
+}'
 ```
 
 ```javascript
@@ -1179,21 +1228,15 @@ System.out.println("Java example missing. Why not contribute one for us?");
 HTTP/1.0 200 OK
 
 {
-  "@context": "https://schema.org/",
-  "@type": "collection",
-  "ItemList": [
-    {
-      "@context": "https://standards.oftrust.net/contexts/link-link.jsonld",
-      "@type": "Link",
-      "@id": "10fab397-db00-424c-8281-8115b1985d23",
-      "from": "86201e7d-6784-454b-9839-f7a6286f1791",
-      "to": "35ee9e31-acee-42b4-ac7b-675790cc2721",
-      "createdBy": "34fe0b13-e031-4ef2-822e-17eabad63259",
-      "updatedBy": null,
-      "createdAt": "2019-03-14T13:46:15+00:00",
-      "updatedAt": "2019-03-14T13:46:15+00:00"
-    }
-  ]
+  "@context": "https://standards.oftrust.net/contexts/link-owner.jsonld",
+  "@type": "Owner",
+  "@id": "6ca1e7fb-48a7-4e2c-bb4f-98e2b934aa80",
+  "from": "fbd106c5-c594-4416-a87e-f61e578fe829",
+  "to": "86201e7d-6784-454b-9839-f7a6286f1791",
+  "createdBy": "93767688-4017-4952-b2d9-89286adca0c5",
+  "updatedBy": "93767688-4017-4952-b2d9-89286adca0c5",
+  "createdAt": "2019-04-10T08:27:00+00:00",
+  "updatedAt": "2019-05-10T08:27:00+00:00"
 }
 
 ```
@@ -1236,9 +1279,8 @@ sys.stdout.write("Python example missing. Why not contribute one for us?")
 ```
 
 ```shell
-
-Missing...
-
+curl -X DELETE https://api-sandbox.oftrust.net/identities/v1/fbd106c5-c594-4416-a87e-f61e578fe829/link/86201e7d-6784-454b-9839-f7a6286f1791/Link \
+-H "Authorization: Bearer REPLACE_WITH_YOUR_TOKEN"
 ```
 
 ```javascript
@@ -1253,25 +1295,7 @@ System.out.println("Java example missing. Why not contribute one for us?");
 > The above example should return `JSON` structured like this:
 
 ```json
-HTTP/1.0 200 OK
-
-{
-  "@context": "https://schema.org/",
-  "@type": "collection",
-  "ItemList": [
-    {
-      "@context": "https://standards.oftrust.net/contexts/link-link.jsonld",
-      "@type": "Link",
-      "@id": "10fab397-db00-424c-8281-8115b1985d23",
-      "from": "86201e7d-6784-454b-9839-f7a6286f1791",
-      "to": "35ee9e31-acee-42b4-ac7b-675790cc2721",
-      "createdBy": "34fe0b13-e031-4ef2-822e-17eabad63259",
-      "updatedBy": null,
-      "createdAt": "2019-03-14T13:46:15+00:00",
-      "updatedAt": "2019-03-14T13:46:15+00:00"
-    }
-  ]
-}
+HTTP/1.0 204 No Content
 
 ```
 
@@ -1372,6 +1396,12 @@ HTTP/1.0 200 OK
 
 <!-- Converted with the swagger-to-slate https://github.com/lavkumarv/swagger-to-slate -->
 # Message API
+
+> **Download Message API related resources:**
+
+> <div class='hexagon'><div class='hexagon-inside'><div class='hexagon-inside2'><a href='./specs/oas/message-api.json' title='Get OpenAPI Specification Resources'><img src='images/oas.png' class='openApiSpec-lg'></a></div></div></div>
+> <div class='hexagon'><div class='hexagon-inside'><div class='hexagon-inside2'><a href='./specs/raml/message-api.zip' title='Get RAML Specification Resources'><img src='images/raml.png' class='ramlSpec-lg'></a></div></div></div>
+
 
 The message API provides means to create/send messages to identities.
 You can send a message to any identity, e.g. a housing company, where all
@@ -1751,6 +1781,12 @@ HTTP/1.0 200 OK
 
 <!-- Converted with the swagger-to-slate https://github.com/lavkumarv/swagger-to-slate -->
 # Product API
+
+> **Download Product API related resources:**
+
+> <div class='hexagon'><div class='hexagon-inside'><div class='hexagon-inside2'><a href='./specs/oas/product-api.json' title='Get OpenAPI Specification Resources'><img src='images/oas.png' class='openApiSpec-lg'></a></div></div></div>
+> <div class='hexagon'><div class='hexagon-inside'><div class='hexagon-inside2'><a href='./specs/raml/product-api.zip' title='Get RAML Specification Resources'><img src='images/raml.png' class='ramlSpec-lg'></a></div></div></div>
+
 
 The Product API provides means to manage products provided by PoT core.
 The product defines the URL to the translator, as well as a product code to
