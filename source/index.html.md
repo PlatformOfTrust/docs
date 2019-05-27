@@ -98,7 +98,7 @@ Read more from [Github](https://github.com/PlatformOfTrust/standards/blob/master
 
 # Broker API
 
-> **Download Broker API related resources:**
+> **Get Broker API related resources:**
 
 > <div class='hexagon'><div class='hexagon-inside'><div class='hexagon-inside2'><a href='./specs/oas/broker-api.json' title='Get OpenAPI Specification Resources'><img src='images/oas.png' class='openApiSpec-lg'></a></div></div></div>
 > <div class='hexagon'><div class='hexagon-inside'><div class='hexagon-inside2'><a href='./specs/raml/broker-api.zip' title='Get RAML Specification Resources'><img src='images/raml.png' class='ramlSpec-lg'></a></div></div></div>
@@ -213,7 +213,7 @@ HTTP/1.0 200 OK
 <!-- Converted with the swagger-to-slate https://github.com/lavkumarv/swagger-to-slate -->
 # Calendar API
 
-> **Download Calendar API related resources:**
+> **Get Calendar API related resources:**
 
 > <div class='hexagon'><div class='hexagon-inside'><div class='hexagon-inside2'><a href='./specs/oas/calendar-api.json' title='Get OpenAPI Specification Resources'><img src='images/oas.png' class='openApiSpec-lg'></a></div></div></div>
 > <div class='hexagon'><div class='hexagon-inside'><div class='hexagon-inside2'><a href='./specs/raml/calendar-api.zip' title='Get RAML Specification Resources'><img src='images/raml.png' class='ramlSpec-lg'></a></div></div></div>
@@ -622,7 +622,7 @@ HTTP/1.0 200 OK
 <!-- Converted with the swagger-to-slate https://github.com/lavkumarv/swagger-to-slate -->
 # Context API
 
-> **Download Context API related resources:**
+> **Get Context API related resources:**
 
 > <div class='hexagon'><div class='hexagon-inside'><div class='hexagon-inside2'><a href='./specs/oas/context-api.json' title='Get OpenAPI Specification Resources'><img src='images/oas.png' class='openApiSpec-lg'></a></div></div></div>
 > <div class='hexagon'><div class='hexagon-inside'><div class='hexagon-inside2'><a href='./specs/raml/context-api.zip' title='Get RAML Specification Resources'><img src='images/raml.png' class='ramlSpec-lg'></a></div></div></div>
@@ -711,7 +711,7 @@ HTTP/1.0 200 OK
 <!-- Converted with the swagger-to-slate https://github.com/lavkumarv/swagger-to-slate -->
 # Identity API
 
-> **Download Identity API related resources:**
+> **Get Identity API related resources:**
 
 > <div class='hexagon'><div class='hexagon-inside'><div class='hexagon-inside2'><a href='./specs/oas/identity-api.json' title='Get OpenAPI Specification Resources'><img src='images/oas.png' class='openApiSpec-lg'></a></div></div></div>
 > <div class='hexagon'><div class='hexagon-inside'><div class='hexagon-inside2'><a href='./specs/raml/identity-api.zip' title='Get RAML Specification Resources'><img src='images/raml.png' class='ramlSpec-lg'></a></div></div></div>
@@ -1397,7 +1397,7 @@ HTTP/1.0 200 OK
 <!-- Converted with the swagger-to-slate https://github.com/lavkumarv/swagger-to-slate -->
 # Message API
 
-> **Download Message API related resources:**
+> **Get Message API related resources:**
 
 > <div class='hexagon'><div class='hexagon-inside'><div class='hexagon-inside2'><a href='./specs/oas/message-api.json' title='Get OpenAPI Specification Resources'><img src='images/oas.png' class='openApiSpec-lg'></a></div></div></div>
 > <div class='hexagon'><div class='hexagon-inside'><div class='hexagon-inside2'><a href='./specs/raml/message-api.zip' title='Get RAML Specification Resources'><img src='images/raml.png' class='ramlSpec-lg'></a></div></div></div>
@@ -1782,7 +1782,7 @@ HTTP/1.0 200 OK
 <!-- Converted with the swagger-to-slate https://github.com/lavkumarv/swagger-to-slate -->
 # Product API
 
-> **Download Product API related resources:**
+> **Get Product API related resources:**
 
 > <div class='hexagon'><div class='hexagon-inside'><div class='hexagon-inside2'><a href='./specs/oas/product-api.json' title='Get OpenAPI Specification Resources'><img src='images/oas.png' class='openApiSpec-lg'></a></div></div></div>
 > <div class='hexagon'><div class='hexagon-inside'><div class='hexagon-inside2'><a href='./specs/raml/product-api.zip' title='Get RAML Specification Resources'><img src='images/raml.png' class='ramlSpec-lg'></a></div></div></div>
