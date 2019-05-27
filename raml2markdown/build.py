@@ -60,14 +60,23 @@ def concatenate_files():
       ofile.write("# " + api.replace("-", " ").replace("api", "API") + "\n")
       pretty_api_name = api.replace("-", " ").replace("api", "API")
 
-      ofile.write("\n> **Download "+pretty_api_name+ " related resources:**\n\n")
-      ofile.write("> - <div class='oas-spec-file'><a href='./specs/oas/"+api.lower()+".json'>Open API Specification (JSON)</a>\n\n")
-      ofile.write("\n")
-      ofile.write("> - <div class='raml-spec-file'><a href='./specs/raml/" + api.lower() + ".zip'>RAML Specification (zip)</a>\n\n")
-      ofile.write("\n\n")
+      ofile.write("\n> **Get "+pretty_api_name+ " related resources:**\n\n")
+      # ofile.write("> - <div class='oas-spec-file'><a href='./specs/oas/"+api.lower()+".json'>Open API Specification (JSON)</a>\n\n")
+      # ofile.write("\n")
+      # ofile.write("> - <div class='raml-spec-file'><a href='./specs/raml/" + api.lower() + ".zip'>RAML Specification (zip)</a>\n\n")
+      # ofile.write("\n\n")
       # ofile.write(" > <div class='raml-spec-file'><a href='./specs/raml/"+api.lower()+".zip'>RAML Spec (zip)</a></div>")
 
-
+      ofile.write("> <div class='hexagon'><div class='hexagon-inside'><div class='hexagon-inside2'>")
+      ofile.write("<a href='./specs/oas/"+ api.lower() + ".json' title='Get OpenAPI Specification Resources'>")
+      ofile.write("<img src='images/oas.png' class='openApiSpec-lg'>")
+      ofile.write("</a></div></div></div>")
+      ofile.write("\n")
+      ofile.write("> <div class='hexagon'><div class='hexagon-inside'><div class='hexagon-inside2'>")
+      ofile.write("<a href='./specs/raml/"+ api.lower() + ".zip' title='Get RAML Specification Resources'>")
+      ofile.write("<img src='images/raml.png' class='ramlSpec-lg'>")
+      ofile.write("</a></div></div></div>")
+      ofile.write("\n\n")
 
       infile = open(slatefile, 'r').readlines()
       for index, line in enumerate(infile):

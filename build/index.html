@@ -16,6 +16,13 @@
       gtag('config', 'UA-139161687-1');
     </script>
 
+    <!-- Google Tag Manager -->
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-PF6T7H3');</script>
+    <!-- End Google Tag Manager -->
 
     <title>Platform Of Trust Documentation</title>
     <link rel="icon" href="images/favicon.png">
@@ -214,6 +221,7 @@
   </head>
 
   <body class="index" data-languages="[&quot;shell&quot;,&quot;java&quot;,&quot;python&quot;,&quot;javascript&quot;]">
+
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -370,6 +378,7 @@
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
+
         <h1 id='platform-of-trust-api-documentation'>Platform of Trust API Documentation</h1><h3 id='what-is-platform-of-trust'>What is Platform of Trust?</h3>
 <p>Communally built Platform of Trust provides a trustworthy and easy-to-use surrounding where you can utilize a vast data pool and develop everyday services for your customers with the help from the developer community and without a need for pricey and time-consuming integrations.  </p>
 
@@ -377,7 +386,7 @@
 <h3 id='developer-portal'>Developer Portal</h3>
 <p>Our <a href="https://developers.oftrust.net">Developer Portal</a> is your one-stop-shop. From there you&#39;ll find getting started guides, API descriptions, use case descriptions and link to API documentation. </p>
 <h3 id='end-to-end-developer-experience'>End-to-end developer experience</h3>
-<p>APIs play crucial role in our end-end-end developer experience from integrating data to creating valuable applications. </p>
+<p>APIs play crucial role in our end-end-end developer experience from integrating data to creating valuable applications. API -first experience and consistent APIs are important to us and thus we have created (work in progress) <a href="https://platformoftrust.gitbook.io/api-design-guide/">API Design Guide</a> to offer guidance for our distributes API development teams. </p>
 
 <p><img src="images/dx.png" alt="End-to-end developer experience in Platform of Trust" /></p>
 <h3 id='market-place'>Market place</h3>
@@ -388,19 +397,26 @@ You can list data products in the market place with <a href="#product-api">Produ
 <p>Some instructions and tips to make your life easier (and less support requests to us): </p>
 
 <ul>
+<li><p><strong>Create an account in sandbox</strong> environment from https://world-sandbox.oftrust.net/</p></li>
 <li><p>Endpoints related code examples are constructed against <strong>SANDBOX environment <code>https://api-sandbox.oftrust.net/</code></strong>. </p></li>
 <li><p>In <strong>PRODUCTION</strong> use, change domain in api endpoints to <code>https://api.oftrust.net/</code></p></li>
-<li><p><strong>How to get needed Bearer Token?</strong> See <a href="#how-to-get-bearer-token">Authentication section</a></p></li>
+<li><p>To test APIs you need <strong>to get needed Bearer Token</strong> See <a href="#use-bearer-token-and-how-to-get-it">Authentication section</a></p></li>
 </ul>
 
 <p>If you found a bug or missing information in the documentation, contact us at dev@oftrust.net or create an <a href="https://github.com/PlatformOfTrust/docs/issues/new">issue in Github</a>. </p>
 </blockquote>
 
 <ul>
-<li><p>You should get familiar with <a href="#authentication">Authentication</a> process regardless of are you integration data sources or building applications. </p></li>
-<li><p>Related to authentication is the Bearer Token which is needed in some of the API calls. Check out the <a href="#how-to-get-bearer-token">How to get Bearer token?</a> </p></li>
+<li>First <strong>create an account in sandbox</strong> version of World app. If you have an account in production environment, that does not work in the sandbox environment.<br></li>
+</ul>
+
+<p><input type="button" value="Click Me"></input></p>
+
+<ul>
+<li><p>You should <strong>get familiar with <a href="#authentication">Authentication</a> process</strong> regardless of are you integration data sources or building applications. </p></li>
+<li><p>Related to authentication is the <strong>Bearer Token</strong> which is needed in some of the API calls. Check out the <a href="#use-bearer-token-and-how-to-get-it">How to get Bearer token?</a> </p></li>
 <li><p>Some of the API endpoints are CORS enabled and they are marked in the description. </p></li>
-<li><p>Another thing to understand is the ontologies. We recommend that you <a href="https://github.com/PlatformOfTrust/standards/blob/master/README.md">get familiar with core ontologies</a> especially if you are integrating data sources to the Platform of Trust. </p></li>
+<li><p>Another thing to understand is the harmonised data models. We recommend that you <strong><a href="https://github.com/PlatformOfTrust/standards/blob/master/README.md">get familiar with core ontologies</a></strong> especially if you are integrating data sources to the Platform of Trust. </p></li>
 </ul>
 <h2 id='standards-used'>Standards used</h2>
 <p><strong>Dates</strong>: we use a subset of ISO-8601 - <a href="https://www.ietf.org/rfc/rfc3339.txt">RFC 3339</a>. Example <code>2008-09-15T15:53:00+05:00</code></p>
@@ -423,6 +439,14 @@ of role, the generic <code>link-link.jsonld</code> can be used
 
 <p>Read more from <a href="https://github.com/PlatformOfTrust/standards/blob/master/README.md">Github</a></p>
 <h1 id='broker-api'>Broker API</h1>
+<blockquote>
+<p><strong>Get Broker API related resources:</strong></p>
+
+<div class='hexagon'><div class='hexagon-inside'><div class='hexagon-inside2'><a href='./specs/oas/broker-api.json' title='Get OpenAPI Specification Resources'><img src='images/oas.png' class='openApiSpec-lg'></a></div></div></div>
+
+<div class='hexagon'><div class='hexagon-inside'><div class='hexagon-inside2'><a href='./specs/raml/broker-api.zip' title='Get RAML Specification Resources'><img src='images/raml.png' class='ramlSpec-lg'></a></div></div></div>
+</blockquote>
+
 <p>The Broker API provides means to connect a service to a translator that will
 return desired data from different sources. The data broker does not mangle
 the data in any way, it only functions as a proxy between services and
@@ -559,6 +583,14 @@ curl -X POST https://api-sandbox.oftrust.net/broker/v1/fetch-data-product <span 
 
 <!-- Converted with the swagger-to-slate https://github.com/lavkumarv/swagger-to-slate -->
 <h1 id='calendar-api'>Calendar API</h1>
+<blockquote>
+<p><strong>Get Calendar API related resources:</strong></p>
+
+<div class='hexagon'><div class='hexagon-inside'><div class='hexagon-inside2'><a href='./specs/oas/calendar-api.json' title='Get OpenAPI Specification Resources'><img src='images/oas.png' class='openApiSpec-lg'></a></div></div></div>
+
+<div class='hexagon'><div class='hexagon-inside'><div class='hexagon-inside2'><a href='./specs/raml/calendar-api.zip' title='Get RAML Specification Resources'><img src='images/raml.png' class='ramlSpec-lg'></a></div></div></div>
+</blockquote>
+
 <p>The calendar API provides means to create calendar entries to identities.
 You can e.g. create an event for a housing company identity, a reservation
 to a room identity, or just a regular calendar entry to any identity you want.<br/></p>
@@ -1058,6 +1090,14 @@ A notification about the entry will be sent to these users.</p>
 
 <!-- Converted with the swagger-to-slate https://github.com/lavkumarv/swagger-to-slate -->
 <h1 id='context-api'>Context API</h1>
+<blockquote>
+<p><strong>Get Context API related resources:</strong></p>
+
+<div class='hexagon'><div class='hexagon-inside'><div class='hexagon-inside2'><a href='./specs/oas/context-api.json' title='Get OpenAPI Specification Resources'><img src='images/oas.png' class='openApiSpec-lg'></a></div></div></div>
+
+<div class='hexagon'><div class='hexagon-inside'><div class='hexagon-inside2'><a href='./specs/raml/context-api.zip' title='Get RAML Specification Resources'><img src='images/raml.png' class='ramlSpec-lg'></a></div></div></div>
+</blockquote>
+
 <p>The Context API provides means to list available JSON-LD contexts in the
 PlatformOfTrust/standards repository in GitHub.</p>
 
@@ -1142,6 +1182,14 @@ identity can have.</p>
 
 <!-- Converted with the swagger-to-slate https://github.com/lavkumarv/swagger-to-slate -->
 <h1 id='identity-api'>Identity API</h1>
+<blockquote>
+<p><strong>Get Identity API related resources:</strong></p>
+
+<div class='hexagon'><div class='hexagon-inside'><div class='hexagon-inside2'><a href='./specs/oas/identity-api.json' title='Get OpenAPI Specification Resources'><img src='images/oas.png' class='openApiSpec-lg'></a></div></div></div>
+
+<div class='hexagon'><div class='hexagon-inside'><div class='hexagon-inside2'><a href='./specs/raml/identity-api.zip' title='Get RAML Specification Resources'><img src='images/raml.png' class='ramlSpec-lg'></a></div></div></div>
+</blockquote>
+
 <p>The Identity API provides means to create, update and delete digital twins
 (identities) and manage links between them.
 The links provides the direction and type (sometimes called role) of the link.</p>
@@ -1643,17 +1691,32 @@ The links provides the direction and type (sometimes called role) of the link.</
 </blockquote>
 <pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">sys</span>
 <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">"Python example missing. Why not contribute one for us?"</span><span class="p">)</span>
-</code></pre><pre class="highlight shell tab-shell"><code>
-Missing...
-
+</code></pre><pre class="highlight shell tab-shell"><code>curl -X POST https://api-sandbox.oftrust.net/identities/v1/fbd106c5-c594-4416-a87e-f61e578fe829/link/86201e7d-6784-454b-9839-f7a6286f1791 <span class="se">\</span>
+-H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+-H <span class="s2">"Authorization: Bearer REPLACE_WITH_YOUR_TOKEN"</span> <span class="se">\</span>
+-d <span class="s1">'{
+    "context": "https://standards.oftrust.net/contexts/link-link.jsonld",
+    "type": "Link",
+}'</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">"Javascript example missing. Why not contribute one for us?"</span><span class="p">);</span>
 </code></pre><pre class="highlight java tab-java"><code><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Java example missing. Why not contribute one for us?"</span><span class="o">);</span>
 </code></pre>
 <blockquote>
 <p>The above example should return <code>JSON</code> structured like this:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="err">HTTP/</span><span class="mf">1.0</span><span class="w"> </span><span class="mi">201</span><span class="w"> </span><span class="err">OK</span><span class="w">
+<pre class="highlight json tab-json"><code><span class="err">HTTP/</span><span class="mf">1.0</span><span class="w"> </span><span class="mi">201</span><span class="w"> </span><span class="err">Created</span><span class="w">
 
+</span><span class="p">{</span><span class="w">
+  </span><span class="s2">"@context"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://standards.oftrust.net/contexts/link-link.jsonld"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"@type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Link"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"@id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6ca1e7fb-48a7-4e2c-bb4f-98e2b934aa80"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"from"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fbd106c5-c594-4416-a87e-f61e578fe829"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"to"</span><span class="p">:</span><span class="w"> </span><span class="s2">"86201e7d-6784-454b-9839-f7a6286f1791"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="s2">"93767688-4017-4952-b2d9-89286adca0c5"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"updatedBy"</span><span class="p">:</span><span class="w"> </span><span class="s2">"93767688-4017-4952-b2d9-89286adca0c5"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-10T08:27:00+00:00"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"updatedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-10T08:27:00+00:00"</span><span class="w">
+</span><span class="p">}</span><span class="w">
 
 </span></code></pre>
 <p><strong>POST</strong> /identities/v1/{from_identity}/link/{to_identity} </p>
@@ -1736,9 +1799,13 @@ Missing...
 </blockquote>
 <pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">sys</span>
 <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">"Python example missing. Why not contribute one for us?"</span><span class="p">)</span>
-</code></pre><pre class="highlight shell tab-shell"><code>
-Missing...
-
+</code></pre><pre class="highlight shell tab-shell"><code>curl -X PUT https://api-sandbox.oftrust.net/identities/v1/fbd106c5-c594-4416-a87e-f61e578fe829/link/86201e7d-6784-454b-9839-f7a6286f1791/Link <span class="se">\</span>
+-H <span class="s2">"Content-Type: application/json"</span> <span class="se">\</span>
+-H <span class="s2">"Authorization: Bearer REPLACE_WITH_YOUR_TOKEN"</span> <span class="se">\</span>
+-d <span class="s1">'{
+    "context": "https://standards.oftrust.net/contexts/link-owner.jsonld",
+    "type": "Owner",
+}'</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">"Javascript example missing. Why not contribute one for us?"</span><span class="p">);</span>
 </code></pre><pre class="highlight java tab-java"><code><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Java example missing. Why not contribute one for us?"</span><span class="o">);</span>
 </code></pre>
@@ -1748,21 +1815,15 @@ Missing...
 <pre class="highlight json tab-json"><code><span class="err">HTTP/</span><span class="mf">1.0</span><span class="w"> </span><span class="mi">200</span><span class="w"> </span><span class="err">OK</span><span class="w">
 
 </span><span class="p">{</span><span class="w">
-  </span><span class="s2">"@context"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://schema.org/"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"@type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"collection"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"ItemList"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"@context"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://standards.oftrust.net/contexts/link-link.jsonld"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"@type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Link"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"@id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10fab397-db00-424c-8281-8115b1985d23"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"from"</span><span class="p">:</span><span class="w"> </span><span class="s2">"86201e7d-6784-454b-9839-f7a6286f1791"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"to"</span><span class="p">:</span><span class="w"> </span><span class="s2">"35ee9e31-acee-42b4-ac7b-675790cc2721"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="s2">"34fe0b13-e031-4ef2-822e-17eabad63259"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"updatedBy"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-14T13:46:15+00:00"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"updatedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-14T13:46:15+00:00"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">]</span><span class="w">
+  </span><span class="s2">"@context"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://standards.oftrust.net/contexts/link-owner.jsonld"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"@type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Owner"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"@id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6ca1e7fb-48a7-4e2c-bb4f-98e2b934aa80"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"from"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fbd106c5-c594-4416-a87e-f61e578fe829"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"to"</span><span class="p">:</span><span class="w"> </span><span class="s2">"86201e7d-6784-454b-9839-f7a6286f1791"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="s2">"93767688-4017-4952-b2d9-89286adca0c5"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"updatedBy"</span><span class="p">:</span><span class="w"> </span><span class="s2">"93767688-4017-4952-b2d9-89286adca0c5"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-10T08:27:00+00:00"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"updatedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-05-10T08:27:00+00:00"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
 </span></code></pre>
@@ -1853,34 +1914,15 @@ Missing...
 </blockquote>
 <pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">sys</span>
 <span class="n">sys</span><span class="o">.</span><span class="n">stdout</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s">"Python example missing. Why not contribute one for us?"</span><span class="p">)</span>
-</code></pre><pre class="highlight shell tab-shell"><code>
-Missing...
-
+</code></pre><pre class="highlight shell tab-shell"><code>curl -X DELETE https://api-sandbox.oftrust.net/identities/v1/fbd106c5-c594-4416-a87e-f61e578fe829/link/86201e7d-6784-454b-9839-f7a6286f1791/Link <span class="se">\</span>
+-H <span class="s2">"Authorization: Bearer REPLACE_WITH_YOUR_TOKEN"</span>
 </code></pre><pre class="highlight javascript tab-javascript"><code><span class="nx">console</span><span class="p">.</span><span class="nx">error</span><span class="p">(</span><span class="s2">"Javascript example missing. Why not contribute one for us?"</span><span class="p">);</span>
 </code></pre><pre class="highlight java tab-java"><code><span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"Java example missing. Why not contribute one for us?"</span><span class="o">);</span>
 </code></pre>
 <blockquote>
 <p>The above example should return <code>JSON</code> structured like this:</p>
 </blockquote>
-<pre class="highlight json tab-json"><code><span class="err">HTTP/</span><span class="mf">1.0</span><span class="w"> </span><span class="mi">200</span><span class="w"> </span><span class="err">OK</span><span class="w">
-
-</span><span class="p">{</span><span class="w">
-  </span><span class="s2">"@context"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://schema.org/"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"@type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"collection"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"ItemList"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"@context"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://standards.oftrust.net/contexts/link-link.jsonld"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"@type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Link"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"@id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10fab397-db00-424c-8281-8115b1985d23"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"from"</span><span class="p">:</span><span class="w"> </span><span class="s2">"86201e7d-6784-454b-9839-f7a6286f1791"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"to"</span><span class="p">:</span><span class="w"> </span><span class="s2">"35ee9e31-acee-42b4-ac7b-675790cc2721"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="s2">"34fe0b13-e031-4ef2-822e-17eabad63259"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"updatedBy"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"createdAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-14T13:46:15+00:00"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"updatedAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-03-14T13:46:15+00:00"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">]</span><span class="w">
-</span><span class="p">}</span><span class="w">
+<pre class="highlight json tab-json"><code><span class="err">HTTP/</span><span class="mf">1.0</span><span class="w"> </span><span class="mi">204</span><span class="w"> </span><span class="err">No</span><span class="w"> </span><span class="err">Content</span><span class="w">
 
 </span></code></pre>
 <p><strong>DELETE</strong> /identities/v1/{from_identity}/link/{to_identity}/{type} </p>
@@ -2055,6 +2097,14 @@ Missing...
 
 <!-- Converted with the swagger-to-slate https://github.com/lavkumarv/swagger-to-slate -->
 <h1 id='message-api'>Message API</h1>
+<blockquote>
+<p><strong>Get Message API related resources:</strong></p>
+
+<div class='hexagon'><div class='hexagon-inside'><div class='hexagon-inside2'><a href='./specs/oas/message-api.json' title='Get OpenAPI Specification Resources'><img src='images/oas.png' class='openApiSpec-lg'></a></div></div></div>
+
+<div class='hexagon'><div class='hexagon-inside'><div class='hexagon-inside2'><a href='./specs/raml/message-api.zip' title='Get RAML Specification Resources'><img src='images/raml.png' class='ramlSpec-lg'></a></div></div></div>
+</blockquote>
+
 <p>The message API provides means to create/send messages to identities.
 You can send a message to any identity, e.g. a housing company, where all
 users who has access to the housing company identity and its messages can
@@ -2563,6 +2613,14 @@ A notification about the message will be sent to these users.</p>
 
 <!-- Converted with the swagger-to-slate https://github.com/lavkumarv/swagger-to-slate -->
 <h1 id='product-api'>Product API</h1>
+<blockquote>
+<p><strong>Get Product API related resources:</strong></p>
+
+<div class='hexagon'><div class='hexagon-inside'><div class='hexagon-inside2'><a href='./specs/oas/product-api.json' title='Get OpenAPI Specification Resources'><img src='images/oas.png' class='openApiSpec-lg'></a></div></div></div>
+
+<div class='hexagon'><div class='hexagon-inside'><div class='hexagon-inside2'><a href='./specs/raml/product-api.zip' title='Get RAML Specification Resources'><img src='images/raml.png' class='ramlSpec-lg'></a></div></div></div>
+</blockquote>
+
 <p>The Product API provides means to manage products provided by PoT core.
 The product defines the URL to the translator, as well as a product code to
 use when requesting data from the translator.</p>
