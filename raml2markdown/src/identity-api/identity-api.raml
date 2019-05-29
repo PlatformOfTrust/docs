@@ -35,7 +35,7 @@ types:
       type:
         description: The type of the link
         type: string
-/identities/{version}:
+/identities/v1:
   description: |
     Create a new or list identities. If optional `type` GET-parameter is given,
     lists only identities of the defined type.
@@ -181,12 +181,24 @@ types:
               }
     /{type}:
       description: |
-        Update and delete a link between the "from"- and "to"-identities by type.
+        Read, update and delete a link of a specific type between the "from"- and "to"-identities.
       uriParameters:
         type:
-          description: The link type
+          description: The `@type` of the link, for example `Link`, `Tenant` or `Owner`
           type: string
           example: Owner
+      get:
+        description: Read a link by type
+        headers:
+          Authorization: !include includes/properties/authorization-headers.yaml
+        responses:
+          200:
+            body:
+              properties: !include includes/properties/link.yaml
+              example: !include includes/examples/link.json
+          404:
+            body:
+              example: !include includes/examples/link-not-found.json
       put:
         description: Update a link
         headers:
