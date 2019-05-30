@@ -63,7 +63,6 @@ You can list data products in the market place with [Product API](#product-api).
 
 * First **create an account in sandbox** version of World app. If you have an account in production environment, that does not work in the sandbox environment.  
 
-<input type="button" value="Click Me"></input>
 
 * You should **get familiar with [Authentication](#authentication) process** regardless of are you integration data sources or building applications. 
 
@@ -807,7 +806,6 @@ HTTP/1.0 200 OK
 
 | Name | Located in | Description | Required | Type |
 | ---- | ---------- | ----------- | -------- | ---- |
-| version | path |  | Yes | string |
 | Authorization | header | The Authorization header, MUST be `Bearer {{access_token}}` | Yes | string |
 | type | query | If given to `GET /identities/v1?type=App`, will list only the identities of `@type: "App"`  | No | string |
 
@@ -888,7 +886,6 @@ HTTP/1.0 201 Created
 
 | Name | Located in | Description | Required | Type |
 | ---- | ---------- | ----------- | -------- | ---- |
-| version | path |  | Yes | string |
 | Authorization | header | The Authorization header, MUST be `Bearer {{access_token}}` | Yes | string |
 | body | body |  | Yes |  |
 
@@ -962,7 +959,6 @@ HTTP/1.0 200 OK
 | Name | Located in | Description | Required | Type |
 | ---- | ---------- | ----------- | -------- | ---- |
 | id | path | The ID of the Identity | Yes | string |
-| version | path |  | Yes | string |
 | Authorization | header | The Authorization header, MUST be `Bearer {{access_token}}` | Yes | string |
 
 **Responses**
@@ -1046,7 +1042,6 @@ HTTP/1.0 200 OK
 | Name | Located in | Description | Required | Type |
 | ---- | ---------- | ----------- | -------- | ---- |
 | id | path | The ID of the Identity | Yes | string |
-| version | path |  | Yes | string |
 | Authorization | header | The Authorization header, MUST be `Bearer {{access_token}}` | Yes | string |
 | body | body |  | Yes |  |
 
@@ -1102,7 +1097,6 @@ HTTP/1.0 204 No Content
 | Name | Located in | Description | Required | Type |
 | ---- | ---------- | ----------- | -------- | ---- |
 | id | path | The ID of the Identity | Yes | string |
-| version | path |  | Yes | string |
 | Authorization | header | The Authorization header, MUST be `Bearer {{access_token}}` | Yes | string |
 
 **Responses**
@@ -1175,7 +1169,6 @@ HTTP/1.0 201 Created
 | ---- | ---------- | ----------- | -------- | ---- |
 | from_identity | path | The starting identity ID of the link | Yes | string |
 | to_identity | path | The ending identity ID of the link | Yes | string |
-| version | path |  | Yes | string |
 | Authorization | header | The Authorization header, MUST be `Bearer {{access_token}}` | Yes | string |
 | body | body |  | Yes |  |
 
@@ -1188,6 +1181,29 @@ HTTP/1.0 201 Created
 | 422 |  |
 
 ## /identities/v1/{from_identity}/link/{to_identity}/{type}
+### **get** 
+
+**Description:** Read a link by type
+
+#### http request 
+**GET** /identities/v1/{from_identity}/link/{to_identity}/{type} 
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+| type | path | The `@type` of the link, for example `Link`, `Tenant` or `Owner` | Yes | string |
+| from_identity | path | The starting identity ID of the link | Yes | string |
+| to_identity | path | The ending identity ID of the link | Yes | string |
+| Authorization | header | The Authorization header, MUST be `Bearer {{access_token}}` | Yes | string |
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 200 |  |
+| 404 |  |
+
 ### **put** 
 
 **Description:** Update a link
@@ -1248,10 +1264,9 @@ HTTP/1.0 200 OK
 
 | Name | Located in | Description | Required | Type |
 | ---- | ---------- | ----------- | -------- | ---- |
-| type | path | The link type | Yes | string |
+| type | path | The `@type` of the link, for example `Link`, `Tenant` or `Owner` | Yes | string |
 | from_identity | path | The starting identity ID of the link | Yes | string |
 | to_identity | path | The ending identity ID of the link | Yes | string |
-| version | path |  | Yes | string |
 | Authorization | header | The Authorization header, MUST be `Bearer {{access_token}}` | Yes | string |
 | body | body |  | Yes |  |
 
@@ -1306,10 +1321,9 @@ HTTP/1.0 204 No Content
 
 | Name | Located in | Description | Required | Type |
 | ---- | ---------- | ----------- | -------- | ---- |
-| type | path | The link type | Yes | string |
+| type | path | The `@type` of the link, for example `Link`, `Tenant` or `Owner` | Yes | string |
 | from_identity | path | The starting identity ID of the link | Yes | string |
 | to_identity | path | The ending identity ID of the link | Yes | string |
-| version | path |  | Yes | string |
 | Authorization | header | The Authorization header, MUST be `Bearer {{access_token}}` | Yes | string |
 
 **Responses**
@@ -1383,7 +1397,6 @@ HTTP/1.0 200 OK
 | Name | Located in | Description | Required | Type |
 | ---- | ---------- | ----------- | -------- | ---- |
 | id | path | The ID of the identity | Yes | string |
-| version | path |  | Yes | string |
 | Authorization | header | The Authorization header, MUST be `Bearer {{access_token}}` | Yes | string |
 | type | query | If given to `GET /identities/v1/{id}/links?type=Owner`, will list only the links of `@type: "Owner"`  | No | string |
 

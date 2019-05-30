@@ -407,12 +407,7 @@ You can list data products in the market place with <a href="#product-api">Produ
 </blockquote>
 
 <ul>
-<li>First <strong>create an account in sandbox</strong> version of World app. If you have an account in production environment, that does not work in the sandbox environment.<br></li>
-</ul>
-
-<p><input type="button" value="Click Me"></input></p>
-
-<ul>
+<li><p>First <strong>create an account in sandbox</strong> version of World app. If you have an account in production environment, that does not work in the sandbox environment.  </p></li>
 <li><p>You should <strong>get familiar with <a href="#authentication">Authentication</a> process</strong> regardless of are you integration data sources or building applications. </p></li>
 <li><p>Related to authentication is the <strong>Bearer Token</strong> which is needed in some of the API calls. Check out the <a href="#use-bearer-token-and-how-to-get-it">How to get Bearer token?</a> </p></li>
 <li><p>Some of the API endpoints are CORS enabled and they are marked in the description. </p></li>
@@ -1268,13 +1263,6 @@ The links provides the direction and type (sometimes called role) of the link.</
 </tr>
 </thead><tbody>
 <tr>
-<td>version</td>
-<td>path</td>
-<td></td>
-<td>Yes</td>
-<td>string</td>
-</tr>
-<tr>
 <td>Authorization</td>
 <td>header</td>
 <td>The Authorization header, MUST be <code>Bearer {{access_token}}</code></td>
@@ -1365,13 +1353,6 @@ The links provides the direction and type (sometimes called role) of the link.</
 </tr>
 </thead><tbody>
 <tr>
-<td>version</td>
-<td>path</td>
-<td></td>
-<td>Yes</td>
-<td>string</td>
-</tr>
-<tr>
 <td>Authorization</td>
 <td>header</td>
 <td>The Authorization header, MUST be <code>Bearer {{access_token}}</code></td>
@@ -1459,13 +1440,6 @@ The links provides the direction and type (sometimes called role) of the link.</
 <td>id</td>
 <td>path</td>
 <td>The ID of the Identity</td>
-<td>Yes</td>
-<td>string</td>
-</tr>
-<tr>
-<td>version</td>
-<td>path</td>
-<td></td>
 <td>Yes</td>
 <td>string</td>
 </tr>
@@ -1566,13 +1540,6 @@ The links provides the direction and type (sometimes called role) of the link.</
 <td>string</td>
 </tr>
 <tr>
-<td>version</td>
-<td>path</td>
-<td></td>
-<td>Yes</td>
-<td>string</td>
-</tr>
-<tr>
 <td>Authorization</td>
 <td>header</td>
 <td>The Authorization header, MUST be <code>Bearer {{access_token}}</code></td>
@@ -1646,13 +1613,6 @@ The links provides the direction and type (sometimes called role) of the link.</
 <td>id</td>
 <td>path</td>
 <td>The ID of the Identity</td>
-<td>Yes</td>
-<td>string</td>
-</tr>
-<tr>
-<td>version</td>
-<td>path</td>
-<td></td>
 <td>Yes</td>
 <td>string</td>
 </tr>
@@ -1747,13 +1707,6 @@ The links provides the direction and type (sometimes called role) of the link.</
 <td>string</td>
 </tr>
 <tr>
-<td>version</td>
-<td>path</td>
-<td></td>
-<td>Yes</td>
-<td>string</td>
-</tr>
-<tr>
 <td>Authorization</td>
 <td>header</td>
 <td>The Authorization header, MUST be <code>Bearer {{access_token}}</code></td>
@@ -1790,9 +1743,72 @@ The links provides the direction and type (sometimes called role) of the link.</
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='identities-v1-from_identity-link-to_identity-type'>/identities/v1/{from_identity}/link/{to_identity}/{type}</h2><h3 id='put-3'><strong>put</strong></h3>
-<p><strong>Description:</strong> Update a link</p>
+<h2 id='identities-v1-from_identity-link-to_identity-type'>/identities/v1/{from_identity}/link/{to_identity}/{type}</h2><h3 id='get-6'><strong>get</strong></h3>
+<p><strong>Description:</strong> Read a link by type</p>
 <h4 id='http-request-14'>http request</h4>
+<p><strong>GET</strong> /identities/v1/{from_identity}/link/{to_identity}/{type} </p>
+
+<p><strong>Parameters</strong></p>
+
+<table><thead>
+<tr>
+<th>Name</th>
+<th>Located in</th>
+<th>Description</th>
+<th>Required</th>
+<th>Type</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>type</td>
+<td>path</td>
+<td>The <code>@type</code> of the link, for example <code>Link</code>, <code>Tenant</code> or <code>Owner</code></td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+<tr>
+<td>from_identity</td>
+<td>path</td>
+<td>The starting identity ID of the link</td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+<tr>
+<td>to_identity</td>
+<td>path</td>
+<td>The ending identity ID of the link</td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+<tr>
+<td>Authorization</td>
+<td>header</td>
+<td>The Authorization header, MUST be <code>Bearer {{access_token}}</code></td>
+<td>Yes</td>
+<td>string</td>
+</tr>
+</tbody></table>
+
+<p><strong>Responses</strong></p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td></td>
+</tr>
+<tr>
+<td>404</td>
+<td></td>
+</tr>
+</tbody></table>
+<h3 id='put-3'><strong>put</strong></h3>
+<p><strong>Description:</strong> Update a link</p>
+<h4 id='http-request-15'>http request</h4>
 <blockquote>
 <p><b>Example for: PUT /identities/v1/{from_identity}/link/{to_identity}/{type} 
 </b></p>
@@ -1843,7 +1859,7 @@ The links provides the direction and type (sometimes called role) of the link.</
 <tr>
 <td>type</td>
 <td>path</td>
-<td>The link type</td>
+<td>The <code>@type</code> of the link, for example <code>Link</code>, <code>Tenant</code> or <code>Owner</code></td>
 <td>Yes</td>
 <td>string</td>
 </tr>
@@ -1858,13 +1874,6 @@ The links provides the direction and type (sometimes called role) of the link.</
 <td>to_identity</td>
 <td>path</td>
 <td>The ending identity ID of the link</td>
-<td>Yes</td>
-<td>string</td>
-</tr>
-<tr>
-<td>version</td>
-<td>path</td>
-<td></td>
 <td>Yes</td>
 <td>string</td>
 </tr>
@@ -1907,7 +1916,7 @@ The links provides the direction and type (sometimes called role) of the link.</
 </tbody></table>
 <h3 id='delete-3'><strong>delete</strong></h3>
 <p><strong>Description:</strong> Delete a link by type</p>
-<h4 id='http-request-15'>http request</h4>
+<h4 id='http-request-16'>http request</h4>
 <blockquote>
 <p><b>Example for: DELETE /identities/v1/{from_identity}/link/{to_identity}/{type} 
 </b></p>
@@ -1941,7 +1950,7 @@ The links provides the direction and type (sometimes called role) of the link.</
 <tr>
 <td>type</td>
 <td>path</td>
-<td>The link type</td>
+<td>The <code>@type</code> of the link, for example <code>Link</code>, <code>Tenant</code> or <code>Owner</code></td>
 <td>Yes</td>
 <td>string</td>
 </tr>
@@ -1956,13 +1965,6 @@ The links provides the direction and type (sometimes called role) of the link.</
 <td>to_identity</td>
 <td>path</td>
 <td>The ending identity ID of the link</td>
-<td>Yes</td>
-<td>string</td>
-</tr>
-<tr>
-<td>version</td>
-<td>path</td>
-<td></td>
 <td>Yes</td>
 <td>string</td>
 </tr>
@@ -1996,9 +1998,9 @@ The links provides the direction and type (sometimes called role) of the link.</
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='identities-v1-id-links'>/identities/v1/{id}/links</h2><h3 id='get-6'><strong>get</strong></h3>
+<h2 id='identities-v1-id-links'>/identities/v1/{id}/links</h2><h3 id='get-7'><strong>get</strong></h3>
 <p><strong>Description:</strong> List all links for a given identity</p>
-<h4 id='http-request-16'>http request</h4>
+<h4 id='http-request-17'>http request</h4>
 <blockquote>
 <p><b>Example for: GET /identities/v1/{id}/links 
 </b></p>
@@ -2051,13 +2053,6 @@ The links provides the direction and type (sometimes called role) of the link.</
 <td>id</td>
 <td>path</td>
 <td>The ID of the identity</td>
-<td>Yes</td>
-<td>string</td>
-</tr>
-<tr>
-<td>version</td>
-<td>path</td>
-<td></td>
 <td>Yes</td>
 <td>string</td>
 </tr>
@@ -2120,7 +2115,7 @@ A notification about the message will be sent to these users.</p>
 <p><strong>Version:</strong> v1 </p>
 <h2 id='messages-v1'>/messages/v1</h2><h3 id='post-5'><strong>post</strong></h3>
 <p><strong>Description:</strong> Create a new message</p>
-<h4 id='http-request-17'>http request</h4>
+<h4 id='http-request-18'>http request</h4>
 <blockquote>
 <p><b>Example for: POST /messages/v1 
 </b></p>
@@ -2217,9 +2212,9 @@ A notification about the message will be sent to these users.</p>
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='messages-v1-id'>/messages/v1/{id}</h2><h3 id='get-7'><strong>get</strong></h3>
+<h2 id='messages-v1-id'>/messages/v1/{id}</h2><h3 id='get-8'><strong>get</strong></h3>
 <p><strong>Description:</strong> Read one message by id</p>
-<h4 id='http-request-18'>http request</h4>
+<h4 id='http-request-19'>http request</h4>
 <blockquote>
 <p><b>Example for: GET /messages/v1/{id} 
 </b></p>
@@ -2309,7 +2304,7 @@ A notification about the message will be sent to these users.</p>
 </tbody></table>
 <h3 id='put-4'><strong>put</strong></h3>
 <p><strong>Description:</strong> Update a message by id</p>
-<h4 id='http-request-19'>http request</h4>
+<h4 id='http-request-20'>http request</h4>
 <blockquote>
 <p><b>Example for: PUT /messages/v1/{id} 
 </b></p>
@@ -2415,7 +2410,7 @@ A notification about the message will be sent to these users.</p>
 </tbody></table>
 <h3 id='delete-4'><strong>delete</strong></h3>
 <p><strong>Description:</strong> Delete a message by id</p>
-<h4 id='http-request-20'>http request</h4>
+<h4 id='http-request-21'>http request</h4>
 <blockquote>
 <p><b>Example for: DELETE /messages/v1/{id} 
 </b></p>
@@ -2487,7 +2482,7 @@ A notification about the message will be sent to these users.</p>
 </tbody></table>
 <h2 id='messages-v1-id-read'>/messages/v1/{id}/read</h2><h3 id='post-6'><strong>post</strong></h3>
 <p><strong>Description:</strong> Marks a message read by the currently logged in user.</p>
-<h4 id='http-request-21'>http request</h4>
+<h4 id='http-request-22'>http request</h4>
 <blockquote>
 <p><b>Example for: POST /messages/v1/{id}/read 
 </b></p>
@@ -2558,9 +2553,9 @@ A notification about the message will be sent to these users.</p>
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='messages-v1-toidentity-list'>/messages/v1/{toidentity}/list</h2><h3 id='get-8'><strong>get</strong></h3>
+<h2 id='messages-v1-toidentity-list'>/messages/v1/{toidentity}/list</h2><h3 id='get-9'><strong>get</strong></h3>
 <p><strong>Description:</strong> List messages sent to &quot;to&quot;-identity.</p>
-<h4 id='http-request-22'>http request</h4>
+<h4 id='http-request-23'>http request</h4>
 <p><strong>GET</strong> /messages/v1/{toIdentity}/list </p>
 
 <p><strong>Parameters</strong></p>
@@ -2628,7 +2623,7 @@ use when requesting data from the translator.</p>
 <p><strong>Version:</strong> v1 </p>
 <h2 id='products-v1'>/products/v1</h2><h3 id='post-7'><strong>post</strong></h3>
 <p><strong>Description:</strong> Create a new product</p>
-<h4 id='http-request-23'>http request</h4>
+<h4 id='http-request-24'>http request</h4>
 <blockquote>
 <p><b>Example for: POST /products/v1 
 </b></p>
@@ -2732,10 +2727,10 @@ use when requesting data from the translator.</p>
 <td></td>
 </tr>
 </tbody></table>
-<h3 id='get-9'><strong>get</strong></h3>
+<h3 id='get-10'><strong>get</strong></h3>
 <p><strong>Description:</strong> Lists all available products. <em>NOTE</em>: This is a CORS enabled endpoint.
 Supports pagination.</p>
-<h4 id='http-request-24'>http request</h4>
+<h4 id='http-request-25'>http request</h4>
 <blockquote>
 <p><b>Example for: GET /products/v1 
 </b></p>
@@ -2850,9 +2845,9 @@ Supports pagination.</p>
 <td></td>
 </tr>
 </tbody></table>
-<h2 id='products-v1-product_code'>/products/v1/{product_code}</h2><h3 id='get-10'><strong>get</strong></h3>
+<h2 id='products-v1-product_code'>/products/v1/{product_code}</h2><h3 id='get-11'><strong>get</strong></h3>
 <p><strong>Description:</strong> Reads a single product by product code. <em>NOTE</em>: This is a CORS enabled endpoint.</p>
-<h4 id='http-request-25'>http request</h4>
+<h4 id='http-request-26'>http request</h4>
 <blockquote>
 <p><b>Example for: GET /products/v1/{product_code} 
 </b></p>
@@ -2945,7 +2940,7 @@ Supports pagination.</p>
 </tbody></table>
 <h3 id='put-5'><strong>put</strong></h3>
 <p><strong>Description:</strong> Update a product by product code</p>
-<h4 id='http-request-26'>http request</h4>
+<h4 id='http-request-27'>http request</h4>
 <blockquote>
 <p><b>Example for: PUT /products/v1/{product_code} 
 </b></p>
@@ -3064,7 +3059,7 @@ Supports pagination.</p>
 </tbody></table>
 <h3 id='delete-5'><strong>delete</strong></h3>
 <p><strong>Description:</strong> Delete a product by product code</p>
-<h4 id='http-request-27'>http request</h4>
+<h4 id='http-request-28'>http request</h4>
 <blockquote>
 <p><b>Example for: DELETE /products/v1/{product_code} 
 </b></p>

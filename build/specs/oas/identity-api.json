@@ -65,10 +65,10 @@
     }
   },
   "paths": {
-    "/identities/{version}": {
+    "/identities/v1": {
       "get": {
         "description": "List all identities created by currently logged in user",
-        "operationId": "GET_identities-version",
+        "operationId": "GET_identities-v1",
         "responses": {
           "200": {
             "description": "",
@@ -206,7 +206,7 @@
       },
       "post": {
         "description": "Create a new identity",
-        "operationId": "POST_identities-version",
+        "operationId": "POST_identities-v1",
         "responses": {
           "201": {
             "description": "",
@@ -345,20 +345,12 @@
             "required": true
           }
         ]
-      },
-      "parameters": [
-        {
-          "type": "string",
-          "in": "path",
-          "name": "version",
-          "required": true
-        }
-      ]
+      }
     },
-    "/identities/{version}/{id}": {
+    "/identities/v1/{id}": {
       "get": {
         "description": "Read one identity by id",
-        "operationId": "GET_identities-version-id",
+        "operationId": "GET_identities-v1-id",
         "responses": {
           "200": {
             "description": "",
@@ -506,7 +498,7 @@
       },
       "put": {
         "description": "Update an identity by id",
-        "operationId": "PUT_identities-version-id",
+        "operationId": "PUT_identities-v1-id",
         "responses": {
           "200": {
             "description": "",
@@ -682,7 +674,7 @@
       },
       "delete": {
         "description": "Delete an identity by id",
-        "operationId": "DELETE_identities-version-id",
+        "operationId": "DELETE_identities-v1-id",
         "responses": {
           "204": {
             "description": "",
@@ -719,19 +711,13 @@
           "in": "path",
           "name": "id",
           "required": true
-        },
-        {
-          "type": "string",
-          "in": "path",
-          "name": "version",
-          "required": true
         }
       ]
     },
-    "/identities/{version}/{from_identity}/link/{to_identity}": {
+    "/identities/v1/{from_identity}/link/{to_identity}": {
       "post": {
         "description": "Creates a new link between two identities",
-        "operationId": "POST_identities-version-from_identity-link-to_identity",
+        "operationId": "POST_identities-v1-from_identity-link-to_identity",
         "responses": {
           "201": {
             "description": "",
@@ -866,19 +852,105 @@
           "in": "path",
           "name": "to_identity",
           "required": true
-        },
-        {
-          "type": "string",
-          "in": "path",
-          "name": "version",
-          "required": true
         }
       ]
     },
-    "/identities/{version}/{from_identity}/link/{to_identity}/{type}": {
+    "/identities/v1/{from_identity}/link/{to_identity}/{type}": {
+      "get": {
+        "description": "Read a link by type",
+        "operationId": "GET_identities-v1-from_identity-link-to_identity-type",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "example": {
+                "@context": "<Context URL>",
+                "@type": "<Link type>",
+                "@id": "<Link ID>",
+                "from": "<From identity ID>",
+                "to": "<To identity ID>",
+                "createdBy": "<User ID>",
+                "updatedBy": "<User ID>",
+                "createdAt": "2018-02-28T16:41:41.090Z",
+                "updatedAt": "2018-02-28T16:41:41.090Z"
+              },
+              "properties": {
+                "@context": {
+                  "description": "The context URL",
+                  "example": "https://example.com/contexts/type.jsonld",
+                  "type": "string"
+                },
+                "@type": {
+                  "description": "The type of the link",
+                  "example": "Owner",
+                  "type": "string"
+                },
+                "from": {
+                  "description": "The from-identity ID, from where the link starts",
+                  "type": "string"
+                },
+                "to": {
+                  "description": "The to-identity ID, to where the link ends",
+                  "type": "string"
+                },
+                "createdBy": {
+                  "description": "The user ID of the user who created this link",
+                  "type": "string"
+                },
+                "updatedBy": {
+                  "description": "The user ID of the user who updated this link",
+                  "type": "string"
+                },
+                "createdAt": {
+                  "description": "RFC3339 datetime when the link was created",
+                  "example": "2018-02-28T16:41:41.090Z",
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "updatedAt": {
+                  "description": "RFC3339 datetime when the link was updated",
+                  "example": "2018-02-28T16:41:41.090Z",
+                  "type": "string",
+                  "format": "date-time"
+                }
+              },
+              "required": [
+                "@context",
+                "@type",
+                "from",
+                "to",
+                "createdBy",
+                "updatedBy",
+                "createdAt",
+                "updatedAt"
+              ]
+            }
+          },
+          "404": {
+            "description": "",
+            "schema": {
+              "example": {
+                "error": {
+                  "status": 404,
+                  "message": "Link not found."
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "description": "The Authorization header, MUST be `Bearer {{access_token}}`",
+            "type": "string",
+            "in": "header",
+            "name": "Authorization",
+            "required": true
+          }
+        ]
+      },
       "put": {
         "description": "Update a link",
-        "operationId": "PUT_identities-version-from_identity-link-to_identity-type",
+        "operationId": "PUT_identities-v1-from_identity-link-to_identity-type",
         "responses": {
           "201": {
             "description": "",
@@ -1006,7 +1078,7 @@
       },
       "delete": {
         "description": "Delete a link by type",
-        "operationId": "DELETE_identities-version-from_identity-link-to_identity-type",
+        "operationId": "DELETE_identities-v1-from_identity-link-to_identity-type",
         "responses": {
           "204": {
             "description": "",
@@ -1063,7 +1135,7 @@
       },
       "parameters": [
         {
-          "description": "The link type",
+          "description": "The `@type` of the link, for example `Link`, `Tenant` or `Owner`",
           "type": "string",
           "in": "path",
           "name": "type",
@@ -1082,19 +1154,13 @@
           "in": "path",
           "name": "to_identity",
           "required": true
-        },
-        {
-          "type": "string",
-          "in": "path",
-          "name": "version",
-          "required": true
         }
       ]
     },
-    "/identities/{version}/{id}/links": {
+    "/identities/v1/{id}/links": {
       "get": {
         "description": "List all links for a given identity",
-        "operationId": "GET_identities-version-id-links",
+        "operationId": "GET_identities-v1-id-links",
         "responses": {
           "200": {
             "description": "",
@@ -1187,12 +1253,6 @@
           "type": "string",
           "in": "path",
           "name": "id",
-          "required": true
-        },
-        {
-          "type": "string",
-          "in": "path",
-          "name": "version",
           "required": true
         }
       ]
