@@ -40,7 +40,7 @@ HTTP/1.0 200 OK
   "@type": "collection",
   "ItemList": [
     {
-      "@context": "http://platformoftrust.github.io/standards/contexts/identity-person.jsonld",
+      "@context": "https://standards.oftrust.net/contexts/identity-person.jsonld",
       "@type": "Person",
       "@id": "fbd106c5-c594-4416-a87e-f61e578fe829",
       "name": "John Doe",

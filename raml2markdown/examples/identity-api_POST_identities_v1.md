@@ -8,7 +8,7 @@ curl -X POST https://api-sandbox.oftrust.net/identities/v1/ \
 -H "Content-Type: application/json" \
 -H "Authorization: Bearer REPLACE_WITH_YOUR_TOKEN" \
 -d '{
-	"context": "http://platformoftrust.github.io/standards/contexts/identity-person.jsonld",
+	"context": "https://standards.oftrust.net/contexts/identity-person.jsonld",
 	"type": "Person",
 	"name": "John Doe",
 	"data": {
