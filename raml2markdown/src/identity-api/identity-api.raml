@@ -39,22 +39,6 @@ types:
   description: |
     Create a new or list identities. If optional `type` GET-parameter is given,
     lists only identities of the defined type.
-  get:
-    queryParameters:
-      type?:
-        description: |
-          If given to `GET /identities/{version}?type=App`, will list only the
-          identities of `@type: "App"`
-        type: string
-        example: /identities/{version}?type=App
-    description: List all identities created by currently logged in user
-    headers:
-      Authorization: !include includes/properties/authorization-headers.yaml
-    responses:
-      200:
-        body:
-          properties: !include includes/properties/identities.yaml
-          example: !include includes/examples/identities.json
   post:
     description: Create a new identity
     headers:
@@ -76,6 +60,23 @@ types:
                 "message": "Could not create identity."
               }
             }
+  get:
+    queryParameters:
+      type?:
+        description: |
+          If given to `GET /identities/{version}?type=App`, will list only the
+          identities of `@type: "App"`
+        type: string
+        example: /identities/{version}?type=App
+    description: List all identities created by currently logged in user
+    headers:
+      Authorization: !include includes/properties/authorization-headers.yaml
+    responses:
+      200:
+        body:
+          properties: !include includes/properties/identities.yaml
+          example: !include includes/examples/identities.json
+
   /{id}:
     description: Read, update and delete identities.
     uriParameters:
