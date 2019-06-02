@@ -85,6 +85,11 @@ types:
         type: string
         example: eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzY29w...DVs5aaf
     body:
+      description: |
+        The body content depends on the data product definition. Data product definition contains
+        `parameterContext` attribute, which contains URI to JSON-LD containint the options and structure of the body.
+
+        See more details from Product API.
       type: data-product-request
       example: |
         {
