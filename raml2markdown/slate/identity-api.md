@@ -26,26 +26,6 @@ The links provides the direction and type (sometimes called role) of the link.
 **Version:** v1 
 
 # /IDENTITIES/V1
-## ***GET*** 
-
-**Description:** List all identities created by currently logged in user
-
-### HTTP Request 
-`***GET*** /identities/v1` 
-
-**Parameters**
-
-| Name | Located in | Description | Required | Type |
-| ---- | ---------- | ----------- | -------- | ---- |
-| Authorization | header | The Authorization header, MUST be `Bearer {{access_token}}` | Yes | string |
-| type | query | If given to `GET /identities/{version}?type=App`, will list only the identities of `@type: "App"`  | No | string |
-
-**Responses**
-
-| Code | Description |
-| ---- | ----------- |
-| 200 |  |
-
 ## ***POST*** 
 
 **Description:** Create a new identity
@@ -66,6 +46,26 @@ The links provides the direction and type (sometimes called role) of the link.
 | ---- | ----------- |
 | 201 |  |
 | 422 |  |
+
+## ***GET*** 
+
+**Description:** List all identities created by currently logged in user
+
+### HTTP Request 
+`***GET*** /identities/v1` 
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+| Authorization | header | The Authorization header, MUST be `Bearer {{access_token}}` | Yes | string |
+| type | query | If given to `GET /identities/{version}?type=App`, will list only the identities of `@type: "App"`  | No | string |
+
+**Responses**
+
+| Code | Description |
+| ---- | ----------- |
+| 200 |  |
 
 # /IDENTITIES/V1/{ID}
 ## ***GET*** 
