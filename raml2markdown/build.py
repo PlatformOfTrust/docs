@@ -102,6 +102,11 @@ def concatenate_files():
           if example_file_path.exists():
             with open(example_file_path) as sfile:
               print("Found example file: " + str(example_file_path) +" derived from line:" + copyline)
+              ofile.write("> <div class='hexagon-so'><div class='hexagon-inside-so'><div class='hexagon-inside2-so'>")
+              ofile.write("<a href='https://stackoverflow.com/questions/ask?guided=false&tags=platform-of-trusT' title='Get help from Stack Overflow' target='new'>Get help from Stack Overflow")
+              # ofile.write("<img src='images/raml.png' class='ramlSpec-lg'>")
+              ofile.write("</a></div></div></div>")
+              ofile.write("\n\n")
               ofile.write(example_desc)
               ofile.write(sfile.read()+"\n\n")
 
