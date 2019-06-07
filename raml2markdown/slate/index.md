@@ -31,6 +31,16 @@ Communally built Platform of Trust provides a trustworthy and easy-to-use surrou
 
 Platform of Trust has Finnish origins, but it’s built to expand globally through the network of built environment innovation hubs.
 
+> **More resources & support**
+
+> - Make use of [previously asked questions in Stack Overflow](https://stackoverflow.com/questions/tagged/platform-of-trust)
+ 
+> - [Create new question](https://stackoverflow.com/questions/ask?guided=false&tags=platform-of-trust) in Stack Overflow if it's "*How do I?*" or "*I got this error, why?*" type of question
+
+> - [Sign up to our Slack](https://join.slack.com/t/platformoftrust/shared_invite/enQtNTU0NDI1MjQ1MjM0LTg3YmYxNzJkM2ZlZTBiM2Y4ZjdhZmU2ZTRjZDU4NDNhMjA4YTk0YzM1NjJiMzIzZDViNWYwZjhiZDFjY2UzODk)
+
+> - [Sign up for mailing list](https://www.platformoftrust.net/set-subscription) 
+
 ### Developer Portal
 
 Our [Developer Portal](https://developers.oftrust.net) is your one-stop-shop. From there you'll find getting started guides, API descriptions, use case descriptions and link to API documentation. 
