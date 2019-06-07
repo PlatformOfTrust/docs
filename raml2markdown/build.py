@@ -102,7 +102,7 @@ def concatenate_files():
           if example_file_path.exists():
             with open(example_file_path) as sfile:
               print("Found example file: " + str(example_file_path) +" derived from line:" + copyline)
-              ofile.write("> <div class='hexagon-so'><div class='hexagon-inside-so'><div class='hexagon-inside2-so'><p>Do you need help in using the API? </p>")
+              ofile.write("> <div class='hexagon-so'><div class='hexagon-inside-so'><div class='hexagon-inside2-so'><p>Do you need help in using the "+example_method.replace("{version}","v1")+"? </p>")
               ofile.write("<li><a href='https://stackoverflow.com/questions/tagged/platform-of-trust' title='Check out Platform of Trust questions and answers in Stack Overflow' target='new'>Checkout existing questions & answers</a></li>")
               ofile.write("<li><a href='https://stackoverflow.com/questions/ask?guided=false&tags=platform-of-trusT' title='Ask a question in Stack Overflow' target='new'>Ask a question in Stack Overflow</a></li>")
               # ofile.write("<img src='images/raml.png' class='ramlSpec-lg'>")
