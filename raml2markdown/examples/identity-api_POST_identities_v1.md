@@ -8,11 +8,11 @@ curl -X POST https://api-sandbox.oftrust.net/identities/v1/ \
 -H "Content-Type: application/json" \
 -H "Authorization: Bearer REPLACE_WITH_YOUR_TOKEN" \
 -d '{
-	"context": "https://standards.oftrust.net/contexts/identity-building.jsonld",
-	"type": "Building",
+  "context": "https://standards.oftrust.net/contexts/identity-building.jsonld",
+  "type": "Building",
   "name": "Platform of Trust HQ",
   "data": {
-        "description": "Platform of Trust headquarters in Tampere."
+    "description": "Platform of Trust headquarters in Tampere."
   }
 }'
 ```
