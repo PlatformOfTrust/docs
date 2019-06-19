@@ -8,13 +8,12 @@ curl -X POST https://api-sandbox.oftrust.net/identities/v1/ \
 -H "Content-Type: application/json" \
 -H "Authorization: Bearer REPLACE_WITH_YOUR_TOKEN" \
 -d '{
-	"context": "https://standards.oftrust.net/contexts/identity-person.jsonld",
-	"type": "Person",
-	"name": "John Doe",
-	"data": {
-		"firstName": "John",
-		"lastName": "Doe"
-	}
+	"context": "https://standards.oftrust.net/contexts/identity-building.jsonld",
+	"type": "Building",
+   "name": "Platform of Trust HQ",
+   "data": {
+        "description": "Platform of Trust headquarters in Tampere."
+   }
 }'
 ```
 
@@ -33,21 +32,20 @@ System.out.println("Java example missing. Why not contribute one for us?");
 HTTP/1.0 201 Created
 
 {
-  "@context": "https://standards.oftrust.net/contexts/identity-person.jsonld",
-  "@type": "Person",
-  "@id": "fbd106c5-c594-4416-a87e-f61e578fe829",
-  "name": "John Doe",
-  "data": {
-    "firstName": "John",
-    "lastName": "Doe"
-  },
-  "createdBy": "4c276e02-719c-4415-abba-a7afc4edc0c0",
-  "updatedBy": null,
-  "createdAt": "2019-03-14T10:50:51+00:00",
-  "updatedAt": "2019-03-14T10:50:51+00:00",
-  "status": 0,
-  "inLinks": [],
-  "outLinks": []
+    "@context": "https://standards.oftrust.net/contexts/identity-building.jsonld",
+    "@id": "83518d92-5147-4204-8b6b-b728b4a31f53",
+    "@type": "Building",
+    "createdAt": "2019-06-19T04:19:09+00:00",
+    "createdBy": "3b3eeffb-b660-4def-b5a8-ae4828f2526a",
+    "data": {
+        "description": "Platform of Trust headquarters in Tampere."
+    },
+    "inLinks": [],
+    "name": "Platform of Trust HQ",
+    "outLinks": [],
+    "status": 0,
+    "updatedAt": "2019-06-19T04:19:09+00:00",
+    "updatedBy": null
 }
 
 ```
