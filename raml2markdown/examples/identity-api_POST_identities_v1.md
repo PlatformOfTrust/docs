@@ -10,10 +10,10 @@ curl -X POST https://api-sandbox.oftrust.net/identities/v1/ \
 -d '{
 	"context": "https://standards.oftrust.net/contexts/identity-building.jsonld",
 	"type": "Building",
-   "name": "Platform of Trust HQ",
-   "data": {
+  "name": "Platform of Trust HQ",
+  "data": {
         "description": "Platform of Trust headquarters in Tampere."
-   }
+  }
 }'
 ```
 
