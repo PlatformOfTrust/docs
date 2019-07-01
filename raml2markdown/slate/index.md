@@ -39,7 +39,7 @@ Platform of Trust has Finnish origins, but it’s built to expand globally throu
 
 > - [Sign up to our Slack](https://join.slack.com/t/platformoftrust/shared_invite/enQtNTU0NDI1MjQ1MjM0LTg3YmYxNzJkM2ZlZTBiM2Y4ZjdhZmU2ZTRjZDU4NDNhMjA4YTk0YzM1NjJiMzIzZDViNWYwZjhiZDFjY2UzODk)
 
-> - [Sign up for mailing list](https://www.platformoftrust.net/set-subscription) 
+> - [Sign up for mailing list](https://platformoftrust.net/newsletter) 
 
 ### Developer Portal
 
