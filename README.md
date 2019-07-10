@@ -3,6 +3,8 @@
 Getting Started with Docs
 ------------------------------
 
+[![Build Status](https://travis-ci.org/PlatformOfTrust/docs.svg?branch=master)](https://travis-ci.org/PlatformOfTrust/docs)
+
 ### Prerequisites
 
 You're going to need:
