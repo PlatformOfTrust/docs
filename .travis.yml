@@ -5,7 +5,10 @@ python:
   - "3.6"
 
 env:
-  - NODE_VERSION="10"
+  global:
+    - CODE_EXAMPLES=./code-examples
+  matrix:
+    - NODE_VERSION="10"
 
 git:
   submodules: false
