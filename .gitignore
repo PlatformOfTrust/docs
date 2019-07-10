@@ -21,3 +21,8 @@ tmp
 _yardoc
 doc/
 .idea/
+
+# EMACS
+*~
+\#*\#
+.\#*
