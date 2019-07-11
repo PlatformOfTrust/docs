@@ -11,6 +11,10 @@ node --version
 
 # Python
 curl -sSL https://raw.githubusercontent.com/sdispater/poetry/master/get-poetry.py | python
+POETRY_PATH="${HOME}/.poetry/bin"
+echo ${POETRY_PATH} >> ${HOME}/.profile
+echo ${POETRY_PATH} >> ${HOME}/.bash_profile
+export PATH=${PATH}:${POETRY_PATH}
 python --version
 
 # Java
