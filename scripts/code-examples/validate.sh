@@ -2,4 +2,12 @@
 set -exuo pipefail
 
 
-echo "nothing to see yet!"
+# install the tool
+git clone https://github.com/PlatformOfTrust/code-examples-validator
+cd code-examples-validator
+poetry install --no-dev
+
+# run validation
+poetry run samples-validator -s ${CODE_EXAMPLES}
+cd -
+
