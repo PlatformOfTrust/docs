@@ -43,14 +43,14 @@ before_install:
 
 install:
    # Install all the dependecies required to
-   # generate and validate code examples based.
-   # on API specification in `raml2markdown/src`
+   # generate and validate code examples based
+   # on API specification in `raml2markdown/src`.
    - ./scripts/code-examples/install-deps.sh
 
 script:
   # Generate code examples from RAML files.
   - ./scripts/code-examples/generate.sh
-  # Make sure that API_URL works
+  # Make sure that HOST is up and responds.
   - ./scripts/code-examples/api-check.sh
   # Validate code examples.
   - ./scripts/code-examples/validate.sh
