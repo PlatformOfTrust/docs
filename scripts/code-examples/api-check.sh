@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-set -exuo pipefail
+set -xu
 
 STATUS_CODE=`curl -s -m 10 -o /dev/null -w "%{http_code}\n" ${SCHEME}://${HOST}`
 EXPECTED_CODE=200
