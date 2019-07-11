@@ -8,19 +8,21 @@ env:
   global:
     - NODE_VERSION="10"
     - SCHEME=https
+    # Output folder for code examples
+    - CODE_EXAMPLES=./code-examples
   matrix:
     # Specify:
-    # - environment for API testing
+    # - host for API testing
     # - authorization token to use (must be defined in secret env vars in travis-ci)
-    # - output folder for code examples
+    #   should be used as "Bearer ${AUTH_TOKEN}"
 
     # Test with mockbin to make sure that code examples do not
     # fail due to broken templates etc.
-    - HOST=mockbin.com/request CODE_EXAMPLES=./code-examples/mockbin AUTH_TOKEN=$AUTH_TOKEN_MOCKBIN
+    - HOST=mockbin.com/request AUTH_TOKEN=$AUTH_TOKEN_MOCKBIN
     # Sandbox?
-    - HOST=world-sandbox.oftrust.net CODE_EXAMPLES=./code-examples/world-of.oftrust.net AUTH_TOKEN=$AUTH_TOKEN_WORLD_SANDBOX
+    - HOST=world-sandbox.oftrust.net AUTH_TOKEN=$AUTH_TOKEN_WORLD_SANDBOX
     # Production
-    - HOST=docs.oftrust.net CODE_EXAMPLES=./code-examples/world-of.oftrust.net AUTH_TOKEN=$AUTH_TOKEN_DOCS
+    - HOST=docs.oftrust.net AUTH_TOKEN=$AUTH_TOKEN_DOCS
 matrix:
   allow_failures:
     # Mockbin failures should identify issues with code example templates but
