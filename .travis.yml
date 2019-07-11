@@ -6,9 +6,30 @@ python:
 
 env:
   global:
-    - CODE_EXAMPLES=./code-examples
-  matrix:
     - NODE_VERSION="10"
+    - SCHEME=https
+  matrix:
+    # Specify:
+    # - environment for API testing
+    # - authorization token to use (must be defined in secret env vars in travis-ci)
+    # - output folder for code examples
+
+    # Test with mockbin to make sure that code examples do not
+    # fail due to broken templates etc.
+    - HOST=mockbin.com/request, CODE_EXAMPLES=./code-examples/mockbin, AUTH_TOKEN=$AUTH_TOKEN_MOCKBIN
+    # Sandbox?
+    - HOST=world-sandbox.oftrust.net, CODE_EXAMPLES=./code-examples/world-of.oftrust.net, AUTH_TOKEN=$AUTH_TOKEN_WORLD_SANDBOX
+    # Production
+    - HOST=docs.oftrust.net, CODE_EXAMPLES=./code-examples/world-of.oftrust.net, AUTH_TOKEN=$AUTH_TOKEN_DOCS
+matrix:
+  allow_failures:
+    # Mockbin failures should identify issues with code example templates but
+    # not block deployment if requests work in other environments.
+    - env: HOST=mockbin.com/request
+    # Auth in headers does not work here?
+    - env: HOST=world-sandbox.oftrust.net
+    # Temporarily ignore failure
+    - env: HOST=docs.oftrust.net
 
 git:
   submodules: false
@@ -20,14 +41,16 @@ before_install:
 
 install:
    # Install all the dependecies required to
-   # generate and validate code examples based
+   # generate and validate code examples based.
    # on API specification in `raml2markdown/src`
    - ./scripts/code-examples/install-deps.sh
 
 script:
-  # Generate code examples from RAML files
+  # Generate code examples from RAML files.
   - ./scripts/code-examples/generate.sh
-  # Validate code examples
+  # Make sure that API_URL works
+  - ./scripts/code-examples/api-check.sh
+  # Validate code examples.
   - ./scripts/code-examples/validate.sh
 
   - cd raml2markdown/
@@ -36,7 +59,7 @@ script:
   - echo 'docs.oftrust.net' > build/CNAME
   - cp -R keys ./build/
 
-# Deploy to GitHub pages
+# Deploy to GitHub pages.
 deploy:
   provider: pages
   skip-cleanup: true
