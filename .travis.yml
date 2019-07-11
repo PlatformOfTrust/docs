@@ -5,7 +5,10 @@ python:
   - "3.6"
 
 env:
-  - NODE_VERSION="10"
+  global:
+    - CODE_EXAMPLES=./code-examples
+  matrix:
+    - NODE_VERSION="10"
 
 git:
   submodules: false
@@ -15,9 +18,18 @@ before_install:
   - nvm alias default node
   - ./setup.sh
 
-install: true
+install:
+   # Install all the dependecies required to
+   # generate and validate code examples based
+   # on API specification in `raml2markdown/src`
+   - ./scripts/code-examples/install-deps.sh
 
 script:
+  # Generate code examples from RAML files
+  - ./scripts/code-examples/generate.sh
+  # Validate code examples
+  - ./scripts/code-examples/validate.sh
+
   - cd raml2markdown/
   - ./build.py
   - cd ..
