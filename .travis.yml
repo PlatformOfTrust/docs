@@ -16,7 +16,7 @@ git:
 before_install:
   - nvm install $NODE_VERSION
   - nvm alias default node
-#  - ./setup.sh
+  - ./setup.sh
 
 install:
    # Install all the dependecies required to
