@@ -22,16 +22,15 @@ env:
     # Sandbox? Maybe not needed?
     - HOST=world-sandbox.oftrust.net AUTH_TOKEN=$AUTH_TOKEN_WORLD_SANDBOX
     # Production
-    - HOST=docs.oftrust.net AUTH_TOKEN=$AUTH_TOKEN_DOCS
+    - HOST=api.oftrust.net AUTH_TOKEN=$AUTH_TOKEN_DOCS
 matrix:
   allow_failures:
-    # Mockbin failures should identify issues with code example templates but
-    # not block deployment if requests work in other environments.
+    # Temporarily ignore failures
     - env: HOST=mockbin.com/request
     # Auth in headers does not work here?
     - env: HOST=world-sandbox.oftrust.net
     # Temporarily ignore failures
-    - env: HOST=docs.oftrust.net
+    - env: HOST=api.oftrust.net
 
 git:
   submodules: false
