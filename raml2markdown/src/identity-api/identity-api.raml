@@ -42,7 +42,7 @@ types:
   post:
     description: Create a new identity
     headers:
-      Authorization: !include includes/properties/authorization-headers.yaml
+      Authorization: !include ../authorization-headers.yaml
     body:
       type: identity
       example: !include includes/examples/identity-create.json
@@ -70,7 +70,7 @@ types:
         example: /identities/{version}?type=App
     description: List all identities created by currently logged in user
     headers:
-      Authorization: !include includes/properties/authorization-headers.yaml
+      Authorization: !include ../authorization-headers.yaml
     responses:
       200:
         body:
@@ -87,7 +87,7 @@ types:
     get:
       description: Read one identity by id
       headers:
-        Authorization: !include includes/properties/authorization-headers.yaml
+        Authorization: !include ../authorization-headers.yaml
       responses:
         200:
           body:
@@ -99,7 +99,7 @@ types:
     put:
       description: Update an identity by id
       headers:
-        Authorization: !include includes/properties/authorization-headers.yaml
+        Authorization: !include ../authorization-headers.yaml
       body:
         type: identity
         example: !include includes/examples/identity-update.json
@@ -123,7 +123,7 @@ types:
     delete:
       description: Delete an identity by id
       headers:
-        Authorization: !include includes/properties/authorization-headers.yaml
+        Authorization: !include ../authorization-headers.yaml
       responses:
         204:
           body:
@@ -145,7 +145,7 @@ types:
     post:
       description: Creates a new link between two identities
       headers:
-        Authorization: !include includes/properties/authorization-headers.yaml
+        Authorization: !include ../authorization-headers.yaml
       body:
         type: link
         example: !include includes/examples/link-create.json
@@ -191,7 +191,7 @@ types:
       get:
         description: Read a link by type
         headers:
-          Authorization: !include includes/properties/authorization-headers.yaml
+          Authorization: !include ../authorization-headers.yaml
         responses:
           200:
             body:
@@ -203,7 +203,7 @@ types:
       put:
         description: Update a link
         headers:
-          Authorization: !include includes/properties/authorization-headers.yaml
+          Authorization: !include ../authorization-headers.yaml
         body:
           example: |
             {
@@ -250,7 +250,7 @@ types:
       delete:
         description: Delete a link by type
         headers:
-          Authorization: !include includes/properties/authorization-headers.yaml
+          Authorization: !include ../authorization-headers.yaml
         responses:
           204:
             body:
@@ -308,7 +308,7 @@ types:
           example: /identities/{version}/{id}/links?type=Owner
       description: List all links for a given identity
       headers:
-        Authorization: !include includes/properties/authorization-headers.yaml
+        Authorization: !include ../authorization-headers.yaml
       responses:
         200:
           body:

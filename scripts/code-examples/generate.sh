@@ -12,8 +12,8 @@ java -jar raml2http.jar --version
 java -jar raml2http.jar \
      -s ./raml2markdown/src \
      -d $CODE_EXAMPLES \
-     -S http \
-     -H mockbin.org/request
+     -S $SCHEME \
+     -H $HOST
 
 # Display generated files
 find $CODE_EXAMPLES -type f
