@@ -46,7 +46,7 @@ types:
     has access to.
   post:
     headers:
-      Authorization: !include includes/properties/authorization-headers.yaml
+      Authorization: !include ../authorization-headers.yaml
     description: Create a new message
     body:
       type: message
@@ -74,7 +74,7 @@ types:
         example: 2584bdd7-1cb2-48ed-a106-2a1b817cf909
     get:
       headers:
-        Authorization: !include includes/properties/authorization-headers.yaml
+        Authorization: !include ../authorization-headers.yaml
       description: Read one message by id
       responses:
         200:
@@ -86,7 +86,7 @@ types:
             example: !include includes/examples/message-not-found.json
     put:
       headers:
-        Authorization: !include includes/properties/authorization-headers.yaml
+        Authorization: !include ../authorization-headers.yaml
       description: Update a message by id
       body:
         type: message
@@ -110,7 +110,7 @@ types:
               }
     delete:
       headers:
-        Authorization: !include includes/properties/authorization-headers.yaml
+        Authorization: !include ../authorization-headers.yaml
       description: Delete a message by id
       responses:
         204:
@@ -122,7 +122,7 @@ types:
     /read:
       post:
         headers:
-          Authorization: !include includes/properties/authorization-headers.yaml
+          Authorization: !include ../authorization-headers.yaml
         description: Marks a message read by the currently logged in user.
         responses:
           200:
@@ -147,7 +147,7 @@ types:
       description: List all messages belonging to an identity.
       get:
         headers:
-          Authorization: !include includes/properties/authorization-headers.yaml
+          Authorization: !include ../authorization-headers.yaml
         description: List messages sent to "to"-identity.
         responses:
           200:

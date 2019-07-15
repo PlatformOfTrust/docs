@@ -81,7 +81,7 @@ types:
   post:
     description: Create a new product
     headers:
-      Authorization: !include includes/properties/authorization-headers.yaml
+      Authorization: !include ../authorization-headers.yaml
     body:
       type: product
       example: !include includes/examples/product-create.json
@@ -133,7 +133,7 @@ types:
     put:
       description: Update a product by product code
       headers:
-        Authorization: !include includes/properties/authorization-headers.yaml
+        Authorization: !include ../authorization-headers.yaml
       body:
         type: product
         example: !include includes/examples/product-update.json
@@ -152,7 +152,7 @@ types:
     delete:
       description: Delete a product by product code
       headers:
-        Authorization: !include includes/properties/authorization-headers.yaml
+        Authorization: !include ../authorization-headers.yaml
       responses:
         204:
           body:
