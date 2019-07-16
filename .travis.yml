@@ -19,10 +19,9 @@ env:
     # Test with mockbin to make sure that code examples do not
     # fail due to broken templates etc.
     - HOST=mockbin.com/request AUTH_TOKEN="doesnotmatter"
-    # Sandbox? Maybe not needed?
-    # - HOST=world-sandbox.oftrust.net AUTH_TOKEN=$AUTH_TOKEN_WORLD_SANDBOX
-    # Production
-    - HOST=api.oftrust.net AUTH_TOKEN=$AUTH_TOKEN_DOCS
+    # Sandbox - replace this with api-staging.oftrust.net
+    # when executing requests.
+    - HOST=api-sandbox.oftrust.net AUTH_TOKEN=$AUTH_TOKEN_WORLD_SANDBOX
 matrix:
   allow_failures:
     # Temporarily ignore failures
