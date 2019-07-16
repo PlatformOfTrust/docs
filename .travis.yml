@@ -20,7 +20,7 @@ env:
     # fail due to broken templates etc.
     - HOST=mockbin.com/request AUTH_TOKEN="doesnotmatter"
     # Sandbox? Maybe not needed?
-    - HOST=world-sandbox.oftrust.net AUTH_TOKEN=$AUTH_TOKEN_WORLD_SANDBOX
+    # - HOST=world-sandbox.oftrust.net AUTH_TOKEN=$AUTH_TOKEN_WORLD_SANDBOX
     # Production
     - HOST=api.oftrust.net AUTH_TOKEN=$AUTH_TOKEN_DOCS
 matrix:
@@ -28,7 +28,7 @@ matrix:
     # Temporarily ignore failures
     - env: HOST=mockbin.com/request
     # Auth in headers does not work here?
-    - env: HOST=world-sandbox.oftrust.net
+    # - env: HOST=world-sandbox.oftrust.net
     # Temporarily ignore failures
     - env: HOST=api.oftrust.net
 
