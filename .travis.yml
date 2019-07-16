@@ -20,7 +20,7 @@ env:
     # fail due to broken templates etc.
     - HOST=mockbin.com/request AUTH_TOKEN="doesnotmatter"
     # Sandbox - replace this with api-staging.oftrust.net
-    # when executing requests)
+    # when executing requests.
     - HOST=api-sandbox.oftrust.net AUTH_TOKEN=$AUTH_TOKEN_WORLD_SANDBOX
 matrix:
   allow_failures:
