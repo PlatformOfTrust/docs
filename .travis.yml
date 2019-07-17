@@ -24,12 +24,9 @@ env:
     - HOST=api-sandbox.oftrust.net AUTH_TOKEN=$AUTH_TOKEN_WORLD_SANDBOX
 matrix:
   allow_failures:
+    - env: HOST=mockbin.com/request AUTH_TOKEN="doesnotmatter"
     # Temporarily ignore failures
-    - env: HOST=mockbin.com/request
-    # Auth in headers does not work here?
-    # - env: HOST=world-sandbox.oftrust.net
-    # Temporarily ignore failures
-    - env: HOST=api.oftrust.net
+    - env: HOST=api.oftrust.net AUTH_TOKEN=$AUTH_TOKEN_WORLD_SANDBOX
 
 git:
   submodules: false
