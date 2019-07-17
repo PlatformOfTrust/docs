@@ -22,14 +22,6 @@ env:
     # Sandbox - replace this with api-staging.oftrust.net
     # when executing requests.
     - HOST=api-sandbox.oftrust.net AUTH_TOKEN=$AUTH_TOKEN_WORLD_SANDBOX
-matrix:
-  allow_failures:
-    # Temporarily ignore failures
-    - env: HOST=mockbin.com/request
-    # Auth in headers does not work here?
-    # - env: HOST=world-sandbox.oftrust.net
-    # Temporarily ignore failures
-    - env: HOST=api.oftrust.net
 
 git:
   submodules: false
@@ -49,7 +41,7 @@ script:
   # Generate code examples from RAML files.
   - ./scripts/code-examples/generate.sh
   # Make sure that HOST is up and responds.
-  - ./scripts/code-examples/api-check.sh
+  - ./scripts/code-examples/api-check.sh || travis_terminate 1
   # Validate code examples.
   - ./scripts/code-examples/validate.sh
 
