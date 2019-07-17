@@ -44,7 +44,25 @@ def api_raml_to_slate(apiname):
     if failure:
       print("RAML -> Slate formatted md file creation failed. Trying next in array.")
 
-def concatenate_files():
+
+# Generate path according to code examples location pattern:
+# https://github.com/PlatformOfTrust/code-examples-generator/tree/master/doc#4-code-example-location
+def get_generated_code_examples_path(root, line, api):
+  line = line.rstrip(os.linesep)
+  line = re.sub('[`*]', '', line)
+  line_arr = line.split(' ')
+  # parse HTTP method
+  method = line_arr[0]
+  # convert forward slashes to underscores to match code examples file path
+  if len(line_arr) > 1 :
+    filename = re.sub('[/]', '_', line_arr[1])
+  else:
+    filename = ''
+
+  #print('/'.join([root, api, api + ".raml", filename, method, "slate.md"]))
+  return Path('/'.join([root, api, api + ".raml", filename, method, "slate.md"]))
+
+def concatenate_files(code_examples_path):
   outfile = Path("../source/index.html.md")
   if outfile.exists():
     os.remove(outfile)
@@ -84,18 +102,23 @@ def concatenate_files():
         # Now match the lines after which the code examples are injected.
         # example of one line: `***PUT*** /products/{product_code}`
         # That should match product-api_PUT_product_code.curl in examples folder
-        example_file= str(line)
+        # example_file= str(line)
         copyline = str(line)
-        example_file = example_file.rstrip(os.linesep)
-        example_file = re.sub('[`#* {}]', '', example_file)
-        example_file = re.sub('//', '_', example_file)
-        example_file = re.sub('[/]', '_', example_file)
-        example_file = re.sub('I', 'i', example_file)
-
-        example_file_path = Path("./examples/" +api.lower() +"_"+ example_file + ".md")
+        # example_file = example_file.rstrip(os.linesep)
+        # example_file = re.sub('[`#* {}]', '', example_file)
+        # example_file = re.sub('//', '_', example_file)
+        # example_file = re.sub('[/]', '_', example_file)
+        # example_file = re.sub('I', 'i', example_file)
 
         example_method = str(line)
         example_method = re.sub('[`#*]', '', example_method)
+
+        #example_file_path = Path("./examples/" +api.lower() +"_"+ example_file + ".md")
+        example_file_path = get_generated_code_examples_path(
+          code_examples_path,
+          str(line),
+          api.lower()
+        )
 
         example_desc = "\n\n > <b>Example for: "+example_method.replace("{version}","v1")+"</b>\n\n"
         if len(str(example_file_path)) < 200:
@@ -168,12 +191,21 @@ def copy_specs_to_build():
 # ----------------------------
 # MAIN - lets build it
 
+code_examples_var = 'CODE_EXAMPLES'
+
+# Make sure that code example source has been passed
+try:
+   os.environ[code_examples_var]
+except KeyError:
+   print("Please set the environment variable " + code_examples_var)
+   sys.exit(1)
+
 # Generate content
 for api in APIs:
   api_raml_to_slate(api)
 
 # Merge all together
-concatenate_files()
+concatenate_files(os.environ[code_examples_var])
 
 # Build deployable content as html
 make_html()
