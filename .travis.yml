@@ -22,11 +22,6 @@ env:
     # Sandbox - replace this with api-staging.oftrust.net
     # when executing requests.
     - HOST=api-sandbox.oftrust.net AUTH_TOKEN=$AUTH_TOKEN_WORLD_SANDBOX
-matrix:
-  allow_failures:
-    - env: HOST=mockbin.com/request AUTH_TOKEN="doesnotmatter"
-    # Temporarily ignore failures
-    - env: HOST=api.oftrust.net AUTH_TOKEN=$AUTH_TOKEN_WORLD_SANDBOX
 
 git:
   submodules: false
