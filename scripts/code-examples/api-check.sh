@@ -7,6 +7,7 @@ echo "Executing API response check: $URL"
 
 # Use an endpoint that does not require
 STATUS_CODE=`curl -s -m 10 -o /dev/null -w "%{http_code}\n" ${SCHEME}://${HOST}/products/v1`
+EXPECTED_CODE=200
 
 if [ $STATUS_CODE -eq $EXPECTED_CODE ]; then
   echo "API response check passed ($STATUS_CODE})";
