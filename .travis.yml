@@ -68,4 +68,5 @@ deploy:
   target-branch: gh-pages
   repo: PlatformOfTrust/docs
   on:
+    condition: "$HOST=api-sandbox.oftrust.net"
     branch: master
