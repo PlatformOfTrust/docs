@@ -51,7 +51,7 @@ The current documentation is fully automated at the moment (except writing the c
 4. cd oas-raml-converter
 5. npm install
 6. npm run build
-7. npm i -g swagger-to-slate
+7. npm i swagger-to-slate
 
 **build the docs:**
 1.	Just add RAML to specific folder (https://github.com/PlatformOfTrust/docs/tree/master/raml2markdown/src),  
