@@ -21,3 +21,5 @@ tmp
 _yardoc
 doc/
 .idea/
+raml2markdown/node_modules/
+
