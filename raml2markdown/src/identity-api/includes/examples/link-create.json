@@ -1,4 +1,4 @@
 {
-  "context": "<Context URL>",
-  "type": "<Link type>"
+  "context": "https://example.com/contexts/type.jsonld",
+  "type": "Owner"
 }
