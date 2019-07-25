@@ -1,7 +1,7 @@
 {
-  "context": "<Context URL>",
-  "type": "<Identity type>",
-  "name": "<Identity name>",
+  "context": "https://example.com/contexts/type.jsonld",
+  "type": "Building",
+  "name": "Example building",
   "data": {
     "key-1": "Value 1",
     "key-2": "Value 2"

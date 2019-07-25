@@ -1,8 +1,9 @@
 {
   "toIdentity": "<to identity ID>",
-  "subject": "<message subject>",
-  "content": "<message content>",
+  "subject": "Go to the grocery store",
+  "content": "Remember to buy milk!",
   "cc": [
-    "<This list should contain a list of strings with user IDs>"
+    "323bde80-4cc2-472e-bb77-e6a3e95a1253",
+    "0827e9c3-9664-479f-b0ec-956a35d72e4b"
   ]
 }
