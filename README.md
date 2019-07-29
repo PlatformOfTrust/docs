@@ -46,12 +46,12 @@ The current documentation is fully automated at the moment (except writing the c
 
 **build needed tools:**
 1. cd raml2markdown
-2. rm -rf ./oas-raml-converter
-3. git clone https://github.com/mulesoft/oas-raml-converter.git
-4. cd oas-raml-converter
-5. npm install
-6. npm run build
-7. npm i -g swagger-to-slate
+2. npm install
+3. rm -rf ./oas-raml-converter
+4. git clone https://github.com/mulesoft/oas-raml-converter.git
+5. cd oas-raml-converter
+6. npm install
+7. npm run build
 
 **build the docs:**
 1.	Just add RAML to specific folder (https://github.com/PlatformOfTrust/docs/tree/master/raml2markdown/src),  

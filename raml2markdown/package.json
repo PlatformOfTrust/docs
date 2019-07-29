@@ -1,0 +1,14 @@
+{
+  "name": "raml2markdown",
+  "version": "1.0.0",
+  "description": "",
+  "directories": {
+    "example": "examples"
+  },
+  "dependencies": {
+    "commander": "^2.19.0",
+    "swagger-to-slate": "^1.0.4",
+    "util": "^0.11.1"
+  },
+  "devDependencies": {}
+}
