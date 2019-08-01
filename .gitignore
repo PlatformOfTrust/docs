@@ -15,6 +15,7 @@ tmp
 .cache
 .vagrant
 .sass-cache
+raml2markdown/node_modules/
 
 # YARD artifacts
 .yardoc
@@ -26,3 +27,4 @@ doc/
 *~
 \#*\#
 .\#*
+

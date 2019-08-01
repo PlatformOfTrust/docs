@@ -39,7 +39,9 @@ def api_raml_to_slate(apiname):
   else:
 
   # Convert from OpenAPISpec to Slate md
-    slatecmd= "swagger-to-slate -i ./OAS/" +apiname+ ".json -o ./slate/" +apiname+ ".md"
+    local_swagger_to_slate = "./node_modules/.bin/swagger-to-slate"
+    swagger_to_slate = local_swagger_to_slate if os.path.exists(local_swagger_to_slate) else "swagger-to-slate"
+    slatecmd = swagger_to_slate + " -i ./OAS/" + apiname + ".json -o ./slate/" + apiname + ".md"
     failure = os.system(slatecmd)
     if failure:
       print("RAML -> Slate formatted md file creation failed. Trying next in array.")
