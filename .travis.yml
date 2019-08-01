@@ -19,8 +19,7 @@ env:
     # Test with mockbin to make sure that code examples do not
     # fail due to broken templates etc.
     - HOST=mockbin.com/request AUTH_TOKEN="doesnotmatter"
-    # Sandbox - replace this with api-staging.oftrust.net
-    # when executing requests.
+    # Sandbox
     - HOST=api-sandbox.oftrust.net AUTH_TOKEN=$AUTH_TOKEN_WORLD_SANDBOX
 
 git:
