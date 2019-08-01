@@ -7,13 +7,10 @@ curl -L -o raml2http.jar https://github.com/PlatformOfTrust/code-examples-genera
 # Show version
 java -jar raml2http.jar --version
 
-# Run
+# Run code examples generator
 # TODO make it fail in case of 'unknown options' etc.
 java -jar raml2http.jar \
      -s ./raml2markdown/src \
      -d $CODE_EXAMPLES \
      -S $SCHEME \
      -H $HOST
-
-# Display generated files
-find $CODE_EXAMPLES -type f
