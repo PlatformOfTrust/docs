@@ -10,16 +10,9 @@ env:
     - SCHEME=https
     # Output folder for code examples
     - CODE_EXAMPLES=./code-examples
-  matrix:
-    # Specify:
     # - host for API testing
     # - authorization token to use (must be defined in secret env vars in travis-ci)
     #   should be used as "Bearer ${AUTH_TOKEN}"
-
-    # Test with mockbin to make sure that code examples do not
-    # fail due to broken templates etc.
-    - HOST=mockbin.com/request AUTH_TOKEN="doesnotmatter"
-    # Sandbox
     - HOST=api-sandbox.oftrust.net AUTH_TOKEN=$TESTING_ACCESS_TOKEN
 
 git:
@@ -57,5 +50,4 @@ deploy:
   target-branch: gh-pages
   repo: PlatformOfTrust/docs
   on:
-    condition: "$HOST=api-sandbox.oftrust.net"
     branch: master
