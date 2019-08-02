@@ -39,8 +39,6 @@ install:
 script:
   # Generate code examples from RAML files.
   - ./scripts/code-examples/generate.sh
-  # Make sure that HOST is up and responds.
-  - ./scripts/code-examples/api-check.sh || travis_terminate 1
   # Validate code examples.
   - ./scripts/code-examples/validate.sh
 
