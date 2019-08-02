@@ -54,12 +54,12 @@ ignore_failures:
     - 'GET'
     - 'PUT'
     - 'DELETE'
-  'identity-api/identities/v1'
+  'identity-api/identities/v1':
     - 'POST'
     - 'GET'
-  'identity-api/identities/v1/{id}'
+  'identity-api/identities/v1/{id}':
     - 'GET'
     - 'PUT'
     - 'DELETE'
-  'identity-api/identities/v1/{id}/links'
+  'identity-api/identities/v1/{id}/links':
     - 'GET'
