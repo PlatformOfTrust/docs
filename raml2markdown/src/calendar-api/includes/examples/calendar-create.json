@@ -1,12 +1,14 @@
 {
   "toIdentity": "<to identity ID>",
-  "title": "<calendar title>",
+  "type": "Event",
+  "title": "April fool's day festivities.",
   "startDate": "2019-04-01T12:00:00+02:00",
   "endDate": "2019-04-01T16:00:00+02:00",
-  "repeats": "<repeats>",
-  "content": "<calendar content>",
-  "location": "<location>",
+  "repeats": "R5/2008-03-01T13:00:00Z/P1Y2M10DT2H30M",
+  "content": "April fool's event, held on the courtyard.",
+  "location": "Courtyard at Teststreet 12",
   "cc": [
-    "<list of identity IDs>"
+    "323bde80-4cc2-472e-bb77-e6a3e95a1253",
+    "0827e9c3-9664-479f-b0ec-956a35d72e4b"
   ]
 }

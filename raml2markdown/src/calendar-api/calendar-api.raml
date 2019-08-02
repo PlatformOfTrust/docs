@@ -76,7 +76,7 @@ types:
     has access to.
   post:
     headers:
-      Authorization: !include includes/properties/authorization-headers.yaml
+      Authorization: !include ../authorization-headers.yaml
     description: Create a new calendar entry
     body:
       type: calendar
@@ -104,7 +104,7 @@ types:
         example: 2584bdd7-1cb2-48ed-a106-2a1b817cf909
     get:
       headers:
-        Authorization: !include includes/properties/authorization-headers.yaml
+        Authorization: !include ../authorization-headers.yaml
       description: Read one calendar by id
       responses:
         200:
@@ -116,7 +116,7 @@ types:
             example: !include includes/examples/calendar-not-found.json
     put:
       headers:
-        Authorization: !include includes/properties/authorization-headers.yaml
+        Authorization: !include ../authorization-headers.yaml
       description: Update a calendar by id
       body:
         type: calendar
@@ -140,7 +140,7 @@ types:
               }
     delete:
       headers:
-        Authorization: !include includes/properties/authorization-headers.yaml
+        Authorization: !include ../authorization-headers.yaml
       description: Delete a calendar by id
       responses:
         204:
@@ -159,7 +159,7 @@ types:
       description: List all calendars belonging to an identity.
       get:
         headers:
-          Authorization: !include includes/properties/authorization-headers.yaml
+          Authorization: !include ../authorization-headers.yaml
         description: List calendars created for "to"-identity.
         responses:
           200:

@@ -3,6 +3,8 @@
 Getting Started with Docs
 ------------------------------
 
+[![Build Status](https://travis-ci.org/PlatformOfTrust/docs.svg?branch=master)](https://travis-ci.org/PlatformOfTrust/docs)
+
 ### Prerequisites
 
 You're going to need:
@@ -54,7 +56,9 @@ The current documentation is fully automated at the moment (except writing the c
 7. npm run build
 
 **build the docs:**
-1.	Just add RAML to specific folder (https://github.com/PlatformOfTrust/docs/tree/master/raml2markdown/src),  
-2.	Add code examples (https://github.com/PlatformOfTrust/docs/tree/master/raml2markdown/examples), 
-3.	then run `build.py` and 
-4.	new docs is generated to https://github.com/PlatformOfTrust/docs/tree/master/build
+1. Just add RAML to specific folder (https://github.com/PlatformOfTrust/docs/tree/master/raml2markdown/src),
+2. Generate code examples (https://github.com/PlatformOfTrust/code-examples-generator/tree/master/doc)
+3. Validate code examples (https://github.com/PlatformOfTrust/code-examples-validator)
+4. Set generated code examples path e.g. `export CODE_EXAMPLES="../code-examples"`
+5. then run `build.py` and 
+6. new docs is generated to https://github.com/PlatformOfTrust/docs/tree/master/build

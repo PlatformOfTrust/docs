@@ -15,11 +15,16 @@ tmp
 .cache
 .vagrant
 .sass-cache
+raml2markdown/node_modules/
 
 # YARD artifacts
 .yardoc
 _yardoc
 doc/
 .idea/
-raml2markdown/node_modules/
+
+# EMACS
+*~
+\#*\#
+.\#*
 
