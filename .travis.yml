@@ -20,7 +20,7 @@ env:
     # fail due to broken templates etc.
     - HOST=mockbin.com/request AUTH_TOKEN="doesnotmatter"
     # Sandbox
-    - HOST=api-sandbox.oftrust.net AUTH_TOKEN=$AUTH_TOKEN_WORLD_SANDBOX
+    - HOST=api-sandbox.oftrust.net AUTH_TOKEN=$TESTING_ACCESS_TOKEN
 
 git:
   submodules: false
