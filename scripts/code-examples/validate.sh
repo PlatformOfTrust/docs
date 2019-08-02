@@ -10,7 +10,7 @@ cd code-examples-validator
 poetry install --no-dev
 
 # Display validator conf
-cat scripts/code-examples/validator_conf.yml
+cat ../scripts/code-examples/validator_conf.yml
 
 # run validation
 # Use custom configuration file to be able to ignore unstable API resources
