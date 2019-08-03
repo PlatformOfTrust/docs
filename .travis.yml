@@ -58,4 +58,4 @@ deploy:
   target-branch: gh-pages
   repo: PlatformOfTrust/docs
   on:
-    branch: bugfix/docs_deployment
+    branch: master
