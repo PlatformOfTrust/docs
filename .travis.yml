@@ -35,11 +35,11 @@ script:
   # Validate code examples.
   # API is currently unstable - thus ignore the
   # result of validation.
-  - ./scripts/code-examples/validate.sh || true
+  #- ./scripts/code-examples/validate.sh || true
 
   - cd raml2markdown/
   # expose CODE_EXAMPLES variable to build.py
-  - export CODE_EXAMPLES=$CODE_EXAMPLES
+  - export CODE_EXAMPLES=../$CODE_EXAMPLES
   - ./build.py
   - cd ..
   - echo 'docs.oftrust.net' > build/CNAME
