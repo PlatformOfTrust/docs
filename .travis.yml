@@ -36,6 +36,8 @@ script:
   - ./scripts/code-examples/validate.sh
 
   - cd raml2markdown/
+  # expose CODE_EXAMPLES variable to build.py
+  - export CODE_EXAMPLES=$CODE_EXAMPLES
   - ./build.py
   - cd ..
   - echo 'docs.oftrust.net' > build/CNAME
@@ -50,4 +52,4 @@ deploy:
   target-branch: gh-pages
   repo: PlatformOfTrust/docs
   on:
-    branch: master
+    branch: bugfix/docs_deployment
