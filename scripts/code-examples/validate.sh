@@ -14,7 +14,5 @@ cat ../scripts/code-examples/validator_conf.yml
 
 # run validation
 # Use custom configuration file to be able to ignore unstable API resources
-poetry run samples-validator \
-       -s "../${CODE_EXAMPLES}" \
-       -c "../scripts/code-examples/validator_conf.yml"
+poetry run samples-validator -s $CODE_EXAMPLES -c $VALIDATOR_CONF
 cd -
