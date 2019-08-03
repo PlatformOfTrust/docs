@@ -47,19 +47,3 @@ before_sample:
 ignore_failures:
   'broker-api/broker/{version}/fetch-data-product':
     - 'POST'
-  'product-api/products/{version}':
-    - 'POST'
-    - 'GET'
-  'product-api/products/{version}/{product_code}':
-    - 'GET'
-    - 'PUT'
-    - 'DELETE'
-  'identity-api/identities/v1':
-    - 'POST'
-    - 'GET'
-  'identity-api/identities/v1/{id}':
-    - 'GET'
-    - 'PUT'
-    - 'DELETE'
-  'identity-api/identities/v1/{id}/links':
-    - 'GET'
