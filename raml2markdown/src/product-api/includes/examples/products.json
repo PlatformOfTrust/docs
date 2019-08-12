@@ -14,11 +14,12 @@
       "organizationPublicKeys": [
         {
           "url": "<public key URL>",
-          "type": "<public key type>"
+          "type": "RsaSignature2018"
         }
       ],
       "description": "<product description>",
-      "imageUrl": "<image URL>"
+      "imageUrl": "<image URL>",
+      "identityId": "<identity UUID>"
     },
     {
       "@context": "<context URL>",
@@ -32,11 +33,31 @@
       "organizationPublicKeys": [
         {
           "url": "<public key URL>",
-          "type": "<public key type>"
+          "type": "RsaSignature2018"
         }
       ],
       "description": "<product description>",
-      "imageUrl": "<image URL>"
+      "imageUrl": "<image URL>",
+      "identityId": "<identity UUID>"
     }
-  ]
+  ],
+  "links": [
+    {
+      "rel": "first",
+      "href": "<API URL>/products?offset=0&limit=2"
+    },
+    {
+      "rel": "self",
+      "href": "<API URL>/products"
+    },
+    {
+      "rel": "last",
+      "href": "<API URL>/products?offset=2&limit=2"
+    },
+    {
+      "rel": "next",
+      "href": "<API URL>/products?offset=2&limit=2"
+    }
+  ],
+  "hasMore": true
 }

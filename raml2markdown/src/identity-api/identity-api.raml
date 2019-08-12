@@ -14,18 +14,16 @@ types:
     properties:
       context:
         description: The URL to the context for this identity
-      name:
-        description: The name of the identity
-        type: string
       type:
         description: The type of the identity
         type: string
-      data?:
-        description: Optional key-value data for the identity
+      data:
+        description: Additional data for the identity, as defined in the context.
         type: object
-      createdBy?:
-        description: Optional User ID who should be the creator of this identity
-        type: string
+        properties:
+          name:
+            description: The name of the identity
+            type: string
   link:
     type: object
     properties:
@@ -35,6 +33,9 @@ types:
       type:
         description: The type of the link
         type: string
+      data?:
+        description: Additional key-value data for the link.
+        type: object
 /identities/v1:
   description: |
     Create a new or list identities. If optional `type` GET-parameter is given,

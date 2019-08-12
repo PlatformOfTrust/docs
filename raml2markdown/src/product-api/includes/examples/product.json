@@ -1,6 +1,6 @@
 {
   "@context": "<context URL>",
-  "@type": "Product",
+  "@type": "DataProduct",
   "@id": "<URL to the product resource>",
   "productCode": "<the product code>",
   "dataContext": "<data context URL>",
@@ -10,9 +10,10 @@
   "organizationPublicKeys": [
     {
       "url": "<public key URL>",
-      "type": "<public key type>"
+      "type": "RsaSignature2018"
     }
   ],
   "description": "<product description>",
-  "imageUrl": "<image URL>"
+  "imageUrl": "<image URL>",
+  "identityId": "<identity UUID>"
 }

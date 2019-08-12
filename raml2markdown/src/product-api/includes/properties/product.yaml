@@ -52,6 +52,10 @@ organizationPublicKeys:
         "type": "RsaSignature2018"
       }
     ]
+identityId:
+  description: The data product's identity ID.
+  type: string
+  example: 7c25c7f1-a1f7-4c9c-91b6-669779f60e2a
 description?:
   description: The description of the product.
   type: string

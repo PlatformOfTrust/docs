@@ -1,4 +1,7 @@
 {
   "context": "https://example.com/contexts/type.jsonld",
-  "type": "Owner"
+  "type": "<Link type>",
+  "data": {
+    "key": "value"
+  }
 }
