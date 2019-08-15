@@ -1,6 +1,6 @@
 {
-  "dataContext": "https://example.com/contexts/product-data.jsonld",
-  "parameterContext": "https://example.com/contexts/product-parameters.jsonld",
+  "dataContext": "https://example.com/v1/Context/Data",
+  "parameterContext": "https://example.com/v1/Context/Parameter",
   "productCode": "product-1",
   "name": "Product name",
   "translatorUrl": "https://example.com/translator",
@@ -16,5 +16,5 @@
   ],
   "imageUrl": "https://example.com/product-image.png",
   "description": "This is a product that returns the temperature data for ...",
-  "groupId": "<Group UUID>"
+  "groupId": "0a52c776-1c9c-42b1-ac03-b64c04abded2"
 }

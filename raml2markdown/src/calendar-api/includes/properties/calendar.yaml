@@ -10,10 +10,6 @@ toIdentity:
   description: The "to" identity ID to which the calendar is created for.
   type: string
   example: d36c4cd0-26c9-446e-a93f-0a90029f3a7f
-type:
-  description: The type of the calendar entry.
-  type: string
-  example: Event
 title:
   description: The title of the calendar entry
   type: string

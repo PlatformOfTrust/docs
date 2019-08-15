@@ -1,9 +1,7 @@
 {
-  "context": "https://example.com/contexts/type.jsonld",
-  "type": "Building",
+  "context": "https://standards.lifeengine.io/v1/Context/Identity/Group",
+  "type": "Group",
   "data": {
-    "name": "Example building",
-    "key-1": "Value 1",
-    "key-2": "Value 2"
+    "name": "Company Oy"
   }
 }

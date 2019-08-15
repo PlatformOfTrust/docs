@@ -1,0 +1,63 @@
+{
+  "standards": {
+    "Core": {
+      "dataProducts": [
+        {
+          "classDefinition": "https://standards.oftrust.net/v1/ClassDefinitions/DataProduct",
+          "context": "https://standards.oftrust.net/v1/Context/DataProduct",
+          "name": "Data Product",
+          "subclasses": [],
+          "vocabulary": "https://standards.oftrust.net/v1/Vocabulary/DataProduct"
+        }
+      ],
+      "identities": [],
+      "links": [
+        {
+          "classDefinition": "https://standards.oftrust.net/v1/ClassDefinitions/Link",
+          "context": "https://standards.oftrust.net/v1/Context/Link",
+          "name": "Link",
+          "subclasses": [
+            {
+              "classDefinition": "https://standards.oftrust.net/v1/ClassDefinitions/Link/Role",
+              "context": "https://standards.oftrust.net/v1/Context/Link/Role",
+              "name": "Role",
+              "vocabulary": "https://standards.oftrust.net/v1/Vocabulary/Link/Role",
+              "subclasses": []
+            }
+          ],
+          "vocabulary": "https://standards.oftrust.net/v1/Vocabulary/Link"
+        }
+      ]
+    },
+    "Platform of Trust": {
+      "dataProducts": [],
+      "identities": [
+        {
+          "classDefinition": "https://standards.oftrust.net/v1/ClassDefinitions/Group/Organization",
+          "context": "https://standards.oftrust.net/v1/Context/Group/Organization",
+          "name": "Organization",
+          "subclasses": [
+            {
+              "classDefinition": "https://standards.oftrust.net/v1/ClassDefinitions/Group/Organization/LimitedCompany",
+              "context": "https://standards.oftrust.net/v1/Context/Group/Organization/LimitedCompany",
+              "name": "Limited Company",
+              "subclasses": [
+                {
+                  "classDefinition": "https://standards.oftrust.net/v1/ClassDefinitions/Group/Organization/LimitedCompany/HousingCooperative",
+                  "context": "https://standards.oftrust.net/v1/Context/Group/Organization/LimitedCompany/HousingCooperative",
+                  "name": "Housing Cooperative",
+                  "subclasses": [],
+                  "vocabulary": "https://standards.oftrust.net/v1/Vocabulary/Group/Organization/LimitedCompany/HousingCooperative"
+                }
+              ],
+              "vocabulary": "https://standards.oftrust.net/v1/Vocabulary/Group/Organization/LimitedCompany"
+            }
+          ],
+          "vocabulary": "https://standards.oftrust.net/v1/Vocabulary/Group/Organization"
+        }
+      ],
+      "links": []
+    }
+  }
+}
+
