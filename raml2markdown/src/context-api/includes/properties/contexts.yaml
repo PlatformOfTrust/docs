@@ -1,0 +1,10 @@
+standards:
+  description: Supported standards
+  type: object
+  properties:
+    Core:
+      description: Core standards
+      type: standard
+    Platform of Trust:
+      description: Platform of Trust standards
+      type: standard

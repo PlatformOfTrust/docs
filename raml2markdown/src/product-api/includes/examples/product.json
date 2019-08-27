@@ -1,18 +1,23 @@
 {
-  "@context": "<context URL>",
-  "@type": "Product",
-  "@id": "<URL to the product resource>",
-  "productCode": "<the product code>",
-  "dataContext": "<data context URL>",
-  "parameterContext": "<parameter context URL>",
-  "translatorUrl": "<translator URL>",
-  "name": "<product name>",
+  "@context": "https://standards.lifeengine.io/v1/Context/Identity/Thing/HumanWorld/Product/DataProduct",
+  "@type": "DataProduct",
+  "@id": "https://api-sandbox.oftrust.net/products/v1/product-1",
+  "productCode": "product-1",
+  "dataContext": "https://example.com/v1/Context/Data",
+  "parameterContext": "https://example.com/v1/Context/Parameter",
+  "translatorUrl": "https://translator.example.com/fetch-data-product",
+  "name": "Product name",
   "organizationPublicKeys": [
     {
-      "url": "<public key URL>",
-      "type": "<public key type>"
+      "url": "https://example.com/public-key.pub",
+      "type": "RsaSignature2018"
+    },
+    {
+      "url": "https://example.com/public-key-2.pub",
+      "type": "RsaSignature2018"
     }
   ],
-  "description": "<product description>",
-  "imageUrl": "<image URL>"
+  "description": "This is a product that returns the temperature data for ...",
+  "imageUrl": "https://example.com/product-image.png",
+  "identityId": "31b5b971-dc50-4c9c-992a-57c0bf016186"
 }

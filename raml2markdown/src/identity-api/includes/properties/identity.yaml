@@ -6,35 +6,45 @@
   description: The type of the identity
   type: string
   example: Building
-name:
-  description: The name of the identity
-  type: string
-  example: Example building
 data:
-  description: Optional key-value data for the identity
+  description: Additional key-value data for the identity as defined in the context
   type: object
   example: |
     {
-      "key-1": "Value 1",
-      "key-2": "Value 2"
+      "name": "Example building"
     }
-createdBy:
-  description: The user ID of the user who created this identity
-  type: string
-updatedBy:
-  description: The user ID of the user who updated this identity
-  type: string
-createdAt:
-  description: RFC3339 datetime when the identity was created
-  type: datetime
-  example: 2018-02-28T16:41:41.090Z
-updatedAt:
-  description: RFC3339 datetime when the identity was updated
-  type: datetime
-  example: 2018-02-28T16:41:41.090Z
-status:
-  description: The status of the identity
-  type: number
+  properties:
+    name:
+      description: The name of the identity
+      type: string
+      example: Example building
+metadata:
+  description: |
+    Metadata about the identity, such as when it was created/updated and who
+    created it / updated it.
+  type: object
+  example: |
+    {
+      "createdAt": "2018-12-03T14:33:44",
+      "createdBy": "747d0af5-6f06-4309-b2d5-f06677356a9a",
+      "updatedAt": "2018-12-03T14:33:44",
+      "updatedBy": "747d0af5-6f06-4309-b2d5-f06677356a9a",
+    }
+  properties:
+    createdAt:
+      description: RFC3339 datetime when the identity was created
+      type: datetime
+      example: 2018-02-28T16:41:41.090Z
+    createdBy:
+      description: The user ID of the user who created this identity
+      type: string
+    updatedAt:
+      description: RFC3339 datetime when the identity was updated
+      type: datetime
+      example: 2018-02-28T16:41:41.090Z
+    updatedBy:
+      description: The user ID of the user who updated this identity
+      type: string
 inLinks:
   description: List of incoming links to the identity
   type: link[]

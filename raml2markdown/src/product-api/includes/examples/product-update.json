@@ -1,8 +1,7 @@
 {
-  "dataContext": "https://example.com/contexts/product-data.jsonld",
-  "parameterContext": "<parameter context URL>",
+  "dataContext": "https://example.com/v1/Context/Data",
+  "parameterContext": "https://example.com/v1/Context/Parameter",
   "productCode": "product-1",
-  "sharedSecret": "<shared secret>",
   "name": "Product name",
   "translatorUrl": "https://example.com/translator",
   "organizationPublicKeys": [

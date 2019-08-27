@@ -1,4 +1,4 @@
 {
-  "context": "https://example.com/contexts/type.jsonld",
-  "type": "Owner"
+  "@context": "https://standards.lifeengine.io/v1/Context/Link/Role/MemberOf",
+  "@type": "MemberOf"
 }

@@ -1,12 +1,12 @@
 #%RAML 1.0
 ---
-title: Context
+title: Platform of Trust Context API
 version: v1
 baseUri: https://api-sandbox.oftrust.net
 mediaType: application/json
 description: |
-  The Context API provides means to list available JSON-LD contexts in the
-  PlatformOfTrust/standards repository in GitHub.
+  The Context API provides means to list available JSON-LD contexts of the
+  Platform of Trust.
 
   The contexts defines the semantic meaning of the keys in the responses from the APIs.
   When creating a new identity, choose which type of identity to create by
@@ -16,53 +16,50 @@ types:
   context:
     type: object
     properties:
-      type:
-        description: |
-          The type of the context: either "Identity", which is used for identities,
-          or "Link", which is used for linking identities.
-        type: string
-        example: Identity
       name:
-        description: The name of the context.
+        description: User-friendly name of context
         type: string
-        example: Building
-      url:
-        description: The URL to the context. This should be saved as the context for the identity or link.
+        example: Room
+      context:
+        description: URL to context JSON-LD file
         type: string
-        example: https://example.com/contexts/identity-building.jsonld
-/contexts/{version}:
-  description: Context handling
+        example: "https://standards.oftrust.net/v1/Context/Virtual/Project"
+      classDefinition:
+        description: URL to class definition JSON-LD file
+        type: string
+        example: "https://standards.oftrust.net/v1/ClassDefinitions/Virtual/Project"
+      vocabulary:
+        description: URL to vocabulary JSON-LD file
+        type: string
+        example: "https://standards.oftrust.net/v1/Vocabulary/Virtual/Project"
+      subclasses:
+        description: All contexts inherited from the current one
+        type: array
+        example: !include includes/examples/subclasses.json
+  standard:
+    type: object
+    properties:
+      links:
+        description: Contexts targeted for linking the identities
+        type: array
+        items:
+          type: context
+      dataProducts:
+        description: Data product contexts
+        type: array
+        items:
+          type: context
+      identities:
+        description: General list of contexts
+        type: array
+        items:
+          type: context
+/contexts/{version}/:
+  description: Manage context resources
   get:
-    description: Returns a list of all defined contexts
+    description: List all supported contexts
     responses:
       200:
         body:
-          properties:
-            '@context':
-              description: The context URL
-              type: string
-              example: https://schema.org/
-            '@type':
-              description: The type of the response object
-              type: string
-              example: collection
-            ItemList:
-              description: The list of contexts
-              type: context[]
-          example: |
-            {
-              "@context": "https://schema.org/",
-              "@type": "collection",
-              "ItemList": [
-                {
-                  "type": "Identity",
-                  "name": "Building",
-                  "url": "https://example.com/contexts/identity-building.jsonld"
-                },
-                {
-                  "type": "Link",
-                  "name": "Owner",
-                  "url": "https://example.com/contexts/link-owner.jsonld"
-                }
-              ]
-            }
+          properties: !include includes/properties/contexts.yaml
+          example: !include includes/examples/standards.json

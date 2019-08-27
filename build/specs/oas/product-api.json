@@ -236,7 +236,6 @@
                 "productCode": "<product code>",
                 "name": "<product name>",
                 "translatorUrl": "<translator URL>",
-                "sharedSecret": "<shared secret>",
                 "organizationPublicKeys": [
                   {
                     "url": "<public key URL>",
@@ -625,7 +624,6 @@
                 "dataContext": "<data context URL>",
                 "parameterContext": "<parameter context URL>",
                 "productCode": "<product code>",
-                "sharedSecret": "<shared secret>",
                 "name": "<product name>",
                 "translatorUrl": "<translator URL>",
                 "organizationPublicKeys": [

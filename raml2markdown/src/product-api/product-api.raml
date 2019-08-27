@@ -84,6 +84,13 @@ types:
       Authorization: !include ../authorization-headers.yaml
     body:
       type: product
+      properties:
+        groupId:
+          description: |
+            The group where the user is a member of. This group will be
+            the developer of the data product.
+          type: string
+          example: 5c35c7f1-a1f7-4c9c-91b6-669779f60d23
       example: !include includes/examples/product-create.json
     responses:
       201:

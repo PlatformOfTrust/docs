@@ -14,18 +14,16 @@ types:
     properties:
       context:
         description: The URL to the context for this identity
-      name:
-        description: The name of the identity
-        type: string
       type:
         description: The type of the identity
         type: string
-      data?:
-        description: Optional key-value data for the identity
+      data:
+        description: Additional data for the identity, as defined in the context.
         type: object
-      createdBy?:
-        description: Optional User ID who should be the creator of this identity
-        type: string
+        properties:
+          name:
+            description: The name of the identity
+            type: string
   link:
     type: object
     properties:
@@ -35,10 +33,12 @@ types:
       type:
         description: The type of the link
         type: string
+      data?:
+        description: Additional key-value data for the link.
+        type: object
 /identities/v1:
   description: |
-    Create a new or list identities. If optional `type` GET-parameter is given,
-    lists only identities of the defined type.
+    Create a new identity.
   post:
     description: Create a new identity
     headers:
@@ -60,23 +60,6 @@ types:
                 "message": "Could not create identity."
               }
             }
-  get:
-    queryParameters:
-      type?:
-        description: |
-          If given to `GET /identities/{version}?type=App`, will list only the
-          identities of `@type: "App"`
-        type: string
-        example: /identities/{version}?type=App
-    description: List all identities created by currently logged in user
-    headers:
-      Authorization: !include ../authorization-headers.yaml
-    responses:
-      200:
-        body:
-          properties: !include includes/properties/identities.yaml
-          example: !include includes/examples/identities.json
-
   /{id}:
     description: Read, update and delete identities.
     uriParameters:

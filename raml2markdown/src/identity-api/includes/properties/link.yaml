@@ -12,17 +12,37 @@ from:
 to:
   description: The to-identity ID, to where the link ends
   type: string
-createdBy:
-  description: The user ID of the user who created this link
-  type: string
-updatedBy:
-  description: The user ID of the user who updated this link
-  type: string
-createdAt:
-  description: RFC3339 datetime when the link was created
-  type: datetime
-  example: 2018-02-28T16:41:41.090Z
-updatedAt:
-  description: RFC3339 datetime when the link was updated
-  type: datetime
-  example: 2018-02-28T16:41:41.090Z
+data?:
+  description: Additional attributes for the link, as defined by the context.
+  type: object
+  example: |
+    {
+      "key": "value"
+    }
+metadata:
+  description: |
+    Metadata about the link, such as when it was created/updated and who
+    created it / updated it.
+  type: object
+  example: |
+    {
+      "createdAt": "2018-12-03T14:33:44",
+      "createdBy": "747d0af5-6f06-4309-b2d5-f06677356a9a",
+      "updatedAt": "2018-12-03T14:33:44",
+      "updatedBy": "747d0af5-6f06-4309-b2d5-f06677356a9a",
+    }
+  properties:
+    createdAt:
+      description: RFC3339 datetime when the link was created
+      type: datetime
+      example: 2018-02-28T16:41:41.090Z
+    createdBy:
+      description: The user ID of the user who created this link
+      type: string
+    updatedAt:
+      description: RFC3339 datetime when the link was updated
+      type: datetime
+      example: 2018-02-28T16:41:41.090Z
+    updatedBy:
+      description: The user ID of the user who updated this link
+      type: string
