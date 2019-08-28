@@ -1,4 +1,4 @@
 {
-  "@context": "https://standards.lifeengine.io/v1/Context/Link/Role/MemberOf",
-  "@type": "MemberOf"
+  "context": "https://standards.lifeengine.io/v1/Context/Link/Role/MemberOf",
+  "type": "MemberOf"
 }
