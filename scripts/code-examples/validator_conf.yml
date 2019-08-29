@@ -24,12 +24,12 @@ before_sample:
     - resource: 'Identity'
       method: 'POST'
       subs:
-        '@id': '<to identity ID>'
+        '@id': '0920a84a-1548-4644-b95d-e3f80e1b9ca6'
   'calendar-api/calendars/{version}':
     - resource: 'Identity'
       method: 'POST'
       subs:
-        '@id': '<to identity ID>'
+        '@id': '0920a84a-1548-4644-b95d-e3f80e1b9ca6'
   'identity-api/identities/v1/{from_identity}/link/{to_identity}':
     - resource: 'Identity'
       method: 'POST'
