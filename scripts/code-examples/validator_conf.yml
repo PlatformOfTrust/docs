@@ -34,11 +34,11 @@ before_sample:
     - resource: 'Identity'
       method: 'POST'
       subs:
-        '@id': 'to_identity'
+        '@id': '{to_identity}'
     - resource: 'Identity'
       method: 'POST'
       subs:
-        '@id': 'from_identity'
+        '@id': '{from_identity}'
   'product-api/products/{version}':
     - resource: 'DeleteProduct'
       method: 'POST'
