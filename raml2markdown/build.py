@@ -134,7 +134,7 @@ def concatenate_files(code_examples_path):
               ofile.write(
                 "<li><a href='https://github.com/PlatformOfTrust/docs/issues/new?assignees=&template=i-m-in-pain--here-s-the-symptoms.md&title=Customer+wish&labels="+ api.lower()+",Wish' title='Make a wish!' target='new'>Did we miss something? Make a wish!</a></li>")
               # ofile.write("<img src='images/raml.png' class='ramlSpec-lg'>")
-              ofile.write("</br>")
+              ofile.write("<div style='min-height:30px;'>&nbsp;</div>")
               ofile.write("</div></div></div>")
               ofile.write("\n\n")
               ofile.write(example_desc)
