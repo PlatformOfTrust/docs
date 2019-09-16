@@ -130,6 +130,9 @@ def concatenate_files(code_examples_path):
               ofile.write("> <div class='hexagon-so'><div class='hexagon-inside-so'><div class='hexagon-inside2-so'><p>Do you need help in using the "+example_method.replace("{version}","v1")+"? </p>")
               ofile.write("<li><a href='https://stackoverflow.com/questions/tagged/platform-of-trust' title='Check out Platform of Trust questions and answers in Stack Overflow' target='new'>Checkout existing questions & answers</a></li>")
               ofile.write("<li><a href='https://stackoverflow.com/questions/ask?guided=false&tags=platform-of-trust,"+api.lower()+"' title='Ask a question in Stack Overflow' target='new'>Ask a question in Stack Overflow</a></li>")
+              ofile.write("</br>")
+              ofile.write(
+                "<li><a href='https://github.com/PlatformOfTrust/docs/issues/new?assignees=&template=i-m-in-pain--here-s-the-symptoms.md&title=Customer+wish&labels='" + api.lower() + "' title='Make a wish!' target='new'>Did we miss something? Make a wish!</a></li>")
               # ofile.write("<img src='images/raml.png' class='ramlSpec-lg'>")
               ofile.write("</div></div></div>")
               ofile.write("\n\n")
