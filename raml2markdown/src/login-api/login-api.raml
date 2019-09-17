@@ -1,0 +1,330 @@
+#%RAML 1.0
+---
+title: Login portal API
+version: v1
+baseUri: https://login.oftrust.net/api
+mediaType: application/json
+/register:
+  description: Register a new user.
+  post:
+    headers:
+      Content-Type:
+        description: The content type of a request, MUST be `application/x-www-form-urlencoded`.
+        type: string
+        example: application/x-www-form-urlencoded
+      Accept:
+        description: Accept header, MUST be `application/json`.
+        type: string
+        example: application/json
+    body:
+      application/x-www-form-urlencoded:
+        properties:
+          email:
+            description: The user's email. Used as username.
+            type: string
+            example: user@example.com
+          password:
+            description: The user's password.
+            type: string
+            example: xFx92{wqp,x
+          firstName:
+            description: The user's first name.
+            type: string
+            example: Anna
+          lastName:
+            description: The user's last name.
+            type: string
+            example: Bar
+          termsAccepted:
+            description: Whether the terms and conditions have been accepted or not.
+            type: boolean
+            example: true
+        example: |
+          {
+            "email": "user@example.com",
+            "password": "xFx92{wqp,x",
+            "firstName": "Anna",
+            "lastName": "Bar",
+            "termsAccepted": true
+          }
+    responses:
+      201:
+        body:
+          example: !include includes/examples/user.json
+      422:
+        body:
+          examples:
+            'Password validation fails': |
+              {
+                "error": {
+                  "status": 422,
+                  "message": "Password validation failed."
+                }
+              }
+            'Could not register user identity': |
+              {
+                "error": {
+                  "status": 422,
+                  "message": "Could not register user identity."
+                }
+              }
+            'Could not register user': |
+              {
+                "error": {
+                  "status": 422,
+                  "message": "Could not register user."
+                }
+              }
+/authorize:
+  description: |
+    The first part of the authorization flow. Creates a new authorization token
+    and returns a redirect URL where the user should be redirected for the authorization
+    flow.
+  post:
+    description: Authorization flow
+    headers:
+      Content-Type:
+        description: The content type of a request, MUST be `application/x-www-form-urlencoded`.
+        type: string
+        example: application/x-www-form-urlencoded
+      Accept:
+        description: Accept header, MUST be `application/json`.
+        type: string
+        example: application/json
+    body:
+      application/x-www-form-urlencoded:
+        properties:
+          email:
+            description: The user's email address, used for logging in.
+            type: string
+            example: user@example.com
+          password:
+            description: The user's password
+            type: string
+            example: xFx92{wqp,x
+          grant_type:
+            description: The grant type of the authorization flow, MUST be `authorization_code`
+            type: string
+            example: authorization_code
+          response_type:
+            description: The response type for the request, MUST be `code`
+            type: string
+            example: code
+          client_id:
+            description: The client id of the application.
+            type: string
+            example: b773d92e-2qg0-4ab0-la8e-mda0b81bx367
+          redirect_uri:
+            description: The redirect URI for the authorization flow.
+            type: string
+            example: https://example.com/auth-callback
+          state?:
+            description: An optional state for the request, could be a CSRF token.
+            type: string
+            example: |
+              eyJkIjogeyJyIjogImh0dHA6Ly93b3JsZC5sb2NhbDo4MDIx6sQOD
+    responses:
+      200:
+        body:
+          properties:
+            redirectUrl:
+              description: The redirect URL where to redirect the user back to the application.
+            type: string
+              example: https://example.com/auth-callback?code=<code>&state=<state>
+          example: |
+            {
+              "redirectUrl": "http://world.local:8080/api/exchangeToken?code=hX7HaEhZjCdQOZIxtCXOR1e05rBYYw&redirect_uri=http%3A%2F%2Fworld.local%3A8080%2Fapi%2FexchangeToken&subject=33237067-e72c-4f26-b78b-9f9e234b2e7d&client_id=f773dafe-20c0-4a25-aa3e-9da0b81b9304",
+              "userId": "33237067-e72c-4f26-b78b-9f9e234b2e7d"
+            }
+      403:
+        body:
+          description: If the user supplied invalid credentials.
+          example: !include includes/examples/crud_403.json
+/exchangeToken:
+  description: |
+    Last part of the authorization flow. Converts the authorization code to an
+    access token to be used in the Authorization header.
+  post:
+    description: Authorization flow, convert authorization code to access token.
+    headers:
+        type: string
+        example: application/x-www-form-urlencoded
+      Accept:
+        description: The Accept header, MUST be `application/json`
+        type: string
+        example: application/json
+    body:
+      application/x-www-form-urlencoded:
+        properties:
+          grant_type:
+            description: The grant type of the login, MUST be `authorization_code`.
+            type: string
+            example: authorization_code
+          redirect_uri:
+            description: The redirect URI used in the authorization flow.
+            type: string
+            example: "https://example.com/auth-callback, https://another.example.com/auth-callback2"
+          code:
+            description: The authorization code to exchange to an access token.
+            type: string
+            example: b56TQpKdqg6ApFZvtbMhT7ki88Jpvn
+          client_secret:
+            description: The authorization code to exchange to an access token.
+            type: string
+            example: b56TQpKdqg6ApFZvtbMhT7ki88Jpvn
+          state?:
+            description: The optional state, e.g. CSRF token from the original request.
+            type: string
+            example: eyJkIjogeyJyIjogImh0dHA6Ly93b3JsZC5sb2NhbDo4MDIx6sQOD
+    responses:
+      200:
+        body:
+          properties: !include includes/properties/access-token.yaml
+          example: !include includes/examples/access_token.json
+      400:
+        body:
+          example: |
+            {
+              "error": "invalid_request",
+              "error_description": "Missing code parameter.",
+              "state": "state"
+            }
+      401:
+        body:
+          description: If e.g. the authorization code has expired.
+          example: |
+            {
+              "error": "invalid_grant"
+            }
+      422:
+        body:
+          example: !include includes/examples/missing_mandatory_data.json
+/me:
+  description: |
+    Gets the information about the currently logged in user. Uses the OAuth
+    Bearer token from the authorization header.
+  get:
+    headers:
+      Authorization: !include includes/properties/authorization-headers.yaml
+    description: Get information about the currently logged in user.
+    responses:
+      200:
+        body:
+          example: !include includes/examples/user.json
+      403:
+        body:
+          example: !include includes/examples/crud_403.json
+/authorizeApplication:
+  description: Authorizes an application for a user.
+  post:
+    description: Authorizes the application for the given user.
+    body:
+      properties:
+        userId:
+          description: The user's id. Is returned from the registration endpoint.
+          type: string
+          example: 33237067-e72c-4f26-b78b-9f9e234b2e7d
+        clientId:
+          description: The client id.
+          type: string
+          example: f773dafe-20c0-4a25-aa3e-9da0b81b9304
+      example: |
+        {
+          "userId": "33237067-e72c-4f26-b78b-9f9e234b2e7d",
+          "clientId": "f773dafe-20c0-4a25-aa3e-9da0b81b9304"
+        }
+    responses:
+      200:
+      422:
+        body:
+          examples:
+            'Invalid header': |
+              {
+                "error": {
+                  "status": 404,
+                  "message": "Invalid header."
+                }
+              }
+            'Validation failed': |
+              {
+                "error": {
+                  "status": 404,
+                  "message": "Invalid request."
+                }
+              }
+/apps:
+  description: |
+    App endpoints. Create apps in the system.
+    Creates the App identity and the OAuth client in the system.
+  post:
+    description: |
+      Creates a new app and it's associated OAuth Client.
+      NOTE: The `clientSecrets` is shown only once in plain text, when creating
+      the application. Make sure you save it somewhere. The client secret is
+      used for validating the application.
+    headers:
+      Authorization: !include includes/properties/authorization-headers.yaml
+    body:
+      properties: !include includes/properties/app-create.yaml
+      example: !include includes/examples/app-create.json
+    responses:
+      201:
+        body:
+          example: !include includes/examples/app_create_response.json
+      403:
+        body:
+          example: !include includes/examples/crud_403.json
+      422:
+        body:
+          example: !include includes/examples/missing_mandatory_data.json
+/acl/{target_identity}:
+  uriParameters:
+    target_identity:
+      description: The identity for which the permissions should be listed
+      type: string
+      example: b32ead1c-2f23-4faa-91f3-e30ae239cc20
+  get:
+    description: |
+        List permissions on an identity. Will list all identities that can
+        access the identity and what access privileges they have.
+    headers:
+      Authorization: !include includes/properties/authorization-headers.yaml
+    responses:
+      200:
+        body:
+          example: !include includes/examples/list_permissions.json
+      403:
+        body:
+          example: !include includes/examples/crud_403.json
+      404:
+        body:
+          example: !include includes/examples/crud_404.json
+/acl/<from_identity>/<target_identity>:
+  uriParameters:
+    from_identity:
+      description: |
+       The identity that is granted access to the `target_identity`
+      type: string
+      example: b32ead1c-2f23-4faa-91f3-e30ae239cc17
+    target_identity:
+      description: The identity that can be accessed
+      type: string
+      example: b32ead1c-2f23-4faa-91f3-e30ae239cc20
+  post:
+    description: |
+        Set permissions. Will give the from identity read, write, link
+        and/or manage access to the to target identity.
+        If any type of privilege (read, write, link or manage) is left out or
+        set to null, then it will remain unchanged.
+    headers:
+      Authorization: !include includes/properties/authorization-headers.yaml
+    body:
+      example: !include includes/examples/set_permissions.json
+    responses:
+      204:
+      403:
+        body:
+          example: !include includes/examples/crud_403.json
+      404:
+        body:
+          example: !include includes/examples/crud_404.json
