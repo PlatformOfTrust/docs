@@ -78,14 +78,16 @@ types:
         type: string
         example: Ioma1gqOVFUBrXiziWS....CLqBG4vFozG3YgzPzillNip0=
       X-App-Token:
-        description: The requesting application's client ID.
+        description: |
+          The requesting app's JWT token. The token is generated when the
+          app is created.
         type: string
-        example: 379780e4-b511-4fa9-aef8-bda9bd58ab89
+        example: eyJ0eXAiOiJJV1QiLcJhbgciOiJSUzI1NiJ9.eyJzY29w...VXs5fff
       X-User-Token?:
         description: |
-          The currently logged in user's OAuth access token.
+          The currently logged in user's OAuth bearer token.
         type: string
-        example: eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzY29w...DVs5aaf
+        example: eyJ0eXAIOijKV1QiLcJGbGciOiJSUzI1NiJ9.eyJzY29w...DVs5aaf
     body:
       type: data-product-request
       example: |
