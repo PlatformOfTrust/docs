@@ -38,15 +38,17 @@ types:
       Request data from an external service defined by the data product, and
        product code. The data broker will validate the signature of the
        payload and when verified, relay the request to the translator
-       connected to the data product. The translator will translate the
+       registered to the data product. The translator must validate the
+       headers and the signature received from the data broker. The
+       translator will then translate the
        information fetched from an external source into a standardized format
        that will be returned to the requester.
     headers:
       X-Pot-Signature:
         description: |
           A HMAC-SHA256 signature in base64 encoded format.
-          The signature is created by taking the request payload, e.g. a
-          Python dict, and converting it to a string. <br/><br/>
+          The signature is created from the request payload and the
+          app's client secret.<br/><br/>
 
           Python example: <br/><br/>
           <code>
@@ -60,11 +62,11 @@ types:
           The keys MUST be sorted, without indentation and separators comma
           (,) and colon (:) specified. <br/><br/>
 
-          Get the digest by passing the app access token (generated when
+          Get the digest by passing the app client secret (generated when
           creating a new app) and the body string to `hmac`:<br/><br/>
           <code>
           digest = <br/>
-          hmac.new(app_access_token.encode('utf-8'), <br/>
+          hmac.new(client_secret.encode('utf-8'), <br/>
           body_string.encode('utf-8'),<br/>
           hashlib.sha256).digest()<br/><br/>
           </code><br/>
@@ -75,15 +77,17 @@ types:
 
         type: string
         example: Ioma1gqOVFUBrXiziWS....CLqBG4vFozG3YgzPzillNip0=
-      X-Pot-App:
-        description: The requesting application's client ID.
-        type: string
-        example: 379780e4-b511-4fa9-aef8-bda9bd58ab89
-      X-Pot-Token?:
+      X-App-Token:
         description: |
-          The currently logged in user's OAuth access token.
+          The requesting app's JWT token. The token is generated when the
+          app is created.
         type: string
-        example: eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzY29w...DVs5aaf
+        example: eyJ0eXAiOiJJV1QiLcJhbgciOiJSUzI1NiJ9.eyJzY29w...VXs5fff
+      X-User-Token?:
+        description: |
+          The currently logged in user's OAuth bearer token.
+        type: string
+        example: eyJ0eXAIOijKV1QiLcJGbGciOiJSUzI1NiJ9.eyJzY29w...DVs5aaf
     body:
       type: data-product-request
       example: |
