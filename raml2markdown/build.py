@@ -9,7 +9,7 @@ import subprocess
 
 # Array of APIs. Call API_Raml_to_Slate(apiname) for each. Expected: API RAML file in folder which is the api name.
 # Inside that folder must be .raml file with the same name. Example: ./src/product-api/product-api.raml
-APIs = ["Broker-api", "Calendar-api", "Context-api", "Identity-api", "Message-api", "Product-api"]
+APIs = ["Application-api", "Broker-api", "Calendar-api", "Context-api", "Identity-api", "Message-api", "Product-api"]
 
 
 def api_raml_to_slate(apiname):
