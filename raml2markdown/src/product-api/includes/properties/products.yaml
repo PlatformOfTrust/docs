@@ -9,9 +9,6 @@
 ItemList:
   description: The list of products
   type: product[]
-links:
-  description: The list of related URLs for pagination
-  type: paginationURL[]
-hasMore:
-  description: Indicates if the next page exists
-  type: boolean
+pagination:
+  description: Pagination object
+  type: pagination

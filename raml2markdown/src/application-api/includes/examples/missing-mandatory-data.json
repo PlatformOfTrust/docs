@@ -1,0 +1,16 @@
+{
+  "error": {
+    "status": 422,
+    "message": {
+      "scopes": [
+        "Missing data for required field."
+      ],
+      "defaultScopes": [
+        "Missing data for required field."
+      ],
+      "groupId": [
+        "Missing data for required field."
+      ]
+    }
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "name": "Example Application",
+  "description": "Application description",
+  "privacyPolicyUrl": "http://example.com/privacy.html",
+  "webPageUrl": "http://example.com/application.html",
+  "iconUrl": "http://example.com/icon.png",
+  "scopes": "",
+  "defaultScopes": "",
+  "redirectUris": "https://example.com/auth-callback",
+  "defaultRedirectUri": "https://example.com/auth-callback",
+  "groupId": "bfec43ac-a0ce-4469-a78f-3106cf28b4c9"
+}
