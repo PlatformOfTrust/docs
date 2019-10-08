@@ -1,0 +1,14 @@
+{
+  "b32ead1c-2f23-4faa-91f3-e30ae239cc16": {
+    "read": true,
+    "write": true,
+    "link": true,
+    "manage": true
+  },
+  "b32ead1c-2f23-4faa-91f3-e30ae239cc17": {
+    "read": true,
+    "write": true,
+    "link": true,
+    "manage": true
+  }
+}

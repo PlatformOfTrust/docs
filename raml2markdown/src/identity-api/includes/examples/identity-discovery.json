@@ -1,0 +1,41 @@
+{
+  "identities": {
+    "eccbcc62-37e2-4014-8233-d077fce7bac9": {
+      "@context": "https://standards.oftrust.net/v1/Context/Identity/Device/Sensor/TemperatureSensor/",
+      "@type": "TemperatureSensor",
+      "@id": "eccbcc62-37e2-4014-8233-d077fce7bac9",
+      "data": {
+        "name": "Temperature sensor",
+        "codeLocal": "local code"
+      },
+      "metadata": {
+        "createdAt": "2019-09-17T12:53:25+00:00",
+        "createdBy": "f773dafe-20c0-4a25-aa3e-9da0b81b9304",
+        "updatedAt": "2019-09-17T12:53:25+00:00",
+        "updatedBy": "f773dafe-20c0-4a25-aa3e-9da0b81b9304"
+      }
+    }
+  },
+  "pagination": {
+    "links": [
+      {
+        "rel": "first",
+        "href": "https://api-sandbox.oftrust.net/identities/v1/discovery?offset=0&limit=1&fromId=fc3bced4-a132-4293-9240-4d0f02277e2e&linkContext=https%3A%2F%2Fstandards.oftrust.net%2Fv1%2FContext%2FLink%2FBelongsTo%2F&identityContext=https%3A%2F%2Fstandards.oftrust.net%2Fv1%2FContext%2FIdentity%2FDevice%2FSensor%2F&linkDirection=IN&maxDepth=3"
+      },
+      {
+        "rel": "self",
+        "href": "https://api-sandbox.oftrust.net/identities/v1/discovery?fromId=fc3bced4-a132-4293-9240-4d0f02277e2e&linkContext=https%3A%2F%2Fstandards.oftrust.net%2Fv1%2FContext%2FLink%2FBelongsTo%2F&identityContext=https%3A%2F%2Fstandards.oftrust.net%2Fv1%2FContext%2FIdentity%2FDevice%2FSensor%2F&linkDirection=IN&maxDepth=3&offset=0&limit=1"
+      },
+      {
+        "rel": "last",
+        "href": "https://api-sandbox.oftrust.net/identities/v1/discovery?offset=173&limit=1&fromId=fc3bced4-a132-4293-9240-4d0f02277e2e&linkContext=https%3A%2F%2Fstandards.oftrust.net%2Fv1%2FContext%2FLink%2FBelongsTo%2F&identityContext=https%3A%2F%2Fstandards.oftrust.net%2Fv1%2FContext%2FIdentity%2FDevice%2FSensor%2F&linkDirection=IN&maxDepth=3"
+      },
+      {
+        "rel": "next",
+        "href": "https://api-sandbox.oftrust.net/identities/v1/discovery?offset=1&limit=1&fromId=fc3bced4-a132-4293-9240-4d0f02277e2e&linkContext=https%3A%2F%2Fstandards.oftrust.net%2Fv1%2FContext%2FLink%2FBelongsTo%2F&identityContext=https%3A%2F%2Fstandards.oftrust.net%2Fv1%2FContext%2FIdentity%2FDevice%2FSensor%2F&linkDirection=IN&maxDepth=3"
+      }
+    ],
+    "hasMore": true,
+    "totalCount": 174
+  }
+}

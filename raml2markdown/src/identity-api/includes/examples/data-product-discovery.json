@@ -1,0 +1,26 @@
+{
+  "dataProducts": {
+    "data-product-product-code": {
+      "eccbcc62-37e2-4014-8233-d077fce7bac9": "sensor id 1",
+      "958f5881-ee48-4a5a-a6ed-bad100ec72ac": "sensor id 2"
+    }
+  },
+  "pagination": {
+    "links": [
+      {
+        "rel": "first",
+        "href": "https://api-sandbox.oftrust.net/identities/v1/dataDiscovery?offset=0&limit=10&fromId=fc3bced4-a132-4293-9240-4d0f02277e2e&linkContext=https%3A%2F%2Fstandards.oftrust.net%2Fv1%2FContext%2FLink%2FBelongsTo%2F&identityContext=https%3A%2F%2Fstandards.oftrust.net%2Fv1%2FContext%2FIdentity%2FDevice%2FSensor%2F&linkDirection=IN&maxDepth=3"
+      },
+      {
+        "rel": "self",
+        "href": "https://api-sandbox.oftrust.net/identities/v1/dataDiscovery?fromId=fc3bced4-a132-4293-9240-4d0f02277e2e&linkContext=https%3A%2F%2Fstandards.oftrust.net%2Fv1%2FContext%2FLink%2FBelongsTo%2F&identityContext=https%3A%2F%2Fstandards.oftrust.net%2Fv1%2FContext%2FIdentity%2FDevice%2FSensor%2F&linkDirection=IN&maxDepth=3&offset=0&limit=10"
+      },
+      {
+        "rel": "last",
+        "href": "https://api-sandbox.oftrust.net/identities/v1/dataDiscovery?offset=0&limit=10&fromId=fc3bced4-a132-4293-9240-4d0f02277e2e&linkContext=https%3A%2F%2Fstandards.oftrust.net%2Fv1%2FContext%2FLink%2FBelongsTo%2F&identityContext=https%3A%2F%2Fstandards.oftrust.net%2Fv1%2FContext%2FIdentity%2FDevice%2FSensor%2F&linkDirection=IN&maxDepth=3"
+      }
+    ],
+    "hasMore": false,
+    "totalCount": 2
+  }
+}
