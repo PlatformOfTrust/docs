@@ -68,7 +68,9 @@ types:
         type: string
         example: 2584bdd7-1cb2-48ed-a106-2a1b817cf909
     get:
-      description: Read one identity by id
+      description: |
+        Read one identity by id. Requires the `read` permission on the
+        identity.
       headers:
         Authorization: !include ../authorization-headers.yaml
       responses:
@@ -80,7 +82,9 @@ types:
           body:
             example: !include includes/examples/identity-not-found.json
     put:
-      description: Update an identity by id
+      description: |
+        Update an identity by id. Requires the `write` permission on the
+        identity.
       headers:
         Authorization: !include ../authorization-headers.yaml
       body:
@@ -104,7 +108,9 @@ types:
                 }
               }
     delete:
-      description: Delete an identity by id
+      description: |
+        Delete an identity by id. Requires the `manage` permission on the
+        identity.
       headers:
         Authorization: !include ../authorization-headers.yaml
       responses:
@@ -114,6 +120,23 @@ types:
         404:
           body:
             example: !include includes/examples/identity-not-found.json
+        422:
+          body:
+            examples:
+              "Restricted identity type": |
+                {
+                  "error": {
+                    "status": 422,
+                    "message": "Could not delete identity. Try using corresponding APIs to delete this type of identities."
+                  }
+                }
+              "Links exists": |
+                {
+                  "error": {
+                    "status": 422,
+                    "message": "Could not delete identity, reason: links exist to or from the identity."
+                  }
+                }
   /{from_identity}/link/{to_identity}:
     description: Manage links between "from"- and "to"-identities.
     uriParameters:
@@ -263,6 +286,13 @@ types:
                       "message": "Link of type <type> not found."
                     }
                   }
+                'ACL not found': |
+                  {
+                    "error": {
+                      "status": 404,
+                      "message": "Not Found: ACL for identity '<id>' not found."
+                    }
+                  }
           422:
             body:
               example: |
@@ -301,3 +331,410 @@ types:
         404:
           body:
             example: !include includes/examples/identity-not-found.json
+
+  /discovery:
+    description: |
+      Identity discovery. Use this endpoint to traverse the identity network
+       to find identities by their context. E.g. to find all Temperature
+       Sensors in a building, start from the building, traverse inbound links
+       with context `https://standards.oftrust.net/v1/Context/Link/BelongsTo/`
+       and find the identities with the context
+       `https://standards.oftrust.net/v1/Context/Identity/Device/Sensor/TemperatureSensor/`.
+       This will produce a result of all the Temperature sensors linked to the
+       building.
+       To run a hierarchical discovery, just modify the path of the identity
+       context, e.g. to find all types of sensors (temperature, carbondioxide)
+       use the context `https://standards.oftrust.net/v1/Context/Identity/Device/Sensor/`.
+       This will list all Sensors with the type `CarbondioxideSensor` and
+       `TemperatureSensor`.
+       NOTE: Requires the `read` permission on the `fromId` identity.
+    get:
+      queryParameters:
+        fromId:
+          description: The starting identity to traverse from, e.g. the Building ID.
+          type: string
+          example: fc3bced4-a132-4293-9240-4d0f02277e2e
+        linkContext:
+          description: |
+            The link context to traverse. The context MUST end with a
+            forward slash /.
+          type: string
+          example: https://standards.oftrust.net/v1/Context/Link/BelongsTo/
+        identityContext:
+          description: |
+            The identity context to search for. The context MUST end with a
+            forward slash /.
+          type: string
+          example: https://standards.oftrust.net/v1/Context/Identity/Device/Sensor/
+        linkDirection:
+          description: |
+            The direction to traverse from the building, one of "IN" or "OUT".
+            When using "IN" it means that the `BelongsTo` links are
+            incoming links towards the Building:
+            (Building) <-- BelongsTo -- (Storey)
+            When using "OUT" it means that the `BelongsTo` links are
+            outgoing from the Building (please note that this is just an
+            example, the data model for buildings and storeys are IN):
+            (Building) -- BelongsTo --> (Storey)
+          type: string
+          example: IN
+        maxDepth:
+          description: |
+            The traversal max depth. This means that e.g. maxDepth=3 does
+            three link hops in the traversal:
+            (Building) <-- BelongsTo -- (Storey) <-- BelongsTo -- (Room) <-- BelongsTo -- (Sensor)
+            If searching for `Sensors` but given maxDepth of 2, nothing will
+            be returned since there are 3 links between the building and
+            sensors. This value must be between 1 and 5, but defaults to 2.
+          type: integer
+          example: 2
+        offset:
+          description: |
+            The offset used for pagination. Defaults to 0, meaning starting
+            from the first record. Given an offset of 10 means that the next
+            10 records are returned.
+          type: integer
+          example: 10
+        limit:
+          description: |
+            How many records to return, used for pagination. Defaults to 20
+            records. Given a limit of 100 will return 100 records. This value
+            must be between 1 and 100.
+          type: integer
+          example: 20
+      description: Discover identities in the identity network.
+      headers:
+        Authorization: !include ../authorization-headers.yaml
+      responses:
+        200:
+          body:
+            properties:
+              identities:
+                description: |
+                  An object containing the discovered identities. The object is
+                  keyed by the identity ID.
+                type: object
+                example: |
+                  {
+                    "identities": {
+                      "eccbcc62-37e2-4014-8233-d077fce7bac9": {
+                        "@context": "https://standards.oftrust.net/v1/Context/Identity/Device/Sensor/TemperatureSensor/",
+                        "@type": "TemperatureSensor",
+                        "@id": "eccbcc62-37e2-4014-8233-d077fce7bac9",
+                        "data": {
+                          "name": "Temperature sensor",
+                          "codeLocal": "local code"
+                        },
+                        "metadata": {
+                          "createdAt": "2019-09-17T12:53:25+00:00",
+                          "createdBy": "f773dafe-20c0-4a25-aa3e-9da0b81b9304",
+                          "updatedAt": "2019-09-17T12:53:25+00:00",
+                          "updatedBy": "f773dafe-20c0-4a25-aa3e-9da0b81b9304"
+                        }
+                      }
+                    }
+                  }
+              pagination:
+                description: |
+                  The pagination object. The object contains information
+                  about the pagination, links, total count of records and if
+                  there are more records to fetch.
+                type: object
+                example: |
+                  {
+                    "pagination": {
+                      "links": [
+                        {
+                          "rel": "first",
+                          "href": "https://api-sandbox.oftrust.net/identities/v1/discovery?offset=0&limit=1&fromId=fc3bced4-a132-4293-9240-4d0f02277e2e&linkContext=https%3A%2F%2Fstandards.oftrust.net%2Fv1%2FContext%2FLink%2FBelongsTo%2F&identityContext=https%3A%2F%2Fstandards.oftrust.net%2Fv1%2FContext%2FIdentity%2FDevice%2FSensor%2F&linkDirection=IN&maxDepth=3"
+                        },
+                        {
+                          "rel": "self",
+                          "href": "https://api-sandbox.oftrust.net/identities/v1/discovery?fromId=fc3bced4-a132-4293-9240-4d0f02277e2e&linkContext=https%3A%2F%2Fstandards.oftrust.net%2Fv1%2FContext%2FLink%2FBelongsTo%2F&identityContext=https%3A%2F%2Fstandards.oftrust.net%2Fv1%2FContext%2FIdentity%2FDevice%2FSensor%2F&linkDirection=IN&maxDepth=3&offset=0&limit=1"
+                        },
+                        {
+                          "rel": "last",
+                          "href": "https://api-sandbox.oftrust.net/identities/v1/discovery?offset=173&limit=1&fromId=fc3bced4-a132-4293-9240-4d0f02277e2e&linkContext=https%3A%2F%2Fstandards.oftrust.net%2Fv1%2FContext%2FLink%2FBelongsTo%2F&identityContext=https%3A%2F%2Fstandards.oftrust.net%2Fv1%2FContext%2FIdentity%2FDevice%2FSensor%2F&linkDirection=IN&maxDepth=3"
+                        },
+                        {
+                          "rel": "next",
+                          "href": "https://api-sandbox.oftrust.net/identities/v1/discovery?offset=1&limit=1&fromId=fc3bced4-a132-4293-9240-4d0f02277e2e&linkContext=https%3A%2F%2Fstandards.oftrust.net%2Fv1%2FContext%2FLink%2FBelongsTo%2F&identityContext=https%3A%2F%2Fstandards.oftrust.net%2Fv1%2FContext%2FIdentity%2FDevice%2FSensor%2F&linkDirection=IN&maxDepth=3"
+                        }
+                      ],
+                      "hasMore": true,
+                      "totalCount": 174
+                    }
+                  }
+            example: !include includes/examples/identity-discovery.json
+        403:
+          body:
+            example: |
+              {
+                "error": {
+                  "status": 403,
+                  "message": "Forbidden: You don't have 'read' permission on 'f773dafe-20c0-4a25-aa3e-9da0b81b9304'"
+                }
+              }
+        404:
+          body:
+            example: !include includes/examples/identity-not-found.json
+        422:
+          body:
+            examples:
+              'Invalid link direction': |
+                {
+                  "error": {
+                    "status": 422,
+                    "message": {
+                      "linkDirection": [
+                        "Not a valid choice, must be one of 'IN', 'OUT'"
+                      ]
+                    }
+                  }
+                }
+              'Invalid min offset': |
+                {
+                  "error": {
+                    "status": 422,
+                    "message": {
+                      "offset": [
+                        "Must be at least 0."
+                      ]
+                    }
+                  }
+                }
+              'Invalid max offset': |
+                {
+                  "error": {
+                    "status": 422,
+                    "message": {
+                      "offset": [
+                        "Must not be greater than or equal to total count: {total_count}"
+                      ]
+                    }
+                  }
+                }
+              'Invalid max depth': |
+                {
+                  "error": {
+                    "status": 422,
+                    "message": {
+                      "maxDepth": [
+                        "Must be between 1 and 5."
+                      ]
+                    }
+                  }
+                }
+              'Invalid limit': |
+                {
+                  "error": {
+                    "status": 422,
+                    "message": {
+                      "limit": [
+                        "Must be between 1 and 100."
+                      ]
+                    }
+                  }
+                }
+        500:
+          body:
+            example: |
+              {
+                "error": {
+                  "status": 500,
+                  "message": "Could not discover identities."
+                }
+              }
+  /dataDiscovery:
+    description: |
+      Data product discovery. Use this endpoint to traverse the identity network
+      to find data products. E.g. to find all data products
+      connected to Temperature Sensors in a building, start from the
+      building, traverse inbound links with context
+      `https://standards.oftrust.net/v1/Context/Link/BelongsTo/`
+      and find the identities with the context
+      `https://standards.oftrust.net/v1/Context/Identity/Device/Sensor/TemperatureSensor/`.
+      This will produce a result of all the data products Temperature
+      sensors are linked to, including the data product code, list of sensor
+      IDs and their respective "external IDs".
+      To run a hierarchical discovery, just modify the path of the identity
+      context, e.g. to find data products for all types of sensors
+      (temperature, carbondioxide, and any other defined types)
+      use the context `https://standards.oftrust.net/v1/Context/Identity/Device/Sensor/`.
+      This will list all data products where sensors with the type
+      `CarbondioxideSensor` and `TemperatureSensor` are connected to.
+    get:
+      queryParameters:
+        fromId:
+          description: The starting identity to traverse from, e.g. the Building ID.
+          type: string
+          example: fc3bced4-a132-4293-9240-4d0f02277e2e
+        linkContext:
+          description: |
+            The link context to traverse. The context MUST end with a forward
+            slash /.
+            type: string
+            example: https://standards.oftrust.net/v1/Context/Link/BelongsTo/
+        identityContext:
+          description: |
+            The identity context to search for. The context MUST end with a
+            forward slash /.
+          type: string
+          example: https://standards.oftrust.net/v1/Context/Identity/Device/Sensor/
+        linkDirection:
+          description: |
+            The direction to traverse from the building, one of "IN" or "OUT".
+            When using "IN" it means that the `BelongsTo` links are
+            incoming links towards the Building:
+            (Building) <-- BelongsTo -- (Storey)
+            When using "OUT" it means that the `BelongsTo` links are
+            outgoing from the Building (please note that this is just an
+            example, the data model for buildings and storeys are IN):
+            (Building) -- BelongsTo --> (Storey)
+          type: string
+          example: IN
+        maxDepth:
+          description: |
+            The traversal max depth. This means that e.g. maxDepth=3 does
+            three link hops in the traversal:
+            (Building) <-- BelongsTo -- (Storey) <-- BelongsTo -- (Room) <-- BelongsTo -- (Sensor)
+            If searching for `Sensors` but given maxDepth of 2, nothing will
+            be returned since there are 3 links between the building and
+            sensors. This value must be between 1 and 5, but defaults to 2.
+          type: integer
+          example: 2
+        offset:
+          description: |
+            The offset used for pagination. Defaults to 0, meaning starting
+            from the first record. Given an offset of 10 means that the next
+            10 records are returned.
+          type: integer
+          example: 10
+        limit:
+          description: |
+            How many records to return, used for pagination. Defaults to 20
+            records. Given a limit of 100 will return 100 records. This value
+            must be between 1 and 100.
+          type: integer
+          example: 20
+      description: Discover data products in the identity network.
+      headers:
+        Authorization: !include ../authorization-headers.yaml
+      responses:
+        200:
+          body:
+            properties:
+              dataProducts:
+                description: |
+                  An object containing the data products. The object is
+                  keyed by the data product product code, and that in turn
+                  is an object containing the sensor identity ID as the key
+                  and the value is the external ID for the external system.
+                type: object
+                example: |
+                  {
+                    "dataProducts": {
+                      "data-product-product-code": {
+                        "eccbcc62-37e2-4014-8233-d077fce7bac9": "sensor id 1",
+                        "958f5881-ee48-4a5a-a6ed-bad100ec72ac": "sensor id 2"
+                      }
+                    }
+                  }
+              pagination:
+                description: |
+                  The pagination object. The object contains information
+                  about the pagination, links, total count of records and if
+                   there are more records to fetch.
+                type: object
+                example: |
+                  {
+                    "pagination": {
+                      "links": [
+                        {
+                          "rel": "first",
+                          "href": "https://api-sandbox.oftrust.net/identities/v1/dataDiscovery?offset=0&limit=10&fromId=fc3bced4-a132-4293-9240-4d0f02277e2e&linkContext=https%3A%2F%2Fstandards.oftrust.net%2Fv1%2FContext%2FLink%2FBelongsTo%2F&identityContext=https%3A%2F%2Fstandards.oftrust.net%2Fv1%2FContext%2FIdentity%2FDevice%2FSensor%2F&linkDirection=IN&maxDepth=3"
+                        },
+                        {
+                          "rel": "self",
+                          "href": "https://api-sandbox.oftrust.net/identities/v1/dataDiscovery?fromId=fc3bced4-a132-4293-9240-4d0f02277e2e&linkContext=https%3A%2F%2Fstandards.oftrust.net%2Fv1%2FContext%2FLink%2FBelongsTo%2F&identityContext=https%3A%2F%2Fstandards.oftrust.net%2Fv1%2FContext%2FIdentity%2FDevice%2FSensor%2F&linkDirection=IN&maxDepth=3&offset=0&limit=10"
+                        },
+                        {
+                          "rel": "last",
+                          "href": "https://api-sandbox.oftrust.net/identities/v1/dataDiscovery?offset=0&limit=10&fromId=fc3bced4-a132-4293-9240-4d0f02277e2e&linkContext=https%3A%2F%2Fstandards.oftrust.net%2Fv1%2FContext%2FLink%2FBelongsTo%2F&identityContext=https%3A%2F%2Fstandards.oftrust.net%2Fv1%2FContext%2FIdentity%2FDevice%2FSensor%2F&linkDirection=IN&maxDepth=3"
+                        }
+                      ],
+                      "hasMore": false,
+                      "totalCount": 4
+                    }
+                  }
+            example: !include includes/examples/data-product-discovery.json
+        404:
+          body:
+            example: !include includes/examples/identity-not-found.json
+        422:
+          body:
+            examples:
+              'Invalid link direction': |
+                {
+                  "error": {
+                    "status": 422,
+                    "message": {
+                      "linkDirection": [
+                        "Not a valid choice, must be one of 'IN', 'OUT'"
+                      ]
+                    }
+                  }
+                }
+              'Invalid min offset': |
+                {
+                  "error": {
+                    "status": 422,
+                    "message": {
+                      "offset": [
+                        "Must be at least 0."
+                      ]
+                    }
+                  }
+                }
+              'Invalid max offset': |
+                {
+                  "error": {
+                    "status": 422,
+                    "message": {
+                      "offset": [
+                        "Must not be greater than or equal to total count: {total_count}"
+                      ]
+                    }
+                  }
+                }
+              'Invalid max depth': |
+                {
+                  "error": {
+                    "status": 422,
+                    "message": {
+                      "maxDepth": [
+                        "Must be between 1 and 5."
+                      ]
+                    }
+                  }
+                }
+              'Invalid limit': |
+                {
+                  "error": {
+                    "status": 422,
+                    "message": {
+                      "limit": [
+                        "Must be between 1 and 100."
+                      ]
+                    }
+                  }
+                }
+        500:
+          body:
+            example: |
+              {
+                "error": {
+                  "status": 500,
+                  "message": "Could not discover identities."
+                }
+              }
