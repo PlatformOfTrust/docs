@@ -1,0 +1,6 @@
+{
+  "error": {
+    "status": 404,
+    "message": "Could not find authorization identity with id b32ead1c-2f23-4faa-91f3-e30ae239cc27"
+  }
+}
