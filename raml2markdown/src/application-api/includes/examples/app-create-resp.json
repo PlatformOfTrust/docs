@@ -1,0 +1,74 @@
+{
+  "@context": "https://standards.lifeengine.io/v1/Context/Identity/Digital/Software/App/",
+  "@type": "App",
+  "@id": "6601afe9-85e4-4fe8-a3c9-1329f15493e1",
+  "data": {
+    "name": "Example Application",
+    "description": "Application description",
+    "privacyPolicyUrl": "http://example.com/privacy.html",
+    "webPageUrl": "http://example.com/application.html",
+    "iconUrl": "http://example.com/icon.png"
+  },
+  "metadata": {
+    "createdAt": "2018-12-03T14:33:44",
+    "createdBy": "747d0af5-6f06-4309-b2d5-f06677356a9a",
+    "updatedAt": "2018-12-03T14:33:44",
+    "updatedBy": "747d0af5-6f06-4309-b2d5-f06677356a9a"
+  },
+  "inLinks": [
+    {
+      "@context": "https://standards.lifeengine.io/v1/Context/Link/Role/DeveloperOf/",
+      "@type": "DeveloperOf",
+      "@id": "a6101e2d-b19c-4cd5-9767-00aa78986a39",
+      "from": "bfec43ac-a0ce-4469-a78f-3106cf28b4c9",
+      "to": "286042aa-6299-4138-8675-da105dfadefc",
+      "data": {},
+      "metadata": {
+        "createdAt": "2018-12-03T14:33:44",
+        "createdBy": "747d0af5-6f06-4309-b2d5-f06677356a9a",
+        "updatedAt": "2018-12-03T14:33:44",
+        "updatedBy": "747d0af5-6f06-4309-b2d5-f06677356a9a"
+      }
+    }
+  ],
+  "outLinks": [
+    {
+      "@context": "https://standards.lifeengine.io/v1/Context/Link/PublishedOn/",
+      "@type": "PublishedOn",
+      "@id": "87a5dee9-0a29-40c7-9972-475ef2c47890",
+      "from": "286042aa-6299-4138-8675-da105dfadefc",
+      "to": "10e28dca-3000-4fc5-8b2f-c21bd1893c9d",
+      "data": {},
+      "metadata": {
+        "createdAt": "2018-12-03T14:33:44",
+        "createdBy": "747d0af5-6f06-4309-b2d5-f06677356a9a",
+        "updatedAt": "2018-12-03T14:33:44",
+        "updatedBy": "747d0af5-6f06-4309-b2d5-f06677356a9a"
+      }
+    }
+  ],
+  "client": {
+    "clientId": "6601afe9-85e4-4fe8-a3c9-1329f15493e1",
+    "clientSecrets": [
+      "Sw4gT3I0oUynpeTN6YGfvFPE8SPj5LC1YNIHfFCF25w"
+    ],
+    "scopes": "",
+    "redirectUris": "https://example.com/auth-callback",
+    "defaultScopes": "",
+    "defaultRedirectUri": "https://example.com/auth-callback"
+  },
+  "tokens": [
+    {
+      "access_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUz...T79_KYC4Ds",
+      "expires_in": 63072000.0,
+      "token_type": "Bearer",
+      "refresh_token": "SwGAWsFfT1FZrT92NRJc0MaBp9XrmG"
+    },
+    {
+      "access_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUz...T53_KYC4Ds",
+      "expires_in": 63072000.0,
+      "token_type": "Bearer",
+      "refresh_token": "SwGAWsFfT1FZrT92NRJc0MaBp9XrmG"
+    }
+  ]
+}

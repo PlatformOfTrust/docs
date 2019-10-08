@@ -1,0 +1,112 @@
+#%RAML 1.0
+---
+title: Application
+version: v1
+baseUri: https://api-sandbox.oftrust.net
+mediaType: application/json
+description: |
+  The Application API provides means to manage user's applications and
+  perform different operations on them, like refreshing client secrets.
+/apps/v1:
+  description: Manage user's applications
+  get:
+    description: List all applications where the current user is developer
+    headers:
+      Authorization: !include includes/properties/authorization-headers.yaml
+    responses:
+      200:
+        body:
+          example: !include includes/examples/app-list-resp.json
+      403:
+        body:
+          example: !include includes/examples/permission-denied.json
+  post:
+    description: |
+      Create new application and its associated OAuth Client.
+      NOTE: The `clientSecrets` is shown only once in plain text, when creating
+      the application. Make sure you save it somewhere. The client secret is
+      used for validating the application.
+    headers:
+      Authorization: !include includes/properties/authorization-headers.yaml
+    body:
+      properties: !include includes/properties/app-create.yaml
+      example: !include includes/examples/app-create-payload.json
+    responses:
+      201:
+        body:
+          example: !include includes/examples/app-create-resp.json
+      403:
+        body:
+          example: !include includes/examples/permission-denied.json
+      422:
+        body:
+          example: !include includes/examples/missing-mandatory-data.json
+
+  /{app_id}:
+    uriParameters:
+      app_id:
+        description: App's ID
+        type: string
+        example: 2584bdd7-1cb2-48ed-a106-2a1b817cf909
+    description: Manage an application
+    get:
+      description: Get application's details
+      headers:
+        Authorization: !include includes/properties/authorization-headers.yaml
+      responses:
+        200:
+          body:
+            example: !include includes/examples/app-get-resp.json
+        404:
+          body:
+            example: !include includes/examples/app-not-found.json
+    put:
+      description: |
+        Update an application and its client. The client secret will not be
+        touched, as it has its own endpoint
+      headers:
+        Authorization: !include includes/properties/authorization-headers.yaml
+      body:
+        properties: !include includes/properties/app-update.yaml
+        example: !include includes/examples/app-update-payload.json
+      responses:
+        200:
+          body:
+            example: !include includes/examples/app-update-resp.json
+        403:
+          body:
+            example: !include includes/examples/permission-denied.json
+        404:
+          body:
+            example: !include includes/examples/app-not-found.json
+        422:
+          body:
+            example: !include includes/examples/missing-mandatory-data.json
+    delete:
+      description: Remove an application
+      headers:
+        Authorization: !include includes/properties/authorization-headers.yaml
+      responses:
+        204:
+        404:
+          body:
+            example: !include includes/examples/app-not-found.json
+
+    /refreshSecret:
+      post:
+        description: |
+          Create new client secret for the given application. The system
+          will keep track of the two latest secrets, so when creating a new
+          one, the previous one is still available for use.
+        headers:
+          Authorization: !include includes/properties/authorization-headers.yaml
+        responses:
+          201:
+            body:
+              example: !include includes/examples/refresh-secret-resp.json
+          403:
+            body:
+              example: !include includes/examples/permission-denied.json
+          404:
+            body:
+              example: !include includes/examples/app-not-found.json

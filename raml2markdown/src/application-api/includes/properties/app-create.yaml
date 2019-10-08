@@ -1,0 +1,42 @@
+name:
+  description: The name of the application
+  type: string
+  example: Example Application
+description:
+  description: The description of the application
+  type: string
+  example: Description for the application
+privacyPolicyUrl:
+  description: The URL to the application privacy policy
+  type: string
+  example: http://example.com/privacy.html
+iconUrl:
+  description: |
+    The URL to an icon to show for the application.
+    Dimensions should be 80x80
+  type: string
+  example: http://example.com/icon.png
+webPageUrl:
+  description: Optional URL to the application's web page
+  type: string
+  example: http://example.com/application.html
+redirectUris:
+  description: List of available redirect URIs for this app
+  type: string
+  example: https://example.com/auth-callback
+defaultRedirectUri?:
+  description: |
+    The default redirect URI for this app. If not provided, then first
+    value from `redirectUris` will be used as default
+  type: string
+  example: https://example.com
+scopes:
+  description: List of scopes for this application. Not in use at the moment
+  type: string
+defaultScopes:
+  description: The default scopes for this application. Not in use at the moment
+  type: string
+groupId:
+  description: The group (organization) that is the creator of the application
+  type: string
+  example: 7601afe9-85e4-4fe8-a3c9-1329f15493e1

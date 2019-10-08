@@ -49,23 +49,26 @@
       "identityId": "f4902768-39aa-492d-9d4f-99b5cf13ee2b"
     }
   ],
-  "links": [
-    {
-      "rel": "first",
-      "href": "<API URL>/products?offset=0&limit=2"
-    },
-    {
-      "rel": "self",
-      "href": "<API URL>/products"
-    },
-    {
-      "rel": "last",
-      "href": "<API URL>/products?offset=2&limit=2"
-    },
-    {
-      "rel": "next",
-      "href": "<API URL>/products?offset=2&limit=2"
-    }
-  ],
-  "hasMore": true
+  "pagination": {
+    "links": [
+      {
+        "rel": "first",
+        "href": "<API URL>/products?offset=0&limit=2"
+      },
+      {
+        "rel": "self",
+        "href": "<API URL>/products"
+      },
+      {
+        "rel": "last",
+        "href": "<API URL>/products?offset=2&limit=2"
+      },
+      {
+        "rel": "next",
+        "href": "<API URL>/products?offset=2&limit=2"
+      }
+    ],
+    "hasMore": true,
+    "totalCount": 10
+  }
 }
