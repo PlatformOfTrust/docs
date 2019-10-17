@@ -1,0 +1,9 @@
+{
+    "@context": "https://standards.lifeengine.io/v1/Context/Identity/Person/",
+    "@type": "Person",
+    "@id": "33237067-14c3-4801-9e50-bf08406406e2",
+    "email": "user@example.com",
+    "role": "developer",
+    "firstName": "Anna",
+    "lastName": "Bar"
+}

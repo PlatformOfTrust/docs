@@ -1,0 +1,13 @@
+{
+    "error": {
+        "status": 422,
+        "message": {
+            "code": [
+                "Missing data for required field."
+            ],
+            "grant_type": [
+                "Missing data for required field."
+            ]
+        }
+    }
+}
