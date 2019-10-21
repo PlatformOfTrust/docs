@@ -17,10 +17,10 @@ APIs = [
   "Calendar-api",
   "Context-api",
   "Identity-api",
+  "Login-api",
   "Message-api",
   "Product-api"
 ]
-
 
 def api_raml_to_slate(apiname):
   apiname = apiname.lower()
