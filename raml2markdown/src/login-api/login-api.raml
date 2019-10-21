@@ -78,14 +78,14 @@ mediaType: application/json
       403:
         body:
           example: !include includes/examples/crud_403.json
-/acl/<from_identity>/<target_identity>:
+/acl/{fromIdentity}/{targetIdentity}:
   uriParameters:
-    from_identity:
+    fromIdentity:
       description: |
-       The identity that is granted access to the `target_identity`
+       The identity that is granted access to the `targetIdentity`
       type: string
       example: b32ead1c-2f23-4faa-91f3-e30ae239cc17
-    target_identity:
+    targetIdentity:
       description: The identity that can be accessed
       type: string
       example: b32ead1c-2f23-4faa-91f3-e30ae239cc20
