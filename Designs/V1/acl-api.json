@@ -15,7 +15,7 @@
         "operationId" : "GET_acl-v1-target_identity-permissions",
         "responses" : {
           "204" : {
-            "description" : "OK."
+            "description" : "OK"
           },
           "403" : {
             "description" : "",
