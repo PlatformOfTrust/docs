@@ -1,0 +1,296 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "title" : "ACL",
+    "version" : "v1"
+  },
+  "host" : "api-sandbox.oftrust.net",
+  "schemes" : [ "https" ],
+  "consumes" : [ "application/json" ],
+  "produces" : [ "application/json" ],
+  "paths" : {
+    "/acl/v1/{from_identity}/{target_identity}" : {
+      "get" : {
+        "description" : "Check specific permissions. Used to check if the requester has specific\nprivilege(s) on an identity. Will return 204 if requester has all\nrequested privileges and 403 if at least one is missing.\n",
+        "operationId" : "GET_acl-v1-target_identity-permissions",
+        "responses" : {
+          "204" : {
+            "description" : "OK."
+          },
+          "403" : {
+            "description" : "",
+            "schema" : {
+              "example" : {
+                "error" : {
+                  "status" : 403,
+                  "message" : "Permission Denied"
+                }
+              }
+            }
+          },
+          "404" : {
+            "description" : "",
+            "schema" : {
+              "example" : {
+                "error" : {
+                  "status" : 404,
+                  "message" : "Could not find authorization identity with id b32ead1c-2f23-4faa-91f3-e30ae239cc27"
+                }
+              }
+            }
+          }
+        },
+        "parameters" : [ {
+          "description" : "The Authorization header, MUST be `Bearer {{access_token}}`",
+          "type" : "string",
+          "in" : "header",
+          "name" : "Authorization",
+          "required" : true
+        }, {
+          "description" : "The identity to check if given permissions exist for",
+          "type" : "string",
+          "in" : "path",
+          "name" : "target_identity",
+          "required" : true
+        }, {
+          "description" : "A comma separated list of permissions to check",
+          "type" : "string",
+          "in" : "path",
+          "name" : "permissions",
+          "required" : true
+        } ]
+      },
+      "post" : {
+        "description" : "Set permissions. Will give the from identity read, write, link\nand/or manage access to the to target identity.\nIf any type of privilege (read, write, link or manage) is left out or\nset to null, then it will remain unchanged.\n",
+        "operationId" : "POST_acl-v1-from_identity-target_identity",
+        "responses" : {
+          "204" : {
+            "description" : ""
+          },
+          "403" : {
+            "description" : "",
+            "schema" : {
+              "example" : {
+                "error" : {
+                  "status" : 403,
+                  "message" : "Permission Denied"
+                }
+              }
+            }
+          },
+          "404" : {
+            "description" : "",
+            "schema" : {
+              "example" : {
+                "error" : {
+                  "status" : 404,
+                  "message" : "Could not find authorization identity with id b32ead1c-2f23-4faa-91f3-e30ae239cc27"
+                }
+              }
+            }
+          }
+        },
+        "parameters" : [ {
+          "description" : "The Authorization header, MUST be `Bearer {{access_token}}`",
+          "type" : "string",
+          "in" : "header",
+          "name" : "Authorization",
+          "required" : true
+        }, {
+          "schema" : {
+            "example" : {
+              "read" : true,
+              "write" : true,
+              "link" : true,
+              "manage" : false
+            },
+            "type" : "string"
+          },
+          "in" : "body",
+          "name" : "body",
+          "required" : true
+        } ]
+      },
+      "delete" : {
+        "description" : "Delete permission\n",
+        "operationId" : "DELETE_acl-v1-from_identity-target_identity",
+        "responses" : {
+          "204" : {
+            "description" : ""
+          },
+          "403" : {
+            "description" : "",
+            "schema" : {
+              "example" : {
+                "error" : {
+                  "status" : 403,
+                  "message" : "Permission Denied"
+                }
+              }
+            }
+          },
+          "404" : {
+            "description" : "",
+            "schema" : {
+              "example" : {
+                "error" : {
+                  "status" : 404,
+                  "message" : "Could not find authorization identity with id b32ead1c-2f23-4faa-91f3-e30ae239cc27"
+                }
+              }
+            }
+          }
+        },
+        "parameters" : [ {
+          "description" : "The Authorization header, MUST be `Bearer {{access_token}}`",
+          "type" : "string",
+          "in" : "header",
+          "name" : "Authorization",
+          "required" : true
+        } ]
+      },
+      "parameters" : [ {
+        "description" : "The identity that is granted access to the `target_identity`\n",
+        "type" : "string",
+        "in" : "path",
+        "name" : "from_identity",
+        "required" : true
+      }, {
+        "description" : "The identity that can be accessed",
+        "type" : "string",
+        "in" : "path",
+        "name" : "target_identity",
+        "required" : true
+      } ]
+    },
+    "/acl/v1/{target_identity}" : {
+      "get" : {
+        "description" : "List permissions on an identity. Will list all identities that can\naccess the identity and what access privileges they have.\n",
+        "operationId" : "GET_acl-v1-target_identity",
+        "responses" : {
+          "200" : {
+            "description" : "",
+            "schema" : {
+              "example" : {
+                "b32ead1c-2f23-4faa-91f3-e30ae239cc16" : {
+                  "read" : true,
+                  "write" : true,
+                  "link" : true,
+                  "manage" : true
+                },
+                "b32ead1c-2f23-4faa-91f3-e30ae239cc17" : {
+                  "read" : true,
+                  "write" : true,
+                  "link" : true,
+                  "manage" : true
+                }
+              }
+            }
+          },
+          "403" : {
+            "description" : "",
+            "schema" : {
+              "example" : {
+                "error" : {
+                  "status" : 403,
+                  "message" : "Permission Denied"
+                }
+              }
+            }
+          },
+          "404" : {
+            "description" : "",
+            "schema" : {
+              "example" : {
+                "error" : {
+                  "status" : 404,
+                  "message" : "Could not find authorization identity with id b32ead1c-2f23-4faa-91f3-e30ae239cc27"
+                }
+              }
+            }
+          }
+        },
+        "parameters" : [ {
+          "description" : "The Authorization header, MUST be `Bearer {{access_token}}`",
+          "type" : "string",
+          "in" : "header",
+          "name" : "Authorization",
+          "required" : true
+        } ]
+      },
+      "parameters" : [ {
+        "description" : "The identity for which the permissions should be listed",
+        "type" : "string",
+        "in" : "path",
+        "name" : "target_identity",
+        "required" : true
+      } ]
+    },
+    "/acl/v1/batch/{permissions}" : {
+      "post" : {
+        "description" : "Batch check specific permissions. Used to check if the requester has\nspecific privilege(s) on a batch of identities. Will return a mapping\nfrom identity ID to a boolean; true if the user has all the\nrequested privileges to the identity and false if not.\n",
+        "operationId" : "POST_acl-v1-batch-permissions",
+        "responses" : {
+          "200" : {
+            "description" : "",
+            "schema" : {
+              "example" : {
+                "82440763-b208-4eab-bc13-1f2620184ea1" : true,
+                "fed4bd28-fca4-4287-9389-b87dd77b815c" : false,
+                "e45f1815-167f-4348-b194-64cd01b5c52f" : true,
+                "016dfc04-4f4a-499c-a289-7861df876392" : true,
+                "3e0d7600-2a81-4be1-842e-81e14739e52c" : false
+              }
+            }
+          },
+          "403" : {
+            "description" : "",
+            "schema" : {
+              "example" : {
+                "error" : {
+                  "status" : 403,
+                  "message" : "Permission Denied"
+                }
+              }
+            }
+          },
+          "404" : {
+            "description" : "",
+            "schema" : {
+              "example" : {
+                "error" : {
+                  "status" : 404,
+                  "message" : "Could not find authorization identity with id b32ead1c-2f23-4faa-91f3-e30ae239cc27"
+                }
+              }
+            }
+          }
+        },
+        "parameters" : [ {
+          "description" : "The Authorization header, MUST be `Bearer {{access_token}}`",
+          "type" : "string",
+          "in" : "header",
+          "name" : "Authorization",
+          "required" : true
+        }, {
+          "schema" : {
+            "example" : {
+              "targets" : [ "82440763-b208-4eab-bc13-1f2620184ea1", "fed4bd28-fca4-4287-9389-b87dd77b815c", "e45f1815-167f-4348-b194-64cd01b5c52f", "016dfc04-4f4a-499c-a289-7861df876392", "3e0d7600-2a81-4be1-842e-81e14739e52c" ]
+            },
+            "type" : "string"
+          },
+          "in" : "body",
+          "name" : "body",
+          "required" : true
+        } ]
+      },
+      "parameters" : [ {
+        "description" : "A comma separated list of permissions to check",
+        "type" : "string",
+        "in" : "path",
+        "name" : "permissions",
+        "required" : true
+      } ]
+    }
+  }
+}
