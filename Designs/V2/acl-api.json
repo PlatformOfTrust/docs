@@ -4,7 +4,6 @@
     "title" : "ACL",
     "version" : "V2"
   },
-  "host" : "api-sandbox.oftrust.net",
   "schemes" : [ "https" ],
   "consumes" : [ "application/json" ],
   "produces" : [ "application/json" ],
@@ -292,5 +291,7 @@
         "required" : true
       } ]
     }
-  }
+  },
+  "host" : "virtserver.swaggerhub.com",
+  "basePath" : "/PlatformOfTrust/acl-api/V2"
 }
