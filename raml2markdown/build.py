@@ -87,7 +87,7 @@ def concatenate_files(code_examples_path):
     for api in APIs:
       slatefile = Path("./slate/" + api.lower() + ".md")
 
-      ofile.write("# " + api.replace("-", " ").replace("api", "API") + "\n")
+      ofile.write("# " + api.replace("-", " ").replace("api", "") + "\n")
       pretty_api_name = api.replace("-", " ").replace("api", "API")
 
       ofile.write("\n> **Get "+pretty_api_name+ " related resources:**\n\n")
