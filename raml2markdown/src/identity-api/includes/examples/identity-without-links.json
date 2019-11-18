@@ -1,5 +1,5 @@
 {
-  "@context": "https://standards.lifeengine.io/v1/Context/Identity/Group",
+  "@context": "https://standards.lifeengine.io/v1/Context/Identity/Group/",
   "@type": "Group",
   "@id": "58dc29ab-d52e-4aab-a228-9b54e001797c",
   "data": {

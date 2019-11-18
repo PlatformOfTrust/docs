@@ -3,7 +3,7 @@
   "@type": "collection",
   "ItemList": [
     {
-      "@context": "https://standards.lifeengine.io/v1/Context/Link/Role/MemberOf",
+      "@context": "https://standards.lifeengine.io/v1/Context/Link/Role/MemberOf/",
       "@type": "MemberOf",
       "@id": "cf0862f6-3f4f-498f-97f1-fbe8b5734448",
       "from": "58dc29ab-d52e-4aab-a228-9b54e001797c",
@@ -17,7 +17,7 @@
       }
     },
     {
-      "@context": "https://standards.lifeengine.io/v1/Context/Link/Role/MemberOf",
+      "@context": "https://standards.lifeengine.io/v1/Context/Link/Role/MemberOf/",
       "@type": "MemberOf",
       "@id": "cf0862f6-3f4f-498f-97f1-fbe8b5734448",
       "from": "58dc29ab-d52e-4aab-a228-9b54e001797c",

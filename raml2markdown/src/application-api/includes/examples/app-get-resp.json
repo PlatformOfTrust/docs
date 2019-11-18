@@ -1,5 +1,5 @@
 {
-  "@context": "https://standards.lifeengine.io/v1/Context/Identity/Digital/Software/App",
+  "@context": "https://standards.lifeengine.io/v1/Context/Identity/Digital/Software/App/",
   "@type": "App",
   "@id": "48bb2858-e2fc-42d3-b44e-35f138b4b02d",
   "data": {
