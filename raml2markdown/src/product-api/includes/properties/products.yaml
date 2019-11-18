@@ -9,3 +9,6 @@
 ItemList:
   description: The list of products
   type: product[]
+pagination:
+  description: Pagination object
+  type: pagination

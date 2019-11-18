@@ -2,77 +2,65 @@
 ---
 title: Platform Of Trust Product API
 version: v1
-baseUri: https://api-sandbox.oftrust.net/product/{version}
+baseUri: https://api-sandbox.oftrust.net
 mediaType: application/json
 description: |
   The Product API provides means to manage products provided by PoT core.
   The product defines the URL to the translator, as well as a product code to
   use when requesting data from the translator.
+  Note that when creating a new data product, the developer who creates it
+  MUST belong to a group (organization), and POST that group ID in the
+  request when creating the data product.
 types:
   product:
     type: object
+    properties: !include includes/properties/product-update-request.yaml
+  paginationURL:
+    type: object
     properties:
-      dataContext:
+      href:
+        description: URL with pagination parameters
+        type: string
+        example: /products/{version}?offset=0&limit=10
+      rel:
         description: |
-          The URL to the data context for the product. The data context
-          defines the keys in the `data` object returned from the translator.
+          Type of the page. One of: "next", "self", "first", "last".
+          Note that the next page is presented only if it exists.
+          Use hasMore indicator to check it.
         type: string
-        example: https://example.com/contexts/product-data.jsonld
-      parameterContext:
-        description: |
-          The URL to the context for the parameters of the product.
-          The parameter context defines the keys in the `parameters` object
-          that are sent in the request to the data broker.
-        type: string
-        example: https://example.com/contexts/product-parameters.jsonld
-      productCode:
-        description: The unique identifiable code for the product.
-        type: string
-        example: product-1
-      name:
-        description: The name of the product.
-        type: string
-        example: Example product
-      translatorUrl:
-        description: The URL to the corresponding translator for the product.
-        type: string
-        example: https://example.com/translator
-      organizationPublicKeys:
-        description: |
-          Organization public keys. Each object in the list MUST have the keys
-          `url` and `type`, where `url` is the full URL to the public key used
-          for signing the data, and the `type` defines the type of the signature.
-        type: array
-        example: |
-          [
-            {
-              "url": "https://example.com/public-key.pub",
-              "type": "RsaSignature2018"
-            },
-            {
-              "url": "https://example.com/public-key-2.pub",
-              "type": "RsaSignature2018"
-            }
-          ]
-      description?:
-        description: The description of the product.
-        type: string
-        example: This is a product that returns the temperature data for ...
-      imageUrl?:
-        description: Optional URL to an image for the product.
-        type: string
-        example: https://example.com/product-image.png
-/products:
-  description: Product resources.
+        example: first
+  pagination:
+    type: object
+    properties:
+      links:
+        description: The list of related URLs for pagination
+        type: paginationURL[]
+      hasMore:
+        description: Indicates if the next page exists
+        type: boolean
+      totalCount:
+        description: Total count of products in query
+        type: integer
+/products/{version}:
+  description: Manage product resources. Create and read products.
   post:
     description: Create a new product
+    headers:
+      Authorization: !include includes/properties/authorization-headers.yaml
     body:
       type: product
+      properties:
+        groupId:
+          description: |
+            The group where the user is a member of. This group will be
+            the developer of the data product.
+          type: string
+          example: 5c35c7f1-a1f7-4c9c-91b6-669779f60d23
       example: !include includes/examples/product-create.json
     responses:
       201:
         body:
-          properties: !include includes/properties/product.yaml
+          properties: !include includes/properties/product-response.yaml
           example: !include includes/examples/product.json
       422:
         body:
@@ -80,12 +68,24 @@ types:
   get:
     description: |
       Lists all available products. *NOTE*: This is a CORS enabled endpoint.
+      Supports pagination.
+    queryParameters:
+      offset?:
+        description: Offset of a query
+        type: integer
+        example: 200
+      limit?:
+        description: Limit the result of a query
+        type: integer
+        example: 400
     responses:
       200:
         body:
           properties: !include includes/properties/products.yaml
           example: !include includes/examples/products.json
+
   /{product_code}:
+    description: Read, update and delete a product by it's product code.
     uriParameters:
       product_code:
         description: The product code of the product.
@@ -97,21 +97,22 @@ types:
       responses:
         200:
           body:
-            properties: !include includes/properties/product.yaml
+            properties: !include includes/properties/product-response.yaml
             example: !include includes/examples/product.json
         404:
           body:
             example: !include includes/examples/not-found.json
     put:
       description: Update a product by product code
+      headers:
+        Authorization: !include includes/properties/authorization-headers.yaml
       body:
         type: product
         example: !include includes/examples/product-update.json
       responses:
         200:
           body:
-            type: product
-            properties: !include includes/properties/product.yaml
+            properties: !include includes/properties/product-response.yaml
             example: !include includes/examples/product.json
         404:
           body:
@@ -121,6 +122,8 @@ types:
             example: !include includes/examples/missing-mandatory-parameter.json
     delete:
       description: Delete a product by product code
+      headers:
+        Authorization: !include includes/properties/authorization-headers.yaml
       responses:
         204:
           body:

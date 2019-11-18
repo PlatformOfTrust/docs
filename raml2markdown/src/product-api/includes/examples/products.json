@@ -3,40 +3,72 @@
   "@type": "collection",
   "ItemList": [
     {
-      "@context": "<context URL>",
-      "@type": "Product",
-      "@id": "<URL to the product resource>",
-      "productCode": "<product code>",
-      "dataContext": "<data context URL>",
-      "parameterContext": "<parameter context URL>",
-      "translatorUrl": "<translator URL>",
-      "name": "<product name>",
+      "@context": "https://standards.lifeengine.io/v1/Context/Identity/Thing/HumanWorld/Product/DataProduct",
+      "@type": "DataProduct",
+      "@id": "https://api-sandbox.oftrust.net/products/v1/product-1",
+      "productCode": "product-1",
+      "dataContext": "https://example.com/v1/Context/Data",
+      "parameterContext": "https://example.com/v1/Context/Parameter",
+      "translatorUrl": "https://translator.example.com/fetch-data-product",
+      "name": "Product name",
       "organizationPublicKeys": [
         {
-          "url": "<public key URL>",
-          "type": "<public key type>"
+          "url": "https://example.com/public-key.pub",
+          "type": "RsaSignature2018"
+        },
+        {
+          "url": "https://example.com/public-key-2.pub",
+          "type": "RsaSignature2018"
         }
       ],
-      "description": "<product description>",
-      "imageUrl": "<image URL>"
+      "description": "This is a product that returns the temperature data for ...",
+      "imageUrl": "https://example.com/product-image.png",
+      "identityId": "31b5b971-dc50-4c9c-992a-57c0bf016186"
     },
     {
-      "@context": "<context URL>",
-      "@type": "Product",
-      "@id": "<URL to the product resource>",
-      "productCode": "<product code>",
-      "dataContext": "<data context URL>",
-      "parameterContext": "<parameter context URL>",
-      "translatorUrl": "<translator URL>",
-      "name": "<product name>",
+      "@context": "https://standards.lifeengine.io/v1/Context/Identity/Thing/HumanWorld/Product/DataProduct",
+      "@type": "DataProduct",
+      "@id": "https://api-sandbox.oftrust.net/products/v1/product-2",
+      "productCode": "product-2",
+      "dataContext": "https://example.com/v1/Context/Data",
+      "parameterContext": "https://example.com/v1/Context/Parameter",
+      "translatorUrl": "https://translator.example.com/fetch",
+      "name": "Product name example",
       "organizationPublicKeys": [
         {
-          "url": "<public key URL>",
-          "type": "<public key type>"
+          "url": "https://example.com/public-key.pub",
+          "type": "RsaSignature2018"
+        },
+        {
+          "url": "https://example.com/public-key-2.pub",
+          "type": "RsaSignature2018"
         }
       ],
-      "description": "<product description>",
-      "imageUrl": "<image URL>"
+      "description": "This is a product that returns the maintenance history data for ...",
+      "imageUrl": "https://example.com/product-image.png",
+      "identityId": "f4902768-39aa-492d-9d4f-99b5cf13ee2b"
     }
-  ]
+  ],
+  "pagination": {
+    "links": [
+      {
+        "rel": "first",
+        "href": "<API URL>/products?offset=0&limit=2"
+      },
+      {
+        "rel": "self",
+        "href": "<API URL>/products"
+      },
+      {
+        "rel": "last",
+        "href": "<API URL>/products?offset=2&limit=2"
+      },
+      {
+        "rel": "next",
+        "href": "<API URL>/products?offset=2&limit=2"
+      }
+    ],
+    "hasMore": true,
+    "totalCount": 10
+  }
 }

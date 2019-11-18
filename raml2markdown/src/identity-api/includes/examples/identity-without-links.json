@@ -1,17 +1,16 @@
 {
-  "@context": "<Context URL>",
-  "@type": "<Identity type>",
-  "@id": "<Identity ID>",
-  "name": "<Identity name>",
+  "@context": "https://standards.lifeengine.io/v1/Context/Identity/Group",
+  "@type": "Group",
+  "@id": "58dc29ab-d52e-4aab-a228-9b54e001797c",
   "data": {
-    "key-1": "Value 1",
-    "key-2": "Value 2"
+    "name": "Company Oy"
   },
-  "createdBy": "<User ID>",
-  "updatedBy": "<User ID>",
-  "createdAt": "2018-02-28T16:41:41.090Z",
-  "updatedAt": "2018-02-28T16:41:41.090Z",
-  "status": 0,
+  "metadata": {
+    "createdBy": "cf0862f6-3f4f-498f-97f1-fbe8b5734448",
+    "updatedBy": "cf0862f6-3f4f-498f-97f1-fbe8b5734448",
+    "createdAt": "2018-02-28T16:41:41.090Z",
+    "updatedAt": "2018-02-28T16:41:41.090Z"
+  },
   "inLinks": [],
   "outLinks": []
 }

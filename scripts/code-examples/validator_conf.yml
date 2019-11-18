@@ -1,0 +1,49 @@
+sample_timeout: 10
+debug: False
+api_url: '$TESTING_API_URL'
+access_token: '$AUTH_TOKEN'
+substitutions:
+  '{version}': 'v1'
+  '<ACCESS_TOKEN>': '$AUTH_TOKEN'
+  'api-sandbox.oftrust.net': '$TESTING_API_URL'
+
+resp_attr_replacements:
+  'product-api/products/{version}':
+    - 'productCode': 'product_code'
+  'message-api/messages/{version}':
+    - '@id': 'id'
+  'calendar-api/calendars/{version}':
+    - '@id': 'id'
+  'identity-api/identities/v1':
+    - '@id': 'id'
+  'identity-api/identities/v1/{from_identity}/link/{to_identity}':
+    - '@type': 'type'
+
+before_sample:
+  'message-api/messages/{version}':
+    - resource: 'Identity'
+      method: 'POST'
+      subs:
+        '@id': '0920a84a-1548-4644-b95d-e3f80e1b9ca6'
+  'calendar-api/calendars/{version}':
+    - resource: 'Identity'
+      method: 'POST'
+      subs:
+        '@id': '0920a84a-1548-4644-b95d-e3f80e1b9ca6'
+  'identity-api/identities/v1/{from_identity}/link/{to_identity}':
+    - resource: 'Identity'
+      method: 'POST'
+      subs:
+        '@id': '{to_identity}'
+    - resource: 'Identity'
+      method: 'POST'
+      subs:
+        '@id': '{from_identity}'
+  'product-api/products/{version}':
+    - resource: 'DeleteProduct'
+      method: 'POST'
+      subs: {}
+
+ignore_failures:
+  'broker-api/broker/{version}/fetch-data-product':
+    - 'POST'

@@ -274,6 +274,7 @@ html, body {
     position: fixed;
     z-index: 50;
     border-bottom: 5px solid $lang-select-active-bg;
+    font-size:16px;
   }
 }
 
@@ -366,7 +367,7 @@ html, body {
     @extend %header-font;
     font-size: 19px;
     margin-top: 4em;
-    margin-bottom: 0;
+    margin-bottom: 1em;
     border-top: 1px solid #ccc;
     padding-top: 1.2em;
     padding-bottom: 1.2em;
@@ -390,12 +391,38 @@ html, body {
   }
 
   [id^=delete], [id^=put] {
-    margin-top:200px;
+   // margin-top:200px;
   }
 
   h4, h5, h6 {
     font-size: 10px;
   }
+
+  h4[id^='http-request'] {
+    display:none;
+  }
+
+
+  h3[id^='get'] {
+    text-transform: uppercase;
+    font-size:1.7em;
+  }
+
+  h3[id^='post'] {
+    text-transform: uppercase;
+    font-size:1.7em;
+  }
+
+  h3[id^='put'] {
+    text-transform: uppercase;
+    font-size:1.7em;
+  }
+
+  h3[id^='delete'] {
+    text-transform: uppercase;
+    font-size:1.7em;
+  }
+
 
   hr {
     margin: 2em 0;
@@ -542,6 +569,8 @@ html, body {
     }
   }
 
+
+
   pre {
     @extend %code-font;
     padding-top: 2em;
@@ -619,6 +648,11 @@ html, body {
   color: #909090;
 }
 
+.highlight .err, .highlight .mf, .highlight .mi {
+  color:#fff;
+}
+
 .highlight, .highlight .w {
   background-color: $code-bg;
 }
+

@@ -1,0 +1,109 @@
+#%RAML 1.0
+---
+title: Login portal API
+version: v1
+baseUri: https://login.oftrust.net/api
+mediaType: application/json
+/exchangeToken:
+  description: |
+    Last part of the authorization flow. Converts the authorization code to an
+    access token to be used in the Authorization header.
+  post:
+    description: Authorization flow, convert authorization code to access token.
+    headers:
+        type: string
+        example: application/x-www-form-urlencoded
+      Accept:
+        description: The Accept header, MUST be `application/json`
+        type: string
+        example: application/json
+    body:
+      application/x-www-form-urlencoded:
+        properties:
+          grant_type:
+            description: The grant type of the login, MUST be `authorization_code`.
+            type: string
+            example: authorization_code
+          redirect_uri:
+            description: The redirect URI used in the authorization flow.
+            type: string
+            example: "https://example.com/auth-callback, https://another.example.com/auth-callback2"
+          code:
+            description: The authorization code to exchange to an access token.
+            type: string
+            example: b56TQpKdqg6ApFZvtbMhT7ki88Jpvn
+          client_secret:
+            description: The authorization code to exchange to an access token.
+            type: string
+            example: b56TQpKdqg6ApFZvtbMhT7ki88Jpvn
+          state?:
+            description: The optional state, e.g. CSRF token from the original request.
+            type: string
+            example: eyJkIjogeyJyIjogImh0dHA6Ly93b3JsZC5sb2NhbDo4MDIx6sQOD
+    responses:
+      200:
+        body:
+          properties: !include includes/properties/access-token.yaml
+          example: !include includes/examples/access_token.json
+      400:
+        body:
+          example: |
+            {
+              "error": "invalid_request",
+              "error_description": "Missing code parameter.",
+              "state": "state"
+            }
+      401:
+        body:
+          description: If e.g. the authorization code has expired.
+          example: |
+            {
+              "error": "invalid_grant"
+            }
+      422:
+        body:
+          example: !include includes/examples/missing_mandatory_data.json
+/me:
+  description: |
+    Gets the information about the currently logged in user. Uses the OAuth
+    Bearer token from the authorization header.
+  get:
+    headers:
+      Authorization: !include includes/properties/authorization-headers.yaml
+    description: Get information about the currently logged in user.
+    responses:
+      200:
+        body:
+          example: !include includes/examples/user.json
+      403:
+        body:
+          example: !include includes/examples/crud_403.json
+/acl/{fromIdentity}/{targetIdentity}:
+  uriParameters:
+    fromIdentity:
+      description: |
+       The identity that is granted access to the `targetIdentity`
+      type: string
+      example: b32ead1c-2f23-4faa-91f3-e30ae239cc17
+    targetIdentity:
+      description: The identity that can be accessed
+      type: string
+      example: b32ead1c-2f23-4faa-91f3-e30ae239cc20
+  post:
+    description: |
+        Set permissions. Will give the from identity read, write, link
+        and/or manage access to the to target identity.
+        If any type of privilege (read, write, link or manage) is left out or
+        set to null, then it will remain unchanged.
+    headers:
+      Authorization: !include includes/properties/authorization-headers.yaml
+    body:
+      example: !include includes/examples/set_permissions.json
+    responses:
+      204:
+      403:
+        body:
+          example: !include includes/examples/crud_403.json
+      404:
+        body:
+          example: !include includes/examples/crud_404.json

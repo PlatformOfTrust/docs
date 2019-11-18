@@ -29,13 +29,19 @@ identity can have.
 
 **Version:** v1 
 
-# /CONTEXTS
+# /CONTEXTS/{VERSION}
 ## ***GET*** 
 
 **Description:** Returns a list of all defined contexts
 
 ### HTTP Request 
-`***GET*** /contexts` 
+`***GET*** /contexts/{version}` 
+
+**Parameters**
+
+| Name | Located in | Description | Required | Type |
+| ---- | ---------- | ----------- | -------- | ---- |
+| version | path |  | Yes | string |
 
 **Responses**
 

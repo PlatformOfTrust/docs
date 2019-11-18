@@ -2,22 +2,24 @@
 ---
 title: Calendar
 version: v1
-baseUri: https://api-sandbox.oftrust.net/calendar/{version}
+baseUri: https://api-sandbox.oftrust.net
 mediaType: application/json
 description: |
   The calendar API provides means to create calendar entries to identities.
   You can e.g. create an event for a housing company identity, a reservation
-  to a room identity, or just a regular calendar entry to any identity you want.
+  to a room identity, or just a regular calendar entry to any identity you want.<br/>
 
   The calendar entry requires a `"to"`-identity, the ID of the identity to which
   the calendar entry applies to. Specify a type for the entry, e.g.
   `Event`, `Reservation`, `CalendarEntry`. Give the calendar entry a title, e.g.
   "Housewarming party", a start date, when the entry starts, and an end date
   when the entry ends. The dates are in RFC3339 format, and will be saved in UTC
-  time.
+  time. <br/>
+
   You can specify if an entry repeats, as defined in ISO 8601 repeating
   intervals. A location can be added as well, if needed, as a string, e.g.
-  "Living room".
+  "Living room".<br/>
+
   The `cc` is a list of user IDs to whom the calendar entry can be CC'd to.
   A notification about the entry will be sent to these users.
 types:
@@ -68,13 +70,13 @@ types:
             "323bde80-4cc2-472e-bb77-e6a3e95a1253",
             "0827e9c3-9664-479f-b0ec-956a35d72e4b"
           ]
-/calendar:
+/calendars/v1:
   description: |
     Manage calendars of identities. A calendar entry can be sent to any identity the user
     has access to.
   post:
     headers:
-      Authorization: !include includes/properties/authorization-headers.yaml
+      Authorization: !include ../authorization-headers.yaml
     description: Create a new calendar entry
     body:
       type: calendar
@@ -94,6 +96,7 @@ types:
               }
             }
   /{id}:
+    description: Read, update and delete calendars of an identity.
     uriParameters:
       id:
         description: The ID of the calendar
@@ -101,7 +104,7 @@ types:
         example: 2584bdd7-1cb2-48ed-a106-2a1b817cf909
     get:
       headers:
-        Authorization: !include includes/properties/authorization-headers.yaml
+        Authorization: !include ../authorization-headers.yaml
       description: Read one calendar by id
       responses:
         200:
@@ -113,7 +116,7 @@ types:
             example: !include includes/examples/calendar-not-found.json
     put:
       headers:
-        Authorization: !include includes/properties/authorization-headers.yaml
+        Authorization: !include ../authorization-headers.yaml
       description: Update a calendar by id
       body:
         type: calendar
@@ -137,7 +140,7 @@ types:
               }
     delete:
       headers:
-        Authorization: !include includes/properties/authorization-headers.yaml
+        Authorization: !include ../authorization-headers.yaml
       description: Delete a calendar by id
       responses:
         204:
@@ -153,10 +156,11 @@ types:
         type: string
         example: 2584bdd7-1cb2-48ed-a106-2a1b817cf909
     /list:
+      description: List all calendars belonging to an identity.
       get:
         headers:
-          Authorization: !include includes/properties/authorization-headers.yaml
-        description: List all calendars belonging to the "to" identity.
+          Authorization: !include ../authorization-headers.yaml
+        description: List calendars created for "to"-identity.
         responses:
           200:
             body:

@@ -1,0 +1,58 @@
+productCode:
+  description: The product code for the product.
+  type: string
+  example: product-1
+dataContext:
+  description: |
+    The URL to the data context for the product. The data context
+    defines the keys in the `data` object returned from the translator.
+    Think of it like "output" context.
+  type: string
+  example: https://example.com/contexts/product-data.jsonld
+parameterContext:
+  description: |
+    The URL to the context for the parameters of the product.
+    The parameter context defines the keys in the `parameters` object
+    that are sent in the request to the data broker. Think of it like the
+    "input" context.
+  type: string
+  example: https://example.com/contexts/product-parameters.jsonld
+translatorUrl:
+  description: The URL to the translator.
+  type: string
+  example: https://example.com/translator
+name:
+  description: The name of the product.
+  type: string
+  example: Product name
+organizationPublicKeys:
+  description: |
+    Organization public keys. Each object in the list MUST have the keys
+    `url` and `type`, where `url` is the full URL to the public key used
+    for signing the data, and the `type` defines the type of the signature.
+  type: array
+  example: |
+    [
+      {
+        "url": "https://example.com/public-key.pub",
+        "type": "RsaSignature2018"
+      },
+      {
+        "url": "https://example.com/public-key-2.pub",
+        "type": "RsaSignature2018"
+      }
+    ]
+description?:
+  description: The description of the product.
+  type: string
+  example: This is a product that returns the temperature data for ...
+imageUrl?:
+  description: Optional URL to an image for the product.
+  type: string
+  example: https://example.com/product-image.png
+groupId:
+  description: |
+    The group where the user is a member of. This group will be
+    the developer of the data product.
+  type: string
+  example: 5c35c7f1-a1f7-4c9c-91b6-669779f60d23

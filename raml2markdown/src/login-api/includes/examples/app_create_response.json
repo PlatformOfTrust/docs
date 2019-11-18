@@ -1,0 +1,41 @@
+{
+    "@context": "https://standards.lifeengine.io/v1/Context/Identity/Digital/Software/App/",
+    "@type": "App",
+    "@id": "b870cfb3-650f-41b3-bc5a-898f7dc2e1f5",
+    "inLinks": [],
+    "outLinks": [],
+    "data": {
+        "name": "Example app",
+        "privacyPolicyUrl": "http://example.com/privacy.html",
+        "iconUrl": "http://example.com/icon.png",
+        "webPageUrl": "http://example.com/application.html"
+    },
+    "metadata": {
+        "createdAt": "2019-09-16T12:07:10+00:00",
+        "createdBy": "e153e200-14d5-43ce-95dc-2db22ac6767f",
+        "updatedAt": "2019-09-16T12:07:10+00:00",
+        "updatedBy": "e153e200-14d5-43ce-95dc-2db22ac6767f"
+    },
+    "client": {
+        "clientId": "b870cfb3-650f-41b3-bc5a-898f7dc2e1f5",
+        "redirectUris": "Test Test",
+        "defaultRedirectUri": "Test Test",
+        "scopes": "",
+        "defaultScopes": "",
+        "clientSecrets": [
+            "BNrmZ0Kr3FVtIKJF_tmCI_d87TCB3sHi04m6ynf-P2U"
+        ]
+    },
+    "tokens": [
+        {
+            "access_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6bnVsbCwiZXhwIjoxNjMxNzA3NjMwLCJzdWIiOiJiODcwY2ZiMy02NTBmLTQxYjMtYmM1YS04OThmN2RjMmUxZjUiLCJhdWQiOiJiODcwY2ZiMy02NTBmLTQxYjMtYmM1YS04OThmN2RjMmUxZjUiLCJ0eXBlIjoiQXBwIiwiaXNzIjoiTEUiLCJpYXQiOjE1Njg2MzU2MzAuMCwic2NvcGVzIjoiIn0.PRjX8eJy79-9jLLT5XyBX9BUjYxx5n4u_1HI2Co6U7-clHQBJQTSHr61ViEeGI6OogvnSDIxuCzBd_4AmbMfC1qkfZLn1jskPxmyh_2cgbJDl68JzmddBQpOVb88VtV_MJvnwLJRDGDMGh73KFDoQ3FUxBklh-Jit1LaowXexdxQNJ_wMVh0E4YU5eagA_9Osbo2O_3vGgQXRw1qHk7SDwhIsIGaBRdNBE1Zc_dqTMUyleqAPchz3Dgfo-tRLdCjFrfbi7dn911ypjUJNN_H3BUASJMmfi3PTl1iwo_Ue_Vy-nRx-s_eQCYvI9gv9GthtPXGAC_C5cMDGD2mAixetYy2C7zIOOcWDDcewbcAMQqtJYTIEYcrnF0VF4GT3ErbpedyHSQ-Ob9Exa0Fpz_13eu_9UKPsVhyytZ7PyrAjBP4O7OVsnLevMKZEGbGCqLMx6uW5Ptprkd4ZiioYRwNnBK0-T9SJB7FpJ7q_VgHl9PaymrgEBbXqFPp-95vYqVqcaj3BPVSwLfhC9P-xtu-yZNHtSp27ZL74Wc8UwwXVXsegrbl_ouKeEQfgezvJdbammRn8cPgtvW8IBA73H7qRUhdkBqofADevLC5Y4s-2W7Kw7bWct7D6w1I6FcHjEWO4X87jCDNKWA-xFjEW8DO69DLPd5lRXcr-NUa7ZGPA0A",
+            "expires_in": 63072000.0,
+            "token_type": "Bearer"
+        },
+        {
+            "access_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6bnVsbCwiZXhwIjoxNjMxNzA3NjMwLCJzdWIiOiJiODcwY2ZiMy02NTBmLTQxYjMtYmM1YS04OThmN2RjMmUxZjUiLCJhdWQiOiJiODcwY2ZiMy02NTBmLTQxYjMtYmM1YS04OThmN2RjMmUxZjUiLCJ0eXBlIjoiQXBwIiwiaXNzIjoiTEUiLCJpYXQiOjE1Njg2MzU2MzAuMCwic2NvcGVzIjoiIn0.PRjX8eJy79-9jLLT5XyBX9BUjYxx5n4u_1HI2Co6U7-clHQBJQTSHr61ViEeGI6OogvnSDIxuCzBd_4AmbMfC1qkfZLn1jskPxmyh_2cgbJDl68JzmddBQpOVb88VtV_MJvnwLJRDGDMGh73KFDoQ3FUxBklh-Jit1LaowXexdxQNJ_wMVh0E4YU5eagA_9Osbo2O_3vGgQXRw1qHk7SDwhIsIGaBRdNBE1Zc_dqTMUyleqAPchz3Dgfo-tRLdCjFrfbi7dn911ypjUJNN_H3BUASJMmfi3PTl1iwo_Ue_Vy-nRx-s_eQCYvI9gv9GthtPXGAC_C5cMDGD2mAixetYy2C7zIOOcWDDcewbcAMQqtJYTIEYcrnF0VF4GT3ErbpedyHSQ-Ob9Exa0Fpz_13eu_9UKPsVhyytZ7PyrAjBP4O7OVsnLevMKZEGbGCqLMx6uW5Ptprkd4ZiioYRwNnBK0-T9SJB7FpJ7q_VgHl9PaymrgEBbXqFPp-95vYqVqcaj3BPVSwLfhC9P-xtu-yZNHtSp27ZL74Wc8UwwXVXsegrbl_ouKeEQfgezvJdbammRn8cPgtvW8IBA73H7qRUhdkBqofADevLC5Y4s-2W7Kw7bWct7D6w1I6FcHjEWO4X87jCDNKWA-xFjEW8DO69DLPd5lRXcr-NUa7ZGPA0A",
+            "expires_in": 63072000.0,
+            "token_type": "Bearer"
+        }
+    ]
+}

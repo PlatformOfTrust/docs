@@ -1,16 +1,19 @@
 {
-  "dataContext": "<data context URL>",
-  "parameterContext": "<parameter context URL>",
-  "productCode": "<product code>",
-  "sharedSecret": "<shared secret>",
-  "name": "<product name>",
-  "translatorUrl": "<translator URL>",
+  "dataContext": "https://example.com/v1/Context/Data",
+  "parameterContext": "https://example.com/v1/Context/Parameter",
+  "productCode": "product-1",
+  "name": "Product name",
+  "translatorUrl": "https://example.com/translator",
   "organizationPublicKeys": [
     {
-      "url": "<public key URL>",
-      "type": "<public key type>"
+      "url": "https://example.com/public-key.pub",
+      "type": "RsaSignature2018"
+    },
+    {
+      "url": "https://example.com/public-key-2.pub",
+      "type": "RsaSignature2018"
     }
   ],
-  "imageUrl": "<image URL>",
-  "description": "<product description>"
+  "imageUrl": "https://example.com/product-image.png",
+  "description": "This is a product that returns the temperature data for ..."
 }

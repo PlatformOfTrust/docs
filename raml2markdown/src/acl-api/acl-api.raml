@@ -1,0 +1,123 @@
+#%RAML 1.0
+---
+title: ACL
+version: v1
+baseUri: https://api-sandbox.oftrust.net
+mediaType: application/json
+
+/acl/v1:
+  /{from_identity}/{target_identity}:
+    uriParameters:
+      from_identity:
+        description: |
+         The identity that is granted access to the `target_identity`
+        type: string
+        example: b32ead1c-2f23-4faa-91f3-e30ae239cc17
+      target_identity:
+        description: The identity that can be accessed
+        type: string
+        example: b32ead1c-2f23-4faa-91f3-e30ae239cc20
+    post:
+      description: |
+          Set permissions. Will give the from identity read, write, link
+          and/or manage access to the to target identity.
+          If any type of privilege (read, write, link or manage) is left out or
+          set to null, then it will remain unchanged.
+      headers:
+        Authorization: !include includes/properties/authorization-headers.yaml
+      body:
+        example: !include includes/examples/set_permissions.json
+      responses:
+        204:
+        403:
+          body:
+            example: !include includes/examples/crud_403.json
+        404:
+          body:
+            example: !include includes/examples/crud_404.json
+    delete:
+      description: |
+          Delete permission
+      headers:
+        Authorization: !include includes/properties/authorization-headers.yaml
+      responses:
+        204:
+        403:
+          body:
+            example: !include includes/examples/crud_403.json
+        404:
+          body:
+            example: !include includes/examples/crud_404.json
+  /{target_identity}:
+    uriParameters:
+      target_identity:
+        description: The identity for which the permissions should be listed
+        type: string
+        example: b32ead1c-2f23-4faa-91f3-e30ae239cc20
+    get:
+      description: |
+          List permissions on an identity. Will list all identities that can
+          access the identity and what access privileges they have.
+      headers:
+        Authorization: !include includes/properties/authorization-headers.yaml
+      responses:
+        200:
+          body:
+            example: !include includes/examples/list_permissions.json
+        403:
+          body:
+            example: !include includes/examples/crud_403.json
+        404:
+          body:
+            example: !include includes/examples/crud_404.json
+  /{target_identity}/{permissions}:
+    uriParameters:
+      target_identity:
+        description: The identity to check if given permissions exist for
+        type: string
+        example: b32ead1c-2f23-4faa-91f3-e30ae239cc20
+      permissions:
+        description: A comma separated list of permissions to check
+        type: string
+        example: read,write,link,manage
+    get:
+      description: |
+          Check specific permissions. Used to check if the requester has specific
+          privilege(s) on an identity. Will return 204 if requester has all
+          requested privileges and 403 if at least one is missing.
+      headers:
+        Authorization: !include includes/properties/authorization-headers.yaml
+      responses:
+        204:
+        403:
+          body:
+            example: !include includes/examples/crud_403.json
+        404:
+          body:
+            example: !include includes/examples/crud_404.json
+  /batch/{permissions}:
+    uriParameters:
+      permissions:
+        description: A comma separated list of permissions to check
+        type: string
+        example: read,write,link,manage
+    post:
+      description: |
+          Batch check specific permissions. Used to check if the requester has
+          specific privilege(s) on a batch of identities. Will return a mapping
+          from identity ID to a boolean; true if the user has all the
+          requested privileges to the identity and false if not.
+      headers:
+        Authorization: !include includes/properties/authorization-headers.yaml
+      body:
+        example: !include includes/examples/batch_check_post.json
+      responses:
+        200:
+          body:
+            example: !include includes/examples/batch_check_response.json
+        403:
+          body:
+            example: !include includes/examples/crud_403.json
+        404:
+          body:
+            example: !include includes/examples/crud_404.json

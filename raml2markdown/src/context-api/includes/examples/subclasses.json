@@ -1,0 +1,9 @@
+[
+  {
+    "classDefinition": "https://standards.oftrust.net/v1/ClassDefinitions/Virtual/Project",
+    "context": "https://standards.oftrust.net/v1/Context/Virtual/Project",
+    "name": "Project",
+    "subclasses": [],
+    "vocabulary": "https://standards.oftrust.net/v1/Vocabulary/Virtual/Project"
+  }
+]

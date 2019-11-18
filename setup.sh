@@ -6,6 +6,7 @@ bundle install
 # Get and build oas-raml-converter
 
 cd raml2markdown
+npm install
 rm -rf ./oas-raml-converter
 git clone https://github.com/mulesoft/oas-raml-converter.git
 cd oas-raml-converter
@@ -16,6 +17,3 @@ npm run build
 sed -Ei 's@env node --harmony@env node@' lib/bin/*.js
 
 cd ..
-
-# Install swagger-to-slate node app
-npm i -g swagger-to-slate

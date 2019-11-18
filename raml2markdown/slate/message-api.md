@@ -33,18 +33,19 @@ A notification about the message will be sent to these users.
 
 **Version:** v1 
 
-# /MESSAGE
+# /MESSAGES/{VERSION}
 ## ***POST*** 
 
 **Description:** Create a new message
 
 ### HTTP Request 
-`***POST*** /message` 
+`***POST*** /messages/{version}` 
 
 **Parameters**
 
 | Name | Located in | Description | Required | Type |
 | ---- | ---------- | ----------- | -------- | ---- |
+| version | path |  | Yes | string |
 | Authorization | header | The Authorization header, MUST be `Bearer {{access_token}}` | Yes | string |
 | body | body |  | Yes |  |
 
@@ -55,19 +56,20 @@ A notification about the message will be sent to these users.
 | 201 |  |
 | 422 |  |
 
-# /MESSAGE/{ID}
+# /MESSAGES/{VERSION}/{ID}
 ## ***GET*** 
 
 **Description:** Read one message by id
 
 ### HTTP Request 
-`***GET*** /message/{id}` 
+`***GET*** /messages/{version}/{id}` 
 
 **Parameters**
 
 | Name | Located in | Description | Required | Type |
 | ---- | ---------- | ----------- | -------- | ---- |
 | id | path | The ID of the message | Yes | string |
+| version | path |  | Yes | string |
 | Authorization | header | The Authorization header, MUST be `Bearer {{access_token}}` | Yes | string |
 
 **Responses**
@@ -82,13 +84,14 @@ A notification about the message will be sent to these users.
 **Description:** Update a message by id
 
 ### HTTP Request 
-`***PUT*** /message/{id}` 
+`***PUT*** /messages/{version}/{id}` 
 
 **Parameters**
 
 | Name | Located in | Description | Required | Type |
 | ---- | ---------- | ----------- | -------- | ---- |
 | id | path | The ID of the message | Yes | string |
+| version | path |  | Yes | string |
 | Authorization | header | The Authorization header, MUST be `Bearer {{access_token}}` | Yes | string |
 | body | body |  | Yes |  |
 
@@ -105,13 +108,14 @@ A notification about the message will be sent to these users.
 **Description:** Delete a message by id
 
 ### HTTP Request 
-`***DELETE*** /message/{id}` 
+`***DELETE*** /messages/{version}/{id}` 
 
 **Parameters**
 
 | Name | Located in | Description | Required | Type |
 | ---- | ---------- | ----------- | -------- | ---- |
 | id | path | The ID of the message | Yes | string |
+| version | path |  | Yes | string |
 | Authorization | header | The Authorization header, MUST be `Bearer {{access_token}}` | Yes | string |
 
 **Responses**
@@ -121,19 +125,20 @@ A notification about the message will be sent to these users.
 | 204 |  |
 | 404 |  |
 
-# /MESSAGE/{ID}/READ
+# /MESSAGES/{VERSION}/{ID}/READ
 ## ***POST*** 
 
 **Description:** Marks a message read by the currently logged in user.
 
 ### HTTP Request 
-`***POST*** /message/{id}/read` 
+`***POST*** /messages/{version}/{id}/read` 
 
 **Parameters**
 
 | Name | Located in | Description | Required | Type |
 | ---- | ---------- | ----------- | -------- | ---- |
 | id | path | The ID of the message | Yes | string |
+| version | path |  | Yes | string |
 | Authorization | header | The Authorization header, MUST be `Bearer {{access_token}}` | Yes | string |
 
 **Responses**
@@ -143,19 +148,20 @@ A notification about the message will be sent to these users.
 | 200 |  |
 | 403 |  |
 
-# /MESSAGES/{TOIDENTITY}/LIST
+# /MESSAGES/{VERSION}/{TOIDENTITY}/LIST
 ## ***GET*** 
 
-**Description:** List all messages belonging to the "to" identity.
+**Description:** List messages sent to "to"-identity.
 
 ### HTTP Request 
-`***GET*** /messages/{toIdentity}/list` 
+`***GET*** /messages/{version}/{toIdentity}/list` 
 
 **Parameters**
 
 | Name | Located in | Description | Required | Type |
 | ---- | ---------- | ----------- | -------- | ---- |
 | toIdentity | path | The identity to which the message belongs to. | Yes | string |
+| version | path |  | Yes | string |
 | Authorization | header | The Authorization header, MUST be `Bearer {{access_token}}` | Yes | string |
 
 **Responses**

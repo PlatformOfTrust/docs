@@ -2,7 +2,7 @@
 ---
 title: Message
 version: v1
-baseUri: https://api-sandbox.oftrust.net/message/{version}
+baseUri: https://api-sandbox.oftrust.net
 mediaType: application/json
 description: |
   The message API provides means to create/send messages to identities.
@@ -40,13 +40,13 @@ types:
             "323bde80-4cc2-472e-bb77-e6a3e95a1253",
             "0827e9c3-9664-479f-b0ec-956a35d72e4b"
           ]
-/message:
+/messages/v1:
   description: |
     Manage messages of identities. A message can be sent to any identity the user
     has access to.
   post:
     headers:
-      Authorization: !include includes/properties/authorization-headers.yaml
+      Authorization: !include ../authorization-headers.yaml
     description: Create a new message
     body:
       type: message
@@ -66,6 +66,7 @@ types:
               }
             }
   /{id}:
+    description: Read, update and delete messages of an identity.
     uriParameters:
       id:
         description: The ID of the message
@@ -73,7 +74,7 @@ types:
         example: 2584bdd7-1cb2-48ed-a106-2a1b817cf909
     get:
       headers:
-        Authorization: !include includes/properties/authorization-headers.yaml
+        Authorization: !include ../authorization-headers.yaml
       description: Read one message by id
       responses:
         200:
@@ -85,7 +86,7 @@ types:
             example: !include includes/examples/message-not-found.json
     put:
       headers:
-        Authorization: !include includes/properties/authorization-headers.yaml
+        Authorization: !include ../authorization-headers.yaml
       description: Update a message by id
       body:
         type: message
@@ -109,7 +110,7 @@ types:
               }
     delete:
       headers:
-        Authorization: !include includes/properties/authorization-headers.yaml
+        Authorization: !include ../authorization-headers.yaml
       description: Delete a message by id
       responses:
         204:
@@ -121,7 +122,7 @@ types:
     /read:
       post:
         headers:
-          Authorization: !include includes/properties/authorization-headers.yaml
+          Authorization: !include ../authorization-headers.yaml
         description: Marks a message read by the currently logged in user.
         responses:
           200:
@@ -136,9 +137,6 @@ types:
                     "message": "User not logged in."
                   }
                 }
-
-/messages:
-  description: List messages that are sent to an identity.
   /{toIdentity}:
     uriParameters:
       toIdentity:
@@ -146,10 +144,11 @@ types:
         type: string
         example: 2584bdd7-1cb2-48ed-a106-2a1b817cf909
     /list:
+      description: List all messages belonging to an identity.
       get:
         headers:
-          Authorization: !include includes/properties/authorization-headers.yaml
-        description: List all messages belonging to the "to" identity.
+          Authorization: !include ../authorization-headers.yaml
+        description: List messages sent to "to"-identity.
         responses:
           200:
             body:
