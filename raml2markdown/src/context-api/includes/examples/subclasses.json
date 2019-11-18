@@ -1,7 +1,7 @@
 [
   {
     "classDefinition": "https://standards.oftrust.net/v1/ClassDefinitions/Identity/Virtual/Project",
-    "context": "https://standards.oftrust.net/v1/Context/Identity/Virtual/Project",
+    "context": "https://standards.oftrust.net/v1/Context/Identity/Virtual/Project/",
     "name": "Project",
     "subclasses": [],
     "vocabulary": "https://standards.oftrust.net/v1/Vocabulary/Identity/Virtual/Project"
