@@ -80,7 +80,7 @@ You can list data products in the market place with [Product API](#product-api).
 
 * Some of the API endpoints are CORS enabled and they are marked in the description. 
 
-* Another thing to understand is the harmonised data models. We recommend that you **[get familiar with core ontologies](https://github.com/PlatformOfTrust/standards/blob/master/README.md)** especially if you are integrating data sources to the Platform of Trust. 
+* Another thing to understand is the harmonised data models. We recommend that you **[get familiar with core ontologies](https://standards.oftrust.net/v1/)** especially if you are integrating data sources to the Platform of Trust. 
 
 ## Standards used
 
