@@ -86,7 +86,7 @@ You can list data products in the market place with [Product API](#product-api).
 
 **Dates**: we use a subset of ISO-8601 - [RFC 3339](https://www.ietf.org/rfc/rfc3339.txt). Example <code>2008-09-15T15:53:00+05:00</code>
 
-**Core Ontology**: The Platform Of Trust core ontology can be found as a JSON-LD ontology file under [ontologies/pot.jsonld](https://github.com/PlatformOfTrust/standards/blob/master/ontologies/pot.jsonld).
+**Core Ontology**: The Platform Of Trust core ontology can be found as a JSON-LD ontology from [https://standards.oftrust.net/v1/](https://standards.oftrust.net/v1/).
 
 Each identity type has their own context which
 describes the attributes the identity has. The context file name gives a notion
@@ -102,6 +102,6 @@ If only a link between identities is needed, without any kind
 of role, the generic `link-link.jsonld` can be used 
 [contexts/link-link.jsonld](https://github.com/PlatformOfTrust/standards/tree/master/contexts/link-link.jsonld).
 
-Read more from [Github](https://github.com/PlatformOfTrust/standards/blob/master/README.md)
+Read more from [https://standards.oftrust.net/v1/](https://standards.oftrust.net/v1/)
 
 
