@@ -11,9 +11,9 @@ privacyPolicyUrl?:
   type: string
   example: http://example.com/privacy.html
 iconUrl?:
-    description: Optional URL to an icon to show for the application. Dimensions should be 80x80.
-    type: string
-    example: http://example.com/icon.png
+  description: Optional URL to an icon to show for the application. Dimensions should be 80x80.
+  type: string
+  example: http://example.com/icon.png
   webPageUrl?:
     description: Optional URL to the application's web page.
     type: string
