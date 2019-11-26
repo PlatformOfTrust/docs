@@ -3,7 +3,7 @@
   "@type": "collection",
   "ItemList": [
     {
-      "@context": "https://standards.lifeengine.io/v1/Context/Message",
+      "@context": "https://standards.lifeengine.io/v1/Context/Message/",
       "@type": "Message",
       "toIdentity": "0920a84a-1548-4644-b95d-e3f80e1b9ca6",
       "subject": "Go to the grocery store",
@@ -17,7 +17,7 @@
       "createdBy": "58422496-5796-4c47-a4a1-88768ea94ea6"
     },
     {
-      "@context": "https://standards.lifeengine.io/v1/Context/Message",
+      "@context": "https://standards.lifeengine.io/v1/Context/Message/",
       "@type": "Message",
       "toIdentity": "0920a84a-1548-4644-b95d-e3f80e1b9ca6",
       "subject": "You forgot the milk",

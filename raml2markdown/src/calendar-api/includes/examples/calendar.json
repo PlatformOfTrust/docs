@@ -1,6 +1,6 @@
 {
-  "@context": "https://standards.lifeengine.io/v1/Context/Calendar",
-  "@type": "Event",
+  "@context": "https://standards.lifeengine.io/v1/Context/Calendar/",
+  "@type": "Calendar",
   "@id": "c9620d09-cd83-476e-91f5-3f3ea730f4b9",
   "toIdentity": "0920a84a-1548-4644-b95d-e3f80e1b9ca6",
   "title": "April's fools day",

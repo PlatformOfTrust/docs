@@ -1,5 +1,5 @@
 {
-  "@context": "https://standards.lifeengine.io/v1/Context/Identity/Thing/HumanWorld/Product/DataProduct",
+  "@context": "https://standards.lifeengine.io/v1/Context/Identity/Thing/HumanWorld/Product/DataProduct/",
   "@type": "DataProduct",
   "@id": "https://api-sandbox.oftrust.net/products/v1/product-1",
   "productCode": "product-1",

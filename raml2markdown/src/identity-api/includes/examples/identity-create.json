@@ -1,5 +1,5 @@
 {
-  "context": "https://standards.lifeengine.io/v1/Context/Identity/Group",
+  "context": "https://standards.lifeengine.io/v1/Context/Identity/Group/",
   "type": "Group",
   "data": {
     "name": "Company Oy"
