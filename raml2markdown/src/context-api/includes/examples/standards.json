@@ -3,29 +3,29 @@
     "Core": {
       "dataProducts": [
         {
-          "classDefinition": "https://standards.lifeengine.io/v1/ClassDefinitions/Identity/Thing/HumanWorld/Product/DataProduct",
-          "context": "https://standards.lifeengine.io/v1/Context/Identity/Thing/HumanWorld/Product/DataProduct/",
+          "classDefinition": "https://standards.oftrust.net/v1/ClassDefinitions/DataProduct",
+          "context": "https://standards.oftrust.net/v1/Context/DataProduct",
           "name": "Data Product",
           "subclasses": [],
-          "vocabulary": "https://standards.lifeengine.io/v1/Vocabulary/Identity/Thing/HumanWorld/Product/DataProduct"
+          "vocabulary": "https://standards.oftrust.net/v1/Vocabulary/DataProduct"
         }
       ],
       "identities": [],
       "links": [
         {
-          "classDefinition": "https://standards.lifeengine.io/v1/ClassDefinitions/Link",
-          "context": "https://standards.lifeengine.io/v1/Context/Link/",
+          "classDefinition": "https://standards.oftrust.net/v1/ClassDefinitions/Link",
+          "context": "https://standards.oftrust.net/v1/Context/Link",
           "name": "Link",
           "subclasses": [
             {
-              "classDefinition": "https://standards.lifeengine.io/v1/ClassDefinitions/Link/Role",
-              "context": "https://standards.lifeengine.io/v1/Context/Link/Role/",
+              "classDefinition": "https://standards.oftrust.net/v1/ClassDefinitions/Link/Role",
+              "context": "https://standards.oftrust.net/v1/Context/Link/Role",
               "name": "Role",
-              "vocabulary": "https://standards.lifeengine.io/v1/Vocabulary/Link/Role",
+              "vocabulary": "https://standards.oftrust.net/v1/Vocabulary/Link/Role",
               "subclasses": []
             }
           ],
-          "vocabulary": "https://standards.lifeengine.io/v1/Vocabulary/Link"
+          "vocabulary": "https://standards.oftrust.net/v1/Vocabulary/Link"
         }
       ]
     },
@@ -33,27 +33,27 @@
       "dataProducts": [],
       "identities": [
         {
-          "classDefinition": "https://standards.oftrust.net/v1/ClassDefinitions/Identity/Group/Organization",
-          "context": "https://standards.oftrust.net/v1/Context/Identity/Group/Organization/",
+          "classDefinition": "https://standards.oftrust.net/v1/ClassDefinitions/Group/Organization",
+          "context": "https://standards.oftrust.net/v1/Context/Group/Organization",
           "name": "Organization",
           "subclasses": [
             {
-              "classDefinition": "https://standards.oftrust.net/v1/ClassDefinitions/Identity/Group/Organization/LimitedCompany",
-              "context": "https://standards.oftrust.net/v1/Context/Identity/Group/Organization/LimitedCompany/",
+              "classDefinition": "https://standards.oftrust.net/v1/ClassDefinitions/Group/Organization/LimitedCompany",
+              "context": "https://standards.oftrust.net/v1/Context/Group/Organization/LimitedCompany",
               "name": "Limited Company",
               "subclasses": [
                 {
-                  "classDefinition": "https://standards.oftrust.net/v1/ClassDefinitions/Identity/Group/Organization/LimitedCompany/HousingCooperative",
-                  "context": "https://standards.oftrust.net/v1/Context/Identity/Group/Organization/LimitedCompany/HousingCooperative/",
+                  "classDefinition": "https://standards.oftrust.net/v1/ClassDefinitions/Group/Organization/LimitedCompany/HousingCooperative",
+                  "context": "https://standards.oftrust.net/v1/Context/Group/Organization/LimitedCompany/HousingCooperative",
                   "name": "Housing Cooperative",
                   "subclasses": [],
-                  "vocabulary": "https://standards.oftrust.net/v1/Vocabulary/Identity/Group/Organization/LimitedCompany/HousingCooperative"
+                  "vocabulary": "https://standards.oftrust.net/v1/Vocabulary/Group/Organization/LimitedCompany/HousingCooperative"
                 }
               ],
-              "vocabulary": "https://standards.oftrust.net/v1/Vocabulary/Identity/Group/Organization/LimitedCompany"
+              "vocabulary": "https://standards.oftrust.net/v1/Vocabulary/Group/Organization/LimitedCompany"
             }
           ],
-          "vocabulary": "https://standards.oftrust.net/v1/Vocabulary/Identity/Group/Organization"
+          "vocabulary": "https://standards.oftrust.net/v1/Vocabulary/Group/Organization"
         }
       ],
       "links": []

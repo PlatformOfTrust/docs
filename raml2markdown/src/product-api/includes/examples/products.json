@@ -3,7 +3,7 @@
   "@type": "collection",
   "ItemList": [
     {
-      "@context": "https://standards.lifeengine.io/v1/Context/Identity/Thing/HumanWorld/Product/DataProduct/",
+      "@context": "https://standards.lifeengine.io/v1/Context/Identity/Thing/HumanWorld/Product/DataProduct",
       "@type": "DataProduct",
       "@id": "https://api-sandbox.oftrust.net/products/v1/product-1",
       "productCode": "product-1",
@@ -26,7 +26,7 @@
       "identityId": "31b5b971-dc50-4c9c-992a-57c0bf016186"
     },
     {
-      "@context": "https://standards.lifeengine.io/v1/Context/Identity/Thing/HumanWorld/Product/DataProduct/",
+      "@context": "https://standards.lifeengine.io/v1/Context/Identity/Thing/HumanWorld/Product/DataProduct",
       "@type": "DataProduct",
       "@id": "https://api-sandbox.oftrust.net/products/v1/product-2",
       "productCode": "product-2",
