@@ -4,6 +4,12 @@ title: Login portal API
 version: v1
 baseUri: https://login.oftrust.net/api
 mediaType: application/json
+description: |
+  The Login portal API provides means for completing OAuth flow and reading
+  information about logged in user.<br/>
+
+  Note: All endpoints for Login portal API have following base URL -
+  `https://login.oftrust.net/api`
 /exchangeToken:
   description: |
     Last part of the authorization flow. Converts the authorization code to an
@@ -78,32 +84,3 @@ mediaType: application/json
       403:
         body:
           example: !include includes/examples/crud_403.json
-/acl/{fromIdentity}/{targetIdentity}:
-  uriParameters:
-    fromIdentity:
-      description: |
-       The identity that is granted access to the `targetIdentity`
-      type: string
-      example: b32ead1c-2f23-4faa-91f3-e30ae239cc17
-    targetIdentity:
-      description: The identity that can be accessed
-      type: string
-      example: b32ead1c-2f23-4faa-91f3-e30ae239cc20
-  post:
-    description: |
-        Set permissions. Will give the from identity read, write, link
-        and/or manage access to the to target identity.
-        If any type of privilege (read, write, link or manage) is left out or
-        set to null, then it will remain unchanged.
-    headers:
-      Authorization: !include includes/properties/authorization-headers.yaml
-    body:
-      example: !include includes/examples/set_permissions.json
-    responses:
-      204:
-      403:
-        body:
-          example: !include includes/examples/crud_403.json
-      404:
-        body:
-          example: !include includes/examples/crud_404.json
