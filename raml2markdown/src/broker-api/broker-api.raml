@@ -60,7 +60,7 @@ types:
           ).strip() <br/><br/>
           </code>
           The keys MUST be sorted, without indentation and separators comma
-          (,) and colon (:) specified. <br/><br/>
+          (,) and colon (: ) specified. <br/><br/>
 
           Get the digest by passing the app client secret (generated when
           creating a new app) and the body string to `hmac`:<br/><br/>
@@ -73,6 +73,15 @@ types:
           Return the digest in base64 encoded format:<br/>
           <code>
           X-Pot-Signature = base64.b64encode(digest).decode()<br/>
+          </code>
+
+          When you validate the signature, remember to base64 decode the signature
+          value from the response, and add the `__signed__` date to the payload
+          before validating the signature, e.g:
+          <code>
+          signature_value = base64.b64decode(response["signature"]["signatureValue"])
+          signature_payload = response["data"]
+          signature_payload["__signed__"] = signature_data["created"]
           </code>
 
         type: string
@@ -126,5 +135,17 @@ types:
                     "Missing data for required field."
                   ]
                 }
+              }
+            }
+      502:
+        body:
+          description: |
+            If the data returned from the translator cannot be read or parsed, a 502
+            Bad Gateway error will be returned.
+          example: |
+            {
+              "error": {
+                "status": 502,
+                "message": "Could not parse response from translator"
               }
             }
