@@ -1,11 +1,99 @@
-'@context':
-  description: The context URL
-  type: string
-  example: https://schema.org/
-'@type':
-  description: The type of the list
-  type: string
-  example: collection
-ItemList:
-  description: The list of identities
+inLinks:
+  description: The inbound links to the identity.
   type: link[]
+  example: |
+    {
+      "inLinks": [
+        {
+          "@context": "https://standards.oftrust.net/v1/Context/Link/OwnerOf/",
+          "@type": "OwnerOf",
+          "@id": "257482d1-56bf-4b5e-abf2-29014ef1eb0a",
+          "from": "e153e200-14d5-43ce-95dc-2db22ac6767f",
+          "to": "00ecc2fe-35fa-4f9c-83d1-a1bab31a0cff",
+          "data": {},
+          "metadata": {
+            "createdAt": "2019-09-17T12:48:17+00:00",
+            "createdBy": "7a6a7b86-4edb-4545-ac2e-edb9c11598d2",
+            "updatedAt": "2019-09-17T12:48:17+00:00",
+            "updatedBy": "7a6a7b86-4edb-4545-ac2e-edb9c11598d2"
+          }
+        }
+      ]
+    }
+outLinks:
+  description: The outbound links from the identity.
+  type: link[]
+  example: |
+    {
+      "outLinks": [
+        {
+          "@context": "https://standards.oftrust.net/v1/Context/Link/TenantAt/",
+          "@type": "TenantAt",
+          "@id": "257482d1-56bf-4b5e-abf2-29014ef1eb0a",
+          "from": "e153e200-14d5-43ce-95dc-2db22ac6767f",
+          "to": "faecc2fe-35fa-4f9c-43d1-a1bab31a0cfe",
+          "data": {},
+          "metadata": {
+            "createdAt": "2019-09-17T12:48:17+00:00",
+            "createdBy": "7a6a7b86-4edb-4545-ac2e-edb9c11598d2",
+            "updatedAt": "2019-09-17T12:48:17+00:00",
+            "updatedBy": "7a6a7b86-4edb-4545-ac2e-edb9c11598d2"
+          }
+        }
+      ]
+    }
+pagination:
+  description: The pagination for the inLinks and outLinks
+  type: object
+  example: |
+    {
+      "pagination": {
+        "inLinks": {},
+        "outLinks": {}
+      }
+    }
+  properties:
+    inLinks:
+      description: The pagination for the inbound links.
+      type: object
+      example: |
+        {
+          "links": [
+            {
+              "rel": "first",
+              "href": "https://api-sandbox.oftrust.net/identities/v1/e153e200-14d5-43ce-95dc-2db22ac6767f/links?offset=0&limit=20"
+            },
+            {
+              "rel": "self",
+              "href": "https://api-sandbox.oftrust.net/identities/v1/e153e200-14d5-43ce-95dc-2db22ac6767f/links"
+            },
+            {
+              "rel": "last",
+              "href": "https://api-sandbox.oftrust.net/identities/v1/e153e200-14d5-43ce-95dc-2db22ac6767f/links?offset=0&limit=20"
+            }
+          ],
+          "hasMore": false,
+          "totalCount": 1
+        }
+    outLinks:
+      desciption: The pagination for the outbound links.
+      type: object
+      example: |
+        {
+          "links": [
+            {
+              "rel": "first",
+              "href": "https://api-sandbox.oftrust.net/identities/v1/e153e200-14d5-43ce-95dc-2db22ac6767f/links?offset=0&limit=20"
+            },
+            {
+              "rel": "self",
+              "href": "https://api-sandbox.oftrust.net/identities/v1/e153e200-14d5-43ce-95dc-2db22ac6767f/links"
+            },
+            {
+              "rel": "last",
+              "href": "https://api-sandbox.oftrust.net/identities/v1/e153e200-14d5-43ce-95dc-2db22ac6767f/links?offset=0&limit=20"
+            }
+          ],
+          "hasMore": false,
+          "totalCount": 1
+        }
