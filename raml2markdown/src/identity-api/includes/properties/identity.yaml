@@ -1,13 +1,16 @@
 '@context':
-  description: The context URL
+  description: The context URL. Always returned in the response.
   type: string
   example: https://example.com/contexts/type.jsonld
 '@type':
-  description: The type of the identity
+  description: The type of the identity. Always returned in the response.
   type: string
   example: Building
 data:
-  description: Additional key-value data for the identity as defined in the context
+  description: |
+    Additional key-value data for the identity as defined in the context.
+    NOTE: If the user doesn't have the read access to the given identity,
+    the `data` parameter is NOT returned in the response.
   type: object
   example: |
     {
@@ -20,8 +23,10 @@ data:
       example: Example building
 metadata:
   description: |
-    Metadata about the identity, such as when it was created/updated and who
-    created it / updated it.
+    Metadata about the app, such as when it was created/updated and who
+    created it / updated it. NOTE: If the user doesn't have the read access to
+    the given identity, the `metadata` parameter is NOT returned in the
+    response.
   type: object
   example: |
     {
@@ -46,8 +51,8 @@ metadata:
       description: The user ID of the user who updated this identity
       type: string
 inLinks:
-  description: List of incoming links to the identity
+  description: List of incoming links to the identity.
   type: link[]
 outLinks:
-  description: List of outgoing links from the identity
+  description: List of outgoing links from the identity.
   type: link[]

@@ -68,9 +68,43 @@ types:
         type: string
         example: 2584bdd7-1cb2-48ed-a106-2a1b817cf909
     get:
+      queryParameters:
+        inLinks?:
+          description: |
+            Whether to return the inbound links or not. 1=return, 0=do not
+            return. Defaults to 1.
+          type: integer
+          example: /identities/{version}/{id}?inLinks=0
+        outLinks?:
+          description: |
+            Whether to return the outbound links or not. 1=return, 0=do not
+            return. Defaults to 1.
+          type: integer
+          example: /identities/{version}/{id}?outLinks=0
+        paginate?:
+          description: |
+            Which links to paginate. "inLinks" or "outLinks" or both
+            "inLinks,outLinks". Defaults to "inLinks,outLinks" meaning that
+            both link directions will be paginated.
+          type: string
+          example: /identities/{version}/{id}?paginate=inLinks
+        limit?:
+          description: |
+            The amount of in- and out links to return in the response. E.g. 10, will
+            return 10 in- and out links. Defaults to 100. This value must be between 1
+            and 1000.
+          type: integer
+          example: /identities/{version}/{id}?limit=10
+        offset?:
+          description: |
+            The offset how many in- and out links to skip. E.g. 10 will
+            skip the first 10 links. Defaults to 0.
+          type: integer
+          example: /identities/{version}/{id}?offset=0
       description: |
         Read one identity by id. Requires the `read` permission on the
-        identity.
+        identity. If you need to list all the links, and paginate through
+        them, we suggest to use the "List links" endpoint for an identity.
       headers:
         Authorization: !include ../authorization-headers.yaml
       responses:
@@ -81,6 +115,27 @@ types:
         404:
           body:
             example: !include includes/examples/identity-not-found.json
+        422:
+          body:
+            examples:
+              'Negative offset': |
+                {
+                  "error": {
+                    "status": 422,
+                    "message": {
+                      "offset": [
+                        "Must be at least 0."
+                      ]
+                    }
+                  }
+                }
+              'Higher offset than total count': |
+                {
+                  "error": {
+                    "status": 422,
+                    "message": "Offset cannot be greater than the total count of records."
+                  }
+                }
     put:
       description: |
         Update an identity by id. Requires the `write` permission on the
@@ -306,7 +361,9 @@ types:
   /{id}/links:
     description: |
       List links. If the optional `type` GET-parameter is given, only list
-      links by that type.
+      links by that type. Returns a paginated result of the inbound and
+      outbound links to/from the given identity. Please note that the
+      pagination offset and limit applies to both directions of the links.
     uriParameters:
       id:
         description: The ID of the identity
@@ -316,11 +373,24 @@ types:
       queryParameters:
         type?:
           description: |
-            If given to `GET /identities/{version}/{id}/links?type=Owner`, will list only the
-            links of `@type: "Owner"`
+            If given to `GET /identities/{version}/{id}/links?type=OwnerOf`,
+            will list only the links of `@type: "OwnerOf"`.
           type: string
           example: /identities/{version}/{id}/links?type=Owner
-      description: List outbound links for a given identity
+        limit?:
+          description: |
+            The amount of records to return in the response. E.g. 10, will
+            return 10 records. Defaults to 100. This value must be between 1
+            and 1000.
+          type: integer
+          example: /identities/{version}/{id}/links?limit=10
+        offset?:
+          description: |
+            The offset how many records to skip. E.g. 10 will
+            skip the first 10 records. Defaults to 0.
+          type: integer
+          example: /identities/{version}/{id}/links?offset=0
+      description: List all inbound and outbound links for a given identity.
       headers:
         Authorization: !include ../authorization-headers.yaml
       responses:
@@ -331,6 +401,27 @@ types:
         404:
           body:
             example: !include includes/examples/identity-not-found.json
+        422:
+          body:
+            examples:
+              'Negative offset': |
+                {
+                  "error": {
+                    "status": 422,
+                    "message": {
+                      "offset": [
+                        "Must be at least 0."
+                      ]
+                    }
+                  }
+                }
+              'Higher offset than total count': |
+                {
+                  "error": {
+                    "status": 422,
+                    "message": "Offset cannot be greater than the total count of records."
+                  }
+                }
 
   /discovery:
     description: |
