@@ -142,7 +142,7 @@ def concatenate_files(code_examples_path):
               ofile.write("<li><a href='https://stackoverflow.com/questions/ask?guided=false&tags=platform-of-trust,"+api.lower()+"' title='Ask a question in Stack Overflow' target='new'>Ask a question in Stack Overflow</a></li>")
               ofile.write("</br>")
               ofile.write(
-                "<li><a href='https://github.com/PlatformOfTrust/docs/issues/new?assignees=&template=i-m-in-pain--here-s-the-symptoms.md&title=Customer+wish&labels="+ api.lower()+",Wish' title='Make a wish!' target='new'>Did we miss something? Make a wish!</a></li>")
+                "<li><a href='https://github.com/PlatformOfTrust/collected-feedback/issues/new?assignees=&api-wishlists.md&title=Customer+wish&labels="+ api.lower()+",Wish' title='Make a wish!' target='new'>Did we miss something? Make a wish!</a></li>")
               # ofile.write("<img src='images/raml.png' class='ramlSpec-lg'>")
               ofile.write("<div style='min-height:30px;'>&nbsp;</div>")
               ofile.write("</div></div></div>")
