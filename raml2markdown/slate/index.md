@@ -57,7 +57,7 @@ APIs play crucial role in our end-end-end developer experience from integrating 
 
 > Some instructions and tips to make your life easier (and less support requests to us): 
 
-> - **[Create an account in sandbox](https://login-sandbox.oftrust.net/?grant_type=authorization&response_type=code&redirect_uri=https://world-sandbox.oftrust.net/api/exchangeToken&client_id=f773dafe-20c0-4a25-aa3e-9da0b81b9304&cancel_url=https://world-sandbox.oftrust.net&reset_password_success_url=https://world-sandbox.oftrust.net/api/login&state=eyJkIjogeyJyIjogImh0dHBzOi8vd29ybGQtc2FuZGJveC5vZnRydXN0Lm5ldC9hcGkvZXhjaGFuZ2VUb2tlbiIsICJ0cyI6IDE1ODI2MTAzOTV9LCAiaCI6ICJmNmVjYTgwOTQyOGFiNzZkZDFkN2ZhNmI1MzhiZjM3OGZmOGRkZDA1In0=#sign-up)** environment
+> - **[Create an account in sandbox](https://world-sandbox.oftrust.net/api/login)** environment
 
 > - Endpoints related code examples are constructed against **SANDBOX environment `https://api-sandbox.oftrust.net/`**. 
 
@@ -65,7 +65,7 @@ APIs play crucial role in our end-end-end developer experience from integrating 
 
 > - To test APIs you need **to get needed Bearer Token** See [Authentication section](#use-bearer-token-and-how-to-get-it)
 
-> If you found a bug or missing information in the documentation, create an [issue in Github](https://github.com/PlatformOfTrust/collected-feedback/issues/new?assignees=&labels=APIs&template=api-wishlists.md&title=Wish+for+the+API). 
+> If you found a bug or missing information in the documentation, create an [issue in Github](https://github.com/PlatformOfTrust/collected-feedback/issues/new?assignees=&labels=APIs&template=api-wishlists.md&title=Feedback+about+getting+started). 
 
 * Account in production environment, that does not work in the sandbox environment.  
 
