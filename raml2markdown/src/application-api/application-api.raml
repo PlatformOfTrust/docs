@@ -17,9 +17,9 @@ description: |
       200:
         body:
           example: !include includes/examples/app-list-resp.json
-      403:
+      401:
         body:
-          example: !include includes/examples/permission-denied.json
+          example: !include includes/examples/unauthorized-401.json
   post:
     description: |
       Create new application and its associated OAuth Client.
@@ -32,12 +32,18 @@ description: |
       properties: !include includes/properties/app-create.yaml
       example: !include includes/examples/app-create-payload.json
     responses:
-      201:
+      401:
         body:
-          example: !include includes/examples/app-create-resp.json
+          example: !include includes/examples/unauthorized-401.json
       403:
         body:
-          example: !include includes/examples/permission-denied.json
+          example: |
+            {
+              "error": {
+                "status": 403,
+                "message": "Could not create App. User is not a member of the group."
+              }
+            }
       422:
         body:
           example: !include includes/examples/missing-mandatory-data.json
@@ -57,6 +63,9 @@ description: |
         200:
           body:
             example: !include includes/examples/app-get-resp.json
+        401:
+          body:
+            example: !include includes/examples/unauthorized-401.json
         404:
           body:
             example: !include includes/examples/app-not-found.json
@@ -73,6 +82,9 @@ description: |
         200:
           body:
             example: !include includes/examples/app-update-resp.json
+        401:
+          body:
+            example: !include includes/examples/unauthorized-401.json
         403:
           body:
             example: !include includes/examples/permission-denied.json
@@ -88,6 +100,12 @@ description: |
         Authorization: !include includes/properties/authorization-headers.yaml
       responses:
         204:
+        401:
+          body:
+            example: !include includes/examples/unauthorized-401.json
+        403:
+          body:
+            example: !include includes/examples/acl-permission-denied-403.json
         404:
           body:
             example: !include includes/examples/app-not-found.json
@@ -104,6 +122,9 @@ description: |
           201:
             body:
               example: !include includes/examples/refresh-secret-resp.json
+          401:
+            body:
+              example: !include includes/examples/unauthorized-401.json
           403:
             body:
               example: !include includes/examples/permission-denied.json

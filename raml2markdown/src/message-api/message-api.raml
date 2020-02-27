@@ -33,7 +33,7 @@ types:
         type: string
         example: Remember to buy milk!
       cc?:
-        description: List of IDs to CC the message to.
+        description: List of valid identity IDs to CC the message to.
         type: array
         example: |
           [
@@ -56,6 +56,29 @@ types:
         body:
           properties: !include includes/properties/message.yaml
           example: !include includes/examples/message.json
+      401:
+        body:
+          example: !include includes/examples/unauthorized-401.json
+      403:
+        body:
+          example: !include includes/examples/acl-permission-denied-403.json
+      404:
+        body:
+          examples:
+            'To Identity not found': |
+              {
+                "error": {
+                  "status": 404,
+                  "message": "Identity a233e200-14d5-43ce-95dc-2db22ac676fb not found."
+                }
+              }
+            'CC Identity not found': |
+              {
+                "error": {
+                  "status": 404,
+                  "message": "CC Identity e153e200-14d5-43ce-95dc-2db22ac67677 not found."
+                }
+              }
       422:
         body:
           example: |
@@ -81,6 +104,12 @@ types:
           body:
             properties: !include includes/properties/message.yaml
             example: !include includes/examples/message.json
+        401:
+          body:
+            example: !include includes/examples/unauthorized-401.json
+        403:
+          body:
+            example: !include includes/examples/acl-permission-denied-403.json
         404:
           body:
             example: !include includes/examples/message-not-found.json
@@ -96,6 +125,12 @@ types:
           body:
             properties: !include includes/properties/message.yaml
             example: !include includes/examples/message.json
+        401:
+          body:
+            example: !include includes/examples/unauthorized-401.json
+        403:
+          body:
+            example: !include includes/examples/acl-permission-denied-403.json
         404:
           body:
             example: !include includes/examples/message-not-found.json
@@ -116,6 +151,12 @@ types:
         204:
           body:
             example: {}
+        401:
+          body:
+            example: !include includes/examples/unauthorized-401.json
+        403:
+          body:
+            example: !include includes/examples/acl-permission-denied-403.json
         404:
           body:
             example: !include includes/examples/message-not-found.json
@@ -128,15 +169,12 @@ types:
           200:
             body:
               example: {}
+          401:
+            body:
+              example: !include includes/examples/unauthorized-401.json
           403:
             body:
-              example: |
-                {
-                  "error": {
-                    "status": 403,
-                    "message": "User not logged in."
-                  }
-                }
+              example: !include includes/examples/acl-permission-denied-403.json
   /{toIdentity}:
     uriParameters:
       toIdentity:
@@ -154,3 +192,9 @@ types:
             body:
               properties: !include includes/properties/messages.yaml
               example: !include includes/examples/messages.json
+          401:
+            body:
+              example: !include includes/examples/unauthorized-401.json
+          403:
+            body:
+              example: !include includes/examples/acl-permission-denied-403.json

@@ -1,0 +1,6 @@
+{
+  "error": {
+    "status": 403,
+    "message": "Forbidden: You don't have '<perm>' permission on '<identity id>'"
+  }
+}
