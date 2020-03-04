@@ -48,30 +48,26 @@ Our [Developer Portal](https://developers.oftrust.net) is your one-stop-shop. Fr
 
 ### End-to-end developer experience
 
-APIs play crucial role in our end-end-end developer experience from integrating data to creating valuable applications. API -first experience and consistent APIs are important to us and thus we have created (work in progress) [API Design Guide](https://platformoftrust.gitbook.io/api-design-guide/) to offer guidance for our distributes API development teams. 
+APIs play crucial role in our end-end-end developer experience from integrating data to creating valuable applications. API -first experience and consistent APIs are important to us and thus we have created (work in progress) [API Design Guide](https://design.oftrust.net/) to offer guidance for our distributes API development teams. 
 
 ![End-to-end developer experience in Platform of Trust](images/dx.png)
 
-### Market place
-
-Market place is the bazaar to find more data products to use in application development. Visa versa, it is also the service where your data products are added during the integration process. 
-You can list data products in the market place with [Product API](#product-api). 
 
 # Getting started
 
 > Some instructions and tips to make your life easier (and less support requests to us): 
 
-> - **Create an account in sandbox** environment from https://world-sandbox.oftrust.net/
+> - **[Create an account in sandbox](https://world-sandbox.oftrust.net/api/login)** environment
 
 > - Endpoints related code examples are constructed against **SANDBOX environment `https://api-sandbox.oftrust.net/`**. 
 
-> - In **PRODUCTION** use, change domain in api endpoints to `https://api.oftrust.net/`
+> - In **PRODUCTION** use, change domain in API endpoints to `https://api.oftrust.net/`
 
 > - To test APIs you need **to get needed Bearer Token** See [Authentication section](#use-bearer-token-and-how-to-get-it)
 
-> If you found a bug or missing information in the documentation, contact us at dev@oftrust.net or create an [issue in Github](https://github.com/PlatformOfTrust/docs/issues/new). 
+> If you found a bug or missing information in the documentation, create an [issue in Github](https://github.com/PlatformOfTrust/collected-feedback/issues/new?assignees=&labels=APIs&template=api-wishlists.md&title=Feedback+about+getting+started). 
 
-* First **create an account in sandbox** version of World app. If you have an account in production environment, that does not work in the sandbox environment.  
+* Account in production environment, that does not work in the sandbox environment.  
 
 
 * You should **get familiar with [Authentication](#authentication) process** regardless of are you integration data sources or building applications. 
@@ -88,20 +84,5 @@ You can list data products in the market place with [Product API](#product-api).
 
 **Core Ontology**: The Platform Of Trust core ontology can be found as a JSON-LD ontology from [https://standards.oftrust.net/v1/](https://standards.oftrust.net/v1/).
 
-Each identity type has their own context which
-describes the attributes the identity has. The context file name gives a notion
-of whether the context is for an `identity` or a `link`. 
-
-The identity describes the real world identities, such as apartments, 
-buildings, rooms etc. The links are the relations between identities. 
-As an example, the `Tenant`-link can be applied between
-a user identity and an apartment identity, meaning that the user is a tenant
-in the apartment.
-
-If only a link between identities is needed, without any kind
-of role, the generic `link-link.jsonld` can be used 
-[contexts/link-link.jsonld](https://github.com/PlatformOfTrust/standards/tree/master/contexts/link-link.jsonld).
-
-Read more from [https://standards.oftrust.net/v1/](https://standards.oftrust.net/v1/)
 
 
