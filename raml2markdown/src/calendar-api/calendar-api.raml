@@ -39,11 +39,17 @@ types:
         type: string
         example: April fool's day festivities.
       startDate:
-        description: The start date of the calendar entry in RFC3339 format.
+        description: |
+          The start date and time of the calendar entry in RFC3339 format.
+          Note that if the timezone details are omitted, it will default to
+          UTC time.
         type: datetime
         example: 2019-04-01T15:00:00+00:00
       endDate:
-        description: The end date of the calendar entry in RFC3339 format.
+        description: |
+          The end date and time of the calendar entry in RFC3339 format.
+          Note that if the timezone details are omitted, it will default to
+          UTC time.
         type: datetime
         example: 2019-04-01T18:00:00+00:00
       repeats?:
@@ -63,7 +69,9 @@ types:
         type: string
         example: Courtyard at Teststreet 12
       cc?:
-        description: List of IDs to CC the message to.
+        description: |
+          List of valid identity IDs to CC the message to. If the CC
+          identity is not found, a 404 will be returned.
         type: array
         example: |
           [
@@ -86,6 +94,29 @@ types:
         body:
           properties: !include includes/properties/calendar.yaml
           example: !include includes/examples/calendar.json
+      401:
+        body:
+          example: !include includes/examples/unauthorized-401.json
+      403:
+        body:
+          example: !include includes/examples/acl-permission-denied-403.json
+      404:
+        body:
+          examples:
+            'To Identity not found': |
+              {
+                "error": {
+                  "status": 404,
+                  "message": "Identity a233e200-14d5-43ce-95dc-2db22ac676fb not found."
+                }
+              }
+            'CC Identity not found': |
+              {
+                "error": {
+                  "status": 404,
+                  "message": "CC Identity e153e200-14d5-43ce-95dc-2db22ac67677 not found."
+                }
+              }
       422:
         body:
           example: |
@@ -111,6 +142,12 @@ types:
           body:
             properties: !include includes/properties/calendar.yaml
             example: !include includes/examples/calendar.json
+        401:
+          body:
+            example: !include includes/examples/unauthorized-401.json
+        403:
+          body:
+            example: !include includes/examples/acl-permission-denied-403.json
         404:
           body:
             example: !include includes/examples/calendar-not-found.json
@@ -126,6 +163,12 @@ types:
           body:
             properties: !include includes/properties/calendar.yaml
             example: !include includes/examples/calendar.json
+        401:
+          body:
+            example: !include includes/examples/unauthorized-401.json
+        403:
+          body:
+            example: !include includes/examples/acl-permission-denied-403.json
         404:
           body:
             example: !include includes/examples/calendar-not-found.json
@@ -146,6 +189,12 @@ types:
         204:
           body:
             example: {}
+        401:
+          body:
+            example: !include includes/examples/unauthorized-401.json
+        403:
+          body:
+            example: !include includes/examples/acl-permission-denied-403.json
         404:
           body:
             example: !include includes/examples/calendar-not-found.json
@@ -166,3 +215,9 @@ types:
             body:
               properties: !include includes/properties/calendars.yaml
               example: !include includes/examples/calendars.json
+          401:
+            body:
+              example: !include includes/examples/unauthorized-401.json
+          403:
+            body:
+              example: !include includes/examples/acl-permission-denied-403.json

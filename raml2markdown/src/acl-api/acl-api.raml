@@ -28,15 +28,18 @@ description: |
       headers:
         Authorization: !include includes/properties/authorization-headers.yaml
       body:
-        example: !include includes/examples/set_permissions.json
+        example: !include includes/examples/set-permissions.json
       responses:
         204:
+        401:
+          body:
+            example: !include includes/examples/unauthorized-401.json
         403:
           body:
-            example: !include includes/examples/crud_403.json
+            example: !include includes/examples/crud-403.json
         404:
           body:
-            example: !include includes/examples/crud_404.json
+            example: !include includes/examples/crud-404.json
     delete:
       description: |
           Delete permission
@@ -44,12 +47,15 @@ description: |
         Authorization: !include includes/properties/authorization-headers.yaml
       responses:
         204:
+        401:
+          body:
+            example: !include includes/examples/unauthorized-401.json
         403:
           body:
-            example: !include includes/examples/crud_403.json
+            example: !include includes/examples/crud-403.json
         404:
           body:
-            example: !include includes/examples/crud_404.json
+            example: !include includes/examples/crud-404.json
   /{target_identity}:
     uriParameters:
       target_identity:
@@ -65,13 +71,16 @@ description: |
       responses:
         200:
           body:
-            example: !include includes/examples/list_permissions.json
+            example: !include includes/examples/list-permissions.json
+        401:
+          body:
+            example: !include includes/examples/unauthorized-401.json
         403:
           body:
-            example: !include includes/examples/crud_403.json
+            example: !include includes/examples/crud-403.json
         404:
           body:
-            example: !include includes/examples/crud_404.json
+            example: !include includes/examples/crud-404.json
   /{target_identity}/{permissions}:
     uriParameters:
       target_identity:
@@ -91,12 +100,12 @@ description: |
         Authorization: !include includes/properties/authorization-headers.yaml
       responses:
         204:
+        401:
+          body:
+            example: !include includes/examples/unauthorized-401.json
         403:
           body:
-            example: !include includes/examples/crud_403.json
-        404:
-          body:
-            example: !include includes/examples/crud_404.json
+            example: !include includes/examples/crud-403.json
   /batch/{permissions}:
     uriParameters:
       permissions:
@@ -112,14 +121,11 @@ description: |
       headers:
         Authorization: !include includes/properties/authorization-headers.yaml
       body:
-        example: !include includes/examples/batch_check_post.json
+        example: !include includes/examples/batch-check-post.json
       responses:
         200:
           body:
-            example: !include includes/examples/batch_check_response.json
-        403:
+            example: !include includes/examples/batch-check-response.json
+        401:
           body:
-            example: !include includes/examples/crud_403.json
-        404:
-          body:
-            example: !include includes/examples/crud_404.json
+            example: !include includes/examples/unauthorized-401.json
