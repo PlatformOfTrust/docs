@@ -60,5 +60,5 @@ The current documentation is fully automated at the moment (except writing the c
 2. Generate code examples (https://github.com/PlatformOfTrust/code-examples-generator/tree/master/doc)
 3. Validate code examples (https://github.com/PlatformOfTrust/code-examples-validator)
 4. Set generated code examples path e.g. `export CODE_EXAMPLES="../code-examples"`
-5. then run `build.py` and 
+5. then run `build.py` and
 6. new docs is generated to https://github.com/PlatformOfTrust/docs/tree/master/build
