@@ -36,7 +36,7 @@ script:
   - ./scripts/generate-docs.sh
 
   # Build API documentation
-  - echo 'sbp-docs.oftrust.net' > build/CNAME
+  - echo 'docs.oftrust.net' > build/CNAME
   - cp -R keys ./build/
 
 # Deploy to GitHub pages.
@@ -45,7 +45,7 @@ deploy:
   skip-cleanup: true
   local-dir: build
   github-token: $GITHUB_TOKEN
-  target-branch: gh-pages-apiengine
+  target-branch: gh-pages
   repo: PlatformOfTrust/docs
   on:
     branch: master
