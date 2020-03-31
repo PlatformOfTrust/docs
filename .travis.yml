@@ -22,30 +22,20 @@ env:
 
 git:
   submodules: false
+  
+services:
+- mongodb
 
 before_install:
   - nvm install $NODE_VERSION
   - nvm alias default node
-  - ./setup.sh
-
-install:
-   # Install all the dependecies required to
-   # generate and validate code examples based
-   # on API specification in `raml2markdown/src`.
-   - ./scripts/code-examples/install-deps.sh
 
 script:
   # Generate code examples from RAML files.
-  - ./scripts/code-examples/generate.sh
-  # Validate code examples.
-  # API is currently unstable - thus ignore the
-  # result of validation for now.
-  - ./scripts/code-examples/validate.sh || true
+  - chmod +x scripts/generate-docs.sh
+  - ./scripts/generate-docs.sh
 
   # Build API documentation
-  - cd raml2markdown/
-  - ./build.py
-  - cd ..
   - echo 'docs.oftrust.net' > build/CNAME
   - cp -R keys ./build/
 
