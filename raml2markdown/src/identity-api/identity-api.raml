@@ -497,8 +497,7 @@ types:
           example: fc3bced4-a132-4293-9240-4d0f02277e2e
         linkContext:
           description: |
-            The link context to traverse. The context MUST end with a
-            forward slash /.
+            The link context to traverse (the ending forward slash / is optional).
           type: string
           example: https://standards.oftrust.net/v1/Context/Link/BelongsTo/
         identityContext:
@@ -540,7 +539,7 @@ types:
           description: |
             How many records to return, used for pagination. Defaults to 20
             records. Given a limit of 100 will return 100 records. This value
-            must be between 1 and 100.
+            must be between 1 and 1000.
           type: integer
           example: 20
       description: Discover identities in the identity network.
@@ -666,7 +665,7 @@ types:
                     "status": 422,
                     "message": {
                       "limit": [
-                        "Must be between 1 and 100."
+                        "Must be between 1 and 1000."
                       ]
                     }
                   }
@@ -768,7 +767,7 @@ types:
           description: |
             How many records to return, used for pagination. Defaults to 20
             records. Given a limit of 100 will return 100 records. This value
-            must be between 1 and 100.
+            must be between 1 and 1000.
           type: integer
           example: 20
       description: Discover data products in the identity network.
@@ -886,7 +885,7 @@ types:
                     "status": 422,
                     "message": {
                       "limit": [
-                        "Must be between 1 and 100."
+                        "Must be between 1 and 1000."
                       ]
                     }
                   }
