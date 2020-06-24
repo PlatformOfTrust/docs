@@ -17,6 +17,7 @@ description: |
   post:
     description: Authorization flow, convert authorization code to access token.
     headers:
+      Content-Type:
         type: string
         example: application/x-www-form-urlencoded
       Accept:
@@ -34,6 +35,10 @@ description: |
             description: The redirect URI used in the authorization flow.
             type: string
             example: "https://example.com/auth-callback, https://another.example.com/auth-callback2"
+          client_id:
+            description: ID of OAuth client or identity.
+            type: string
+            example: 6ApFZ200-14d5-43ce-95dc-2db22ac643ce
           code:
             description: The authorization code to exchange to an access token.
             type: string
@@ -42,6 +47,10 @@ description: |
             description: The authorization code to exchange to an access token.
             type: string
             example: b56TQpKdqg6ApFZvtbMhT7ki88Jpvn
+          user_id?:
+            description: ID of authorized user to provide ACL permissions to the platform
+            type: string
+            example: e153e200-14d5-43ce-95dc-2db22ac6767f
           state?:
             description: The optional state, e.g. CSRF token from the original request.
             type: string

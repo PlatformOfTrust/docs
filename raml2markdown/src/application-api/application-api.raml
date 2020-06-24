@@ -32,18 +32,18 @@ description: |
       properties: !include includes/properties/app-create.yaml
       example: !include includes/examples/app-create-payload.json
     responses:
+      201:
+        body:
+          example: !include includes/examples/app-create-resp.json
       401:
         body:
           example: !include includes/examples/unauthorized-401.json
       403:
         body:
-          example: |
-            {
-              "error": {
-                "status": 403,
-                "message": "Could not create App. User is not a member of the group."
-              }
-            }
+          example: !include includes/examples/user-not-in-group.json
+      404:
+        body:
+          example: !include includes/examples/group-not-found.json
       422:
         body:
           example: !include includes/examples/missing-mandatory-data.json

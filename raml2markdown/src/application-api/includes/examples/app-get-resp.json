@@ -1,9 +1,13 @@
 {
-  "@context": "https://standards.lifeengine.io/v1/Context/Identity/Digital/Software/App",
+    "@context": "https://standards.lifeengine.io/v1/Context/Identity/Digital/Software/App/",
   "@type": "App",
   "@id": "48bb2858-e2fc-42d3-b44e-35f138b4b02d",
   "data": {
-    "name": "Example Application"
+        "name": "Example Application",
+        "webPageUrl": "http://example.com/application.html",
+        "iconUrl": "http://example.com/icon.png",
+        "description": "Application description",
+        "privacyPolicyUrl": "http://example.com/privacy.html"
   },
   "metadata": {
     "createdAt": "2018-12-03T14:33:44",
@@ -27,6 +31,44 @@
       }
     }
   ],
+    "pagination": {
+        "inLinks": {
+            "links": [
+                {
+                    "rel": "first",
+                    "href": "https://api-sandbox.oftrust.net/identities/v1/48bb2858-e2fc-42d3-b44e-35f138b4b02d?offset=0&limit=100"
+                },
+                {
+                    "rel": "self",
+                    "href": "https://api-sandbox.oftrust.net/identities/v1/48bb2858-e2fc-42d3-b44e-35f138b4b02d"
+                },
+                {
+                    "rel": "last",
+                    "href": "https://api-sandbox.oftrust.net/identities/v1/48bb2858-e2fc-42d3-b44e-35f138b4b02d?offset=0&limit=100"
+                }
+            ],
+            "hasMore": false,
+            "totalCount": 1
+        },
+        "outLinks": {
+            "links": [
+                {
+                    "rel": "first",
+                    "href": "https://api-sandbox.oftrust.net/identities/v1/48bb2858-e2fc-42d3-b44e-35f138b4b02d?offset=0&limit=100"
+                },
+                {
+                    "rel": "self",
+                    "href": "https://api-sandbox.oftrust.net/identities/v1/48bb2858-e2fc-42d3-b44e-35f138b4b02d"
+                },
+                {
+                    "rel": "last",
+                    "href": "https://api-sandbox.oftrust.net/identities/v1/48bb2858-e2fc-42d3-b44e-35f138b4b02d?offset=0&limit=100"
+                }
+            ],
+            "hasMore": false,
+            "totalCount": 1
+        }
+    },
   "outLinks": [
     {
       "@context": "https://standards.lifeengine.io/v1/Context/Link/PublishedOn/",
@@ -42,21 +84,5 @@
         "updatedBy": "747d0af5-6f06-4309-b2d5-f06677356a9a"
       }
     }
-  ],
-  "client": {
-    "clientId": "6601afe9-85e4-4fe8-a3c9-1329f15493e1",
-    "clientSecrets": [
-      "Sw4gT3I0oUynpeTN6YGfvFPE8SPj5LC1YNIHfFCF25w"
-    ],
-    "scopes": "",
-    "redirectUris": "https://example.com/auth-callback",
-    "defaultScopes": "",
-    "defaultRedirectUri": "https://example.com/auth-callback"
-  },
-  "token": {
-    "access_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUz...T79_KYC4Ds",
-    "expires_in": 63072000,
-    "token_type": "Bearer",
-    "refresh_token": "SwGAWsFfT1FZrT92NRJc0MaBp9XrmG"
+    ]
   }
-}

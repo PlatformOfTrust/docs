@@ -1,0 +1,13 @@
+{
+  "error": {
+    "message": {
+      "limit": [
+        "Must be between 1 and 100."
+      ],
+      "offset": [
+        "Must be at least 0."
+      ]
+    },
+    "status": 422
+  }
+}
