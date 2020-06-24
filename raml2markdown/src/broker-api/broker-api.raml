@@ -1,6 +1,6 @@
 #%RAML 1.0
 ---
-title: Broker
+title: Platform Of Trust Data Broker
 version: v1
 baseUri: https://api-sandbox.oftrust.net
 mediaType: application/json
@@ -13,10 +13,6 @@ types:
   data-product-request:
     type: object
     properties:
-      '@context?':
-        description: A URL for the parameters context
-        type: string
-        example: https://standards.oftrust.net/v2/Context/DataProductParameters/Sensor
       timestamp:
         description: A timestamp in RFC3339 format
         type: string
@@ -122,7 +118,7 @@ types:
           <p><strong>Python example:</strong><br />
           <code>
           body = {...}
-           body_string = json.dumps( <br/>
+          body_string = json.dumps(<br />
             body, sort_keys=True, indent=None, separators=(',', ': ') <br />
           ).strip()
           </code>
@@ -210,7 +206,6 @@ types:
       type: data-product-request
       example: |
         {
-          "@context": "https://standards.oftrust.net/v2/Context/DataProductParameters/Sensor",
           "timestamp": "2018-11-01T12:00:00+00:00",
           "productCode": "product-1",
           "parameters": {
@@ -280,10 +275,10 @@ types:
           description: |
             The data returned from the translator cannot be read or parsed.
           example: |
-            {
-              "error": {
+              {
+                "error": {
                   "status": 500,
-                "message": "Could not parse response from translator"
+                  "message": "Could not parse response from translator"
                 }
               }
       502:
