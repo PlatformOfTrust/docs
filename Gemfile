@@ -12,5 +12,5 @@ gem 'rouge', '~> 2.0.5'
 gem 'redcarpet', '~> 3.4.0'
 gem 'nokogiri', '~> 1.10.8'
 gem 'haml', '~> 5.0.0'
-gem 'rack', '~> 2.0.8'
+gem 'rack', '~> 2.1.4'
 
