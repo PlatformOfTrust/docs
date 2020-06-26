@@ -86,6 +86,9 @@ types:
         body:
           properties: !include includes/properties/products.yaml
           example: !include includes/examples/products.json
+      422:
+        body:
+          example: !include includes/examples/products-422.json
 
   /{product_code}:
     description: Read, update and delete a product by it's product code.

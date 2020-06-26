@@ -1,5 +1,5 @@
 {
-  "@context": "https://standards.lifeengine.io/v1/Context/Identity/Digital/Software/App/",
+  "@context": "https://standards.oftrust.net/v2/Context/Identity/Digital/Software/App/",
   "@type": "App",
   "@id": "6601afe9-85e4-4fe8-a3c9-1329f15493e1",
   "data": {
@@ -17,7 +17,7 @@
   },
   "inLinks": [
     {
-      "@context": "https://standards.lifeengine.io/v1/Context/Link/Role/DeveloperOf/",
+      "@context": "https://standards.oftrust.net/v2/Context/Link/Role/DeveloperOf/",
       "@type": "DeveloperOf",
       "@id": "a6101e2d-b19c-4cd5-9767-00aa78986a39",
       "from": "bfec43ac-a0ce-4469-a78f-3106cf28b4c9",
@@ -33,7 +33,7 @@
   ],
   "outLinks": [
     {
-      "@context": "https://standards.lifeengine.io/v1/Context/Link/PublishedOn/",
+      "@context": "https://standards.oftrust.net/v2/Context/Link/PublishedOn/",
       "@type": "PublishedOn",
       "@id": "87a5dee9-0a29-40c7-9972-475ef2c47890",
       "from": "286042aa-6299-4138-8675-da105dfadefc",

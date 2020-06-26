@@ -1,0 +1,6 @@
+{
+  "error": {
+    "status": 403,
+    "message": "Could not create App. User is not a member of the group."
+  }
+}
