@@ -163,7 +163,8 @@ types:
           var secret = client_secret;<br />
           // Sort keys and stringify. Note "json-stable-stringify" is used<br />
           let bodyString = stringify(json);<br />
-          // Item separator is comma (,) and the key separator is a colon, followed by a space (: )<br />
+          // Item separator is comma (,) and the key separator is a colon,<br />
+          // followed by a space (: )<br />
           bodyString = bodyString.replace(/([^\\](\\\\)*"):/g, '$1: ');<br />
           // Escape non-ASCII characters<br />
           bodyString  = bodyString.replace(/[\u007F-\uFFFF]/g, (chr) => {<br />
