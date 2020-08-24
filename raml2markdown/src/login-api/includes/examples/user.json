@@ -1,5 +1,5 @@
 {
-    "@context": "https://standards.lifeengine.io/v1/Context/Identity/Person/",
+    "@context": "https://standards.oftrust.net/v2/Context/Identity/LegalParty/Person/",
     "@type": "Person",
     "@id": "33237067-14c3-4801-9e50-bf08406406e2",
     "email": "user@example.com",

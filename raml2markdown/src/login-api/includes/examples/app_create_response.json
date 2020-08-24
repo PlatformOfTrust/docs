@@ -1,5 +1,5 @@
 {
-    "@context": "https://standards.lifeengine.io/v1/Context/Identity/Digital/Software/App/",
+    "@context": "https://standards.oftrust.net/v2/Context/Identity/Digital/Software/App/",
     "@type": "App",
     "@id": "b870cfb3-650f-41b3-bc5a-898f7dc2e1f5",
     "inLinks": [],
