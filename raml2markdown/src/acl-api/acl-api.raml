@@ -7,6 +7,10 @@ mediaType: application/json
 description: |
   The ACL API provides means for managing access control list
   of identities.
+types:
+  permissions:
+    type: object
+    properties: !include includes/properties/permissions.yaml
 /acl/v1:
   /{from_identity}/{target_identity}:
     uriParameters:
@@ -23,11 +27,12 @@ description: |
       description: |
           Set permissions. Will give the from identity read, write, link
           and/or manage access to the to target identity.
-          If any type of privilege (read, write, link or manage) is left out or
+          If any type of privilege (read, write, link, manage or consume) is left out or
           set to null, then it will remain unchanged.
       headers:
         Authorization: !include includes/properties/authorization-headers.yaml
       body:
+        type: permissions
         example: !include includes/examples/set-permissions.json
       responses:
         204:
@@ -90,7 +95,7 @@ description: |
       permissions:
         description: A comma separated list of permissions to check
         type: string
-        example: read,write,link,manage
+        example: read,write,link,manage,consume
     get:
       description: |
           Check specific permissions. Used to check if the requester has specific
@@ -111,7 +116,7 @@ description: |
       permissions:
         description: A comma separated list of permissions to check
         type: string
-        example: read,write,link,manage
+        example: read,write,link,manage,consume
     post:
       description: |
           Batch check specific permissions. Used to check if the requester has
@@ -121,6 +126,7 @@ description: |
       headers:
         Authorization: !include includes/properties/authorization-headers.yaml
       body:
+        type: permissions
         example: !include includes/examples/batch-check-post.json
       responses:
         200:

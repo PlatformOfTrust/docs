@@ -15,6 +15,9 @@ types:
   product:
     type: object
     properties: !include includes/properties/product-update-request.yaml
+  productCreate:
+    type: object
+    properties: !include includes/properties/product-create-request.yaml
   paginationURL:
     type: object
     properties:
@@ -48,14 +51,7 @@ types:
     headers:
       Authorization: !include includes/properties/authorization-headers.yaml
     body:
-      type: product
-      properties:
-        groupId:
-          description: |
-            The group where the user is a member of. This group will be
-            the developer of the data product.
-          type: string
-          example: 5c35c7f1-a1f7-4c9c-91b6-669779f60d23
+      type: productCreate
       example: !include includes/examples/product-create.json
     responses:
       201:
