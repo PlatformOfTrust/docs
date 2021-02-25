@@ -50,7 +50,3 @@ imageUrl?:
   description: Optional URL to an image for the product.
   type: string
   example: https://example.com/product-image.png
-authorizationLayer?:
-  description: Update the "authorizationLayer" only if it is specified in the update call
-  type: string
-  example: None

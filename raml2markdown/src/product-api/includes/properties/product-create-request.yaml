@@ -56,7 +56,3 @@ groupId:
     the developer of the data product.
   type: string
   example: 5c35c7f1-a1f7-4c9c-91b6-669779f60d23
-authorizationLayer?:
-  description: Optional parameter, default for “authorizationLayer” will be None
-  type: string
-  example: None

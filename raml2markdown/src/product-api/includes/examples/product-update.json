@@ -15,6 +15,5 @@
     }
   ],
   "imageUrl": "https://example.com/product-image.png",
-  "description": "This is a product that returns the temperature data for ...",
-  "authorizationLayer": "None"
+  "description": "This is a product that returns the temperature data for ..."
 }

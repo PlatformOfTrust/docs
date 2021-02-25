@@ -19,6 +19,5 @@
   ],
   "description": "This is a product that returns the temperature data for ...",
   "imageUrl": "https://example.com/product-image.png",
-  "identityId": "31b5b971-dc50-4c9c-992a-57c0bf016186",
-  "authorizationLayer": "None"
+  "identityId": "31b5b971-dc50-4c9c-992a-57c0bf016186"
 }
