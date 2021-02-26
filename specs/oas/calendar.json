@@ -1,0 +1,812 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Calendar",
+    "description": "The calendar API provides means to create calendar entries to identities.\nYou can e.g. create an event for a housing company identity, a reservation\nto a room identity, or just a regular calendar entry to any identity you want.<br/>\n\nThe calendar entry requires a `\"to\"`-identity, the ID of the identity to which\nthe calendar entry applies to. Specify a type for the entry, e.g.\n`Event`, `Reservation`, `CalendarEntry`. Give the calendar entry a title, e.g.\n\"Housewarming party\", a start date, when the entry starts, and an end date\nwhen the entry ends. The dates are in RFC3339 format, and will be saved in UTC\ntime. <br/>\n\nYou can specify if an entry repeats, as defined in ISO 8601 repeating\nintervals. A location can be added as well, if needed, as a string, e.g.\n\"Living room\".<br/>\n\nThe `cc` is a list of user IDs to whom the calendar entry can be CC'd to.\nA notification about the entry will be sent to these users.\n",
+    "version": "v1"
+  },
+  "host": "api-sandbox.oftrust.net",
+  "schemes": [
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "definitions": {
+    "calendar": {
+      "type": "object",
+      "properties": {
+        "toIdentity": {
+          "description": "The \"to\" identity ID to which the calendar is created for.",
+          "example": "d36c4cd0-26c9-446e-a93f-0a90029f3a7f",
+          "type": "string"
+        },
+        "type": {
+          "description": "The type of the calendar entry.",
+          "example": "Event",
+          "type": "string"
+        },
+        "title": {
+          "description": "The title of the calendar entry",
+          "example": "April fool's day festivities.",
+          "type": "string"
+        },
+        "startDate": {
+          "description": "The start date and time of the calendar entry in RFC3339 format.\nNote that if the timezone details are omitted, it will default to\nUTC time.\n",
+          "example": "2019-04-01T15:00:00+00:00",
+          "type": "string",
+          "format": "date-time"
+        },
+        "endDate": {
+          "description": "The end date and time of the calendar entry in RFC3339 format.\nNote that if the timezone details are omitted, it will default to\nUTC time.\n",
+          "example": "2019-04-01T18:00:00+00:00",
+          "type": "string",
+          "format": "date-time"
+        },
+        "repeats": {
+          "description": "Whether the calendar entry repeats or not. As defined in ISO 8601\nrepeating intervals. E.g. Repeat the interval of \"P1Y2M10DT2H30M\"\nfive times starting at \"2008-03-01T13:00:00Z\",\nuse \"R5/2008-03-01T13:00:00Z/P1Y2M10DT2H30M\".\n",
+          "example": "R5/2008-03-01T13:00:00Z/P1Y2M10DT2H30M",
+          "type": "string"
+        },
+        "content": {
+          "description": "The text body of the calendar entry.",
+          "example": "April fool's event, held on the courtyard.",
+          "type": "string"
+        },
+        "location": {
+          "description": "The location of the calendar entry",
+          "example": "Courtyard at Teststreet 12",
+          "type": "string"
+        },
+        "cc": {
+          "description": "List of valid identity IDs to CC the message to. If the CC\nidentity is not found, a 404 will be returned.\n",
+          "example": [
+            "323bde80-4cc2-472e-bb77-e6a3e95a1253",
+            "0827e9c3-9664-479f-b0ec-956a35d72e4b"
+          ],
+          "type": "array"
+        }
+      },
+      "required": [
+        "toIdentity",
+        "type",
+        "title",
+        "startDate",
+        "endDate"
+      ]
+    }
+  },
+  "paths": {
+    "/calendars/v1": {
+      "post": {
+        "description": "Create a new calendar entry",
+        "operationId": "POST_calendars-v1",
+        "responses": {
+          "201": {
+            "description": "",
+            "schema": {
+              "example": {
+                "@context": "https://standards.lifeengine.io/v1/Context/Calendar/",
+                "@type": "Calendar",
+                "@id": "c9620d09-cd83-476e-91f5-3f3ea730f4b9",
+                "toIdentity": "0920a84a-1548-4644-b95d-e3f80e1b9ca6",
+                "title": "April's fools day",
+                "startDate": "2019-04-01T12:00:00+02:00",
+                "endDate": "2019-04-01T16:00:00+02:00",
+                "repeats": "R5/2019-04-01T12:00:00+02:00/P1Y",
+                "content": "April fool's event, held on the courtyard.",
+                "location": "Courtyard at Teststreet 12",
+                "cc": [
+                  "970bf5ef-8ca8-46a1-a4a9-e595ea1b4024",
+                  "cb40ce78-d3b3-442a-9db7-66f191698b2a"
+                ],
+                "createdAt": "2019-01-10T12:00:00Z",
+                "updatedAt": "2019-01-10T12:00:00Z",
+                "createdBy": "58422496-5796-4c47-a4a1-88768ea94ea6"
+              },
+              "properties": {
+                "@context": {
+                  "description": "The context URL",
+                  "example": "https://example.com/contexts/calendar.jsonld",
+                  "type": "string"
+                },
+                "@type": {
+                  "description": "The JSON-LD type of this object",
+                  "example": "Event",
+                  "type": "string"
+                },
+                "toIdentity": {
+                  "description": "The \"to\" identity ID to which the calendar is created for.",
+                  "example": "d36c4cd0-26c9-446e-a93f-0a90029f3a7f",
+                  "type": "string"
+                },
+                "title": {
+                  "description": "The title of the calendar entry",
+                  "example": "April fool's day festivities.",
+                  "type": "string"
+                },
+                "startDate": {
+                  "description": "The start date of the calendar entry in RFC3339 format.",
+                  "example": "2019-04-01T15:00:00+00:00",
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "endDate": {
+                  "description": "The end date of the calendar entry in RFC3339 format.",
+                  "example": "2019-04-01T18:00:00+00:00",
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "repeats": {
+                  "description": "Whether the calendar entry repeats or not. As defined in ISO 8601\nrepeating intervals. E.g. Repeat the interval of \"P1Y2M10DT2H30M\"\nfive times starting at \"2008-03-01T13:00:00Z\",\nuse \"R5/2008-03-01T13:00:00Z/P1Y2M10DT2H30M\".\n",
+                  "example": "R5/2008-03-01T13:00:00Z/P1Y2M10DT2H30M",
+                  "type": "string"
+                },
+                "content": {
+                  "description": "The text body of the calendar entry.",
+                  "example": "April fool's event, held on the courtyard.",
+                  "type": "string"
+                },
+                "location": {
+                  "description": "The location of the calendar entry",
+                  "example": "Courtyard at Teststreet 12",
+                  "type": "string"
+                },
+                "cc": {
+                  "description": "List of IDs to CC the calendar entry to.",
+                  "example": [
+                    "323bde80-4cc2-472e-bb77-e6a3e95a1253",
+                    "0827e9c3-9664-479f-b0ec-956a35d72e4b"
+                  ],
+                  "type": "array"
+                },
+                "createdBy": {
+                  "description": "The user ID of the user who created the calendar entry",
+                  "example": "5ae98ee4-ef1b-4f89-b03d-130ceffb876a",
+                  "type": "string"
+                },
+                "createdAt": {
+                  "description": "RFC3339 datetime when the calendar entry was created",
+                  "example": "2018-02-28T16:41:41.090Z",
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "updatedAt": {
+                  "description": "RFC3339 datetime when the calendar entry was updated",
+                  "example": "2018-02-28T16:41:41.090Z",
+                  "type": "string",
+                  "format": "date-time"
+                }
+              },
+              "required": [
+                "@context",
+                "@type",
+                "toIdentity",
+                "title",
+                "startDate",
+                "endDate",
+                "createdBy",
+                "createdAt",
+                "updatedAt"
+              ]
+            }
+          },
+          "401": {
+            "description": "",
+            "schema": {
+              "example": {
+                "error": {
+                  "status": 401,
+                  "message": "Unauthorized"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "",
+            "schema": {
+              "example": {
+                "error": {
+                  "status": 403,
+                  "message": "Forbidden: You don't have '<perm>' permission on '<identity id>'"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "schema": {
+              "example": {
+                "To Identity not found": {
+                  "error": {
+                    "status": 404,
+                    "message": "Identity a233e200-14d5-43ce-95dc-2db22ac676fb not found."
+                  }
+                },
+                "CC Identity not found": {
+                  "error": {
+                    "status": 404,
+                    "message": "CC Identity e153e200-14d5-43ce-95dc-2db22ac67677 not found."
+                  }
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "",
+            "schema": {
+              "example": {
+                "error": {
+                  "status": 422,
+                  "message": "Could not create calendar."
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "description": "The Authorization header, MUST be `Bearer {{access_token}}`",
+            "type": "string",
+            "in": "header",
+            "name": "Authorization",
+            "required": true
+          },
+          {
+            "schema": {
+              "example": {
+                "toIdentity": "0920a84a-1548-4644-b95d-e3f80e1b9ca6",
+                "type": "Event",
+                "title": "April fool's day festivities.",
+                "startDate": "2019-04-01T12:00:00+02:00",
+                "endDate": "2019-04-01T16:00:00+02:00",
+                "repeats": "R5/2008-03-01T13:00:00Z/P1Y2M10DT2H30M",
+                "content": "April fool's event, held on the courtyard.",
+                "location": "Courtyard at Teststreet 12",
+                "cc": [
+                  "323bde80-4cc2-472e-bb77-e6a3e95a1253",
+                  "0827e9c3-9664-479f-b0ec-956a35d72e4b"
+                ]
+              },
+              "$ref": "#/definitions/calendar"
+            },
+            "in": "body",
+            "name": "body",
+            "required": true
+          }
+        ]
+      }
+    },
+    "/calendars/v1/{id}": {
+      "get": {
+        "description": "Read one calendar by id",
+        "operationId": "GET_calendars-v1-id",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "example": {
+                "@context": "https://standards.lifeengine.io/v1/Context/Calendar/",
+                "@type": "Calendar",
+                "@id": "c9620d09-cd83-476e-91f5-3f3ea730f4b9",
+                "toIdentity": "0920a84a-1548-4644-b95d-e3f80e1b9ca6",
+                "title": "April's fools day",
+                "startDate": "2019-04-01T12:00:00+02:00",
+                "endDate": "2019-04-01T16:00:00+02:00",
+                "repeats": "R5/2019-04-01T12:00:00+02:00/P1Y",
+                "content": "April fool's event, held on the courtyard.",
+                "location": "Courtyard at Teststreet 12",
+                "cc": [
+                  "970bf5ef-8ca8-46a1-a4a9-e595ea1b4024",
+                  "cb40ce78-d3b3-442a-9db7-66f191698b2a"
+                ],
+                "createdAt": "2019-01-10T12:00:00Z",
+                "updatedAt": "2019-01-10T12:00:00Z",
+                "createdBy": "58422496-5796-4c47-a4a1-88768ea94ea6"
+              },
+              "properties": {
+                "@context": {
+                  "description": "The context URL",
+                  "example": "https://example.com/contexts/calendar.jsonld",
+                  "type": "string"
+                },
+                "@type": {
+                  "description": "The JSON-LD type of this object",
+                  "example": "Event",
+                  "type": "string"
+                },
+                "toIdentity": {
+                  "description": "The \"to\" identity ID to which the calendar is created for.",
+                  "example": "d36c4cd0-26c9-446e-a93f-0a90029f3a7f",
+                  "type": "string"
+                },
+                "title": {
+                  "description": "The title of the calendar entry",
+                  "example": "April fool's day festivities.",
+                  "type": "string"
+                },
+                "startDate": {
+                  "description": "The start date of the calendar entry in RFC3339 format.",
+                  "example": "2019-04-01T15:00:00+00:00",
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "endDate": {
+                  "description": "The end date of the calendar entry in RFC3339 format.",
+                  "example": "2019-04-01T18:00:00+00:00",
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "repeats": {
+                  "description": "Whether the calendar entry repeats or not. As defined in ISO 8601\nrepeating intervals. E.g. Repeat the interval of \"P1Y2M10DT2H30M\"\nfive times starting at \"2008-03-01T13:00:00Z\",\nuse \"R5/2008-03-01T13:00:00Z/P1Y2M10DT2H30M\".\n",
+                  "example": "R5/2008-03-01T13:00:00Z/P1Y2M10DT2H30M",
+                  "type": "string"
+                },
+                "content": {
+                  "description": "The text body of the calendar entry.",
+                  "example": "April fool's event, held on the courtyard.",
+                  "type": "string"
+                },
+                "location": {
+                  "description": "The location of the calendar entry",
+                  "example": "Courtyard at Teststreet 12",
+                  "type": "string"
+                },
+                "cc": {
+                  "description": "List of IDs to CC the calendar entry to.",
+                  "example": [
+                    "323bde80-4cc2-472e-bb77-e6a3e95a1253",
+                    "0827e9c3-9664-479f-b0ec-956a35d72e4b"
+                  ],
+                  "type": "array"
+                },
+                "createdBy": {
+                  "description": "The user ID of the user who created the calendar entry",
+                  "example": "5ae98ee4-ef1b-4f89-b03d-130ceffb876a",
+                  "type": "string"
+                },
+                "createdAt": {
+                  "description": "RFC3339 datetime when the calendar entry was created",
+                  "example": "2018-02-28T16:41:41.090Z",
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "updatedAt": {
+                  "description": "RFC3339 datetime when the calendar entry was updated",
+                  "example": "2018-02-28T16:41:41.090Z",
+                  "type": "string",
+                  "format": "date-time"
+                }
+              },
+              "required": [
+                "@context",
+                "@type",
+                "toIdentity",
+                "title",
+                "startDate",
+                "endDate",
+                "createdBy",
+                "createdAt",
+                "updatedAt"
+              ]
+            }
+          },
+          "401": {
+            "description": "",
+            "schema": {
+              "example": {
+                "error": {
+                  "status": 401,
+                  "message": "Unauthorized"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "",
+            "schema": {
+              "example": {
+                "error": {
+                  "status": 403,
+                  "message": "Forbidden: You don't have '<perm>' permission on '<identity id>'"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "schema": {
+              "example": {
+                "error": {
+                  "status": 404,
+                  "message": "Calendar not found."
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "description": "The Authorization header, MUST be `Bearer {{access_token}}`",
+            "type": "string",
+            "in": "header",
+            "name": "Authorization",
+            "required": true
+          }
+        ]
+      },
+      "put": {
+        "description": "Update a calendar by id",
+        "operationId": "PUT_calendars-v1-id",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "example": {
+                "@context": "https://standards.lifeengine.io/v1/Context/Calendar/",
+                "@type": "Calendar",
+                "@id": "c9620d09-cd83-476e-91f5-3f3ea730f4b9",
+                "toIdentity": "0920a84a-1548-4644-b95d-e3f80e1b9ca6",
+                "title": "April's fools day",
+                "startDate": "2019-04-01T12:00:00+02:00",
+                "endDate": "2019-04-01T16:00:00+02:00",
+                "repeats": "R5/2019-04-01T12:00:00+02:00/P1Y",
+                "content": "April fool's event, held on the courtyard.",
+                "location": "Courtyard at Teststreet 12",
+                "cc": [
+                  "970bf5ef-8ca8-46a1-a4a9-e595ea1b4024",
+                  "cb40ce78-d3b3-442a-9db7-66f191698b2a"
+                ],
+                "createdAt": "2019-01-10T12:00:00Z",
+                "updatedAt": "2019-01-10T12:00:00Z",
+                "createdBy": "58422496-5796-4c47-a4a1-88768ea94ea6"
+              },
+              "properties": {
+                "@context": {
+                  "description": "The context URL",
+                  "example": "https://example.com/contexts/calendar.jsonld",
+                  "type": "string"
+                },
+                "@type": {
+                  "description": "The JSON-LD type of this object",
+                  "example": "Event",
+                  "type": "string"
+                },
+                "toIdentity": {
+                  "description": "The \"to\" identity ID to which the calendar is created for.",
+                  "example": "d36c4cd0-26c9-446e-a93f-0a90029f3a7f",
+                  "type": "string"
+                },
+                "title": {
+                  "description": "The title of the calendar entry",
+                  "example": "April fool's day festivities.",
+                  "type": "string"
+                },
+                "startDate": {
+                  "description": "The start date of the calendar entry in RFC3339 format.",
+                  "example": "2019-04-01T15:00:00+00:00",
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "endDate": {
+                  "description": "The end date of the calendar entry in RFC3339 format.",
+                  "example": "2019-04-01T18:00:00+00:00",
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "repeats": {
+                  "description": "Whether the calendar entry repeats or not. As defined in ISO 8601\nrepeating intervals. E.g. Repeat the interval of \"P1Y2M10DT2H30M\"\nfive times starting at \"2008-03-01T13:00:00Z\",\nuse \"R5/2008-03-01T13:00:00Z/P1Y2M10DT2H30M\".\n",
+                  "example": "R5/2008-03-01T13:00:00Z/P1Y2M10DT2H30M",
+                  "type": "string"
+                },
+                "content": {
+                  "description": "The text body of the calendar entry.",
+                  "example": "April fool's event, held on the courtyard.",
+                  "type": "string"
+                },
+                "location": {
+                  "description": "The location of the calendar entry",
+                  "example": "Courtyard at Teststreet 12",
+                  "type": "string"
+                },
+                "cc": {
+                  "description": "List of IDs to CC the calendar entry to.",
+                  "example": [
+                    "323bde80-4cc2-472e-bb77-e6a3e95a1253",
+                    "0827e9c3-9664-479f-b0ec-956a35d72e4b"
+                  ],
+                  "type": "array"
+                },
+                "createdBy": {
+                  "description": "The user ID of the user who created the calendar entry",
+                  "example": "5ae98ee4-ef1b-4f89-b03d-130ceffb876a",
+                  "type": "string"
+                },
+                "createdAt": {
+                  "description": "RFC3339 datetime when the calendar entry was created",
+                  "example": "2018-02-28T16:41:41.090Z",
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "updatedAt": {
+                  "description": "RFC3339 datetime when the calendar entry was updated",
+                  "example": "2018-02-28T16:41:41.090Z",
+                  "type": "string",
+                  "format": "date-time"
+                }
+              },
+              "required": [
+                "@context",
+                "@type",
+                "toIdentity",
+                "title",
+                "startDate",
+                "endDate",
+                "createdBy",
+                "createdAt",
+                "updatedAt"
+              ]
+            }
+          },
+          "401": {
+            "description": "",
+            "schema": {
+              "example": {
+                "error": {
+                  "status": 401,
+                  "message": "Unauthorized"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "",
+            "schema": {
+              "example": {
+                "error": {
+                  "status": 403,
+                  "message": "Forbidden: You don't have '<perm>' permission on '<identity id>'"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "schema": {
+              "example": {
+                "error": {
+                  "status": 404,
+                  "message": "Calendar not found."
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "",
+            "schema": {
+              "example": {
+                "error": {
+                  "status": 422,
+                  "message": "Could not update calendar."
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "description": "The Authorization header, MUST be `Bearer {{access_token}}`",
+            "type": "string",
+            "in": "header",
+            "name": "Authorization",
+            "required": true
+          },
+          {
+            "schema": {
+              "example": {
+                "type": "Event",
+                "title": "April fool's day festivities.",
+                "startDate": "2019-04-01T12:00:00+02:00",
+                "endDate": "2019-04-01T16:00:00+02:00",
+                "repeats": "R5/2008-03-01T13:00:00Z/P1Y2M10DT2H30M",
+                "content": "April fool's event, held on the courtyard.",
+                "location": "Courtyard at Teststreet 12"
+              },
+              "$ref": "#/definitions/calendar"
+            },
+            "in": "body",
+            "name": "body",
+            "required": true
+          }
+        ]
+      },
+      "delete": {
+        "description": "Delete a calendar by id",
+        "operationId": "DELETE_calendars-v1-id",
+        "responses": {
+          "204": {
+            "description": "",
+            "schema": {
+              "example": {}
+            }
+          },
+          "401": {
+            "description": "",
+            "schema": {
+              "example": {
+                "error": {
+                  "status": 401,
+                  "message": "Unauthorized"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "",
+            "schema": {
+              "example": {
+                "error": {
+                  "status": 403,
+                  "message": "Forbidden: You don't have '<perm>' permission on '<identity id>'"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "schema": {
+              "example": {
+                "error": {
+                  "status": 404,
+                  "message": "Calendar not found."
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "description": "The Authorization header, MUST be `Bearer {{access_token}}`",
+            "type": "string",
+            "in": "header",
+            "name": "Authorization",
+            "required": true
+          }
+        ]
+      },
+      "parameters": [
+        {
+          "description": "The ID of the calendar",
+          "type": "string",
+          "in": "path",
+          "name": "id",
+          "required": true
+        }
+      ]
+    },
+    "/calendars/v1/{toIdentity}/list": {
+      "get": {
+        "description": "List calendars created for \"to\"-identity.",
+        "operationId": "GET_calendars-v1-toIdentity-list",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "example": {
+                "@context": "https://schema.org/",
+                "@type": "collection",
+                "ItemList": [
+                  {
+                    "@context": "https://standards.lifeengine.io/v1/Context/Calendar/",
+                    "@type": "Calendar",
+                    "@id": "c9620d09-cd83-476e-91f5-3f3ea730f4b9",
+                    "toIdentity": "0920a84a-1548-4644-b95d-e3f80e1b9ca6",
+                    "title": "April's fools day",
+                    "startDate": "2019-04-01T12:00:00+02:00",
+                    "endDate": "2019-04-01T16:00:00+02:00",
+                    "repeats": "R5/2019-04-01T12:00:00+02:00/P1Y",
+                    "content": "April fool's event, held on the courtyard.",
+                    "location": "Courtyard at Teststreet 12",
+                    "cc": [
+                      "970bf5ef-8ca8-46a1-a4a9-e595ea1b4024",
+                      "cb40ce78-d3b3-442a-9db7-66f191698b2a"
+                    ],
+                    "createdAt": "2019-01-10T12:00:00Z",
+                    "updatedAt": "2019-01-10T12:00:00Z",
+                    "createdBy": "58422496-5796-4c47-a4a1-88768ea94ea6"
+                  },
+                  {
+                    "@context": "https://standards.lifeengine.io/v1/Context/Calendar/",
+                    "@type": "Calendar",
+                    "@id": "c8a3f324-a6cf-44fc-b010-5dd1354ecb89",
+                    "toIdentity": "0920a84a-1548-4644-b95d-e3f80e1b9ca6",
+                    "title": "May day lunch",
+                    "startDate": "2019-05-01T12:00:00+02:00",
+                    "endDate": "2019-05-01T16:00:00+02:00",
+                    "repeats": "R5/2019-05-01T12:00:00+02:00/P1Y",
+                    "content": "May day lunch at restaurant",
+                    "location": "Courtyard at Teststreet 12",
+                    "cc": [
+                      "970bf5ef-8ca8-46a1-a4a9-e595ea1b4024",
+                      "cb40ce78-d3b3-442a-9db7-66f191698b2a"
+                    ],
+                    "createdAt": "2019-01-10T12:00:00Z",
+                    "updatedAt": "2019-01-10T12:00:00Z",
+                    "createdBy": "58422496-5796-4c47-a4a1-88768ea94ea6"
+                  }
+                ]
+              },
+              "properties": {
+                "@context": {
+                  "description": "The context URL",
+                  "example": "https://schema.org/",
+                  "type": "string"
+                },
+                "@type": {
+                  "description": "The type of the list",
+                  "example": "collection",
+                  "type": "string"
+                },
+                "ItemList": {
+                  "description": "The list of calendar entries",
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/calendar"
+                  }
+                }
+              },
+              "required": [
+                "@context",
+                "@type",
+                "ItemList"
+              ]
+            }
+          },
+          "401": {
+            "description": "",
+            "schema": {
+              "example": {
+                "error": {
+                  "status": 401,
+                  "message": "Unauthorized"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "",
+            "schema": {
+              "example": {
+                "error": {
+                  "status": 403,
+                  "message": "Forbidden: You don't have '<perm>' permission on '<identity id>'"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "description": "The Authorization header, MUST be `Bearer {{access_token}}`",
+            "type": "string",
+            "in": "header",
+            "name": "Authorization",
+            "required": true
+          }
+        ]
+      },
+      "parameters": [
+        {
+          "description": "The identity to which the calendar belongs to.",
+          "type": "string",
+          "in": "path",
+          "name": "toIdentity",
+          "required": true
+        }
+      ]
+    }
+  }
+}

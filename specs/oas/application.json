@@ -1,0 +1,799 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Application",
+    "description": "The Application API provides means to manage user's applications and\nperform different operations on them, like refreshing client secrets.\n",
+    "version": "v1"
+  },
+  "host": "api-sandbox.oftrust.net",
+  "schemes": [
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/apps/v1": {
+      "get": {
+        "description": "List all applications where the current user is developer",
+        "operationId": "GET_apps-v1",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "example": {
+                "@context": "https://schema.org/",
+                "@type": "collection",
+                "ItemList": [
+                  {
+                    "@context": "https://standards.oftrust.net/v2/Context/Identity/Digital/Software/App/",
+                    "@type": "App",
+                    "@id": "286042aa-6299-4138-8675-da105dfadefc",
+                    "data": {
+                      "name": "Example Application",
+                      "description": "Application description",
+                      "privacyPolicyUrl": "http://example.com/privacy.html",
+                      "webPageUrl": "http://example.com/application.html",
+                      "iconUrl": "http://example.com/icon.png"
+                    },
+                    "metadata": {
+                      "createdAt": "2018-12-03T14:33:44",
+                      "createdBy": "747d0af5-6f06-4309-b2d5-f06677356a9a",
+                      "updatedAt": "2018-12-03T14:33:44",
+                      "updatedBy": "747d0af5-6f06-4309-b2d5-f06677356a9a"
+                    },
+                    "inLinks": [
+                      {
+                        "@context": "https://standards.oftrust.net/v2/Context/Link/Role/DeveloperOf/",
+                        "@type": "DeveloperOf",
+                        "@id": "a6101e2d-b19c-4cd5-9767-00aa78986a39",
+                        "from": "bfec43ac-a0ce-4469-a78f-3106cf28b4c9",
+                        "to": "286042aa-6299-4138-8675-da105dfadefc",
+                        "data": {},
+                        "metadata": {
+                          "createdAt": "2018-12-03T14:33:44",
+                          "createdBy": "747d0af5-6f06-4309-b2d5-f06677356a9a",
+                          "updatedAt": "2018-12-03T14:33:44",
+                          "updatedBy": "747d0af5-6f06-4309-b2d5-f06677356a9a"
+                        }
+                      }
+                    ],
+                    "outLinks": [
+                      {
+                        "@context": "https://standards.oftrust.net/v2/Context/Link/PublishedOn/",
+                        "@type": "PublishedOn",
+                        "@id": "87a5dee9-0a29-40c7-9972-475ef2c47890",
+                        "from": "286042aa-6299-4138-8675-da105dfadefc",
+                        "to": "10e28dca-3000-4fc5-8b2f-c21bd1893c9d",
+                        "data": {},
+                        "metadata": {
+                          "createdAt": "2018-12-03T14:33:44",
+                          "createdBy": "747d0af5-6f06-4309-b2d5-f06677356a9a",
+                          "updatedAt": "2018-12-03T14:33:44",
+                          "updatedBy": "747d0af5-6f06-4309-b2d5-f06677356a9a"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "schema": {
+              "example": {
+                "error": {
+                  "status": 401,
+                  "message": "Unauthorized"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "description": "The Authorization header, must be `Bearer {{access_token}}`",
+            "type": "string",
+            "in": "header",
+            "name": "Authorization",
+            "required": true
+          }
+        ]
+      },
+      "post": {
+        "description": "Create new application and its associated OAuth Client.\nNOTE: The `clientSecrets` is shown only once in plain text, when creating\nthe application. Make sure you save it somewhere. The client secret is\nused for validating the application.\n",
+        "operationId": "POST_apps-v1",
+        "responses": {
+          "201": {
+            "description": "",
+            "schema": {
+              "example": {
+                "@context": "https://standards.oftrust.net/v2/Context/Identity/Digital/Software/App/",
+                "@type": "App",
+                "@id": "6601afe9-85e4-4fe8-a3c9-1329f15493e1",
+                "data": {
+                  "name": "Example Application",
+                  "description": "Application description",
+                  "privacyPolicyUrl": "http://example.com/privacy.html",
+                  "webPageUrl": "http://example.com/application.html",
+                  "iconUrl": "http://example.com/icon.png"
+                },
+                "metadata": {
+                  "createdAt": "2018-12-03T14:33:44",
+                  "createdBy": "747d0af5-6f06-4309-b2d5-f06677356a9a",
+                  "updatedAt": "2018-12-03T14:33:44",
+                  "updatedBy": "747d0af5-6f06-4309-b2d5-f06677356a9a"
+                },
+                "inLinks": [
+                  {
+                    "@context": "https://standards.oftrust.net/v2/Context/Link/Role/DeveloperOf/",
+                    "@type": "DeveloperOf",
+                    "@id": "a6101e2d-b19c-4cd5-9767-00aa78986a39",
+                    "from": "bfec43ac-a0ce-4469-a78f-3106cf28b4c9",
+                    "to": "286042aa-6299-4138-8675-da105dfadefc",
+                    "data": {},
+                    "metadata": {
+                      "createdAt": "2018-12-03T14:33:44",
+                      "createdBy": "747d0af5-6f06-4309-b2d5-f06677356a9a",
+                      "updatedAt": "2018-12-03T14:33:44",
+                      "updatedBy": "747d0af5-6f06-4309-b2d5-f06677356a9a"
+                    }
+                  }
+                ],
+                "outLinks": [
+                  {
+                    "@context": "https://standards.oftrust.net/v2/Context/Link/PublishedOn/",
+                    "@type": "PublishedOn",
+                    "@id": "87a5dee9-0a29-40c7-9972-475ef2c47890",
+                    "from": "286042aa-6299-4138-8675-da105dfadefc",
+                    "to": "10e28dca-3000-4fc5-8b2f-c21bd1893c9d",
+                    "data": {},
+                    "metadata": {
+                      "createdAt": "2018-12-03T14:33:44",
+                      "createdBy": "747d0af5-6f06-4309-b2d5-f06677356a9a",
+                      "updatedAt": "2018-12-03T14:33:44",
+                      "updatedBy": "747d0af5-6f06-4309-b2d5-f06677356a9a"
+                    }
+                  }
+                ],
+                "client": {
+                  "clientId": "6601afe9-85e4-4fe8-a3c9-1329f15493e1",
+                  "clientSecrets": [
+                    "Sw4gT3I0oUynpeTN6YGfvFPE8SPj5LC1YNIHfFCF25w"
+                  ],
+                  "scopes": "",
+                  "redirectUris": "https://example.com/auth-callback",
+                  "defaultScopes": "",
+                  "defaultRedirectUri": "https://example.com/auth-callback"
+                },
+                "tokens": [
+                  {
+                    "access_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUz...T79_KYC4Ds",
+                    "expires_in": 63072000,
+                    "token_type": "Bearer",
+                    "refresh_token": "SwGAWsFfT1FZrT92NRJc0MaBp9XrmG"
+                  },
+                  {
+                    "access_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUz...T53_KYC4Ds",
+                    "expires_in": 63072000,
+                    "token_type": "Bearer",
+                    "refresh_token": "SwGAWsFfT1FZrT92NRJc0MaBp9XrmG"
+                  }
+                ]
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "schema": {
+              "example": {
+                "error": {
+                  "status": 401,
+                  "message": "Unauthorized"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "",
+            "schema": {
+              "example": {
+                "error": {
+                  "status": 403,
+                  "message": "Could not create App. User is not a member of the group."
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "schema": {
+              "example": {
+                "error": {
+                  "status": 404,
+                  "message": "Group not found."
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "",
+            "schema": {
+              "example": {
+                "error": {
+                  "status": 422,
+                  "message": {
+                    "scopes": [
+                      "Missing data for required field."
+                    ],
+                    "defaultScopes": [
+                      "Missing data for required field."
+                    ],
+                    "groupId": [
+                      "Missing data for required field."
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "description": "The Authorization header, must be `Bearer {{access_token}}`",
+            "type": "string",
+            "in": "header",
+            "name": "Authorization",
+            "required": true
+          },
+          {
+            "schema": {
+              "example": {
+                "name": "Example Application",
+                "description": "Application description",
+                "privacyPolicyUrl": "http://example.com/privacy.html",
+                "webPageUrl": "http://example.com/application.html",
+                "iconUrl": "http://example.com/icon.png",
+                "scopes": "",
+                "defaultScopes": "",
+                "redirectUris": "https://example.com/auth-callback",
+                "defaultRedirectUri": "https://example.com/auth-callback",
+                "groupId": "bfec43ac-a0ce-4469-a78f-3106cf28b4c9"
+              },
+              "properties": {
+                "name": {
+                  "description": "The name of the application",
+                  "example": "Example Application",
+                  "type": "string"
+                },
+                "description": {
+                  "description": "The description of the application",
+                  "example": "Description for the application",
+                  "type": "string"
+                },
+                "privacyPolicyUrl": {
+                  "description": "The URL to the application privacy policy",
+                  "example": "http://example.com/privacy.html",
+                  "type": "string"
+                },
+                "iconUrl": {
+                  "description": "The URL to an icon to show for the application.\nDimensions should be 80x80\n",
+                  "example": "http://example.com/icon.png",
+                  "type": "string"
+                },
+                "webPageUrl": {
+                  "description": "Optional URL to the application's web page",
+                  "example": "http://example.com/application.html",
+                  "type": "string"
+                },
+                "redirectUris": {
+                  "description": "List of available redirect URIs for this app",
+                  "example": "https://example.com/auth-callback",
+                  "type": "string"
+                },
+                "defaultRedirectUri": {
+                  "description": "The default redirect URI for this app. If not provided, then first\nvalue from `redirectUris` will be used as default\n",
+                  "example": "https://example.com",
+                  "type": "string"
+                },
+                "scopes": {
+                  "description": "List of scopes for this application. Not in use at the moment",
+                  "type": "string"
+                },
+                "defaultScopes": {
+                  "description": "The default scopes for this application. Not in use at the moment",
+                  "type": "string"
+                },
+                "groupId": {
+                  "description": "The group (organization) that is the creator of the application",
+                  "example": "7601afe9-85e4-4fe8-a3c9-1329f15493e1",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "name",
+                "description",
+                "privacyPolicyUrl",
+                "iconUrl",
+                "webPageUrl",
+                "redirectUris",
+                "scopes",
+                "defaultScopes",
+                "groupId"
+              ],
+              "type": "object"
+            },
+            "in": "body",
+            "name": "body",
+            "required": true
+          }
+        ]
+      }
+    },
+    "/apps/v1/{app_id}": {
+      "get": {
+        "description": "Get application's details",
+        "operationId": "GET_apps-v1-app_id",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "example": {
+                "@context": "https://standards.oftrust.net/v2/Context/Identity/Digital/Software/App/",
+                "@type": "App",
+                "@id": "48bb2858-e2fc-42d3-b44e-35f138b4b02d",
+                "data": {
+                  "name": "Example Application",
+                  "webPageUrl": "http://example.com/application.html",
+                  "iconUrl": "http://example.com/icon.png",
+                  "description": "Application description",
+                  "privacyPolicyUrl": "http://example.com/privacy.html"
+                },
+                "metadata": {
+                  "createdAt": "2018-12-03T14:33:44",
+                  "createdBy": "747d0af5-6f06-4309-b2d5-f06677356a9a",
+                  "updatedAt": "2018-12-03T14:33:44",
+                  "updatedBy": "747d0af5-6f06-4309-b2d5-f06677356a9a"
+                },
+                "inLinks": [
+                  {
+                    "@context": "https://standards.oftrust.net/v2/Context/Link/Role/DeveloperOf/",
+                    "@type": "DeveloperOf",
+                    "@id": "a6101e2d-b19c-4cd5-9767-00aa78986a39",
+                    "from": "bfec43ac-a0ce-4469-a78f-3106cf28b4c9",
+                    "to": "286042aa-6299-4138-8675-da105dfadefc",
+                    "data": {},
+                    "metadata": {
+                      "createdAt": "2018-12-03T14:33:44",
+                      "createdBy": "747d0af5-6f06-4309-b2d5-f06677356a9a",
+                      "updatedAt": "2018-12-03T14:33:44",
+                      "updatedBy": "747d0af5-6f06-4309-b2d5-f06677356a9a"
+                    }
+                  }
+                ],
+                "pagination": {
+                  "inLinks": {
+                    "links": [
+                      {
+                        "rel": "first",
+                        "href": "https://api-sandbox.oftrust.net/identities/v1/48bb2858-e2fc-42d3-b44e-35f138b4b02d?offset=0&limit=100"
+                      },
+                      {
+                        "rel": "self",
+                        "href": "https://api-sandbox.oftrust.net/identities/v1/48bb2858-e2fc-42d3-b44e-35f138b4b02d"
+                      },
+                      {
+                        "rel": "last",
+                        "href": "https://api-sandbox.oftrust.net/identities/v1/48bb2858-e2fc-42d3-b44e-35f138b4b02d?offset=0&limit=100"
+                      }
+                    ],
+                    "hasMore": false,
+                    "totalCount": 1
+                  },
+                  "outLinks": {
+                    "links": [
+                      {
+                        "rel": "first",
+                        "href": "https://api-sandbox.oftrust.net/identities/v1/48bb2858-e2fc-42d3-b44e-35f138b4b02d?offset=0&limit=100"
+                      },
+                      {
+                        "rel": "self",
+                        "href": "https://api-sandbox.oftrust.net/identities/v1/48bb2858-e2fc-42d3-b44e-35f138b4b02d"
+                      },
+                      {
+                        "rel": "last",
+                        "href": "https://api-sandbox.oftrust.net/identities/v1/48bb2858-e2fc-42d3-b44e-35f138b4b02d?offset=0&limit=100"
+                      }
+                    ],
+                    "hasMore": false,
+                    "totalCount": 1
+                  }
+                },
+                "outLinks": [
+                  {
+                    "@context": "https://standards.oftrust.net/v2/Context/Link/PublishedOn/",
+                    "@type": "PublishedOn",
+                    "@id": "87a5dee9-0a29-40c7-9972-475ef2c47890",
+                    "from": "286042aa-6299-4138-8675-da105dfadefc",
+                    "to": "10e28dca-3000-4fc5-8b2f-c21bd1893c9d",
+                    "data": {},
+                    "metadata": {
+                      "createdAt": "2018-12-03T14:33:44",
+                      "createdBy": "747d0af5-6f06-4309-b2d5-f06677356a9a",
+                      "updatedAt": "2018-12-03T14:33:44",
+                      "updatedBy": "747d0af5-6f06-4309-b2d5-f06677356a9a"
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "schema": {
+              "example": {
+                "error": {
+                  "status": 401,
+                  "message": "Unauthorized"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "schema": {
+              "example": {
+                "error": {
+                  "status": 404,
+                  "message": "App not found."
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "description": "The Authorization header, must be `Bearer {{access_token}}`",
+            "type": "string",
+            "in": "header",
+            "name": "Authorization",
+            "required": true
+          }
+        ]
+      },
+      "put": {
+        "description": "Update an application and its client. The client secret will not be\ntouched, as it has its own endpoint\n",
+        "operationId": "PUT_apps-v1-app_id",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "example": {
+                "@context": "https://standards.oftrust.net/v2/Context/Identity/Digital/Software/App/",
+                "@type": "App",
+                "@id": "6601afe9-85e4-4fe8-a3c9-1329f15493e1",
+                "data": {
+                  "name": "Example Application",
+                  "description": "Application description",
+                  "privacyPolicyUrl": "http://example.com/privacy.html",
+                  "webPageUrl": "http://example.com/application.html",
+                  "iconUrl": "http://example.com/icon.png"
+                },
+                "metadata": {
+                  "createdAt": "2018-12-03T14:33:44",
+                  "createdBy": "747d0af5-6f06-4309-b2d5-f06677356a9a",
+                  "updatedAt": "2018-12-03T14:33:44",
+                  "updatedBy": "747d0af5-6f06-4309-b2d5-f06677356a9a"
+                },
+                "inLinks": [
+                  {
+                    "@context": "https://standards.oftrust.net/v2/Context/Link/Role/DeveloperOf/",
+                    "@type": "DeveloperOf",
+                    "@id": "a6101e2d-b19c-4cd5-9767-00aa78986a39",
+                    "from": "bfec43ac-a0ce-4469-a78f-3106cf28b4c9",
+                    "to": "286042aa-6299-4138-8675-da105dfadefc",
+                    "data": {},
+                    "metadata": {
+                      "createdAt": "2018-12-03T14:33:44",
+                      "createdBy": "747d0af5-6f06-4309-b2d5-f06677356a9a",
+                      "updatedAt": "2018-12-03T14:33:44",
+                      "updatedBy": "747d0af5-6f06-4309-b2d5-f06677356a9a"
+                    }
+                  }
+                ],
+                "outLinks": [
+                  {
+                    "@context": "https://standards.oftrust.net/v2/Context/Link/PublishedOn/",
+                    "@type": "PublishedOn",
+                    "@id": "87a5dee9-0a29-40c7-9972-475ef2c47890",
+                    "from": "286042aa-6299-4138-8675-da105dfadefc",
+                    "to": "10e28dca-3000-4fc5-8b2f-c21bd1893c9d",
+                    "data": {},
+                    "metadata": {
+                      "createdAt": "2018-12-03T14:33:44",
+                      "createdBy": "747d0af5-6f06-4309-b2d5-f06677356a9a",
+                      "updatedAt": "2018-12-03T14:33:44",
+                      "updatedBy": "747d0af5-6f06-4309-b2d5-f06677356a9a"
+                    }
+                  }
+                ],
+                "client": {
+                  "clientId": "6601afe9-85e4-4fe8-a3c9-1329f15493e1",
+                  "scopes": "",
+                  "redirectUris": "https://example.com/auth-callback",
+                  "defaultScopes": "",
+                  "defaultRedirectUri": "https://example.com/auth-callback"
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "schema": {
+              "example": {
+                "error": {
+                  "status": 401,
+                  "message": "Unauthorized"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "",
+            "schema": {
+              "example": {
+                "error": {
+                  "status": 403,
+                  "message": "Permission denied"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "schema": {
+              "example": {
+                "error": {
+                  "status": 404,
+                  "message": "App not found."
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "",
+            "schema": {
+              "example": {
+                "error": {
+                  "status": 422,
+                  "message": {
+                    "scopes": [
+                      "Missing data for required field."
+                    ],
+                    "defaultScopes": [
+                      "Missing data for required field."
+                    ],
+                    "groupId": [
+                      "Missing data for required field."
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "description": "The Authorization header, must be `Bearer {{access_token}}`",
+            "type": "string",
+            "in": "header",
+            "name": "Authorization",
+            "required": true
+          },
+          {
+            "schema": {
+              "example": {
+                "name": "Example Application",
+                "description": "Application description",
+                "privacyPolicyUrl": "http://example.com/privacy.html",
+                "webPageUrl": "http://example.com/application.html",
+                "iconUrl": "http://example.com/icon.png",
+                "scopes": "",
+                "defaultScopes": "",
+                "redirectUris": "https://example.com/auth-callback",
+                "defaultRedirectUri": "https://example.com/auth-callback"
+              },
+              "properties": {
+                "name": {
+                  "description": "The name of the application",
+                  "example": "Example Application",
+                  "type": "string"
+                },
+                "description": {
+                  "description": "The description of the application",
+                  "example": "Description for the application",
+                  "type": "string"
+                },
+                "privacyPolicyUrl": {
+                  "description": "The URL to the application privacy policy",
+                  "example": "http://example.com/privacy.html",
+                  "type": "string"
+                },
+                "iconUrl": {
+                  "description": "The URL to an icon to show for the application.\nDimensions should be 80x80\n",
+                  "example": "http://example.com/icon.png",
+                  "type": "string"
+                },
+                "webPageUrl": {
+                  "description": "Optional URL to the application's web page",
+                  "example": "http://example.com/application.html",
+                  "type": "string"
+                },
+                "redirectUris": {
+                  "description": "List of available redirect URIs for this app",
+                  "example": "https://example.com/auth-callback",
+                  "type": "string"
+                },
+                "defaultRedirectUri": {
+                  "description": "The default redirect URI for this app. If not provided, then first\nvalue from `redirectUris` will be used as default\n",
+                  "example": "https://example.com",
+                  "type": "string"
+                },
+                "scopes": {
+                  "description": "List of scopes for this application. Not in use at the moment",
+                  "type": "string"
+                },
+                "defaultScopes": {
+                  "description": "The default scopes for this application. Not in use at the moment",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "name",
+                "redirectUris",
+                "defaultRedirectUri",
+                "scopes",
+                "defaultScopes"
+              ],
+              "type": "object"
+            },
+            "in": "body",
+            "name": "body",
+            "required": true
+          }
+        ]
+      },
+      "delete": {
+        "description": "Remove an application",
+        "operationId": "DELETE_apps-v1-app_id",
+        "responses": {
+          "204": {
+            "description": ""
+          },
+          "401": {
+            "description": "",
+            "schema": {
+              "example": {
+                "error": {
+                  "status": 401,
+                  "message": "Unauthorized"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "",
+            "schema": {
+              "example": {
+                "error": {
+                  "status": 403,
+                  "message": "Forbidden: You don't have '<perm>' permission on '<identity id>'"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "schema": {
+              "example": {
+                "error": {
+                  "status": 404,
+                  "message": "App not found."
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "description": "The Authorization header, must be `Bearer {{access_token}}`",
+            "type": "string",
+            "in": "header",
+            "name": "Authorization",
+            "required": true
+          }
+        ]
+      },
+      "parameters": [
+        {
+          "description": "App's ID",
+          "type": "string",
+          "in": "path",
+          "name": "app_id",
+          "required": true
+        }
+      ]
+    },
+    "/apps/v1/{app_id}/refreshSecret": {
+      "post": {
+        "description": "Create new client secret for the given application. The system\nwill keep track of the two latest secrets, so when creating a new\none, the previous one is still available for use.\n",
+        "operationId": "POST_apps-v1-app_id-refreshSecret",
+        "responses": {
+          "201": {
+            "description": "",
+            "schema": {
+              "example": {
+                "clientSecret": "YK45hcnq1D7fsgrvbHkPrIexetnnbqZGPQBV23oVgsA"
+              }
+            }
+          },
+          "401": {
+            "description": "",
+            "schema": {
+              "example": {
+                "error": {
+                  "status": 401,
+                  "message": "Unauthorized"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "",
+            "schema": {
+              "example": {
+                "error": {
+                  "status": 403,
+                  "message": "Permission denied"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "schema": {
+              "example": {
+                "error": {
+                  "status": 404,
+                  "message": "App not found."
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "description": "The Authorization header, must be `Bearer {{access_token}}`",
+            "type": "string",
+            "in": "header",
+            "name": "Authorization",
+            "required": true
+          }
+        ]
+      },
+      "parameters": [
+        {
+          "description": "App's ID",
+          "type": "string",
+          "in": "path",
+          "name": "app_id",
+          "required": true
+        }
+      ]
+    }
+  }
+}

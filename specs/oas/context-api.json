@@ -1,0 +1,108 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Context",
+    "description": "The Context API provides means to list available JSON-LD contexts in the\nPlatformOfTrust/standards repository in GitHub.\n\nThe contexts defines the semantic meaning of the keys in the responses from the APIs.\nWhen creating a new identity, choose which type of identity to create by\nchoosing the correct context. The context will then define the attributes the\nidentity can have.\n",
+    "version": "v1"
+  },
+  "host": "api-sandbox.oftrust.net",
+  "schemes": [
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "definitions": {
+    "context": {
+      "type": "object",
+      "properties": {
+        "type": {
+          "description": "The type of the context: either \"Identity\", which is used for identities,\nor \"Link\", which is used for linking identities.\n",
+          "example": "Identity",
+          "type": "string"
+        },
+        "name": {
+          "description": "The name of the context.",
+          "example": "Building",
+          "type": "string"
+        },
+        "url": {
+          "description": "The URL to the context. This should be saved as the context for the identity or link.",
+          "example": "https://example.com/contexts/identity-building.jsonld",
+          "type": "string"
+        }
+      },
+      "required": [
+        "type",
+        "name",
+        "url"
+      ]
+    }
+  },
+  "paths": {
+    "/contexts/{version}": {
+      "get": {
+        "description": "Returns a list of all defined contexts",
+        "operationId": "GET_contexts-version",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "example": {
+                "@context": "https://schema.org/",
+                "@type": "collection",
+                "ItemList": [
+                  {
+                    "type": "Identity",
+                    "name": "Building",
+                    "url": "https://example.com/contexts/identity-building.jsonld"
+                  },
+                  {
+                    "type": "Link",
+                    "name": "Owner",
+                    "url": "https://example.com/contexts/link-owner.jsonld"
+                  }
+                ]
+              },
+              "properties": {
+                "@context": {
+                  "description": "The context URL",
+                  "example": "https://schema.org/",
+                  "type": "string"
+                },
+                "@type": {
+                  "description": "The type of the response object",
+                  "example": "collection",
+                  "type": "string"
+                },
+                "ItemList": {
+                  "description": "The list of contexts",
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/context"
+                  }
+                }
+              },
+              "required": [
+                "@context",
+                "@type",
+                "ItemList"
+              ]
+            }
+          }
+        }
+      },
+      "parameters": [
+        {
+          "type": "string",
+          "in": "path",
+          "name": "version",
+          "required": true
+        }
+      ]
+    }
+  }
+}

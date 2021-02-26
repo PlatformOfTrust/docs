@@ -1,0 +1,196 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Context",
+    "description": "The Context API provides means to list available JSON-LD contexts of the\nPlatform of Trust.\n\nThe contexts defines the semantic meaning of the keys in the responses from the APIs.\nWhen creating a new identity, choose which type of identity to create by\nchoosing the correct context. The context will then define the attributes the\nidentity can have.\n",
+    "version": "v1"
+  },
+  "host": "api-sandbox.oftrust.net",
+  "schemes": [
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "definitions": {
+    "context": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "description": "User-friendly name of context",
+          "example": "Room",
+          "type": "string"
+        },
+        "context": {
+          "description": "URL to context JSON-LD file",
+          "example": "https://standards.oftrust.net/v1/Context/Virtual/Project",
+          "type": "string"
+        },
+        "classDefinition": {
+          "description": "URL to class definition JSON-LD file",
+          "example": "https://standards.oftrust.net/v1/ClassDefinitions/Virtual/Project",
+          "type": "string"
+        },
+        "vocabulary": {
+          "description": "URL to vocabulary JSON-LD file",
+          "example": "https://standards.oftrust.net/v1/Vocabulary/Virtual/Project",
+          "type": "string"
+        },
+        "subclasses": {
+          "description": "All contexts inherited from the current one",
+          "example": [
+            {
+              "classDefinition": "https://standards.oftrust.net/v1/ClassDefinitions/Virtual/Project",
+              "context": "https://standards.oftrust.net/v1/Context/Virtual/Project",
+              "name": "Project",
+              "subclasses": [],
+              "vocabulary": "https://standards.oftrust.net/v1/Vocabulary/Virtual/Project"
+            }
+          ],
+          "type": "array"
+        }
+      },
+      "required": [
+        "name",
+        "context",
+        "classDefinition",
+        "vocabulary",
+        "subclasses"
+      ]
+    },
+    "standard": {
+      "type": "object",
+      "properties": {
+        "links": {
+          "description": "Contexts targeted for linking the identities",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/context"
+          }
+        },
+        "dataProducts": {
+          "description": "Data product contexts",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/context"
+          }
+        },
+        "identities": {
+          "description": "General list of contexts",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/context"
+          }
+        }
+      },
+      "required": [
+        "links",
+        "dataProducts",
+        "identities"
+      ]
+    }
+  },
+  "paths": {
+    "/contexts/v1/": {
+      "get": {
+        "description": "List all supported contexts",
+        "operationId": "GET_contexts-v1",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "example": {
+                "standards": {
+                  "Core": {
+                    "dataProducts": [
+                      {
+                        "classDefinition": "https://standards.oftrust.net/v1/ClassDefinitions/DataProduct",
+                        "context": "https://standards.oftrust.net/v1/Context/DataProduct",
+                        "name": "Data Product",
+                        "subclasses": [],
+                        "vocabulary": "https://standards.oftrust.net/v1/Vocabulary/DataProduct"
+                      }
+                    ],
+                    "identities": [],
+                    "links": [
+                      {
+                        "classDefinition": "https://standards.oftrust.net/v1/ClassDefinitions/Link",
+                        "context": "https://standards.oftrust.net/v1/Context/Link",
+                        "name": "Link",
+                        "subclasses": [
+                          {
+                            "classDefinition": "https://standards.oftrust.net/v1/ClassDefinitions/Link/Role",
+                            "context": "https://standards.oftrust.net/v1/Context/Link/Role",
+                            "name": "Role",
+                            "vocabulary": "https://standards.oftrust.net/v1/Vocabulary/Link/Role",
+                            "subclasses": []
+                          }
+                        ],
+                        "vocabulary": "https://standards.oftrust.net/v1/Vocabulary/Link"
+                      }
+                    ]
+                  },
+                  "Platform of Trust": {
+                    "dataProducts": [],
+                    "identities": [
+                      {
+                        "classDefinition": "https://standards.oftrust.net/v1/ClassDefinitions/Group/Organization",
+                        "context": "https://standards.oftrust.net/v1/Context/Group/Organization",
+                        "name": "Organization",
+                        "subclasses": [
+                          {
+                            "classDefinition": "https://standards.oftrust.net/v1/ClassDefinitions/Group/Organization/LimitedCompany",
+                            "context": "https://standards.oftrust.net/v1/Context/Group/Organization/LimitedCompany",
+                            "name": "Limited Company",
+                            "subclasses": [
+                              {
+                                "classDefinition": "https://standards.oftrust.net/v1/ClassDefinitions/Group/Organization/LimitedCompany/HousingCooperative",
+                                "context": "https://standards.oftrust.net/v1/Context/Group/Organization/LimitedCompany/HousingCooperative",
+                                "name": "Housing Cooperative",
+                                "subclasses": [],
+                                "vocabulary": "https://standards.oftrust.net/v1/Vocabulary/Group/Organization/LimitedCompany/HousingCooperative"
+                              }
+                            ],
+                            "vocabulary": "https://standards.oftrust.net/v1/Vocabulary/Group/Organization/LimitedCompany"
+                          }
+                        ],
+                        "vocabulary": "https://standards.oftrust.net/v1/Vocabulary/Group/Organization"
+                      }
+                    ],
+                    "links": []
+                  }
+                }
+              },
+              "properties": {
+                "standards": {
+                  "description": "Supported standards",
+                  "type": "object",
+                  "properties": {
+                    "Core": {
+                      "description": "Core standards",
+                      "$ref": "#/definitions/standard"
+                    },
+                    "Platform of Trust": {
+                      "description": "Platform of Trust standards",
+                      "$ref": "#/definitions/standard"
+                    }
+                  },
+                  "required": [
+                    "Core",
+                    "Platform of Trust"
+                  ]
+                }
+              },
+              "required": [
+                "standards"
+              ]
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,733 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Message",
+    "description": "The message API provides means to create/send messages to identities.\nYou can send a message to any identity, e.g. a housing company, where all\nusers who has access to the housing company identity and its messages can\nread the message.\n\nThe message requires a `\"to\"`-identity, the ID of the identity to which\nthe message applies to.\nA message `subject` and its `content` should be added as well.\n\nThe `cc` is a list of user IDs to whom the message can be CC'd to.\nA notification about the message will be sent to these users.\n",
+    "version": "v1"
+  },
+  "host": "api-sandbox.oftrust.net",
+  "schemes": [
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "definitions": {
+    "message": {
+      "type": "object",
+      "properties": {
+        "toIdentity": {
+          "description": "The \"to\" identity ID to which the message is sent to.",
+          "example": "d36c4cd0-26c9-446e-a93f-0a90029f3a7f",
+          "type": "string"
+        },
+        "subject": {
+          "description": "The message subject.",
+          "example": "Go to the grocery store",
+          "type": "string"
+        },
+        "content": {
+          "description": "The content of the message.",
+          "example": "Remember to buy milk!",
+          "type": "string"
+        },
+        "cc": {
+          "description": "List of valid identity IDs to CC the message to.",
+          "example": [
+            "323bde80-4cc2-472e-bb77-e6a3e95a1253",
+            "0827e9c3-9664-479f-b0ec-956a35d72e4b"
+          ],
+          "type": "array"
+        }
+      },
+      "required": [
+        "toIdentity",
+        "subject",
+        "content"
+      ]
+    }
+  },
+  "paths": {
+    "/messages/v1": {
+      "post": {
+        "description": "Create a new message",
+        "operationId": "POST_messages-v1",
+        "responses": {
+          "201": {
+            "description": "",
+            "schema": {
+              "example": {
+                "@context": "https://standards.lifeengine.io/v1/Context/Message/",
+                "@type": "Message",
+                "toIdentity": "0920a84a-1548-4644-b95d-e3f80e1b9ca6",
+                "subject": "Go to the grocery store",
+                "content": "Remember to buy milk!",
+                "cc": [
+                  "323bde80-4cc2-472e-bb77-e6a3e95a1253",
+                  "0827e9c3-9664-479f-b0ec-956a35d72e4b"
+                ],
+                "createdAt": "2019-01-10T12:00:00Z",
+                "updatedAt": "2019-01-10T12:00:00Z",
+                "createdBy": "58422496-5796-4c47-a4a1-88768ea94ea6"
+              },
+              "properties": {
+                "@context": {
+                  "description": "The context URL",
+                  "example": "https://example.com/contexts/message.jsonld",
+                  "type": "string"
+                },
+                "@type": {
+                  "description": "The JSON-LD type of this object",
+                  "example": "Message",
+                  "type": "string"
+                },
+                "toIdentity": {
+                  "description": "The \"to\" identity ID to which the message is sent to.",
+                  "example": "d36c4cd0-26c9-446e-a93f-0a90029f3a7f",
+                  "type": "string"
+                },
+                "subject": {
+                  "description": "The message subject.",
+                  "example": "Go to the grocery store",
+                  "type": "string"
+                },
+                "content": {
+                  "description": "The content of the message.",
+                  "example": "Remember to buy milk!",
+                  "type": "string"
+                },
+                "cc": {
+                  "description": "This list should contain a list of strings with user IDs.",
+                  "example": [
+                    "323bde80-4cc2-472e-bb77-e6a3e95a1253",
+                    "0827e9c3-9664-479f-b0ec-956a35d72e4b"
+                  ],
+                  "type": "array"
+                },
+                "createdBy": {
+                  "description": "The user ID of the user who created the message",
+                  "example": "5ae98ee4-ef1b-4f89-b03d-130ceffb876a",
+                  "type": "string"
+                },
+                "createdAt": {
+                  "description": "RFC3339 datetime when the message was created",
+                  "example": "2018-02-28T16:41:41.090Z",
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "updatedAt": {
+                  "description": "RFC3339 datetime when the message was updated",
+                  "example": "2018-02-28T16:41:41.090Z",
+                  "type": "string",
+                  "format": "date-time"
+                }
+              },
+              "required": [
+                "@context",
+                "@type",
+                "toIdentity",
+                "subject",
+                "content",
+                "createdBy",
+                "createdAt",
+                "updatedAt"
+              ]
+            }
+          },
+          "401": {
+            "description": "",
+            "schema": {
+              "example": {
+                "error": {
+                  "status": 401,
+                  "message": "Unauthorized"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "",
+            "schema": {
+              "example": {
+                "error": {
+                  "status": 403,
+                  "message": "Forbidden: You don't have '<perm>' permission on '<identity id>'"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "schema": {
+              "example": {
+                "To Identity not found": {
+                  "error": {
+                    "status": 404,
+                    "message": "Identity a233e200-14d5-43ce-95dc-2db22ac676fb not found."
+                  }
+                },
+                "CC Identity not found": {
+                  "error": {
+                    "status": 404,
+                    "message": "CC Identity e153e200-14d5-43ce-95dc-2db22ac67677 not found."
+                  }
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "",
+            "schema": {
+              "example": {
+                "error": {
+                  "status": 422,
+                  "message": "Could not create message."
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "description": "The Authorization header, MUST be `Bearer {{access_token}}`",
+            "type": "string",
+            "in": "header",
+            "name": "Authorization",
+            "required": true
+          },
+          {
+            "schema": {
+              "example": {
+                "toIdentity": "0920a84a-1548-4644-b95d-e3f80e1b9ca6",
+                "subject": "Go to the grocery store",
+                "content": "Remember to buy milk!",
+                "cc": [
+                  "323bde80-4cc2-472e-bb77-e6a3e95a1253",
+                  "0827e9c3-9664-479f-b0ec-956a35d72e4b"
+                ]
+              },
+              "$ref": "#/definitions/message"
+            },
+            "in": "body",
+            "name": "body",
+            "required": true
+          }
+        ]
+      }
+    },
+    "/messages/v1/{id}": {
+      "get": {
+        "description": "Read one message by id",
+        "operationId": "GET_messages-v1-id",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "example": {
+                "@context": "https://standards.lifeengine.io/v1/Context/Message/",
+                "@type": "Message",
+                "toIdentity": "0920a84a-1548-4644-b95d-e3f80e1b9ca6",
+                "subject": "Go to the grocery store",
+                "content": "Remember to buy milk!",
+                "cc": [
+                  "323bde80-4cc2-472e-bb77-e6a3e95a1253",
+                  "0827e9c3-9664-479f-b0ec-956a35d72e4b"
+                ],
+                "createdAt": "2019-01-10T12:00:00Z",
+                "updatedAt": "2019-01-10T12:00:00Z",
+                "createdBy": "58422496-5796-4c47-a4a1-88768ea94ea6"
+              },
+              "properties": {
+                "@context": {
+                  "description": "The context URL",
+                  "example": "https://example.com/contexts/message.jsonld",
+                  "type": "string"
+                },
+                "@type": {
+                  "description": "The JSON-LD type of this object",
+                  "example": "Message",
+                  "type": "string"
+                },
+                "toIdentity": {
+                  "description": "The \"to\" identity ID to which the message is sent to.",
+                  "example": "d36c4cd0-26c9-446e-a93f-0a90029f3a7f",
+                  "type": "string"
+                },
+                "subject": {
+                  "description": "The message subject.",
+                  "example": "Go to the grocery store",
+                  "type": "string"
+                },
+                "content": {
+                  "description": "The content of the message.",
+                  "example": "Remember to buy milk!",
+                  "type": "string"
+                },
+                "cc": {
+                  "description": "This list should contain a list of strings with user IDs.",
+                  "example": [
+                    "323bde80-4cc2-472e-bb77-e6a3e95a1253",
+                    "0827e9c3-9664-479f-b0ec-956a35d72e4b"
+                  ],
+                  "type": "array"
+                },
+                "createdBy": {
+                  "description": "The user ID of the user who created the message",
+                  "example": "5ae98ee4-ef1b-4f89-b03d-130ceffb876a",
+                  "type": "string"
+                },
+                "createdAt": {
+                  "description": "RFC3339 datetime when the message was created",
+                  "example": "2018-02-28T16:41:41.090Z",
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "updatedAt": {
+                  "description": "RFC3339 datetime when the message was updated",
+                  "example": "2018-02-28T16:41:41.090Z",
+                  "type": "string",
+                  "format": "date-time"
+                }
+              },
+              "required": [
+                "@context",
+                "@type",
+                "toIdentity",
+                "subject",
+                "content",
+                "createdBy",
+                "createdAt",
+                "updatedAt"
+              ]
+            }
+          },
+          "401": {
+            "description": "",
+            "schema": {
+              "example": {
+                "error": {
+                  "status": 401,
+                  "message": "Unauthorized"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "",
+            "schema": {
+              "example": {
+                "error": {
+                  "status": 403,
+                  "message": "Forbidden: You don't have '<perm>' permission on '<identity id>'"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "schema": {
+              "example": {
+                "error": {
+                  "status": 404,
+                  "message": "Message not found."
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "description": "The Authorization header, MUST be `Bearer {{access_token}}`",
+            "type": "string",
+            "in": "header",
+            "name": "Authorization",
+            "required": true
+          }
+        ]
+      },
+      "put": {
+        "description": "Update a message by id",
+        "operationId": "PUT_messages-v1-id",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "example": {
+                "@context": "https://standards.lifeengine.io/v1/Context/Message/",
+                "@type": "Message",
+                "toIdentity": "0920a84a-1548-4644-b95d-e3f80e1b9ca6",
+                "subject": "Go to the grocery store",
+                "content": "Remember to buy milk!",
+                "cc": [
+                  "323bde80-4cc2-472e-bb77-e6a3e95a1253",
+                  "0827e9c3-9664-479f-b0ec-956a35d72e4b"
+                ],
+                "createdAt": "2019-01-10T12:00:00Z",
+                "updatedAt": "2019-01-10T12:00:00Z",
+                "createdBy": "58422496-5796-4c47-a4a1-88768ea94ea6"
+              },
+              "properties": {
+                "@context": {
+                  "description": "The context URL",
+                  "example": "https://example.com/contexts/message.jsonld",
+                  "type": "string"
+                },
+                "@type": {
+                  "description": "The JSON-LD type of this object",
+                  "example": "Message",
+                  "type": "string"
+                },
+                "toIdentity": {
+                  "description": "The \"to\" identity ID to which the message is sent to.",
+                  "example": "d36c4cd0-26c9-446e-a93f-0a90029f3a7f",
+                  "type": "string"
+                },
+                "subject": {
+                  "description": "The message subject.",
+                  "example": "Go to the grocery store",
+                  "type": "string"
+                },
+                "content": {
+                  "description": "The content of the message.",
+                  "example": "Remember to buy milk!",
+                  "type": "string"
+                },
+                "cc": {
+                  "description": "This list should contain a list of strings with user IDs.",
+                  "example": [
+                    "323bde80-4cc2-472e-bb77-e6a3e95a1253",
+                    "0827e9c3-9664-479f-b0ec-956a35d72e4b"
+                  ],
+                  "type": "array"
+                },
+                "createdBy": {
+                  "description": "The user ID of the user who created the message",
+                  "example": "5ae98ee4-ef1b-4f89-b03d-130ceffb876a",
+                  "type": "string"
+                },
+                "createdAt": {
+                  "description": "RFC3339 datetime when the message was created",
+                  "example": "2018-02-28T16:41:41.090Z",
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "updatedAt": {
+                  "description": "RFC3339 datetime when the message was updated",
+                  "example": "2018-02-28T16:41:41.090Z",
+                  "type": "string",
+                  "format": "date-time"
+                }
+              },
+              "required": [
+                "@context",
+                "@type",
+                "toIdentity",
+                "subject",
+                "content",
+                "createdBy",
+                "createdAt",
+                "updatedAt"
+              ]
+            }
+          },
+          "401": {
+            "description": "",
+            "schema": {
+              "example": {
+                "error": {
+                  "status": 401,
+                  "message": "Unauthorized"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "",
+            "schema": {
+              "example": {
+                "error": {
+                  "status": 403,
+                  "message": "Forbidden: You don't have '<perm>' permission on '<identity id>'"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "schema": {
+              "example": {
+                "error": {
+                  "status": 404,
+                  "message": "Message not found."
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "",
+            "schema": {
+              "example": {
+                "error": {
+                  "status": 422,
+                  "message": "Could not update message."
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "description": "The Authorization header, MUST be `Bearer {{access_token}}`",
+            "type": "string",
+            "in": "header",
+            "name": "Authorization",
+            "required": true
+          },
+          {
+            "schema": {
+              "example": {
+                "subject": "Go to the grocery store",
+                "content": "Remember to buy milk!"
+              },
+              "$ref": "#/definitions/message"
+            },
+            "in": "body",
+            "name": "body",
+            "required": true
+          }
+        ]
+      },
+      "delete": {
+        "description": "Delete a message by id",
+        "operationId": "DELETE_messages-v1-id",
+        "responses": {
+          "204": {
+            "description": "",
+            "schema": {
+              "example": {}
+            }
+          },
+          "401": {
+            "description": "",
+            "schema": {
+              "example": {
+                "error": {
+                  "status": 401,
+                  "message": "Unauthorized"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "",
+            "schema": {
+              "example": {
+                "error": {
+                  "status": 403,
+                  "message": "Forbidden: You don't have '<perm>' permission on '<identity id>'"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "schema": {
+              "example": {
+                "error": {
+                  "status": 404,
+                  "message": "Message not found."
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "description": "The Authorization header, MUST be `Bearer {{access_token}}`",
+            "type": "string",
+            "in": "header",
+            "name": "Authorization",
+            "required": true
+          }
+        ]
+      },
+      "parameters": [
+        {
+          "description": "The ID of the message",
+          "type": "string",
+          "in": "path",
+          "name": "id",
+          "required": true
+        }
+      ]
+    },
+    "/messages/v1/{id}/read": {
+      "post": {
+        "description": "Marks a message read by the currently logged in user.",
+        "operationId": "POST_messages-v1-id-read",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "example": {}
+            }
+          },
+          "401": {
+            "description": "",
+            "schema": {
+              "example": {
+                "error": {
+                  "status": 401,
+                  "message": "Unauthorized"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "",
+            "schema": {
+              "example": {
+                "error": {
+                  "status": 403,
+                  "message": "Forbidden: You don't have '<perm>' permission on '<identity id>'"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "description": "The Authorization header, MUST be `Bearer {{access_token}}`",
+            "type": "string",
+            "in": "header",
+            "name": "Authorization",
+            "required": true
+          }
+        ]
+      },
+      "parameters": [
+        {
+          "description": "The ID of the message",
+          "type": "string",
+          "in": "path",
+          "name": "id",
+          "required": true
+        }
+      ]
+    },
+    "/messages/v1/{toIdentity}/list": {
+      "get": {
+        "description": "List messages sent to \"to\"-identity.",
+        "operationId": "GET_messages-v1-toIdentity-list",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "example": {
+                "@context": "https://schema.org/",
+                "@type": "collection",
+                "ItemList": [
+                  {
+                    "@context": "https://standards.lifeengine.io/v1/Context/Message/",
+                    "@type": "Message",
+                    "toIdentity": "0920a84a-1548-4644-b95d-e3f80e1b9ca6",
+                    "subject": "Go to the grocery store",
+                    "content": "Remember to buy milk!",
+                    "cc": [
+                      "323bde80-4cc2-472e-bb77-e6a3e95a1253",
+                      "0827e9c3-9664-479f-b0ec-956a35d72e4b"
+                    ],
+                    "createdAt": "2019-01-10T12:00:00Z",
+                    "updatedAt": "2019-01-10T12:00:00Z",
+                    "createdBy": "58422496-5796-4c47-a4a1-88768ea94ea6"
+                  },
+                  {
+                    "@context": "https://standards.lifeengine.io/v1/Context/Message/",
+                    "@type": "Message",
+                    "toIdentity": "0920a84a-1548-4644-b95d-e3f80e1b9ca6",
+                    "subject": "You forgot the milk",
+                    "content": "...",
+                    "cc": [
+                      "323bde80-4cc2-472e-bb77-e6a3e95a1253",
+                      "0827e9c3-9664-479f-b0ec-956a35d72e4b"
+                    ],
+                    "createdAt": "2019-01-10T12:00:00Z",
+                    "updatedAt": "2019-01-10T12:00:00Z",
+                    "createdBy": "58422496-5796-4c47-a4a1-88768ea94ea6"
+                  }
+                ]
+              },
+              "properties": {
+                "@context": {
+                  "description": "The context URL",
+                  "example": "https://schema.org/",
+                  "type": "string"
+                },
+                "@type": {
+                  "description": "The type of the list",
+                  "example": "collection",
+                  "type": "string"
+                },
+                "ItemList": {
+                  "description": "The list of messages",
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/message"
+                  }
+                }
+              },
+              "required": [
+                "@context",
+                "@type",
+                "ItemList"
+              ]
+            }
+          },
+          "401": {
+            "description": "",
+            "schema": {
+              "example": {
+                "error": {
+                  "status": 401,
+                  "message": "Unauthorized"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "",
+            "schema": {
+              "example": {
+                "error": {
+                  "status": 403,
+                  "message": "Forbidden: You don't have '<perm>' permission on '<identity id>'"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "description": "The Authorization header, MUST be `Bearer {{access_token}}`",
+            "type": "string",
+            "in": "header",
+            "name": "Authorization",
+            "required": true
+          }
+        ]
+      },
+      "parameters": [
+        {
+          "description": "The identity to which the message belongs to.",
+          "type": "string",
+          "in": "path",
+          "name": "toIdentity",
+          "required": true
+        }
+      ]
+    }
+  }
+}

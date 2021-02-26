@@ -1,0 +1,613 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Message",
+    "description": "The message API provides means to create/send messages to identities.\nYou can send a message to any identity, e.g. a housing company, where all\nusers who has access to the housing company identity and its messages can\nread the message.\n\nThe message requires a `\"to\"`-identity, the ID of the identity to which\nthe message applies to.\nA message `subject` and its `content` should be added as well.\n\nThe `cc` is a list of user IDs to whom the message can be CC'd to.\nA notification about the message will be sent to these users.\n",
+    "version": "v1"
+  },
+  "host": "api-sandbox.oftrust.net",
+  "schemes": [
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "definitions": {
+    "message": {
+      "type": "object",
+      "properties": {
+        "toIdentity": {
+          "description": "The \"to\" identity ID to which the message is sent to.",
+          "example": "d36c4cd0-26c9-446e-a93f-0a90029f3a7f",
+          "type": "string"
+        },
+        "subject": {
+          "description": "The message subject.",
+          "example": "Go to the grocery store",
+          "type": "string"
+        },
+        "content": {
+          "description": "The content of the message.",
+          "example": "Remember to buy milk!",
+          "type": "string"
+        },
+        "cc": {
+          "description": "List of IDs to CC the message to.",
+          "example": [
+            "323bde80-4cc2-472e-bb77-e6a3e95a1253",
+            "0827e9c3-9664-479f-b0ec-956a35d72e4b"
+          ],
+          "type": "array"
+        }
+      },
+      "required": [
+        "toIdentity",
+        "subject",
+        "content"
+      ]
+    }
+  },
+  "paths": {
+    "/messages/{version}": {
+      "post": {
+        "description": "Create a new message",
+        "operationId": "POST_messages-version",
+        "responses": {
+          "201": {
+            "description": "",
+            "schema": {
+              "example": {
+                "@context": "<URL to message context>",
+                "@type": "Message",
+                "toIdentity": "<to identity ID>",
+                "subject": "<message subject>",
+                "content": "<message content>",
+                "cc": [
+                  "<list of identity IDs>"
+                ],
+                "createdAt": "2019-01-10T12:00:00Z",
+                "updatedAt": "2019-01-10T12:00:00Z",
+                "createdBy": "<user ID who created the message>"
+              },
+              "properties": {
+                "@context": {
+                  "description": "The context URL",
+                  "example": "https://example.com/contexts/message.jsonld",
+                  "type": "string"
+                },
+                "@type": {
+                  "description": "The JSON-LD type of this object",
+                  "example": "Message",
+                  "type": "string"
+                },
+                "toIdentity": {
+                  "description": "The \"to\" identity ID to which the message is sent to.",
+                  "example": "d36c4cd0-26c9-446e-a93f-0a90029f3a7f",
+                  "type": "string"
+                },
+                "subject": {
+                  "description": "The message subject.",
+                  "example": "Go to the grocery store",
+                  "type": "string"
+                },
+                "content": {
+                  "description": "The content of the message.",
+                  "example": "Remember to buy milk!",
+                  "type": "string"
+                },
+                "cc": {
+                  "description": "This list should contain a list of strings with user IDs.",
+                  "example": [
+                    "323bde80-4cc2-472e-bb77-e6a3e95a1253",
+                    "0827e9c3-9664-479f-b0ec-956a35d72e4b"
+                  ],
+                  "type": "array"
+                },
+                "createdBy": {
+                  "description": "The user ID of the user who created the message",
+                  "example": "5ae98ee4-ef1b-4f89-b03d-130ceffb876a",
+                  "type": "string"
+                },
+                "createdAt": {
+                  "description": "RFC3339 datetime when the message was created",
+                  "example": "2018-02-28T16:41:41.090Z",
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "updatedAt": {
+                  "description": "RFC3339 datetime when the message was updated",
+                  "example": "2018-02-28T16:41:41.090Z",
+                  "type": "string",
+                  "format": "date-time"
+                }
+              },
+              "required": [
+                "@context",
+                "@type",
+                "toIdentity",
+                "subject",
+                "content",
+                "createdBy",
+                "createdAt",
+                "updatedAt"
+              ]
+            }
+          },
+          "422": {
+            "description": "",
+            "schema": {
+              "example": {
+                "error": {
+                  "status": 422,
+                  "message": "Could not create message."
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "description": "The Authorization header, MUST be `Bearer {{access_token}}`",
+            "type": "string",
+            "in": "header",
+            "name": "Authorization",
+            "required": true
+          },
+          {
+            "schema": {
+              "example": {
+                "toIdentity": "<to identity ID>",
+                "subject": "<message subject>",
+                "content": "<message content>",
+                "cc": [
+                  "<This list should contain a list of strings with user IDs>"
+                ]
+              },
+              "$ref": "#/definitions/message"
+            },
+            "in": "body",
+            "name": "body",
+            "required": true
+          }
+        ]
+      },
+      "parameters": [
+        {
+          "type": "string",
+          "in": "path",
+          "name": "version",
+          "required": true
+        }
+      ]
+    },
+    "/messages/{version}/{id}": {
+      "get": {
+        "description": "Read one message by id",
+        "operationId": "GET_messages-version-id",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "example": {
+                "@context": "<URL to message context>",
+                "@type": "Message",
+                "toIdentity": "<to identity ID>",
+                "subject": "<message subject>",
+                "content": "<message content>",
+                "cc": [
+                  "<list of identity IDs>"
+                ],
+                "createdAt": "2019-01-10T12:00:00Z",
+                "updatedAt": "2019-01-10T12:00:00Z",
+                "createdBy": "<user ID who created the message>"
+              },
+              "properties": {
+                "@context": {
+                  "description": "The context URL",
+                  "example": "https://example.com/contexts/message.jsonld",
+                  "type": "string"
+                },
+                "@type": {
+                  "description": "The JSON-LD type of this object",
+                  "example": "Message",
+                  "type": "string"
+                },
+                "toIdentity": {
+                  "description": "The \"to\" identity ID to which the message is sent to.",
+                  "example": "d36c4cd0-26c9-446e-a93f-0a90029f3a7f",
+                  "type": "string"
+                },
+                "subject": {
+                  "description": "The message subject.",
+                  "example": "Go to the grocery store",
+                  "type": "string"
+                },
+                "content": {
+                  "description": "The content of the message.",
+                  "example": "Remember to buy milk!",
+                  "type": "string"
+                },
+                "cc": {
+                  "description": "This list should contain a list of strings with user IDs.",
+                  "example": [
+                    "323bde80-4cc2-472e-bb77-e6a3e95a1253",
+                    "0827e9c3-9664-479f-b0ec-956a35d72e4b"
+                  ],
+                  "type": "array"
+                },
+                "createdBy": {
+                  "description": "The user ID of the user who created the message",
+                  "example": "5ae98ee4-ef1b-4f89-b03d-130ceffb876a",
+                  "type": "string"
+                },
+                "createdAt": {
+                  "description": "RFC3339 datetime when the message was created",
+                  "example": "2018-02-28T16:41:41.090Z",
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "updatedAt": {
+                  "description": "RFC3339 datetime when the message was updated",
+                  "example": "2018-02-28T16:41:41.090Z",
+                  "type": "string",
+                  "format": "date-time"
+                }
+              },
+              "required": [
+                "@context",
+                "@type",
+                "toIdentity",
+                "subject",
+                "content",
+                "createdBy",
+                "createdAt",
+                "updatedAt"
+              ]
+            }
+          },
+          "404": {
+            "description": "",
+            "schema": {
+              "example": {
+                "error": {
+                  "status": 404,
+                  "message": "Message not found."
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "description": "The Authorization header, MUST be `Bearer {{access_token}}`",
+            "type": "string",
+            "in": "header",
+            "name": "Authorization",
+            "required": true
+          }
+        ]
+      },
+      "put": {
+        "description": "Update a message by id",
+        "operationId": "PUT_messages-version-id",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "example": {
+                "@context": "<URL to message context>",
+                "@type": "Message",
+                "toIdentity": "<to identity ID>",
+                "subject": "<message subject>",
+                "content": "<message content>",
+                "cc": [
+                  "<list of identity IDs>"
+                ],
+                "createdAt": "2019-01-10T12:00:00Z",
+                "updatedAt": "2019-01-10T12:00:00Z",
+                "createdBy": "<user ID who created the message>"
+              },
+              "properties": {
+                "@context": {
+                  "description": "The context URL",
+                  "example": "https://example.com/contexts/message.jsonld",
+                  "type": "string"
+                },
+                "@type": {
+                  "description": "The JSON-LD type of this object",
+                  "example": "Message",
+                  "type": "string"
+                },
+                "toIdentity": {
+                  "description": "The \"to\" identity ID to which the message is sent to.",
+                  "example": "d36c4cd0-26c9-446e-a93f-0a90029f3a7f",
+                  "type": "string"
+                },
+                "subject": {
+                  "description": "The message subject.",
+                  "example": "Go to the grocery store",
+                  "type": "string"
+                },
+                "content": {
+                  "description": "The content of the message.",
+                  "example": "Remember to buy milk!",
+                  "type": "string"
+                },
+                "cc": {
+                  "description": "This list should contain a list of strings with user IDs.",
+                  "example": [
+                    "323bde80-4cc2-472e-bb77-e6a3e95a1253",
+                    "0827e9c3-9664-479f-b0ec-956a35d72e4b"
+                  ],
+                  "type": "array"
+                },
+                "createdBy": {
+                  "description": "The user ID of the user who created the message",
+                  "example": "5ae98ee4-ef1b-4f89-b03d-130ceffb876a",
+                  "type": "string"
+                },
+                "createdAt": {
+                  "description": "RFC3339 datetime when the message was created",
+                  "example": "2018-02-28T16:41:41.090Z",
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "updatedAt": {
+                  "description": "RFC3339 datetime when the message was updated",
+                  "example": "2018-02-28T16:41:41.090Z",
+                  "type": "string",
+                  "format": "date-time"
+                }
+              },
+              "required": [
+                "@context",
+                "@type",
+                "toIdentity",
+                "subject",
+                "content",
+                "createdBy",
+                "createdAt",
+                "updatedAt"
+              ]
+            }
+          },
+          "404": {
+            "description": "",
+            "schema": {
+              "example": {
+                "error": {
+                  "status": 404,
+                  "message": "Message not found."
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "",
+            "schema": {
+              "example": {
+                "error": {
+                  "status": 422,
+                  "message": "Could not update message."
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "description": "The Authorization header, MUST be `Bearer {{access_token}}`",
+            "type": "string",
+            "in": "header",
+            "name": "Authorization",
+            "required": true
+          },
+          {
+            "schema": {
+              "example": {
+                "subject": "<message subject>",
+                "content": "<message content>"
+              },
+              "$ref": "#/definitions/message"
+            },
+            "in": "body",
+            "name": "body",
+            "required": true
+          }
+        ]
+      },
+      "delete": {
+        "description": "Delete a message by id",
+        "operationId": "DELETE_messages-version-id",
+        "responses": {
+          "204": {
+            "description": "",
+            "schema": {
+              "example": {}
+            }
+          },
+          "404": {
+            "description": "",
+            "schema": {
+              "example": {
+                "error": {
+                  "status": 404,
+                  "message": "Message not found."
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "description": "The Authorization header, MUST be `Bearer {{access_token}}`",
+            "type": "string",
+            "in": "header",
+            "name": "Authorization",
+            "required": true
+          }
+        ]
+      },
+      "parameters": [
+        {
+          "description": "The ID of the message",
+          "type": "string",
+          "in": "path",
+          "name": "id",
+          "required": true
+        },
+        {
+          "type": "string",
+          "in": "path",
+          "name": "version",
+          "required": true
+        }
+      ]
+    },
+    "/messages/{version}/{id}/read": {
+      "post": {
+        "description": "Marks a message read by the currently logged in user.",
+        "operationId": "POST_messages-version-id-read",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "example": {}
+            }
+          },
+          "403": {
+            "description": "",
+            "schema": {
+              "example": {
+                "error": {
+                  "status": 403,
+                  "message": "User not logged in."
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "description": "The Authorization header, MUST be `Bearer {{access_token}}`",
+            "type": "string",
+            "in": "header",
+            "name": "Authorization",
+            "required": true
+          }
+        ]
+      },
+      "parameters": [
+        {
+          "description": "The ID of the message",
+          "type": "string",
+          "in": "path",
+          "name": "id",
+          "required": true
+        },
+        {
+          "type": "string",
+          "in": "path",
+          "name": "version",
+          "required": true
+        }
+      ]
+    },
+    "/messages/{version}/{toIdentity}/list": {
+      "get": {
+        "description": "List messages sent to \"to\"-identity.",
+        "operationId": "GET_messages-version-toIdentity-list",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "example": {
+                "@context": "https://schema.org/",
+                "@type": "collection",
+                "ItemList": [
+                  {
+                    "@context": "<URL to message context>",
+                    "@type": "Message",
+                    "toIdentity": "<to identity ID>",
+                    "subject": "<message subject>",
+                    "content": "<message content>",
+                    "cc": [
+                      "<list of user identity IDs>"
+                    ],
+                    "createdAt": "<RFC3339 timestamp>",
+                    "updatedAt": "<RFC3339 timestamp>",
+                    "createdBy": "<user ID who created the message>"
+                  },
+                  {
+                    "@context": "<URL to message context>",
+                    "@type": "Message",
+                    "toIdentity": "<to identity ID>",
+                    "subject": "<message subject>",
+                    "content": "<message content>",
+                    "cc": [
+                      "<list of user identity IDs>"
+                    ],
+                    "createdAt": "<RFC3339 timestamp>",
+                    "updatedAt": "<RFC3339 timestamp>",
+                    "createdBy": "<user ID who created the message>"
+                  }
+                ]
+              },
+              "properties": {
+                "@context": {
+                  "description": "The context URL",
+                  "example": "https://schema.org/",
+                  "type": "string"
+                },
+                "@type": {
+                  "description": "The type of the list",
+                  "example": "collection",
+                  "type": "string"
+                },
+                "ItemList": {
+                  "description": "The list of messages",
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/message"
+                  }
+                }
+              },
+              "required": [
+                "@context",
+                "@type",
+                "ItemList"
+              ]
+            }
+          }
+        },
+        "parameters": [
+          {
+            "description": "The Authorization header, MUST be `Bearer {{access_token}}`",
+            "type": "string",
+            "in": "header",
+            "name": "Authorization",
+            "required": true
+          }
+        ]
+      },
+      "parameters": [
+        {
+          "description": "The identity to which the message belongs to.",
+          "type": "string",
+          "in": "path",
+          "name": "toIdentity",
+          "required": true
+        },
+        {
+          "type": "string",
+          "in": "path",
+          "name": "version",
+          "required": true
+        }
+      ]
+    }
+  }
+}

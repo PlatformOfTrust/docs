@@ -1,0 +1,212 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Login",
+    "description": "The Login portal API provides means for completing OAuth flow and reading\ninformation about logged in user.<br/>\n\nNote: All endpoints for Login portal API have following base URL -\n`https://login.oftrust.net/api`\n",
+    "version": "v1"
+  },
+  "host": "login.oftrust.net",
+  "basePath": "/api",
+  "schemes": [
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/exchangeToken": {
+      "post": {
+        "description": "Authorization flow, convert authorization code to access token.",
+        "operationId": "POST_exchangeToken",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "example": {
+                "access_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6bnVsbCwiZXhwIjoxNTQ1MTQzMzY1LCJzdWIiOiIwYzMyYjQ3MC03ZmRmLTQ5MWYtYjA1NS04NmIyMzYxZjljZTkiLCJpc3MiOm51bGwsImF1ZCI6IjdjMDM3MjNjLWJiZWYtNDlkMS1hNmFiLTk2OGYzOGNlODRlNiIsImlhdCI6MTU0NTA1Njk2NS4wODE2Njh9.of5sEZBpzWHqjLd2LPsQZXfS1uQWLOeqdvFtqZtq8BwnCllpebX5MyjSaahOBLXBqyAhPxafEETfMZtyAe1-9P-6imvOTv8JDjw5AbNZelPAAflZHX89AcFCJpKuI603ZqywTTyIqdijVZArkNdEfGeQhJXoSmcDLElUnixw5rJF7FKdtCGjIP4aKazRxfn2DJOOhA1BazCR3xXV42OCgMsdiRYEJ2EhcUdlmA7OT-NjAgzOgS12zfVVEM9swwIVPPc27ewd4rmStJSUYHD2hHaRXQKmJqamJfA5W-vxEJH9G6UW3wwM--ROwYHMHcDfN2HIT-AqojMqitNHZr_AlrTQCpcv-BMA2uwg7DT8MMJ0bLrrdst7Eg_ha4U8iz4CgCTlu9MJEVFUzzLMTnMI8Cc74milBJ6xpHsgJItYjC1e4dVCs_5xxLfy44npg21TOX4Uds4uwLLOhy-gnBAVRzzmCD6nkGmAnHc7Kvck_uw7WHMUeHyMfa1LZoEQhOu0AenymKoHs6gH5anCUwBRAUUdTxXIAwDLod1Q-9Hz3_NBTqiV3Nh1Kn-WswWnA0GPIdKLHt0oI-PAZ0Y1CfL9otucvZtL7UR2qXZjEq8lSX0DVlpJX9ma7RFhcBu4evrTkKSfrdQVitXWiE0q1sSh1CeqlVtnVg6dfGuMKaoY9sA",
+                "expires_in": 86400,
+                "token_type": "Bearer",
+                "scope": "",
+                "refresh_token": "T2IlwUE7A66eidXpYXgYIT3ltoLez9"
+              },
+              "properties": {
+                "access_token": {
+                  "description": "The access token to be used in the Authorization header.",
+                  "example": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJzY29wZSI6bnVsbCwiZXhwIjoxNTY4MTIwMDAwLCJzdWIiOiIzMzIzNzA2Ny1lNzJjLTRmMjYtYjc4Yi05ZjllMjM0YjJlN2QiLCJhdWQiOiJmNzczZGFmZS0yMGMwLTRhMjUtYWEzZS05ZGEwYjgxYjkzMDQiLCJ0eXBlIjoiVXNlciIsImlzcyI6IkxFIiwiaWF0IjoxNTY4MDMzNjAwLjAsInNjb3BlcyI6IiJ9.b_gMNIKODrLzfooYadqI2VJGTuc7c26x8S7OncpyXA6XtZP_E3rlI9H5ot84zQS9SqHdLk23JxKdCiQCtbTpYcLn8QcUlF7mWweQmq1ewanHPHhfSb6uileQNQKGnGEVe3V4a8Hy2x_d8rOYujwFA2sfxfcEZdArAnfK_IIHfWzC5zz78c3nrT5LeqE1BP1RHzpLKkc91rcLcwa0ldKTDQlGDdi6hBYneaMGToqF3yTQxd1v_4YHLGp3i4A_TZu8wrBMoWFvJburYp45itsyElatNSwFMkNz6L7w6sxDQWTB9MznUuhk90U6bD49GljhY-Ny0XgwEzzUHeyj8oJHbkxfrJHpDHl-uNBQyPohwVwyaDdh6BDFJgM3JHOlezJuH_RbMCcUa1XqwkGhZwdXYNP7fgpTkEDY41_oRwsrPx9jM9jlvG9VBTEPFijATy-IV-tXH0VJ4pLO0fJ1IgAuUMnQJOxgnUPSuI2g_zhMLojgDMJUo1kONAWdoc7UwLMeR33ALlohLBdfnm0-thLTR3GOpuXgWC5Nx067Fy4ydwTpObrDu2LnliRFNvE2fQOXOrQKAz_BmOonL7xc2jFv5w0L9MSDfZcLzJYrMk2MF5E_fNOSiw8qW82U5a6E42FkxogN1o85AApGxvUWkdfG4MjOlGrgqW1QhdEsJLNGV2YA",
+                  "type": "string"
+                },
+                "expires_in": {
+                  "description": "The amount of seconds the token is valid for.",
+                  "example": 86400,
+                  "type": "integer"
+                },
+                "token_type": {
+                  "description": "The token type.",
+                  "example": "Bearer",
+                  "type": "string"
+                },
+                "refresh_token": {
+                  "description": "The refresh token associated with this access token.",
+                  "example": "IHfWzC5zz78c3nrT5LeqE1ql9x8shg",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "access_token",
+                "expires_in",
+                "token_type",
+                "refresh_token"
+              ]
+            }
+          },
+          "400": {
+            "description": "",
+            "schema": {
+              "example": {
+                "error": "invalid_request",
+                "error_description": "Missing code parameter.",
+                "state": "state"
+              }
+            }
+          },
+          "401": {
+            "description": "If e.g. the authorization code has expired.",
+            "schema": {
+              "example": {
+                "error": "invalid_grant"
+              }
+            }
+          },
+          "422": {
+            "description": "",
+            "schema": {
+              "example": {
+                "error": {
+                  "status": 422,
+                  "message": {
+                    "code": [
+                      "Missing data for required field."
+                    ],
+                    "grant_type": [
+                      "Missing data for required field."
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "consumes": [
+          "application/x-www-form-urlencoded"
+        ],
+        "parameters": [
+          {
+            "type": "string",
+            "in": "header",
+            "name": "Content-Type",
+            "required": true
+          },
+          {
+            "description": "The Accept header, MUST be `application/json`",
+            "type": "string",
+            "in": "header",
+            "name": "Accept",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "grant_type",
+            "type": "string",
+            "description": "The grant type of the login, MUST be `authorization_code`.",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "redirect_uri",
+            "type": "string",
+            "description": "The redirect URI used in the authorization flow.",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "client_id",
+            "type": "string",
+            "description": "ID of OAuth client or identity.",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "code",
+            "type": "string",
+            "description": "The authorization code to exchange to an access token.",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "client_secret",
+            "type": "string",
+            "description": "The authorization code to exchange to an access token.",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "user_id",
+            "type": "string",
+            "description": "ID of authorized user to provide ACL permissions to the platform"
+          },
+          {
+            "in": "formData",
+            "name": "state",
+            "type": "string",
+            "description": "The optional state, e.g. CSRF token from the original request."
+          }
+        ]
+      }
+    },
+    "/me": {
+      "get": {
+        "description": "Get information about the currently logged in user.",
+        "operationId": "GET_me",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "example": {
+                "@context": "https://standards.oftrust.net/v2/Context/Identity/LegalParty/Person/",
+                "@type": "Person",
+                "@id": "33237067-14c3-4801-9e50-bf08406406e2",
+                "email": "user@example.com",
+                "role": "developer",
+                "firstName": "Anna",
+                "lastName": "Bar"
+              }
+            }
+          },
+          "403": {
+            "description": "",
+            "schema": {
+              "example": {
+                "error": {
+                  "status": 403,
+                  "message": "Permission denied"
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "description": "The Authorization header, MUST be `Bearer {{access_token}}`",
+            "type": "string",
+            "in": "header",
+            "name": "Authorization",
+            "required": true
+          }
+        ]
+      }
+    }
+  }
+}
