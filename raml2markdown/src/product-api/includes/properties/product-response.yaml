@@ -66,3 +66,7 @@ imageUrl?:
   description: Optional URL to an image for the product.
   type: string
   example: https://example.com/product-image.png
+authorizationLayer?:
+  description: Return default of None for the "authorizationLayer" property when this is missing/not specified
+  type: string
+  example: None
