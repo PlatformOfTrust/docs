@@ -57,6 +57,6 @@ groupId:
   type: string
   example: 5c35c7f1-a1f7-4c9c-91b6-669779f60d23
 authorizationLayer?:
-  description: Optional parameter, default for “authorizationLayer” will be None
+  description: Optional parameter, default for “authorizationLayer” will be None. The only accepted values are None and Broker.When the product has the authorizationLayer set to Broker, consume permission needs to be set as True for the application. Additionally, when you are using a x-user-token, the user identity needs to have the consume permission.
   type: string
   example: None
