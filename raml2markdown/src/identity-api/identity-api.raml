@@ -476,7 +476,7 @@ types:
   /discovery:
     description: |
       Identity discovery. Use this endpoint to traverse the identity network
-       to find identities by their context. E.g. to find all Temperature
+       to find identities by their context or type. E.g. to find all Temperature
        Sensors in a building, start from the building, traverse inbound links
        with context `https://standards.oftrust.net/v1/Context/Link/BelongsTo/`
        and find the identities with the context
@@ -488,6 +488,9 @@ types:
        use the context `https://standards.oftrust.net/v1/Context/Identity/Device/Sensor/`.
        This will list all Sensors with the type `CarbondioxideSensor` and
        `TemperatureSensor`.
+       You can also query using the types of the links and identity instead of context URLs.
+       This facilitates using discovery and traversing identities of multiple versions of ontology,
+       for example.
        NOTE: Requires the `read` permission on the `fromId` identity.
     get:
       queryParameters:
@@ -495,17 +498,29 @@ types:
           description: The starting identity to traverse from, e.g. the Building ID.
           type: string
           example: fc3bced4-a132-4293-9240-4d0f02277e2e
-        linkContext:
+        linkContext?:
           description: |
             The link context to traverse (the ending forward slash / is optional).
           type: string
           example: https://standards.oftrust.net/v1/Context/Link/BelongsTo/
-        identityContext:
+        linkType?:
+          description: |
+            The link type to traverse. Only one (and at least one) of `linkContext`
+            or `linkType` must be specified.
+          type: string
+          example: BelongsTo
+        identityContext?:
           description: |
             The identity context to search for. The context MUST end with a
             forward slash /.
           type: string
           example: https://standards.oftrust.net/v1/Context/Identity/Device/Sensor/
+        identityType?:
+          description: |
+            The identity type to search for. Only one (and at least one) of `identityContext`
+            or `identityType` must be specified.
+          type: string
+          example: Apartment
         linkDirection:
           description: |
             The direction to traverse from the building, one of "IN" or "OUT".
@@ -716,24 +731,39 @@ types:
       use the context `https://standards.oftrust.net/v1/Context/Identity/Device/Sensor/`.
       This will list all data products where sensors with the type
       `CarbondioxideSensor` and `TemperatureSensor` are connected to.
+      The query can also be executed so that you search by identity, link or atDataProduct type
+      instead of context URLs. This brings a bit more fexibility and covers more identities;
+      for example when the network has mixed version contexts.
     get:
       queryParameters:
         fromId:
           description: The starting identity to traverse from, e.g. the Building ID.
           type: string
           example: fc3bced4-a132-4293-9240-4d0f02277e2e
-        linkContext:
+        linkContext?:
           description: |
             The link context to traverse. The context MUST end with a forward
             slash /.
           type: string
           example: https://standards.oftrust.net/v1/Context/Link/BelongsTo/
-        identityContext:
+        linkType?:
+          description: |
+            The link type to traverse. Only one (and at least one) of `linkContext`
+            or `linkType` must be specified.
+          type: string
+          example: BelongsTo
+        identityContext?:
           description: |
             The identity context to search for. The context MUST end with a
             forward slash /.
           type: string
           example: https://standards.oftrust.net/v1/Context/Identity/Device/Sensor/
+        identityType?:
+          description: |
+            The identity type to search for. Only one (and at least one) of `identityContext`
+            or `identityType` must be specified.
+          type: string
+          example: Apartment
         linkDirection:
           description: |
             The direction to traverse from the building, one of "IN" or "OUT".
@@ -770,6 +800,20 @@ types:
             must be between 1 and 1000.
           type: integer
           example: 20
+        atDataProductContext?:
+          description: |
+            The link between an identity and data product, that determines the capabilities and other
+            information about the identity at the given data product. You can provide
+            a context for this `AtDataProduct` type link.
+          type: string
+          example: https://standards.oftrust.net/v1/Context/Link/AtDataProduct/
+        atDataProductType?:
+          description: |
+            The type of the link between an identity and data product. If no value is given
+            for `atDataProductContext` or `atDataProductType`, this defaults to `AtDataProduct`.
+            Only one of `atDataProductContext` or `atDataProductType` can be specified at a time.
+          type: string
+          example: AtDataProduct
       description: Discover data products in the identity network.
       headers:
         Authorization: !include ../authorization-headers.yaml
