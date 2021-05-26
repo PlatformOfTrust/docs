@@ -1,0 +1,2250 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Identity",
+    "description": "The Identity API provides means to create, update and delete digital twins\n(identities) and manage links between them.\nThe links provides the direction and type (sometimes called role) of the link.\n",
+    "version": "v1"
+  },
+  "host": "api-sandbox.oftrust.net",
+  "schemes": [
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "definitions": {
+    "identity": {
+      "type": "object",
+      "properties": {
+        "context": {
+          "description": "The URL to the context for this identity",
+          "type": "string"
+        },
+        "type": {
+          "description": "The type of the identity",
+          "type": "string"
+        },
+        "data": {
+          "description": "Additional data for the identity, as defined in the context.",
+          "type": "object",
+          "properties": {
+            "name": {
+              "description": "The name of the identity",
+              "type": "string"
+            }
+          },
+          "required": [
+            "name"
+          ]
+        }
+      },
+      "required": [
+        "context",
+        "type",
+        "data"
+      ]
+    },
+    "link": {
+      "type": "object",
+      "properties": {
+        "context": {
+          "description": "The URL to the context for this link",
+          "type": "string"
+        },
+        "type": {
+          "description": "The type of the link",
+          "type": "string"
+        },
+        "data": {
+          "description": "Additional key-value data for the link.",
+          "type": "object"
+        }
+      },
+      "required": [
+        "context",
+        "type"
+      ]
+    }
+  },
+  "paths": {
+    "/identities/v1": {
+      "post": {
+        "description": "Create a new identity",
+        "operationId": "POST_identities-v1",
+        "responses": {
+          "201": {
+            "description": "",
+            "schema": {
+              "example": {
+                "@context": "https://standards.lifeengine.io/v1/Context/Identity/Group/",
+                "@type": "Group",
+                "@id": "58dc29ab-d52e-4aab-a228-9b54e001797c",
+                "data": {
+                  "name": "Company Oy"
+                },
+                "metadata": {
+                  "createdBy": "cf0862f6-3f4f-498f-97f1-fbe8b5734448",
+                  "updatedBy": "cf0862f6-3f4f-498f-97f1-fbe8b5734448",
+                  "createdAt": "2018-02-28T16:41:41.090Z",
+                  "updatedAt": "2018-02-28T16:41:41.090Z"
+                },
+                "inLinks": [],
+                "outLinks": []
+              },
+              "properties": {
+                "@context": {
+                  "description": "The context URL. Always returned in the response.",
+                  "example": "https://example.com/contexts/type.jsonld",
+                  "type": "string"
+                },
+                "@type": {
+                  "description": "The type of the identity. Always returned in the response.",
+                  "example": "Building",
+                  "type": "string"
+                },
+                "data": {
+                  "description": "Additional key-value data for the identity as defined in the context.\nNOTE: If the user doesn't have the read access to the given identity,\nthe `data` parameter is NOT returned in the response.\n",
+                  "example": {
+                    "name": "Example building"
+                  },
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "description": "The name of the identity",
+                      "example": "Example building",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "name"
+                  ]
+                },
+                "metadata": {
+                  "description": "Metadata about the app, such as when it was created/updated and who\ncreated it / updated it. NOTE: If the user doesn't have the read access to\nthe given identity, the `metadata` parameter is NOT returned in the\nresponse.\n",
+                  "example": "{\n  \"createdAt\": \"2018-12-03T14:33:44\",\n  \"createdBy\": \"747d0af5-6f06-4309-b2d5-f06677356a9a\",\n  \"updatedAt\": \"2018-12-03T14:33:44\",\n  \"updatedBy\": \"747d0af5-6f06-4309-b2d5-f06677356a9a\",\n}\n",
+                  "type": "object",
+                  "properties": {
+                    "createdAt": {
+                      "description": "RFC3339 datetime when the identity was created",
+                      "example": "2018-02-28T16:41:41.090Z",
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "createdBy": {
+                      "description": "The user ID of the user who created this identity",
+                      "type": "string"
+                    },
+                    "updatedAt": {
+                      "description": "RFC3339 datetime when the identity was updated",
+                      "example": "2018-02-28T16:41:41.090Z",
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "updatedBy": {
+                      "description": "The user ID of the user who updated this identity",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "createdAt",
+                    "createdBy",
+                    "updatedAt",
+                    "updatedBy"
+                  ]
+                },
+                "inLinks": {
+                  "description": "List of incoming links to the identity.",
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/link"
+                  }
+                },
+                "outLinks": {
+                  "description": "List of outgoing links from the identity.",
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/link"
+                  }
+                }
+              },
+              "required": [
+                "@context",
+                "@type",
+                "data",
+                "metadata",
+                "inLinks",
+                "outLinks"
+              ]
+            }
+          },
+          "401": {
+            "description": "",
+            "schema": {
+              "example": {
+                "error": {
+                  "status": 401,
+                  "message": "Unauthorized"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "",
+            "schema": {
+              "example": {
+                "error": {
+                  "status": 422,
+                  "message": "Could not create identity."
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "description": "The Authorization header, MUST be `Bearer {{access_token}}`",
+            "type": "string",
+            "in": "header",
+            "name": "Authorization",
+            "required": true
+          },
+          {
+            "schema": {
+              "example": {
+                "context": "https://standards.lifeengine.io/v1/Context/Identity/Group/",
+                "type": "Group",
+                "data": {
+                  "name": "Company Oy"
+                }
+              },
+              "$ref": "#/definitions/identity"
+            },
+            "in": "body",
+            "name": "body",
+            "required": true
+          }
+        ]
+      }
+    },
+    "/identities/v1/{id}": {
+      "get": {
+        "description": "Read one identity by id. Requires the `read` permission on the\nidentity. If you need to list all the links, and paginate through\nthem, we suggest to use the \"List links\" endpoint for an identity.\n",
+        "operationId": "GET_identities-v1-id",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "example": {
+                "@context": "https://standards.lifeengine.io/v1/Context/Identity/Group/",
+                "@type": "Group",
+                "@id": "58dc29ab-d52e-4aab-a228-9b54e001797c",
+                "data": {
+                  "name": "Company Oy"
+                },
+                "metadata": {
+                  "createdBy": "cf0862f6-3f4f-498f-97f1-fbe8b5734448",
+                  "updatedBy": "cf0862f6-3f4f-498f-97f1-fbe8b5734448",
+                  "createdAt": "2018-02-28T16:41:41.090Z",
+                  "updatedAt": "2018-02-28T16:41:41.090Z"
+                },
+                "inLinks": [
+                  {
+                    "@context": "https://standards.lifeengine.io/v1/Context/Link/Role/MemberOf/",
+                    "@type": "MemberOf",
+                    "@id": "cf0862f6-3f4f-498f-97f1-fbe8b5734448",
+                    "from": "58dc29ab-d52e-4aab-a228-9b54e001797c",
+                    "to": "cf0862f6-3f4f-498f-97f1-fbe8b5734448",
+                    "data": {},
+                    "metadata": {
+                      "createdBy": "cf0862f6-3f4f-498f-97f1-fbe8b5734448",
+                      "updatedBy": "cf0862f6-3f4f-498f-97f1-fbe8b5734448",
+                      "createdAt": "2018-02-28T16:41:41.090Z",
+                      "updatedAt": "2018-02-28T16:41:41.090Z"
+                    }
+                  }
+                ],
+                "outLinks": [
+                  {
+                    "@context": "https://standards.lifeengine.io/v1/Context/Link/Role/MemberOf/",
+                    "@type": "MemberOf",
+                    "@id": "cb40ce78-d3b3-442a-9db7-66f191698b2a",
+                    "from": "cf0862f6-3f4f-498f-97f1-fbe8b5734448",
+                    "to": "58dc29ab-d52e-4aab-a228-9b54e001797c",
+                    "data": {},
+                    "metadata": {
+                      "createdBy": "cf0862f6-3f4f-498f-97f1-fbe8b5734448",
+                      "updatedBy": "cf0862f6-3f4f-498f-97f1-fbe8b5734448",
+                      "createdAt": "2018-02-28T16:41:41.090Z",
+                      "updatedAt": "2018-02-28T16:41:41.090Z"
+                    }
+                  }
+                ],
+                "pagination": {
+                  "inLinks": {
+                    "links": [
+                      {
+                        "rel": "first",
+                        "href": "https://api-sandbox.oftrust.net/identities/v1/e153e200-14d5-43ce-95dc-2db22ac6767f?offset=0&limit=100"
+                      },
+                      {
+                        "rel": "self",
+                        "href": "https://api-sandbox.oftrust.net/identities/v1/e153e200-14d5-43ce-95dc-2db22ac6767f"
+                      },
+                      {
+                        "rel": "last",
+                        "href": "https://api-sandbox.oftrust.net/identities/v1/e153e200-14d5-43ce-95dc-2db22ac6767f?offset=0&limit=100"
+                      }
+                    ],
+                    "hasMore": false,
+                    "totalCount": 1
+                  },
+                  "outLinks": {
+                    "links": [
+                      {
+                        "rel": "first",
+                        "href": "https://api-sandbox.oftrust.net/identities/v1/e153e200-14d5-43ce-95dc-2db22ac6767f?offset=0&limit=100"
+                      },
+                      {
+                        "rel": "self",
+                        "href": "https://api-sandbox.oftrust.net/identities/v1/e153e200-14d5-43ce-95dc-2db22ac6767f"
+                      },
+                      {
+                        "rel": "last",
+                        "href": "https://api-sandbox.oftrust.net/identities/v1/e153e200-14d5-43ce-95dc-2db22ac6767f?offset=0&limit=100"
+                      }
+                    ],
+                    "hasMore": false,
+                    "totalCount": 1
+                  }
+                }
+              },
+              "properties": {
+                "@context": {
+                  "description": "The context URL. Always returned in the response.",
+                  "example": "https://example.com/contexts/type.jsonld",
+                  "type": "string"
+                },
+                "@type": {
+                  "description": "The type of the identity. Always returned in the response.",
+                  "example": "Building",
+                  "type": "string"
+                },
+                "data": {
+                  "description": "Additional key-value data for the identity as defined in the context.\nNOTE: If the user doesn't have the read access to the given identity,\nthe `data` parameter is NOT returned in the response.\n",
+                  "example": {
+                    "name": "Example building"
+                  },
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "description": "The name of the identity",
+                      "example": "Example building",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "name"
+                  ]
+                },
+                "metadata": {
+                  "description": "Metadata about the app, such as when it was created/updated and who\ncreated it / updated it. NOTE: If the user doesn't have the read access to\nthe given identity, the `metadata` parameter is NOT returned in the\nresponse.\n",
+                  "example": "{\n  \"createdAt\": \"2018-12-03T14:33:44\",\n  \"createdBy\": \"747d0af5-6f06-4309-b2d5-f06677356a9a\",\n  \"updatedAt\": \"2018-12-03T14:33:44\",\n  \"updatedBy\": \"747d0af5-6f06-4309-b2d5-f06677356a9a\",\n}\n",
+                  "type": "object",
+                  "properties": {
+                    "createdAt": {
+                      "description": "RFC3339 datetime when the identity was created",
+                      "example": "2018-02-28T16:41:41.090Z",
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "createdBy": {
+                      "description": "The user ID of the user who created this identity",
+                      "type": "string"
+                    },
+                    "updatedAt": {
+                      "description": "RFC3339 datetime when the identity was updated",
+                      "example": "2018-02-28T16:41:41.090Z",
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "updatedBy": {
+                      "description": "The user ID of the user who updated this identity",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "createdAt",
+                    "createdBy",
+                    "updatedAt",
+                    "updatedBy"
+                  ]
+                },
+                "inLinks": {
+                  "description": "List of incoming links to the identity.",
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/link"
+                  }
+                },
+                "outLinks": {
+                  "description": "List of outgoing links from the identity.",
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/link"
+                  }
+                }
+              },
+              "required": [
+                "@context",
+                "@type",
+                "data",
+                "metadata",
+                "inLinks",
+                "outLinks"
+              ]
+            }
+          },
+          "401": {
+            "description": "",
+            "schema": {
+              "example": {
+                "error": {
+                  "status": 401,
+                  "message": "Unauthorized"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "schema": {
+              "example": {
+                "error": {
+                  "status": 404,
+                  "message": "Identity not found."
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "",
+            "schema": {
+              "example": {
+                "Negative offset": {
+                  "error": {
+                    "status": 422,
+                    "message": {
+                      "offset": [
+                        "Must be at least 0."
+                      ]
+                    }
+                  }
+                },
+                "Higher offset than total count": {
+                  "error": {
+                    "status": 422,
+                    "message": "Offset cannot be greater than the total count of records."
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "description": "The Authorization header, MUST be `Bearer {{access_token}}`",
+            "type": "string",
+            "in": "header",
+            "name": "Authorization",
+            "required": true
+          },
+          {
+            "description": "Whether to return the inbound links or not. 1=return, 0=do not\nreturn. Defaults to 1.\n",
+            "type": "integer",
+            "in": "query",
+            "name": "inLinks"
+          },
+          {
+            "description": "Whether to return the outbound links or not. 1=return, 0=do not\nreturn. Defaults to 1.\n",
+            "type": "integer",
+            "in": "query",
+            "name": "outLinks"
+          },
+          {
+            "description": "Which links to paginate. \"inLinks\" or \"outLinks\" or both\n\"inLinks,outLinks\". Defaults to \"inLinks,outLinks\" meaning that\nboth link directions will be paginated.\n",
+            "type": "string",
+            "in": "query",
+            "name": "paginate"
+          },
+          {
+            "description": "The amount of in- and out links to return in the response. E.g. 10, will\nreturn 10 in- and out links. Defaults to 100. This value must be between 1\nand 1000.\n",
+            "type": "integer",
+            "in": "query",
+            "name": "limit"
+          },
+          {
+            "description": "The offset how many in- and out links to skip. E.g. 10 will\nskip the first 10 links. Defaults to 0.\n",
+            "type": "integer",
+            "in": "query",
+            "name": "offset"
+          }
+        ]
+      },
+      "put": {
+        "description": "Update an identity by id. Requires the `write` permission on the\nidentity.\n",
+        "operationId": "PUT_identities-v1-id",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "example": {
+                "@context": "https://standards.lifeengine.io/v1/Context/Identity/Group/",
+                "@type": "Group",
+                "@id": "58dc29ab-d52e-4aab-a228-9b54e001797c",
+                "data": {
+                  "name": "Company Oy"
+                },
+                "metadata": {
+                  "createdBy": "cf0862f6-3f4f-498f-97f1-fbe8b5734448",
+                  "updatedBy": "cf0862f6-3f4f-498f-97f1-fbe8b5734448",
+                  "createdAt": "2018-02-28T16:41:41.090Z",
+                  "updatedAt": "2018-02-28T16:41:41.090Z"
+                },
+                "inLinks": [
+                  {
+                    "@context": "https://standards.lifeengine.io/v1/Context/Link/Role/MemberOf/",
+                    "@type": "MemberOf",
+                    "@id": "cf0862f6-3f4f-498f-97f1-fbe8b5734448",
+                    "from": "58dc29ab-d52e-4aab-a228-9b54e001797c",
+                    "to": "cf0862f6-3f4f-498f-97f1-fbe8b5734448",
+                    "data": {},
+                    "metadata": {
+                      "createdBy": "cf0862f6-3f4f-498f-97f1-fbe8b5734448",
+                      "updatedBy": "cf0862f6-3f4f-498f-97f1-fbe8b5734448",
+                      "createdAt": "2018-02-28T16:41:41.090Z",
+                      "updatedAt": "2018-02-28T16:41:41.090Z"
+                    }
+                  }
+                ],
+                "outLinks": [
+                  {
+                    "@context": "https://standards.lifeengine.io/v1/Context/Link/Role/MemberOf/",
+                    "@type": "MemberOf",
+                    "@id": "cb40ce78-d3b3-442a-9db7-66f191698b2a",
+                    "from": "cf0862f6-3f4f-498f-97f1-fbe8b5734448",
+                    "to": "58dc29ab-d52e-4aab-a228-9b54e001797c",
+                    "data": {},
+                    "metadata": {
+                      "createdBy": "cf0862f6-3f4f-498f-97f1-fbe8b5734448",
+                      "updatedBy": "cf0862f6-3f4f-498f-97f1-fbe8b5734448",
+                      "createdAt": "2018-02-28T16:41:41.090Z",
+                      "updatedAt": "2018-02-28T16:41:41.090Z"
+                    }
+                  }
+                ],
+                "pagination": {
+                  "inLinks": {
+                    "links": [
+                      {
+                        "rel": "first",
+                        "href": "https://api-sandbox.oftrust.net/identities/v1/e153e200-14d5-43ce-95dc-2db22ac6767f?offset=0&limit=100"
+                      },
+                      {
+                        "rel": "self",
+                        "href": "https://api-sandbox.oftrust.net/identities/v1/e153e200-14d5-43ce-95dc-2db22ac6767f"
+                      },
+                      {
+                        "rel": "last",
+                        "href": "https://api-sandbox.oftrust.net/identities/v1/e153e200-14d5-43ce-95dc-2db22ac6767f?offset=0&limit=100"
+                      }
+                    ],
+                    "hasMore": false,
+                    "totalCount": 1
+                  },
+                  "outLinks": {
+                    "links": [
+                      {
+                        "rel": "first",
+                        "href": "https://api-sandbox.oftrust.net/identities/v1/e153e200-14d5-43ce-95dc-2db22ac6767f?offset=0&limit=100"
+                      },
+                      {
+                        "rel": "self",
+                        "href": "https://api-sandbox.oftrust.net/identities/v1/e153e200-14d5-43ce-95dc-2db22ac6767f"
+                      },
+                      {
+                        "rel": "last",
+                        "href": "https://api-sandbox.oftrust.net/identities/v1/e153e200-14d5-43ce-95dc-2db22ac6767f?offset=0&limit=100"
+                      }
+                    ],
+                    "hasMore": false,
+                    "totalCount": 1
+                  }
+                }
+              },
+              "properties": {
+                "@context": {
+                  "description": "The context URL. Always returned in the response.",
+                  "example": "https://example.com/contexts/type.jsonld",
+                  "type": "string"
+                },
+                "@type": {
+                  "description": "The type of the identity. Always returned in the response.",
+                  "example": "Building",
+                  "type": "string"
+                },
+                "data": {
+                  "description": "Additional key-value data for the identity as defined in the context.\nNOTE: If the user doesn't have the read access to the given identity,\nthe `data` parameter is NOT returned in the response.\n",
+                  "example": {
+                    "name": "Example building"
+                  },
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "description": "The name of the identity",
+                      "example": "Example building",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "name"
+                  ]
+                },
+                "metadata": {
+                  "description": "Metadata about the app, such as when it was created/updated and who\ncreated it / updated it. NOTE: If the user doesn't have the read access to\nthe given identity, the `metadata` parameter is NOT returned in the\nresponse.\n",
+                  "example": "{\n  \"createdAt\": \"2018-12-03T14:33:44\",\n  \"createdBy\": \"747d0af5-6f06-4309-b2d5-f06677356a9a\",\n  \"updatedAt\": \"2018-12-03T14:33:44\",\n  \"updatedBy\": \"747d0af5-6f06-4309-b2d5-f06677356a9a\",\n}\n",
+                  "type": "object",
+                  "properties": {
+                    "createdAt": {
+                      "description": "RFC3339 datetime when the identity was created",
+                      "example": "2018-02-28T16:41:41.090Z",
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "createdBy": {
+                      "description": "The user ID of the user who created this identity",
+                      "type": "string"
+                    },
+                    "updatedAt": {
+                      "description": "RFC3339 datetime when the identity was updated",
+                      "example": "2018-02-28T16:41:41.090Z",
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "updatedBy": {
+                      "description": "The user ID of the user who updated this identity",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "createdAt",
+                    "createdBy",
+                    "updatedAt",
+                    "updatedBy"
+                  ]
+                },
+                "inLinks": {
+                  "description": "List of incoming links to the identity.",
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/link"
+                  }
+                },
+                "outLinks": {
+                  "description": "List of outgoing links from the identity.",
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/link"
+                  }
+                }
+              },
+              "required": [
+                "@context",
+                "@type",
+                "data",
+                "metadata",
+                "inLinks",
+                "outLinks"
+              ]
+            }
+          },
+          "401": {
+            "description": "",
+            "schema": {
+              "example": {
+                "error": {
+                  "status": 401,
+                  "message": "Unauthorized"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "",
+            "schema": {
+              "example": {
+                "error": {
+                  "status": 403,
+                  "message": "Forbidden: You don't have '<perm>' permission on '<identity id>'"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "schema": {
+              "example": {
+                "error": {
+                  "status": 404,
+                  "message": "Identity not found."
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "",
+            "schema": {
+              "example": {
+                "error": {
+                  "status": 422,
+                  "message": "Could not update identity."
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "description": "The Authorization header, MUST be `Bearer {{access_token}}`",
+            "type": "string",
+            "in": "header",
+            "name": "Authorization",
+            "required": true
+          },
+          {
+            "schema": {
+              "example": {
+                "context": "https://standards.lifeengine.io/v1/Context/Identity/Group/",
+                "type": "Group",
+                "data": {
+                  "name": "Company Oy"
+                }
+              },
+              "$ref": "#/definitions/identity"
+            },
+            "in": "body",
+            "name": "body",
+            "required": true
+          }
+        ]
+      },
+      "delete": {
+        "description": "Delete an identity by id. Requires the `manage` permission on the\nidentity.\n",
+        "operationId": "DELETE_identities-v1-id",
+        "responses": {
+          "204": {
+            "description": "",
+            "schema": {
+              "example": {}
+            }
+          },
+          "401": {
+            "description": "",
+            "schema": {
+              "example": {
+                "error": {
+                  "status": 401,
+                  "message": "Unauthorized"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "",
+            "schema": {
+              "example": {
+                "error": {
+                  "status": 403,
+                  "message": "Forbidden: You don't have '<perm>' permission on '<identity id>'"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "schema": {
+              "example": {
+                "error": {
+                  "status": 404,
+                  "message": "Identity not found."
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "",
+            "schema": {
+              "example": {
+                "Restricted identity type": {
+                  "error": {
+                    "status": 422,
+                    "message": "Could not delete identity. Try using corresponding APIs to delete this type of identities."
+                  }
+                },
+                "Links exists": {
+                  "error": {
+                    "status": 422,
+                    "message": "Could not delete identity, reason: links exist to or from the identity."
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "description": "The Authorization header, MUST be `Bearer {{access_token}}`",
+            "type": "string",
+            "in": "header",
+            "name": "Authorization",
+            "required": true
+          }
+        ]
+      },
+      "parameters": [
+        {
+          "description": "The ID of the Identity",
+          "type": "string",
+          "in": "path",
+          "name": "id",
+          "required": true
+        }
+      ]
+    },
+    "/identities/v1/{from_identity}/link/{to_identity}": {
+      "post": {
+        "description": "Creates a new link between two identities",
+        "operationId": "POST_identities-v1-from_identity-link-to_identity",
+        "responses": {
+          "201": {
+            "description": "",
+            "schema": {
+              "example": {
+                "@context": "https://standards.lifeengine.io/v1/Context/Link/Role/MemberOf/",
+                "@type": "MemberOf",
+                "@id": "cf0862f6-3f4f-498f-97f1-fbe8b5734448",
+                "from": "58dc29ab-d52e-4aab-a228-9b54e001797c",
+                "to": "cf0862f6-3f4f-498f-97f1-fbe8b5734448",
+                "data": {},
+                "metadata": {
+                  "createdBy": "cf0862f6-3f4f-498f-97f1-fbe8b5734448",
+                  "updatedBy": "cf0862f6-3f4f-498f-97f1-fbe8b5734448",
+                  "createdAt": "2018-02-28T16:41:41.090Z",
+                  "updatedAt": "2018-02-28T16:41:41.090Z"
+                }
+              },
+              "properties": {
+                "@context": {
+                  "description": "The context URL",
+                  "example": "https://example.com/contexts/type.jsonld",
+                  "type": "string"
+                },
+                "@type": {
+                  "description": "The type of the link",
+                  "example": "Owner",
+                  "type": "string"
+                },
+                "from": {
+                  "description": "The from-identity ID, from where the link starts",
+                  "type": "string"
+                },
+                "to": {
+                  "description": "The to-identity ID, to where the link ends",
+                  "type": "string"
+                },
+                "data": {
+                  "description": "Additional attributes for the link, as defined by the context.",
+                  "example": {
+                    "key": "value"
+                  },
+                  "type": "object"
+                },
+                "metadata": {
+                  "description": "Metadata about the link, such as when it was created/updated and who\ncreated it / updated it.\n",
+                  "example": "{\n  \"createdAt\": \"2018-12-03T14:33:44\",\n  \"createdBy\": \"747d0af5-6f06-4309-b2d5-f06677356a9a\",\n  \"updatedAt\": \"2018-12-03T14:33:44\",\n  \"updatedBy\": \"747d0af5-6f06-4309-b2d5-f06677356a9a\",\n}\n",
+                  "type": "object",
+                  "properties": {
+                    "createdAt": {
+                      "description": "RFC3339 datetime when the link was created",
+                      "example": "2018-02-28T16:41:41.090Z",
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "createdBy": {
+                      "description": "The user ID of the user who created this link",
+                      "type": "string"
+                    },
+                    "updatedAt": {
+                      "description": "RFC3339 datetime when the link was updated",
+                      "example": "2018-02-28T16:41:41.090Z",
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "updatedBy": {
+                      "description": "The user ID of the user who updated this link",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "createdAt",
+                    "createdBy",
+                    "updatedAt",
+                    "updatedBy"
+                  ]
+                }
+              },
+              "required": [
+                "@context",
+                "@type",
+                "from",
+                "to",
+                "metadata"
+              ]
+            }
+          },
+          "401": {
+            "description": "",
+            "schema": {
+              "example": {
+                "error": {
+                  "status": 401,
+                  "message": "Unauthorized"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "",
+            "schema": {
+              "example": {
+                "error": {
+                  "status": 403,
+                  "message": "Forbidden: You don't have '<perm>' permission on '<identity id>'"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "schema": {
+              "example": {
+                "From identity not found": {
+                  "error": {
+                    "status": 404,
+                    "message": "From identity not found."
+                  }
+                },
+                "To identity not found": {
+                  "error": {
+                    "status": 404,
+                    "message": "To identity not found."
+                  }
+                }
+              }
+            }
+          },
+          "409": {
+            "description": "",
+            "schema": {
+              "example": {
+                "error": {
+                  "status": 409,
+                  "message": "Could not create link. Does a link of type MemberOf already exist from 59de4a29-944e-4141-a6c9-f5d7bb7707b0 to 7a13c5f6-cf8b-4d18-9f8a-9b884bc6e817?"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "",
+            "schema": {
+              "example": {
+                "error": {
+                  "status": 422,
+                  "message": "Could not create link."
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "description": "The Authorization header, MUST be `Bearer {{access_token}}`",
+            "type": "string",
+            "in": "header",
+            "name": "Authorization",
+            "required": true
+          },
+          {
+            "schema": {
+              "example": {
+                "context": "https://standards.lifeengine.io/v1/Context/Link/Role/MemberOf/",
+                "type": "MemberOf"
+              },
+              "$ref": "#/definitions/link"
+            },
+            "in": "body",
+            "name": "body",
+            "required": true
+          }
+        ]
+      },
+      "parameters": [
+        {
+          "description": "The starting identity ID of the link",
+          "type": "string",
+          "in": "path",
+          "name": "from_identity",
+          "required": true
+        },
+        {
+          "description": "The ending identity ID of the link",
+          "type": "string",
+          "in": "path",
+          "name": "to_identity",
+          "required": true
+        }
+      ]
+    },
+    "/identities/v1/{from_identity}/link/{to_identity}/{type}": {
+      "get": {
+        "description": "Read a link by type",
+        "operationId": "GET_identities-v1-from_identity-link-to_identity-type",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "example": {
+                "@context": "https://standards.lifeengine.io/v1/Context/Link/Role/MemberOf/",
+                "@type": "MemberOf",
+                "@id": "cf0862f6-3f4f-498f-97f1-fbe8b5734448",
+                "from": "58dc29ab-d52e-4aab-a228-9b54e001797c",
+                "to": "cf0862f6-3f4f-498f-97f1-fbe8b5734448",
+                "data": {},
+                "metadata": {
+                  "createdBy": "cf0862f6-3f4f-498f-97f1-fbe8b5734448",
+                  "updatedBy": "cf0862f6-3f4f-498f-97f1-fbe8b5734448",
+                  "createdAt": "2018-02-28T16:41:41.090Z",
+                  "updatedAt": "2018-02-28T16:41:41.090Z"
+                }
+              },
+              "properties": {
+                "@context": {
+                  "description": "The context URL",
+                  "example": "https://example.com/contexts/type.jsonld",
+                  "type": "string"
+                },
+                "@type": {
+                  "description": "The type of the link",
+                  "example": "Owner",
+                  "type": "string"
+                },
+                "from": {
+                  "description": "The from-identity ID, from where the link starts",
+                  "type": "string"
+                },
+                "to": {
+                  "description": "The to-identity ID, to where the link ends",
+                  "type": "string"
+                },
+                "data": {
+                  "description": "Additional attributes for the link, as defined by the context.",
+                  "example": {
+                    "key": "value"
+                  },
+                  "type": "object"
+                },
+                "metadata": {
+                  "description": "Metadata about the link, such as when it was created/updated and who\ncreated it / updated it.\n",
+                  "example": "{\n  \"createdAt\": \"2018-12-03T14:33:44\",\n  \"createdBy\": \"747d0af5-6f06-4309-b2d5-f06677356a9a\",\n  \"updatedAt\": \"2018-12-03T14:33:44\",\n  \"updatedBy\": \"747d0af5-6f06-4309-b2d5-f06677356a9a\",\n}\n",
+                  "type": "object",
+                  "properties": {
+                    "createdAt": {
+                      "description": "RFC3339 datetime when the link was created",
+                      "example": "2018-02-28T16:41:41.090Z",
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "createdBy": {
+                      "description": "The user ID of the user who created this link",
+                      "type": "string"
+                    },
+                    "updatedAt": {
+                      "description": "RFC3339 datetime when the link was updated",
+                      "example": "2018-02-28T16:41:41.090Z",
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "updatedBy": {
+                      "description": "The user ID of the user who updated this link",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "createdAt",
+                    "createdBy",
+                    "updatedAt",
+                    "updatedBy"
+                  ]
+                }
+              },
+              "required": [
+                "@context",
+                "@type",
+                "from",
+                "to",
+                "metadata"
+              ]
+            }
+          },
+          "401": {
+            "description": "",
+            "schema": {
+              "example": {
+                "error": {
+                  "status": 401,
+                  "message": "Unauthorized"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "schema": {
+              "example": {
+                "error": {
+                  "status": 404,
+                  "message": "Link not found."
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "description": "The Authorization header, MUST be `Bearer {{access_token}}`",
+            "type": "string",
+            "in": "header",
+            "name": "Authorization",
+            "required": true
+          }
+        ]
+      },
+      "put": {
+        "description": "Update a link",
+        "operationId": "PUT_identities-v1-from_identity-link-to_identity-type",
+        "responses": {
+          "201": {
+            "description": "",
+            "schema": {
+              "example": {
+                "@context": "https://standards.lifeengine.io/v1/Context/Link/Role/MemberOf/",
+                "@type": "MemberOf",
+                "@id": "cf0862f6-3f4f-498f-97f1-fbe8b5734448",
+                "from": "58dc29ab-d52e-4aab-a228-9b54e001797c",
+                "to": "cf0862f6-3f4f-498f-97f1-fbe8b5734448",
+                "data": {},
+                "metadata": {
+                  "createdBy": "cf0862f6-3f4f-498f-97f1-fbe8b5734448",
+                  "updatedBy": "cf0862f6-3f4f-498f-97f1-fbe8b5734448",
+                  "createdAt": "2018-02-28T16:41:41.090Z",
+                  "updatedAt": "2018-02-28T16:41:41.090Z"
+                }
+              },
+              "properties": {
+                "@context": {
+                  "description": "The context URL",
+                  "example": "https://example.com/contexts/type.jsonld",
+                  "type": "string"
+                },
+                "@type": {
+                  "description": "The type of the link",
+                  "example": "Owner",
+                  "type": "string"
+                },
+                "from": {
+                  "description": "The from-identity ID, from where the link starts",
+                  "type": "string"
+                },
+                "to": {
+                  "description": "The to-identity ID, to where the link ends",
+                  "type": "string"
+                },
+                "data": {
+                  "description": "Additional attributes for the link, as defined by the context.",
+                  "example": {
+                    "key": "value"
+                  },
+                  "type": "object"
+                },
+                "metadata": {
+                  "description": "Metadata about the link, such as when it was created/updated and who\ncreated it / updated it.\n",
+                  "example": "{\n  \"createdAt\": \"2018-12-03T14:33:44\",\n  \"createdBy\": \"747d0af5-6f06-4309-b2d5-f06677356a9a\",\n  \"updatedAt\": \"2018-12-03T14:33:44\",\n  \"updatedBy\": \"747d0af5-6f06-4309-b2d5-f06677356a9a\",\n}\n",
+                  "type": "object",
+                  "properties": {
+                    "createdAt": {
+                      "description": "RFC3339 datetime when the link was created",
+                      "example": "2018-02-28T16:41:41.090Z",
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "createdBy": {
+                      "description": "The user ID of the user who created this link",
+                      "type": "string"
+                    },
+                    "updatedAt": {
+                      "description": "RFC3339 datetime when the link was updated",
+                      "example": "2018-02-28T16:41:41.090Z",
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    "updatedBy": {
+                      "description": "The user ID of the user who updated this link",
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "createdAt",
+                    "createdBy",
+                    "updatedAt",
+                    "updatedBy"
+                  ]
+                }
+              },
+              "required": [
+                "@context",
+                "@type",
+                "from",
+                "to",
+                "metadata"
+              ]
+            }
+          },
+          "401": {
+            "description": "",
+            "schema": {
+              "example": {
+                "error": {
+                  "status": 401,
+                  "message": "Unauthorized"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "",
+            "schema": {
+              "example": {
+                "error": {
+                  "status": 403,
+                  "message": "Forbidden: You don't have '<perm>' permission on '<identity id>'"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "schema": {
+              "example": {
+                "From identity not found": {
+                  "error": {
+                    "status": 404,
+                    "message": "From identity not found."
+                  }
+                },
+                "To identity not found": {
+                  "error": {
+                    "status": 404,
+                    "message": "To identity not found."
+                  }
+                },
+                "Link not found": {
+                  "error": {
+                    "status": 404,
+                    "message": "Link of type <type> not found."
+                  }
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "",
+            "schema": {
+              "example": {
+                "error": {
+                  "status": 422,
+                  "message": "Could not update link."
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "description": "The Authorization header, MUST be `Bearer {{access_token}}`",
+            "type": "string",
+            "in": "header",
+            "name": "Authorization",
+            "required": true
+          },
+          {
+            "schema": {
+              "example": {
+                "context": "https://example.com/contexts/type.jsonld",
+                "type": "Owner"
+              },
+              "type": "string"
+            },
+            "in": "body",
+            "name": "body",
+            "required": true
+          }
+        ]
+      },
+      "delete": {
+        "description": "Delete a link by type",
+        "operationId": "DELETE_identities-v1-from_identity-link-to_identity-type",
+        "responses": {
+          "204": {
+            "description": "",
+            "schema": {
+              "example": {}
+            }
+          },
+          "401": {
+            "description": "",
+            "schema": {
+              "example": {
+                "error": {
+                  "status": 401,
+                  "message": "Unauthorized"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "",
+            "schema": {
+              "example": {
+                "error": {
+                  "status": 403,
+                  "message": "Forbidden: You don't have '<perm>' permission on '<identity id>'"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "schema": {
+              "example": {
+                "From identity not found": {
+                  "error": {
+                    "status": 404,
+                    "message": "From identity not found."
+                  }
+                },
+                "To identity not found": {
+                  "error": {
+                    "status": 404,
+                    "message": "To identity not found."
+                  }
+                },
+                "Link not found": {
+                  "error": {
+                    "status": 404,
+                    "message": "Link of type <type> not found."
+                  }
+                },
+                "ACL not found": {
+                  "error": {
+                    "status": 404,
+                    "message": "Not Found: ACL for identity '<id>' not found."
+                  }
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "",
+            "schema": {
+              "example": {
+                "error": {
+                  "status": 422,
+                  "message": "Could not delete link."
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "description": "The Authorization header, MUST be `Bearer {{access_token}}`",
+            "type": "string",
+            "in": "header",
+            "name": "Authorization",
+            "required": true
+          }
+        ]
+      },
+      "parameters": [
+        {
+          "description": "The `@type` of the link, for example `Link`, `Tenant` or `Owner`",
+          "type": "string",
+          "in": "path",
+          "name": "type",
+          "required": true
+        },
+        {
+          "description": "The starting identity ID of the link",
+          "type": "string",
+          "in": "path",
+          "name": "from_identity",
+          "required": true
+        },
+        {
+          "description": "The ending identity ID of the link",
+          "type": "string",
+          "in": "path",
+          "name": "to_identity",
+          "required": true
+        }
+      ]
+    },
+    "/identities/v1/{id}/links": {
+      "get": {
+        "description": "List all inbound and outbound links for a given identity.",
+        "operationId": "GET_identities-v1-id-links",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "example": {
+                "inLinks": [
+                  {
+                    "@context": "https://standards.lifeengine.io/v1/Context/Link/Role/MemberOf/",
+                    "@type": "MemberOf",
+                    "@id": "cf0862f6-3f4f-498f-97f1-fbe8b5734448",
+                    "from": "58dc29ab-d52e-4aab-a228-9b54e001797c",
+                    "to": "cf0862f6-3f4f-498f-97f1-fbe8b5734448",
+                    "data": {},
+                    "metadata": {
+                      "createdBy": "cf0862f6-3f4f-498f-97f1-fbe8b5734448",
+                      "updatedBy": "cf0862f6-3f4f-498f-97f1-fbe8b5734448",
+                      "createdAt": "2018-02-28T16:41:41.090Z",
+                      "updatedAt": "2018-02-28T16:41:41.090Z"
+                    }
+                  }
+                ],
+                "outLinks": [
+                  {
+                    "@context": "https://standards.lifeengine.io/v1/Context/Link/Role/MemberOf/",
+                    "@type": "MemberOf",
+                    "@id": "cf0862f6-3f4f-498f-97f1-fbe8b5734448",
+                    "from": "58dc29ab-d52e-4aab-a228-9b54e001797c",
+                    "to": "cf0862f6-3f4f-498f-97f1-fbe8b5734448",
+                    "data": {},
+                    "metadata": {
+                      "createdBy": "cf0862f6-3f4f-498f-97f1-fbe8b5734448",
+                      "updatedBy": "cf0862f6-3f4f-498f-97f1-fbe8b5734448",
+                      "createdAt": "2018-02-28T16:41:41.090Z",
+                      "updatedAt": "2018-02-28T16:41:41.090Z"
+                    }
+                  }
+                ],
+                "pagination": {
+                  "inLinks": {
+                    "links": [
+                      {
+                        "rel": "first",
+                        "href": "https://api-sandbox.oftrust.net/identities/v1/2584bdd7-1cb2-48ed-a106-2a1b817cf909/links?offset=0&limit=100"
+                      },
+                      {
+                        "rel": "self",
+                        "href": "https://api-sandbox.oftrust.net/identities/v1/2584bdd7-1cb2-48ed-a106-2a1b817cf909/links"
+                      },
+                      {
+                        "rel": "last",
+                        "href": "https://api-sandbox.oftrust.net/identities/v1/2584bdd7-1cb2-48ed-a106-2a1b817cf909/links?offset=0&limit=100"
+                      }
+                    ],
+                    "hasMore": false,
+                    "totalCount": 1
+                  },
+                  "outLinks": {
+                    "links": [
+                      {
+                        "rel": "first",
+                        "href": "https://api-sandbox.oftrust.net/identities/v1/2584bdd7-1cb2-48ed-a106-2a1b817cf909/links?offset=0&limit=100"
+                      },
+                      {
+                        "rel": "self",
+                        "href": "https://api-sandbox.oftrust.net/identities/v1/2584bdd7-1cb2-48ed-a106-2a1b817cf909/links"
+                      },
+                      {
+                        "rel": "last",
+                        "href": "https://api-sandbox.oftrust.net/identities/v1/2584bdd7-1cb2-48ed-a106-2a1b817cf909/links?offset=0&limit=100"
+                      }
+                    ],
+                    "hasMore": false,
+                    "totalCount": 1
+                  }
+                }
+              },
+              "properties": {
+                "inLinks": {
+                  "description": "The inbound links to the identity.",
+                  "example": {
+                    "inLinks": [
+                      {
+                        "@context": "https://standards.oftrust.net/v1/Context/Link/OwnerOf/",
+                        "@type": "OwnerOf",
+                        "@id": "257482d1-56bf-4b5e-abf2-29014ef1eb0a",
+                        "from": "e153e200-14d5-43ce-95dc-2db22ac6767f",
+                        "to": "00ecc2fe-35fa-4f9c-83d1-a1bab31a0cff",
+                        "data": {},
+                        "metadata": {
+                          "createdAt": "2019-09-17T12:48:17+00:00",
+                          "createdBy": "7a6a7b86-4edb-4545-ac2e-edb9c11598d2",
+                          "updatedAt": "2019-09-17T12:48:17+00:00",
+                          "updatedBy": "7a6a7b86-4edb-4545-ac2e-edb9c11598d2"
+                        }
+                      }
+                    ]
+                  },
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/link"
+                  }
+                },
+                "outLinks": {
+                  "description": "The outbound links from the identity.",
+                  "example": {
+                    "outLinks": [
+                      {
+                        "@context": "https://standards.oftrust.net/v1/Context/Link/TenantAt/",
+                        "@type": "TenantAt",
+                        "@id": "257482d1-56bf-4b5e-abf2-29014ef1eb0a",
+                        "from": "e153e200-14d5-43ce-95dc-2db22ac6767f",
+                        "to": "faecc2fe-35fa-4f9c-43d1-a1bab31a0cfe",
+                        "data": {},
+                        "metadata": {
+                          "createdAt": "2019-09-17T12:48:17+00:00",
+                          "createdBy": "7a6a7b86-4edb-4545-ac2e-edb9c11598d2",
+                          "updatedAt": "2019-09-17T12:48:17+00:00",
+                          "updatedBy": "7a6a7b86-4edb-4545-ac2e-edb9c11598d2"
+                        }
+                      }
+                    ]
+                  },
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/link"
+                  }
+                },
+                "pagination": {
+                  "description": "The pagination for the inLinks and outLinks",
+                  "example": {
+                    "pagination": {
+                      "inLinks": {},
+                      "outLinks": {}
+                    }
+                  },
+                  "type": "object",
+                  "properties": {
+                    "inLinks": {
+                      "description": "The pagination for the inbound links.",
+                      "example": {
+                        "links": [
+                          {
+                            "rel": "first",
+                            "href": "https://api-sandbox.oftrust.net/identities/v1/e153e200-14d5-43ce-95dc-2db22ac6767f/links?offset=0&limit=20"
+                          },
+                          {
+                            "rel": "self",
+                            "href": "https://api-sandbox.oftrust.net/identities/v1/e153e200-14d5-43ce-95dc-2db22ac6767f/links"
+                          },
+                          {
+                            "rel": "last",
+                            "href": "https://api-sandbox.oftrust.net/identities/v1/e153e200-14d5-43ce-95dc-2db22ac6767f/links?offset=0&limit=20"
+                          }
+                        ],
+                        "hasMore": false,
+                        "totalCount": 1
+                      },
+                      "type": "object"
+                    },
+                    "outLinks": {
+                      "example": {
+                        "links": [
+                          {
+                            "rel": "first",
+                            "href": "https://api-sandbox.oftrust.net/identities/v1/e153e200-14d5-43ce-95dc-2db22ac6767f/links?offset=0&limit=20"
+                          },
+                          {
+                            "rel": "self",
+                            "href": "https://api-sandbox.oftrust.net/identities/v1/e153e200-14d5-43ce-95dc-2db22ac6767f/links"
+                          },
+                          {
+                            "rel": "last",
+                            "href": "https://api-sandbox.oftrust.net/identities/v1/e153e200-14d5-43ce-95dc-2db22ac6767f/links?offset=0&limit=20"
+                          }
+                        ],
+                        "hasMore": false,
+                        "totalCount": 1
+                      },
+                      "type": "object"
+                    }
+                  },
+                  "required": [
+                    "inLinks",
+                    "outLinks"
+                  ]
+                }
+              },
+              "required": [
+                "inLinks",
+                "outLinks",
+                "pagination"
+              ]
+            }
+          },
+          "401": {
+            "description": "",
+            "schema": {
+              "example": {
+                "error": {
+                  "status": 401,
+                  "message": "Unauthorized"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "schema": {
+              "example": {
+                "error": {
+                  "status": 404,
+                  "message": "Identity not found."
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "",
+            "schema": {
+              "example": {
+                "Negative offset": {
+                  "error": {
+                    "status": 422,
+                    "message": {
+                      "offset": [
+                        "Must be at least 0."
+                      ]
+                    }
+                  }
+                },
+                "Higher offset than total count": {
+                  "error": {
+                    "status": 422,
+                    "message": "Offset cannot be greater than the total count of records."
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "description": "The Authorization header, MUST be `Bearer {{access_token}}`",
+            "type": "string",
+            "in": "header",
+            "name": "Authorization",
+            "required": true
+          },
+          {
+            "description": "If given to `GET /identities/{version}/{id}/links?type=OwnerOf`,\nwill list only the links of `@type: \"OwnerOf\"`.\n",
+            "type": "string",
+            "in": "query",
+            "name": "type"
+          },
+          {
+            "description": "The amount of records to return in the response. E.g. 10, will\nreturn 10 records. Defaults to 100. This value must be between 1\nand 1000.\n",
+            "type": "integer",
+            "in": "query",
+            "name": "limit"
+          },
+          {
+            "description": "The offset how many records to skip. E.g. 10 will\nskip the first 10 records. Defaults to 0.\n",
+            "type": "integer",
+            "in": "query",
+            "name": "offset"
+          }
+        ]
+      },
+      "parameters": [
+        {
+          "description": "The ID of the identity",
+          "type": "string",
+          "in": "path",
+          "name": "id",
+          "required": true
+        }
+      ]
+    },
+    "/identities/v1/discovery": {
+      "get": {
+        "description": "Discover identities in the identity network.",
+        "operationId": "GET_identities-v1-discovery",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "example": {
+                "identities": {
+                  "eccbcc62-37e2-4014-8233-d077fce7bac9": {
+                    "@context": "https://standards.oftrust.net/v1/Context/Identity/Device/Sensor/TemperatureSensor/",
+                    "@type": "TemperatureSensor",
+                    "@id": "eccbcc62-37e2-4014-8233-d077fce7bac9",
+                    "data": {
+                      "name": "Temperature sensor",
+                      "codeLocal": "local code"
+                    },
+                    "metadata": {
+                      "createdAt": "2019-09-17T12:53:25+00:00",
+                      "createdBy": "f773dafe-20c0-4a25-aa3e-9da0b81b9304",
+                      "updatedAt": "2019-09-17T12:53:25+00:00",
+                      "updatedBy": "f773dafe-20c0-4a25-aa3e-9da0b81b9304"
+                    }
+                  }
+                },
+                "pagination": {
+                  "links": [
+                    {
+                      "rel": "first",
+                      "href": "https://api-sandbox.oftrust.net/identities/v1/discovery?offset=0&limit=1&fromId=fc3bced4-a132-4293-9240-4d0f02277e2e&linkContext=https%3A%2F%2Fstandards.oftrust.net%2Fv1%2FContext%2FLink%2FBelongsTo%2F&identityContext=https%3A%2F%2Fstandards.oftrust.net%2Fv1%2FContext%2FIdentity%2FDevice%2FSensor%2F&linkDirection=IN&maxDepth=3"
+                    },
+                    {
+                      "rel": "self",
+                      "href": "https://api-sandbox.oftrust.net/identities/v1/discovery?fromId=fc3bced4-a132-4293-9240-4d0f02277e2e&linkContext=https%3A%2F%2Fstandards.oftrust.net%2Fv1%2FContext%2FLink%2FBelongsTo%2F&identityContext=https%3A%2F%2Fstandards.oftrust.net%2Fv1%2FContext%2FIdentity%2FDevice%2FSensor%2F&linkDirection=IN&maxDepth=3&offset=0&limit=1"
+                    },
+                    {
+                      "rel": "last",
+                      "href": "https://api-sandbox.oftrust.net/identities/v1/discovery?offset=173&limit=1&fromId=fc3bced4-a132-4293-9240-4d0f02277e2e&linkContext=https%3A%2F%2Fstandards.oftrust.net%2Fv1%2FContext%2FLink%2FBelongsTo%2F&identityContext=https%3A%2F%2Fstandards.oftrust.net%2Fv1%2FContext%2FIdentity%2FDevice%2FSensor%2F&linkDirection=IN&maxDepth=3"
+                    },
+                    {
+                      "rel": "next",
+                      "href": "https://api-sandbox.oftrust.net/identities/v1/discovery?offset=1&limit=1&fromId=fc3bced4-a132-4293-9240-4d0f02277e2e&linkContext=https%3A%2F%2Fstandards.oftrust.net%2Fv1%2FContext%2FLink%2FBelongsTo%2F&identityContext=https%3A%2F%2Fstandards.oftrust.net%2Fv1%2FContext%2FIdentity%2FDevice%2FSensor%2F&linkDirection=IN&maxDepth=3"
+                    }
+                  ],
+                  "hasMore": true,
+                  "totalCount": 174
+                }
+              },
+              "properties": {
+                "identities": {
+                  "description": "An object containing the discovered identities. The object is\nkeyed by the identity ID.\n",
+                  "example": {
+                    "identities": {
+                      "eccbcc62-37e2-4014-8233-d077fce7bac9": {
+                        "@context": "https://standards.oftrust.net/v1/Context/Identity/Device/Sensor/TemperatureSensor/",
+                        "@type": "TemperatureSensor",
+                        "@id": "eccbcc62-37e2-4014-8233-d077fce7bac9",
+                        "data": {
+                          "name": "Temperature sensor",
+                          "codeLocal": "local code"
+                        },
+                        "metadata": {
+                          "createdAt": "2019-09-17T12:53:25+00:00",
+                          "createdBy": "f773dafe-20c0-4a25-aa3e-9da0b81b9304",
+                          "updatedAt": "2019-09-17T12:53:25+00:00",
+                          "updatedBy": "f773dafe-20c0-4a25-aa3e-9da0b81b9304"
+                        }
+                      }
+                    }
+                  },
+                  "type": "object"
+                },
+                "pagination": {
+                  "description": "The pagination object. The object contains information\nabout the pagination, links, total count of records and if\nthere are more records to fetch.\n",
+                  "example": {
+                    "pagination": {
+                      "links": [
+                        {
+                          "rel": "first",
+                          "href": "https://api-sandbox.oftrust.net/identities/v1/discovery?offset=0&limit=1&fromId=fc3bced4-a132-4293-9240-4d0f02277e2e&linkContext=https%3A%2F%2Fstandards.oftrust.net%2Fv1%2FContext%2FLink%2FBelongsTo%2F&identityContext=https%3A%2F%2Fstandards.oftrust.net%2Fv1%2FContext%2FIdentity%2FDevice%2FSensor%2F&linkDirection=IN&maxDepth=3"
+                        },
+                        {
+                          "rel": "self",
+                          "href": "https://api-sandbox.oftrust.net/identities/v1/discovery?fromId=fc3bced4-a132-4293-9240-4d0f02277e2e&linkContext=https%3A%2F%2Fstandards.oftrust.net%2Fv1%2FContext%2FLink%2FBelongsTo%2F&identityContext=https%3A%2F%2Fstandards.oftrust.net%2Fv1%2FContext%2FIdentity%2FDevice%2FSensor%2F&linkDirection=IN&maxDepth=3&offset=0&limit=1"
+                        },
+                        {
+                          "rel": "last",
+                          "href": "https://api-sandbox.oftrust.net/identities/v1/discovery?offset=173&limit=1&fromId=fc3bced4-a132-4293-9240-4d0f02277e2e&linkContext=https%3A%2F%2Fstandards.oftrust.net%2Fv1%2FContext%2FLink%2FBelongsTo%2F&identityContext=https%3A%2F%2Fstandards.oftrust.net%2Fv1%2FContext%2FIdentity%2FDevice%2FSensor%2F&linkDirection=IN&maxDepth=3"
+                        },
+                        {
+                          "rel": "next",
+                          "href": "https://api-sandbox.oftrust.net/identities/v1/discovery?offset=1&limit=1&fromId=fc3bced4-a132-4293-9240-4d0f02277e2e&linkContext=https%3A%2F%2Fstandards.oftrust.net%2Fv1%2FContext%2FLink%2FBelongsTo%2F&identityContext=https%3A%2F%2Fstandards.oftrust.net%2Fv1%2FContext%2FIdentity%2FDevice%2FSensor%2F&linkDirection=IN&maxDepth=3"
+                        }
+                      ],
+                      "hasMore": true,
+                      "totalCount": 174
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "required": [
+                "identities",
+                "pagination"
+              ]
+            }
+          },
+          "401": {
+            "description": "",
+            "schema": {
+              "example": {
+                "error": {
+                  "status": 401,
+                  "message": "Unauthorized"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "schema": {
+              "example": {
+                "error": {
+                  "status": 404,
+                  "message": "Identity not found."
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "",
+            "schema": {
+              "example": {
+                "Invalid link direction": {
+                  "error": {
+                    "status": 422,
+                    "message": {
+                      "linkDirection": [
+                        "Not a valid choice, must be one of 'IN', 'OUT'"
+                      ]
+                    }
+                  }
+                },
+                "Invalid min offset": {
+                  "error": {
+                    "status": 422,
+                    "message": {
+                      "offset": [
+                        "Must be at least 0."
+                      ]
+                    }
+                  }
+                },
+                "Invalid max offset": {
+                  "error": {
+                    "status": 422,
+                    "message": {
+                      "offset": [
+                        "Must not be greater than or equal to total count: {total_count}"
+                      ]
+                    }
+                  }
+                },
+                "Invalid max depth": {
+                  "error": {
+                    "status": 422,
+                    "message": {
+                      "maxDepth": [
+                        "Must be between 1 and 5."
+                      ]
+                    }
+                  }
+                },
+                "Invalid limit": "{\n  \"error\": {\n    \"status\": 422,\n    \"message\": {\n      \"limit\": [\n        \"Must be between 1 and 1000.\"\n      ]\n    }\n  }\n}\n422:\n",
+                "Negative offset": {
+                  "error": {
+                    "status": 422,
+                    "message": {
+                      "offset": [
+                        "Must be at least 0."
+                      ]
+                    }
+                  }
+                },
+                "Higher offset than total count": {
+                  "error": {
+                    "status": 422,
+                    "message": "Offset cannot be greater than the total count of records."
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "",
+            "schema": {
+              "example": {
+                "error": {
+                  "status": 500,
+                  "message": "Could not run discovery."
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "description": "The Authorization header, MUST be `Bearer {{access_token}}`",
+            "type": "string",
+            "in": "header",
+            "name": "Authorization",
+            "required": true
+          },
+          {
+            "description": "The starting identity to traverse from, e.g. the Building ID.",
+            "type": "string",
+            "in": "query",
+            "name": "fromId",
+            "required": true
+          },
+          {
+            "description": "The link context to traverse (the ending forward slash / is optional).\n",
+            "type": "string",
+            "in": "query",
+            "name": "linkContext"
+          },
+          {
+            "description": "The link type to traverse. Only one (and at least one) of `linkContext`\nor `linkType` must be specified.\n",
+            "type": "string",
+            "in": "query",
+            "name": "linkType"
+          },
+          {
+            "description": "The identity context to search for. The context MUST end with a\nforward slash /.\n",
+            "type": "string",
+            "in": "query",
+            "name": "identityContext"
+          },
+          {
+            "description": "The identity type to search for. Only one (and at least one) of `identityContext`\nor `identityType` must be specified.\n",
+            "type": "string",
+            "in": "query",
+            "name": "identityType"
+          },
+          {
+            "description": "The direction to traverse from the building, one of \"IN\" or \"OUT\".\nWhen using \"IN\" it means that the `BelongsTo` links are\nincoming links towards the Building:\n(Building) <-- BelongsTo -- (Storey)\nWhen using \"OUT\" it means that the `BelongsTo` links are\noutgoing from the Building (please note that this is just an\nexample, the data model for buildings and storeys are IN):\n(Building) -- BelongsTo --> (Storey)\n",
+            "type": "string",
+            "in": "query",
+            "name": "linkDirection",
+            "required": true
+          },
+          {
+            "description": "The traversal max depth. This means that e.g. maxDepth=3 does\nthree link hops in the traversal:\n(Building) <-- BelongsTo -- (Storey) <-- BelongsTo -- (Room) <-- BelongsTo -- (Sensor)\nIf searching for `Sensors` but given maxDepth of 2, nothing will\nbe returned since there are 3 links between the building and\nsensors. This value must be between 1 and 5, but defaults to 2.\n",
+            "type": "integer",
+            "in": "query",
+            "name": "maxDepth",
+            "required": true
+          },
+          {
+            "description": "The offset used for pagination. Defaults to 0, meaning starting\nfrom the first record. Given an offset of 10 means that the next\n10 records are returned.\n",
+            "type": "integer",
+            "in": "query",
+            "name": "offset",
+            "required": true
+          },
+          {
+            "description": "How many records to return, used for pagination. Defaults to 20\nrecords. Given a limit of 100 will return 100 records. This value\nmust be between 1 and 1000.\n",
+            "type": "integer",
+            "in": "query",
+            "name": "limit",
+            "required": true
+          }
+        ]
+      }
+    },
+    "/identities/v1/dataDiscovery": {
+      "get": {
+        "description": "Discover data products in the identity network.",
+        "operationId": "GET_identities-v1-dataDiscovery",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "example": {
+                "dataProducts": {
+                  "data-product-product-code": {
+                    "eccbcc62-37e2-4014-8233-d077fce7bac9": "sensor id 1",
+                    "958f5881-ee48-4a5a-a6ed-bad100ec72ac": "sensor id 2"
+                  }
+                },
+                "pagination": {
+                  "links": [
+                    {
+                      "rel": "first",
+                      "href": "https://api-sandbox.oftrust.net/identities/v1/dataDiscovery?offset=0&limit=10&fromId=fc3bced4-a132-4293-9240-4d0f02277e2e&linkContext=https%3A%2F%2Fstandards.oftrust.net%2Fv1%2FContext%2FLink%2FBelongsTo%2F&identityContext=https%3A%2F%2Fstandards.oftrust.net%2Fv1%2FContext%2FIdentity%2FDevice%2FSensor%2F&linkDirection=IN&maxDepth=3"
+                    },
+                    {
+                      "rel": "self",
+                      "href": "https://api-sandbox.oftrust.net/identities/v1/dataDiscovery?fromId=fc3bced4-a132-4293-9240-4d0f02277e2e&linkContext=https%3A%2F%2Fstandards.oftrust.net%2Fv1%2FContext%2FLink%2FBelongsTo%2F&identityContext=https%3A%2F%2Fstandards.oftrust.net%2Fv1%2FContext%2FIdentity%2FDevice%2FSensor%2F&linkDirection=IN&maxDepth=3&offset=0&limit=10"
+                    },
+                    {
+                      "rel": "last",
+                      "href": "https://api-sandbox.oftrust.net/identities/v1/dataDiscovery?offset=0&limit=10&fromId=fc3bced4-a132-4293-9240-4d0f02277e2e&linkContext=https%3A%2F%2Fstandards.oftrust.net%2Fv1%2FContext%2FLink%2FBelongsTo%2F&identityContext=https%3A%2F%2Fstandards.oftrust.net%2Fv1%2FContext%2FIdentity%2FDevice%2FSensor%2F&linkDirection=IN&maxDepth=3"
+                    }
+                  ],
+                  "hasMore": false,
+                  "totalCount": 2
+                }
+              },
+              "properties": {
+                "dataProducts": {
+                  "description": "An object containing the data products. The object is\nkeyed by the data product product code, and that in turn\nis an object containing the sensor identity ID as the key\nand the value is an object containing the link data, such as\nthe external ID for the external system.\n",
+                  "example": {
+                    "dataProducts": {
+                      "data-product-product-code": {
+                        "eccbcc62-37e2-4014-8233-d077fce7bac9": "sensor id 1",
+                        "958f5881-ee48-4a5a-a6ed-bad100ec72ac": "sensor id 2"
+                      }
+                    }
+                  },
+                  "type": "object"
+                },
+                "pagination": {
+                  "description": "The pagination object. The object contains information\nabout the pagination, links, total count of records and if\n there are more records to fetch.\n",
+                  "example": {
+                    "pagination": {
+                      "links": [
+                        {
+                          "rel": "first",
+                          "href": "https://api-sandbox.oftrust.net/identities/v1/dataDiscovery?offset=0&limit=10&fromId=fc3bced4-a132-4293-9240-4d0f02277e2e&linkContext=https%3A%2F%2Fstandards.oftrust.net%2Fv1%2FContext%2FLink%2FBelongsTo%2F&identityContext=https%3A%2F%2Fstandards.oftrust.net%2Fv1%2FContext%2FIdentity%2FDevice%2FSensor%2F&linkDirection=IN&maxDepth=3"
+                        },
+                        {
+                          "rel": "self",
+                          "href": "https://api-sandbox.oftrust.net/identities/v1/dataDiscovery?fromId=fc3bced4-a132-4293-9240-4d0f02277e2e&linkContext=https%3A%2F%2Fstandards.oftrust.net%2Fv1%2FContext%2FLink%2FBelongsTo%2F&identityContext=https%3A%2F%2Fstandards.oftrust.net%2Fv1%2FContext%2FIdentity%2FDevice%2FSensor%2F&linkDirection=IN&maxDepth=3&offset=0&limit=10"
+                        },
+                        {
+                          "rel": "last",
+                          "href": "https://api-sandbox.oftrust.net/identities/v1/dataDiscovery?offset=0&limit=10&fromId=fc3bced4-a132-4293-9240-4d0f02277e2e&linkContext=https%3A%2F%2Fstandards.oftrust.net%2Fv1%2FContext%2FLink%2FBelongsTo%2F&identityContext=https%3A%2F%2Fstandards.oftrust.net%2Fv1%2FContext%2FIdentity%2FDevice%2FSensor%2F&linkDirection=IN&maxDepth=3"
+                        }
+                      ],
+                      "hasMore": false,
+                      "totalCount": 4
+                    }
+                  },
+                  "type": "object"
+                }
+              },
+              "required": [
+                "dataProducts",
+                "pagination"
+              ]
+            }
+          },
+          "401": {
+            "description": "",
+            "schema": {
+              "example": {
+                "error": {
+                  "status": 401,
+                  "message": "Unauthorized"
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "schema": {
+              "example": {
+                "error": {
+                  "status": 404,
+                  "message": "Identity not found."
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "",
+            "schema": {
+              "example": {
+                "Invalid link direction": {
+                  "error": {
+                    "status": 422,
+                    "message": {
+                      "linkDirection": [
+                        "Not a valid choice, must be one of 'IN', 'OUT'"
+                      ]
+                    }
+                  }
+                },
+                "Invalid min offset": {
+                  "error": {
+                    "status": 422,
+                    "message": {
+                      "offset": [
+                        "Must be at least 0."
+                      ]
+                    }
+                  }
+                },
+                "Invalid max offset": {
+                  "error": {
+                    "status": 422,
+                    "message": {
+                      "offset": [
+                        "Must not be greater than or equal to total count: {total_count}"
+                      ]
+                    }
+                  }
+                },
+                "Invalid max depth": {
+                  "error": {
+                    "status": 422,
+                    "message": {
+                      "maxDepth": [
+                        "Must be between 1 and 5."
+                      ]
+                    }
+                  }
+                },
+                "Invalid limit": {
+                  "error": {
+                    "status": 422,
+                    "message": {
+                      "limit": [
+                        "Must be between 1 and 1000."
+                      ]
+                    }
+                  }
+                },
+                "Negative offset": {
+                  "error": {
+                    "status": 422,
+                    "message": {
+                      "offset": [
+                        "Must be at least 0."
+                      ]
+                    }
+                  }
+                },
+                "Higher offset than total count": {
+                  "error": {
+                    "status": 422,
+                    "message": "Offset cannot be greater than the total count of records."
+                  }
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "",
+            "schema": {
+              "example": {
+                "error": {
+                  "status": 500,
+                  "message": "Could not run discovery."
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "description": "The Authorization header, MUST be `Bearer {{access_token}}`",
+            "type": "string",
+            "in": "header",
+            "name": "Authorization",
+            "required": true
+          },
+          {
+            "description": "The starting identity to traverse from, e.g. the Building ID.",
+            "type": "string",
+            "in": "query",
+            "name": "fromId",
+            "required": true
+          },
+          {
+            "description": "The link context to traverse. The context MUST end with a forward\nslash /.\n",
+            "type": "string",
+            "in": "query",
+            "name": "linkContext"
+          },
+          {
+            "description": "The link type to traverse. Only one (and at least one) of `linkContext`\nor `linkType` must be specified.\n",
+            "type": "string",
+            "in": "query",
+            "name": "linkType"
+          },
+          {
+            "description": "The identity context to search for. The context MUST end with a\nforward slash /.\n",
+            "type": "string",
+            "in": "query",
+            "name": "identityContext"
+          },
+          {
+            "description": "The identity type to search for. Only one (and at least one) of `identityContext`\nor `identityType` must be specified.\n",
+            "type": "string",
+            "in": "query",
+            "name": "identityType"
+          },
+          {
+            "description": "The direction to traverse from the building, one of \"IN\" or \"OUT\".\nWhen using \"IN\" it means that the `BelongsTo` links are\nincoming links towards the Building:\n(Building) <-- BelongsTo -- (Storey)\nWhen using \"OUT\" it means that the `BelongsTo` links are\noutgoing from the Building (please note that this is just an\nexample, the data model for buildings and storeys are IN):\n(Building) -- BelongsTo --> (Storey)\n",
+            "type": "string",
+            "in": "query",
+            "name": "linkDirection",
+            "required": true
+          },
+          {
+            "description": "The traversal max depth. This means that e.g. maxDepth=3 does\nthree link hops in the traversal:\n(Building) <-- BelongsTo -- (Storey) <-- BelongsTo -- (Room) <-- BelongsTo -- (Sensor)\nIf searching for `Sensors` but given maxDepth of 2, nothing will\nbe returned since there are 3 links between the building and\nsensors. This value must be between 1 and 5, but defaults to 2.\n",
+            "type": "integer",
+            "in": "query",
+            "name": "maxDepth",
+            "required": true
+          },
+          {
+            "description": "The offset used for pagination. Defaults to 0, meaning starting\nfrom the first record. Given an offset of 10 means that the next\n10 records are returned.\n",
+            "type": "integer",
+            "in": "query",
+            "name": "offset",
+            "required": true
+          },
+          {
+            "description": "How many records to return, used for pagination. Defaults to 20\nrecords. Given a limit of 100 will return 100 records. This value\nmust be between 1 and 1000.\n",
+            "type": "integer",
+            "in": "query",
+            "name": "limit",
+            "required": true
+          },
+          {
+            "description": "The link between an identity and data product, that determines the capabilities and other\ninformation about the identity at the given data product. You can provide\na context for this `AtDataProduct` type link.\n",
+            "type": "string",
+            "in": "query",
+            "name": "atDataProductContext"
+          },
+          {
+            "description": "The type of the link between an identity and data product. If no value is given\nfor `atDataProductContext` or `atDataProductType`, this defaults to `AtDataProduct`.\nOnly one of `atDataProductContext` or `atDataProductType` can be specified at a time.\n",
+            "type": "string",
+            "in": "query",
+            "name": "atDataProductType"
+          }
+        ]
+      }
+    }
+  }
+}

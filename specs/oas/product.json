@@ -1,0 +1,961 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Product",
+    "description": "The Product API provides means to manage products provided by PoT core.\nThe product defines the URL to the translator, as well as a product code to\nuse when requesting data from the translator.\nNote that when creating a new data product, the developer who creates it\nMUST belong to a group (organization), and POST that group ID in the\nrequest when creating the data product.\n",
+    "version": "v1"
+  },
+  "host": "api-sandbox.oftrust.net",
+  "schemes": [
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "definitions": {
+    "product": {
+      "type": "object",
+      "properties": {
+        "productCode": {
+          "description": "The unique identifiable code for the product.",
+          "example": "product-1",
+          "type": "string"
+        },
+        "dataContext": {
+          "description": "The URL to the data context for the product. The data context\ndefines the keys in the `data` object returned from the translator.\nThink of it like \"output\" context.\n",
+          "example": "https://example.com/contexts/product-data.jsonld",
+          "type": "string"
+        },
+        "parameterContext": {
+          "description": "The URL to the context for the parameters of the product.\nThe parameter context defines the keys in the `parameters` object\nthat are sent in the request to the data broker. Think of it like the\n\"input\" context.\n",
+          "example": "https://example.com/contexts/product-parameters.jsonld",
+          "type": "string"
+        },
+        "translatorUrl": {
+          "description": "The URL to the corresponding translator for the product.",
+          "example": "https://example.com/translator",
+          "type": "string"
+        },
+        "name": {
+          "description": "The name of the product.",
+          "example": "Example product",
+          "type": "string"
+        },
+        "organizationPublicKeys": {
+          "description": "Organization public keys. Each object in the list MUST have the keys\n`url` and `type`, where `url` is the full URL to the public key used\nfor signing the data, and the `type` defines the type of the signature.\n",
+          "example": [
+            {
+              "url": "https://example.com/public-key.pub",
+              "type": "RsaSignature2018"
+            },
+            {
+              "url": "https://example.com/public-key-2.pub",
+              "type": "RsaSignature2018"
+            }
+          ],
+          "type": "array"
+        },
+        "description": {
+          "description": "The description of the product.",
+          "example": "This is a product that returns the temperature data for ...",
+          "type": "string"
+        },
+        "imageUrl": {
+          "description": "Optional URL to an image for the product.",
+          "example": "https://example.com/product-image.png",
+          "type": "string"
+        },
+        "authorizationLayer": {
+          "description": "Update the \"authorizationLayer\" only if it is specified in the update call",
+          "example": "None",
+          "type": "string"
+        }
+      },
+      "required": [
+        "productCode",
+        "dataContext",
+        "parameterContext",
+        "translatorUrl",
+        "name",
+        "organizationPublicKeys"
+      ]
+    },
+    "productCreate": {
+      "type": "object",
+      "properties": {
+        "productCode": {
+          "description": "The product code for the product.",
+          "example": "product-1",
+          "type": "string"
+        },
+        "dataContext": {
+          "description": "The URL to the data context for the product. The data context\ndefines the keys in the `data` object returned from the translator.\nThink of it like \"output\" context.\n",
+          "example": "https://example.com/contexts/product-data.jsonld",
+          "type": "string"
+        },
+        "parameterContext": {
+          "description": "The URL to the context for the parameters of the product.\nThe parameter context defines the keys in the `parameters` object\nthat are sent in the request to the data broker. Think of it like the\n\"input\" context.\n",
+          "example": "https://example.com/contexts/product-parameters.jsonld",
+          "type": "string"
+        },
+        "translatorUrl": {
+          "description": "The URL to the translator.",
+          "example": "https://example.com/translator",
+          "type": "string"
+        },
+        "name": {
+          "description": "The name of the product.",
+          "example": "Product name",
+          "type": "string"
+        },
+        "organizationPublicKeys": {
+          "description": "Organization public keys. Each object in the list MUST have the keys\n`url` and `type`, where `url` is the full URL to the public key used\nfor signing the data, and the `type` defines the type of the signature.\n",
+          "example": [
+            {
+              "url": "https://example.com/public-key.pub",
+              "type": "RsaSignature2018"
+            },
+            {
+              "url": "https://example.com/public-key-2.pub",
+              "type": "RsaSignature2018"
+            }
+          ],
+          "type": "array"
+        },
+        "description": {
+          "description": "The description of the product.",
+          "example": "This is a product that returns the temperature data for ...",
+          "type": "string"
+        },
+        "imageUrl": {
+          "description": "Optional URL to an image for the product.",
+          "example": "https://example.com/product-image.png",
+          "type": "string"
+        },
+        "groupId": {
+          "description": "The group where the user is a member of. This group will be\nthe developer of the data product.\n",
+          "example": "5c35c7f1-a1f7-4c9c-91b6-669779f60d23",
+          "type": "string"
+        },
+        "authorizationLayer": {
+          "description": "Optional parameter, default for “authorizationLayer” will be None. The only accepted values are None and Broker.When the product has the authorizationLayer set to Broker, consume permission needs to be set as True for the application. Additionally, when you are using a x-user-token, the user identity needs to have the consume permission.",
+          "example": "None",
+          "type": "string"
+        }
+      },
+      "required": [
+        "productCode",
+        "dataContext",
+        "parameterContext",
+        "translatorUrl",
+        "name",
+        "organizationPublicKeys",
+        "groupId"
+      ]
+    },
+    "paginationURL": {
+      "type": "object",
+      "properties": {
+        "href": {
+          "description": "URL with pagination parameters",
+          "example": "/products/{version}?offset=0&limit=10",
+          "type": "string"
+        },
+        "rel": {
+          "description": "Type of the page. One of: \"next\", \"self\", \"first\", \"last\".\nNote that the next page is presented only if it exists.\nUse hasMore indicator to check it.\n",
+          "example": "first",
+          "type": "string"
+        }
+      },
+      "required": [
+        "href",
+        "rel"
+      ]
+    },
+    "pagination": {
+      "type": "object",
+      "properties": {
+        "links": {
+          "description": "The list of related URLs for pagination",
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/paginationURL"
+          }
+        },
+        "hasMore": {
+          "description": "Indicates if the next page exists",
+          "type": "boolean"
+        },
+        "totalCount": {
+          "description": "Total count of products in query",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "links",
+        "hasMore",
+        "totalCount"
+      ]
+    }
+  },
+  "paths": {
+    "/products/{version}": {
+      "post": {
+        "description": "Create a new product",
+        "operationId": "POST_products-version",
+        "responses": {
+          "201": {
+            "description": "",
+            "schema": {
+              "example": {
+                "@context": "https://standards.lifeengine.io/v1/Context/Identity/Thing/HumanWorld/Product/DataProduct",
+                "@type": "DataProduct",
+                "@id": "https://api-sandbox.oftrust.net/products/v1/product-1",
+                "productCode": "product-1",
+                "dataContext": "https://example.com/v1/Context/Data",
+                "parameterContext": "https://example.com/v1/Context/Parameter",
+                "translatorUrl": "https://translator.example.com/fetch-data-product",
+                "name": "Product name",
+                "organizationPublicKeys": [
+                  {
+                    "url": "https://example.com/public-key.pub",
+                    "type": "RsaSignature2018"
+                  },
+                  {
+                    "url": "https://example.com/public-key-2.pub",
+                    "type": "RsaSignature2018"
+                  }
+                ],
+                "description": "This is a product that returns the temperature data for ...",
+                "imageUrl": "https://example.com/product-image.png",
+                "identityId": "31b5b971-dc50-4c9c-992a-57c0bf016186",
+                "authorizationLayer": "None"
+              },
+              "properties": {
+                "@context": {
+                  "description": "The context URL",
+                  "example": "https://example.com/contexts/type.jsonld",
+                  "type": "string"
+                },
+                "@type": {
+                  "description": "The product type. This will always be Product.",
+                  "example": "DataProduct",
+                  "type": "string"
+                },
+                "@id": {
+                  "description": "A URL pointing to the product resource.",
+                  "example": "https://example.com/products/v1/product-1",
+                  "type": "string"
+                },
+                "productCode": {
+                  "description": "The product code for the product.",
+                  "example": "product-1",
+                  "type": "string"
+                },
+                "dataContext": {
+                  "description": "The URL to the data context for the product. The data context\ndefines the keys in the `data` object returned from the translator.\nThink of it like \"output\" context.\n",
+                  "example": "https://example.com/contexts/product-data.jsonld",
+                  "type": "string"
+                },
+                "parameterContext": {
+                  "description": "The URL to the context for the parameters of the product.\nThe parameter context defines the keys in the `parameters` object\nthat are sent in the request to the data broker. Think of it like the\n\"input\" context.\n",
+                  "example": "https://example.com/contexts/product-parameters.jsonld",
+                  "type": "string"
+                },
+                "translatorUrl": {
+                  "description": "The URL to the translator.",
+                  "example": "https://example.com/translator",
+                  "type": "string"
+                },
+                "name": {
+                  "description": "The name of the product.",
+                  "example": "Product name",
+                  "type": "string"
+                },
+                "organizationPublicKeys": {
+                  "description": "Organization public keys. Each object in the list MUST have the keys\n`url` and `type`, where `url` is the full URL to the public key used\nfor signing the data, and the `type` defines the type of the signature.\n",
+                  "example": [
+                    {
+                      "url": "https://example.com/public-key.pub",
+                      "type": "RsaSignature2018"
+                    },
+                    {
+                      "url": "https://example.com/public-key-2.pub",
+                      "type": "RsaSignature2018"
+                    }
+                  ],
+                  "type": "array"
+                },
+                "identityId": {
+                  "description": "The data product's identity ID.",
+                  "example": "7c25c7f1-a1f7-4c9c-91b6-669779f60e2a",
+                  "type": "string"
+                },
+                "description": {
+                  "description": "The description of the product.",
+                  "example": "This is a product that returns the temperature data for ...",
+                  "type": "string"
+                },
+                "imageUrl": {
+                  "description": "Optional URL to an image for the product.",
+                  "example": "https://example.com/product-image.png",
+                  "type": "string"
+                },
+                "authorizationLayer": {
+                  "description": "Return default of None for the \"authorizationLayer\" property when this is missing/not specified",
+                  "example": "None",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "@context",
+                "@type",
+                "@id",
+                "productCode",
+                "dataContext",
+                "parameterContext",
+                "translatorUrl",
+                "name",
+                "organizationPublicKeys",
+                "identityId"
+              ]
+            }
+          },
+          "401": {
+            "description": "",
+            "schema": {
+              "example": {
+                "error": {
+                  "status": 401,
+                  "message": "Unauthorized"
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "",
+            "schema": {
+              "example": {
+                "error": {
+                  "status": 422,
+                  "message": {
+                    "mandatoryParameter": [
+                      "Missing data for required field."
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "description": "The Authorization header, MUST be `Bearer {{access_token}}`",
+            "type": "string",
+            "in": "header",
+            "name": "Authorization",
+            "required": true
+          },
+          {
+            "schema": {
+              "example": {
+                "dataContext": "https://example.com/v1/Context/Data",
+                "parameterContext": "https://example.com/v1/Context/Parameter",
+                "productCode": "product-1",
+                "name": "Product name",
+                "translatorUrl": "https://example.com/translator",
+                "organizationPublicKeys": [
+                  {
+                    "url": "https://example.com/public-key.pub",
+                    "type": "RsaSignature2018"
+                  },
+                  {
+                    "url": "https://example.com/public-key-2.pub",
+                    "type": "RsaSignature2018"
+                  }
+                ],
+                "imageUrl": "https://example.com/product-image.png",
+                "description": "This is a product that returns the temperature data for ...",
+                "groupId": "0a52c776-1c9c-42b1-ac03-b64c04abded2"
+              },
+              "$ref": "#/definitions/productCreate"
+            },
+            "in": "body",
+            "name": "body",
+            "required": true
+          }
+        ]
+      },
+      "get": {
+        "description": "Lists all available products. *NOTE*: This is a CORS enabled endpoint.\nSupports pagination.\n",
+        "operationId": "GET_products-version",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "example": {
+                "@context": "https://schema.org/",
+                "@type": "collection",
+                "ItemList": [
+                  {
+                    "@context": "https://standards.lifeengine.io/v1/Context/Identity/Thing/HumanWorld/Product/DataProduct",
+                    "@type": "DataProduct",
+                    "@id": "https://api-sandbox.oftrust.net/products/v1/product-1",
+                    "productCode": "product-1",
+                    "dataContext": "https://example.com/v1/Context/Data",
+                    "parameterContext": "https://example.com/v1/Context/Parameter",
+                    "translatorUrl": "https://translator.example.com/fetch-data-product",
+                    "name": "Product name",
+                    "organizationPublicKeys": [
+                      {
+                        "url": "https://example.com/public-key.pub",
+                        "type": "RsaSignature2018"
+                      },
+                      {
+                        "url": "https://example.com/public-key-2.pub",
+                        "type": "RsaSignature2018"
+                      }
+                    ],
+                    "description": "This is a product that returns the temperature data for ...",
+                    "imageUrl": "https://example.com/product-image.png",
+                    "identityId": "31b5b971-dc50-4c9c-992a-57c0bf016186"
+                  },
+                  {
+                    "@context": "https://standards.lifeengine.io/v1/Context/Identity/Thing/HumanWorld/Product/DataProduct",
+                    "@type": "DataProduct",
+                    "@id": "https://api-sandbox.oftrust.net/products/v1/product-2",
+                    "productCode": "product-2",
+                    "dataContext": "https://example.com/v1/Context/Data",
+                    "parameterContext": "https://example.com/v1/Context/Parameter",
+                    "translatorUrl": "https://translator.example.com/fetch",
+                    "name": "Product name example",
+                    "organizationPublicKeys": [
+                      {
+                        "url": "https://example.com/public-key.pub",
+                        "type": "RsaSignature2018"
+                      },
+                      {
+                        "url": "https://example.com/public-key-2.pub",
+                        "type": "RsaSignature2018"
+                      }
+                    ],
+                    "description": "This is a product that returns the maintenance history data for ...",
+                    "imageUrl": "https://example.com/product-image.png",
+                    "identityId": "f4902768-39aa-492d-9d4f-99b5cf13ee2b"
+                  }
+                ],
+                "pagination": {
+                  "links": [
+                    {
+                      "rel": "first",
+                      "href": "<API URL>/products?offset=0&limit=2"
+                    },
+                    {
+                      "rel": "self",
+                      "href": "<API URL>/products"
+                    },
+                    {
+                      "rel": "last",
+                      "href": "<API URL>/products?offset=2&limit=2"
+                    },
+                    {
+                      "rel": "next",
+                      "href": "<API URL>/products?offset=2&limit=2"
+                    }
+                  ],
+                  "hasMore": true,
+                  "totalCount": 10
+                }
+              },
+              "properties": {
+                "@context": {
+                  "description": "The context URL",
+                  "example": "https://schema.org/",
+                  "type": "string"
+                },
+                "@type": {
+                  "description": "The type of the list",
+                  "example": "collection",
+                  "type": "string"
+                },
+                "ItemList": {
+                  "description": "The list of products",
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/definitions/product"
+                  }
+                },
+                "pagination": {
+                  "description": "Pagination object",
+                  "$ref": "#/definitions/pagination"
+                }
+              },
+              "required": [
+                "@context",
+                "@type",
+                "ItemList",
+                "pagination"
+              ]
+            }
+          },
+          "422": {
+            "description": "",
+            "schema": {
+              "example": {
+                "error": {
+                  "message": {
+                    "limit": [
+                      "Must be between 1 and 100."
+                    ],
+                    "offset": [
+                      "Must be at least 0."
+                    ]
+                  },
+                  "status": 422
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "description": "Offset of a query",
+            "type": "integer",
+            "in": "query",
+            "name": "offset"
+          },
+          {
+            "description": "Limit the result of a query",
+            "type": "integer",
+            "in": "query",
+            "name": "limit"
+          }
+        ]
+      },
+      "parameters": [
+        {
+          "type": "string",
+          "in": "path",
+          "name": "version",
+          "required": true
+        }
+      ]
+    },
+    "/products/{version}/{product_code}": {
+      "get": {
+        "description": "Reads a single product by product code. *NOTE*: This is a CORS enabled endpoint.\n",
+        "operationId": "GET_products-version-product_code",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "example": {
+                "@context": "https://standards.lifeengine.io/v1/Context/Identity/Thing/HumanWorld/Product/DataProduct",
+                "@type": "DataProduct",
+                "@id": "https://api-sandbox.oftrust.net/products/v1/product-1",
+                "productCode": "product-1",
+                "dataContext": "https://example.com/v1/Context/Data",
+                "parameterContext": "https://example.com/v1/Context/Parameter",
+                "translatorUrl": "https://translator.example.com/fetch-data-product",
+                "name": "Product name",
+                "organizationPublicKeys": [
+                  {
+                    "url": "https://example.com/public-key.pub",
+                    "type": "RsaSignature2018"
+                  },
+                  {
+                    "url": "https://example.com/public-key-2.pub",
+                    "type": "RsaSignature2018"
+                  }
+                ],
+                "description": "This is a product that returns the temperature data for ...",
+                "imageUrl": "https://example.com/product-image.png",
+                "identityId": "31b5b971-dc50-4c9c-992a-57c0bf016186",
+                "authorizationLayer": "None"
+              },
+              "properties": {
+                "@context": {
+                  "description": "The context URL",
+                  "example": "https://example.com/contexts/type.jsonld",
+                  "type": "string"
+                },
+                "@type": {
+                  "description": "The product type. This will always be Product.",
+                  "example": "DataProduct",
+                  "type": "string"
+                },
+                "@id": {
+                  "description": "A URL pointing to the product resource.",
+                  "example": "https://example.com/products/v1/product-1",
+                  "type": "string"
+                },
+                "productCode": {
+                  "description": "The product code for the product.",
+                  "example": "product-1",
+                  "type": "string"
+                },
+                "dataContext": {
+                  "description": "The URL to the data context for the product. The data context\ndefines the keys in the `data` object returned from the translator.\nThink of it like \"output\" context.\n",
+                  "example": "https://example.com/contexts/product-data.jsonld",
+                  "type": "string"
+                },
+                "parameterContext": {
+                  "description": "The URL to the context for the parameters of the product.\nThe parameter context defines the keys in the `parameters` object\nthat are sent in the request to the data broker. Think of it like the\n\"input\" context.\n",
+                  "example": "https://example.com/contexts/product-parameters.jsonld",
+                  "type": "string"
+                },
+                "translatorUrl": {
+                  "description": "The URL to the translator.",
+                  "example": "https://example.com/translator",
+                  "type": "string"
+                },
+                "name": {
+                  "description": "The name of the product.",
+                  "example": "Product name",
+                  "type": "string"
+                },
+                "organizationPublicKeys": {
+                  "description": "Organization public keys. Each object in the list MUST have the keys\n`url` and `type`, where `url` is the full URL to the public key used\nfor signing the data, and the `type` defines the type of the signature.\n",
+                  "example": [
+                    {
+                      "url": "https://example.com/public-key.pub",
+                      "type": "RsaSignature2018"
+                    },
+                    {
+                      "url": "https://example.com/public-key-2.pub",
+                      "type": "RsaSignature2018"
+                    }
+                  ],
+                  "type": "array"
+                },
+                "identityId": {
+                  "description": "The data product's identity ID.",
+                  "example": "7c25c7f1-a1f7-4c9c-91b6-669779f60e2a",
+                  "type": "string"
+                },
+                "description": {
+                  "description": "The description of the product.",
+                  "example": "This is a product that returns the temperature data for ...",
+                  "type": "string"
+                },
+                "imageUrl": {
+                  "description": "Optional URL to an image for the product.",
+                  "example": "https://example.com/product-image.png",
+                  "type": "string"
+                },
+                "authorizationLayer": {
+                  "description": "Return default of None for the \"authorizationLayer\" property when this is missing/not specified",
+                  "example": "None",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "@context",
+                "@type",
+                "@id",
+                "productCode",
+                "dataContext",
+                "parameterContext",
+                "translatorUrl",
+                "name",
+                "organizationPublicKeys",
+                "identityId"
+              ]
+            }
+          },
+          "404": {
+            "description": "",
+            "schema": {
+              "example": {
+                "error": {
+                  "status": 404,
+                  "message": "Product not found."
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "description": "Update a product by product code",
+        "operationId": "PUT_products-version-product_code",
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "example": {
+                "@context": "https://standards.lifeengine.io/v1/Context/Identity/Thing/HumanWorld/Product/DataProduct",
+                "@type": "DataProduct",
+                "@id": "https://api-sandbox.oftrust.net/products/v1/product-1",
+                "productCode": "product-1",
+                "dataContext": "https://example.com/v1/Context/Data",
+                "parameterContext": "https://example.com/v1/Context/Parameter",
+                "translatorUrl": "https://translator.example.com/fetch-data-product",
+                "name": "Product name",
+                "organizationPublicKeys": [
+                  {
+                    "url": "https://example.com/public-key.pub",
+                    "type": "RsaSignature2018"
+                  },
+                  {
+                    "url": "https://example.com/public-key-2.pub",
+                    "type": "RsaSignature2018"
+                  }
+                ],
+                "description": "This is a product that returns the temperature data for ...",
+                "imageUrl": "https://example.com/product-image.png",
+                "identityId": "31b5b971-dc50-4c9c-992a-57c0bf016186",
+                "authorizationLayer": "None"
+              },
+              "properties": {
+                "@context": {
+                  "description": "The context URL",
+                  "example": "https://example.com/contexts/type.jsonld",
+                  "type": "string"
+                },
+                "@type": {
+                  "description": "The product type. This will always be Product.",
+                  "example": "DataProduct",
+                  "type": "string"
+                },
+                "@id": {
+                  "description": "A URL pointing to the product resource.",
+                  "example": "https://example.com/products/v1/product-1",
+                  "type": "string"
+                },
+                "productCode": {
+                  "description": "The product code for the product.",
+                  "example": "product-1",
+                  "type": "string"
+                },
+                "dataContext": {
+                  "description": "The URL to the data context for the product. The data context\ndefines the keys in the `data` object returned from the translator.\nThink of it like \"output\" context.\n",
+                  "example": "https://example.com/contexts/product-data.jsonld",
+                  "type": "string"
+                },
+                "parameterContext": {
+                  "description": "The URL to the context for the parameters of the product.\nThe parameter context defines the keys in the `parameters` object\nthat are sent in the request to the data broker. Think of it like the\n\"input\" context.\n",
+                  "example": "https://example.com/contexts/product-parameters.jsonld",
+                  "type": "string"
+                },
+                "translatorUrl": {
+                  "description": "The URL to the translator.",
+                  "example": "https://example.com/translator",
+                  "type": "string"
+                },
+                "name": {
+                  "description": "The name of the product.",
+                  "example": "Product name",
+                  "type": "string"
+                },
+                "organizationPublicKeys": {
+                  "description": "Organization public keys. Each object in the list MUST have the keys\n`url` and `type`, where `url` is the full URL to the public key used\nfor signing the data, and the `type` defines the type of the signature.\n",
+                  "example": [
+                    {
+                      "url": "https://example.com/public-key.pub",
+                      "type": "RsaSignature2018"
+                    },
+                    {
+                      "url": "https://example.com/public-key-2.pub",
+                      "type": "RsaSignature2018"
+                    }
+                  ],
+                  "type": "array"
+                },
+                "identityId": {
+                  "description": "The data product's identity ID.",
+                  "example": "7c25c7f1-a1f7-4c9c-91b6-669779f60e2a",
+                  "type": "string"
+                },
+                "description": {
+                  "description": "The description of the product.",
+                  "example": "This is a product that returns the temperature data for ...",
+                  "type": "string"
+                },
+                "imageUrl": {
+                  "description": "Optional URL to an image for the product.",
+                  "example": "https://example.com/product-image.png",
+                  "type": "string"
+                },
+                "authorizationLayer": {
+                  "description": "Return default of None for the \"authorizationLayer\" property when this is missing/not specified",
+                  "example": "None",
+                  "type": "string"
+                }
+              },
+              "required": [
+                "@context",
+                "@type",
+                "@id",
+                "productCode",
+                "dataContext",
+                "parameterContext",
+                "translatorUrl",
+                "name",
+                "organizationPublicKeys",
+                "identityId"
+              ]
+            }
+          },
+          "401": {
+            "description": "",
+            "schema": {
+              "example": {
+                "error": {
+                  "status": 401,
+                  "message": "Unauthorized"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "",
+            "schema": {
+              "example": {
+                "error": {
+                  "status": 403,
+                  "message": "Permission denied."
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "schema": {
+              "example": {
+                "error": {
+                  "status": 404,
+                  "message": "Product not found."
+                }
+              }
+            }
+          },
+          "422": {
+            "description": "",
+            "schema": {
+              "example": {
+                "error": {
+                  "status": 422,
+                  "message": {
+                    "mandatoryParameter": [
+                      "Missing data for required field."
+                    ]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "description": "The Authorization header, MUST be `Bearer {{access_token}}`",
+            "type": "string",
+            "in": "header",
+            "name": "Authorization",
+            "required": true
+          },
+          {
+            "schema": {
+              "example": {
+                "dataContext": "https://example.com/v1/Context/Data",
+                "parameterContext": "https://example.com/v1/Context/Parameter",
+                "productCode": "product-1",
+                "name": "Product name",
+                "translatorUrl": "https://example.com/translator",
+                "organizationPublicKeys": [
+                  {
+                    "url": "https://example.com/public-key.pub",
+                    "type": "RsaSignature2018"
+                  },
+                  {
+                    "url": "https://example.com/public-key-2.pub",
+                    "type": "RsaSignature2018"
+                  }
+                ],
+                "imageUrl": "https://example.com/product-image.png",
+                "description": "This is a product that returns the temperature data for ...",
+                "authorizationLayer": "None"
+              },
+              "$ref": "#/definitions/product"
+            },
+            "in": "body",
+            "name": "body",
+            "required": true
+          }
+        ]
+      },
+      "delete": {
+        "description": "Delete a product by product code",
+        "operationId": "DELETE_products-version-product_code",
+        "responses": {
+          "204": {
+            "description": "",
+            "schema": {
+              "example": {}
+            }
+          },
+          "401": {
+            "description": "",
+            "schema": {
+              "example": {
+                "error": {
+                  "status": 401,
+                  "message": "Unauthorized"
+                }
+              }
+            }
+          },
+          "403": {
+            "description": "",
+            "schema": {
+              "example": {
+                "error": {
+                  "status": 403,
+                  "message": "Permission denied."
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "",
+            "schema": {
+              "example": {
+                "error": {
+                  "status": 404,
+                  "message": "Product not found."
+                }
+              }
+            }
+          }
+        },
+        "parameters": [
+          {
+            "description": "The Authorization header, MUST be `Bearer {{access_token}}`",
+            "type": "string",
+            "in": "header",
+            "name": "Authorization",
+            "required": true
+          }
+        ]
+      },
+      "parameters": [
+        {
+          "description": "The product code of the product.",
+          "type": "string",
+          "in": "path",
+          "name": "product_code",
+          "required": true
+        },
+        {
+          "type": "string",
+          "in": "path",
+          "name": "version",
+          "required": true
+        }
+      ]
+    }
+  }
+}
