@@ -24,6 +24,7 @@ GEM
     execjs (2.7.0)
     fast_blank (1.0.0)
     fastimage (2.1.7)
+    ffi (1.12.2)
     ffi (1.12.2-x64-mingw32)
     haml (5.0.4)
       temple (>= 0.8.0)
@@ -81,6 +82,8 @@ GEM
       rouge (~> 2.0)
     mini_portile2 (2.4.0)
     minitest (5.14.0)
+    nokogiri (1.10.9)
+      mini_portile2 (~> 2.4.0)
     nokogiri (1.10.9-x64-mingw32)
       mini_portile2 (~> 2.4.0)
     padrino-helpers (0.13.3.4)
@@ -106,12 +109,13 @@ GEM
     thor (1.0.1)
     thread_safe (0.3.6)
     tilt (2.0.10)
-    tzinfo (1.2.7)
+    tzinfo (1.2.10)
       thread_safe (~> 0.1)
     uglifier (3.2.0)
       execjs (>= 0.3.0, < 3)
 
 PLATFORMS
+  ruby
   x64-mingw32
 
 DEPENDENCIES
